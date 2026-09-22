@@ -9,21 +9,36 @@
         .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         h1 { color: #333; }
         .btn { display: inline-block; margin: 15px; padding: 15px 30px; font-size: 18px; color: white; text-decoration: none; border-radius: 5px; transition: 0.3s; }
+        
+        /* 數學按鈕樣式 (藍色) */
         .btn-math { background-color: #007bff; }
         .btn-math:hover { background-color: #0056b3; }
+        
+        /* 英文按鈕樣式 (綠色) */
         .btn-english { background-color: #28a745; }
         .btn-english:hover { background-color: #1e7e34; }
+
+        /* 自然按鈕樣式 (青色) - 新增 */
+        .btn-natural { background-color: #17a2b8; }
+        .btn-natural:hover { background-color: #117a8b; }
+
+        /* 試卷按鈕樣式 (紅色) - 新增 */
+        .btn-exam { background-color: #dc3545; }
+        .btn-exam:hover { background-color: #c82333; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>📚 入口</h1>
-        <p>請選擇你要練習的科目：</p>
+        <p>請選擇你要練習的科目或測驗：</p>
         
-        <!-- 這裡分別連向你的數學與英文 GitHub Pages -->
+        <!-- 這裡分別連向你的各個 GitHub Pages -->
         <a href="https://brucehsu60.github.io/math/" class="btn btn-math">數學</a>
         <a href="https://brucehsu60.github.io/English/" class="btn btn-english">英文</a>
-        <a href="https://brucehsu60.github.io/Exam/" class="btn btn-english">試卷</a>
+        
+        <!-- 新增的自然與試卷入口 -->
+        <a href="https://brucehsu60.github.io/natural/" class="btn btn-natural">自然</a>
+        <a href="https://brucehsu60.github.io/Exam/" class="btn btn-exam">試卷</a>
     </div>
 </body>
 </html>
