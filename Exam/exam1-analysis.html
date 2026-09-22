@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考卷作答盲點與學習診斷報告</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --sol-bg: #e7f1ff;
+            --sol-border: #0d6efd;
+            --hack-bg: #fff3cd;
+            --hack-border: #ffc107;
+            --trap-bg: #f8d7da;
+            --trap-border: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --border-color: #444;
+            --sol-bg: #0c2b4e;
+            --sol-border: #3d8bfd;
+            --hack-bg: #4d3a00;
+            --hack-border: #ffca2c;
+            --trap-bg: #4a191e;
+            --trap-border: #ea868f;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--container-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .toolbar button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .toolbar button:hover {
+            filter: brightness(0.9);
+        }
+        .container {
+            max-width: 900px;
+            margin: 70px auto 40px;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.2em;
+            margin-top: 30px;
+            color: var(--text-color);
+            border-left: 4px solid var(--text-color);
+            padding-left: 10px;
+        }
+        .problem-block {
+            margin-bottom: 40px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            page-break-inside: auto;
+        }
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 5px solid var(--sol-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .hack-box {
+            background-color: var(--hack-bg);
+            border-left: 5px solid var(--hack-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .trap-box {
+            background-color: var(--trap-bg);
+            border: 2px solid var(--trap-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+        .trap-title {
+            font-weight: bold;
+            color: var(--trap-border);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .example-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .example-list li {
+            margin-bottom: 10px;
+        }
+        
+        @media print {
+            .toolbar { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .container { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .problem-block { page-break-inside: auto; border: none; border-bottom: 1px dashed #ccc; }
+            .trap-box {
+                page-break-inside: avoid;
+                border: 3px solid #000 !important;
+                border-left: 10px solid #000 !important;
+            }
+            .solution-box { border-left: 5px solid #000 !important; }
+            .hack-box { border-left: 5px double #000 !important; page-break-inside: avoid; }
+            strong { font-weight: bold; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button onclick="setTheme('light')">📄 預設好讀</button>
+        <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
+    </div>
+
+    <div class="container">
+        <h1>考卷作答盲點與學習診斷報告</h1>
+        <p style="text-align:center;">教練評語：你的代數運算與極限計算能力（如：有理化、解聯立、夾擠定理）極佳，但面對多選題的「觀念陷阱」防禦力仍需強化。請熟記以下為你量身打造的<strong>反例武器庫</strong>！</p>
+
+        <!-- 盲點一 -->
+        <div class="problem-block">
+            <h2>一、以為「數列不斷遞增，極限必為無限大」的錯覺</h2>
+            <div class="solution-box">
+                <strong>【作答還原】</strong><br>
+                多選第 1 題選項 (1)，你直覺認為若 $a_{n+1} > a_n > 0$（嚴格遞增且為正），則 $\d\lim_{n \to \infty} a_n = \infty$。
+            </div>
+            <div class="trap-box">
+                <div class="trap-title">🚨 觀念盲點破解</div>
+                數學中有一個重要定理：「<strong>有界遞增數列必收斂</strong>」。只要數列在變大的過程中，上方有一個「天花板（上界）」擋住，它就會收斂到某個常數，絕對不會跑到無限大。這也是微積分中單調收斂定理的核心！
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸反例武器庫：遞增卻不為無限大】</strong>
+                <ul class="example-list">
+                    <li><strong>反例 A（分數漸近模型）：</strong>設 $a_n = 3 - \d\frac{1}{n}$。<br>
+                    數列前幾項為 $2, 2.5, 2.66, 2.75 \dots$。它每一項都比前一項大（嚴格遞增），但永遠不會超過 3，其極限 $\d\lim_{n \to \infty} a_n = 3 \neq \infty$。</li>
+                    <li><strong>反例 B（循環小數模型）：</strong>設 $a_n = 0.\underbrace{99\dots9}_{n \text{位}}$。<br>
+                    數列為 $0.9, 0.99, 0.999 \dots$。這也是不斷變大的嚴格遞增數列，但極限是被天花板擋住的 $\d\lim_{n \to \infty} a_n = 1 \neq \infty$。</li>
+                    <li><strong>反例 C（自然對數底數模型）：</strong>設 $a_n = (1 + \d\frac{1}{n})^n$。<br>
+                    這個數列隨著 $n$ 增加會不斷變大，但它最終會收斂到尤拉數 $\d\lim_{n \to \infty} a_n = e \approx 2.718 \neq \infty$。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 盲點二 -->
+        <div class="problem-block">
+            <h2>二、將「平方收斂」直接推導至「一次項收斂」的危險跳躍</h2>
+            <div class="solution-box">
+                <strong>【作答還原】</strong><br>
+                多選第 4 題選項 (5)，你認為若 $\d\lim_{n \to \infty} b_n^2 = 4$，則 $\d\lim_{n \to \infty} b_n$ 必定為 $2$ 或 $-2$。
+            </div>
+            <div class="trap-box">
+                <div class="trap-title">🚨 觀念盲點破解</div>
+                「極限存在」的嚴格定義是：數列最終必須穩定停留在「<strong>單一</strong>」數值上。如果平方會收斂，但原本的數列在正負之間「反覆橫跳」，那麼原本的數列就是「<strong>發散</strong>」的。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸反例武器庫：平方收斂但原數列發散】</strong>
+                <ul class="example-list">
+                    <li><strong>反例 A（完美跳動模型）：</strong>設 $b_n = 2 \times (-1)^n$。<br>
+                    數列為 $-2, 2, -2, 2 \dots$。很明顯 $b_n$ 找不到單一歸宿（發散）。但是它的平方 $b_n^2$ 永遠是 $4, 4, 4, 4 \dots$，極限完美收斂於 $4$。</li>
+                    <li><strong>反例 B（漸近跳動模型）：</strong>設 $b_n = (-1)^n \sqrt{4 - \d\frac{1}{n}}$。<br>
+                    它的平方 $b_n^2 = 4 - \d\frac{1}{n}$，極限 $\d\lim_{n \to \infty} b_n^2 = 4$。但 $b_n$ 本身會在接近 $2$ 與 $-2$ 兩端瘋狂來回震盪，所以 $b_n$ 極限不存在。</li>
+                    <li><strong>反例 C（分段惡搞模型）：</strong>設當 $n$ 為奇數時 $b_n = 2 + \d\frac{1}{n}$，當 $n$ 為偶數時 $b_n = -2$。<br>
+                    平方後，極限一樣都會被硬生生拉到 $4$ 並且收斂，但 $b_n$ 原本的長相卻是毫無規律的發散數列。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 盲點三 -->
+        <div class="problem-block">
+            <h2>三、對「有限總和」與「無窮極限」的幾何直覺未貫通</h2>
+            <div class="solution-box">
+                <strong>【作答還原】</strong><br>
+                多選第 2 題選項 (2) 與第 3 題選項 (3)，你在空白處皆精準算出了正確的無窮級數總和，但卻沒有把「有限項必定小於無窮和（針對正項級數）」的觀念連結起來，導致不敢勾選正確選項。
+            </div>
+            <div class="trap-box">
+                <div class="trap-title">🚨 觀念盲點破解</div>
+                對於所有項皆為正數的級數，只要「無窮總和」是一個定值，那麼「有限項的總和」就永遠在往極限攀爬，只能「<strong>無限逼近</strong>」，但「<strong>絕對無法超越或等於</strong>」那個極限值。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸反例武器庫：有限永遠小於無窮】</strong>
+                <ul class="example-list">
+                    <li><strong>例子 A（芝諾悖論模型）：</strong>級數 $\d\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots$ 的無窮極限是 $1$。<br>
+                    無論你加到第幾項，有限和 $S_n = 1 - (\d\frac{1}{2})^n$，因為 $(\d\frac{1}{2})^n > 0$，所以 $S_n$ 絕對嚴格小於 $1$。</li>
+                    <li><strong>例子 B（分項對消模型）：</strong>$\d\sum_{k=1}^{n} \frac{1}{k(k+1)} = (1 - \d\frac{1}{2}) + (\d\frac{1}{2} - \frac{1}{3}) + \dots + (\d\frac{1}{n} - \frac{1}{n+1})$。<br>
+                    有限和為 $1 - \d\frac{1}{n+1}$，因為扣掉了一個大於零的數字，所以必定 $< 1$。唯有推至無窮，極限才是 $1$。</li>
+                    <li><strong>例子 C（碎形面積模型）：</strong>如同考卷填充第 5 題的謝爾賓斯基地毯，不管你挖了 100 次還是 10000 次，被挖掉的「有限次面積總和」必定小於正方形的原始總面積 $36$。只有操作了「無限次」，極限才會剛好等於 $36$。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 盲點四 -->
+        <div class="problem-block">
+            <h2>四、無窮等比級數「收斂條件」的邊界判定模糊</h2>
+            <div class="solution-box">
+                <strong>【作答還原】</strong><br>
+                多選第 2 題選項 (4)，你在旁邊寫下 $r = -1$，卻還是誤判該級數為「收斂」。
+            </div>
+            <div class="trap-box">
+                <div class="trap-title">🚨 觀念盲點破解</div>
+                無窮等比級數 $\d\sum a r^{n-1}$ 收斂的鐵則只有一個：公比的絕對值必須<strong>嚴格小於 1</strong>，也就是 $-1 < r < 1$。只要 $r = -1$，級數就會在加減之間震盪，這在數學上即判定為<strong>發散</strong>。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸反例武器庫：公比與收斂的邊界地雷】</strong>
+                <ul class="example-list">
+                    <li><strong>例子 A（邊界震盪發散，$r = -1$）：</strong>級數 $1 - 1 + 1 - 1 + 1 - 1 \dots$<br>
+                    加到奇數項總和是 $1$，加到偶數項總和是 $0$。總和在 $1$ 與 $0$ 之間無法安定，所以極限不存在，發散！</li>
+                    <li><strong>例子 B（交錯但收斂，$r = -0.99$）：</strong>級數 $1 - 0.99 + 0.99^2 - 0.99^3 \dots$<br>
+                    雖然一正一負交錯，但因為 $|-0.99| < 1$，震盪的幅度會越來越小，最終會乖乖收斂到 $\d\frac{1}{1 - (-0.99)} = \frac{1}{1.99}$。</li>
+                    <li><strong>例子 C（交錯且爆炸發散，$r = -1.01$）：</strong>級數 $1 - 1.01 + 1.01^2 - 1.01^3 \dots$<br>
+                    不只一正一負，且震盪的幅度越來越大，數值宛如脫韁野馬般無法控制，絕對發散！</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function triggerPrint() {
+            MathJax.typesetPromise().then(() => { 
+                window.print(); 
+            });
+        }
+    </script>
+</body>
+</html>

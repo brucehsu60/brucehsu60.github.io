@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北市立中山女子高級中學 高三數學週考考卷詳解</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --sol-bg: #e7f1ff;
+            --sol-border: #0d6efd;
+            --hack-bg: #fff3cd;
+            --hack-border: #ffc107;
+            --trap-bg: #f8d7da;
+            --trap-border: #dc3545;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --border-color: #444;
+            --sol-bg: #0c2b4e;
+            --sol-border: #3d8bfd;
+            --hack-bg: #4d3a00;
+            --hack-border: #ffca2c;
+            --trap-bg: #4a191e;
+            --trap-border: #ea868f;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--container-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .toolbar button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .toolbar button:hover {
+            filter: brightness(0.9);
+        }
+        .container {
+            max-width: 900px;
+            margin: 70px auto 40px;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.5em;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.2em;
+            margin-top: 30px;
+            color: var(--text-color);
+            border-left: 4px solid var(--text-color);
+            padding-left: 10px;
+        }
+        .problem-block {
+            margin-bottom: 40px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            page-break-inside: auto;
+        }
+        .problem-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .ans-box {
+            display: inline-block;
+            padding: 5px 15px;
+            margin: 10px 0;
+            border: 2px solid var(--text-color);
+            font-weight: bold;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 5px solid var(--sol-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .hack-box {
+            background-color: var(--hack-bg);
+            border-left: 5px solid var(--hack-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .trap-box {
+            background-color: var(--trap-bg);
+            border: 2px solid var(--trap-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            page-break-inside: avoid;
+        }
+        .trap-title {
+            font-weight: bold;
+            color: var(--trap-border);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        @media print {
+            .toolbar { display: none !important; }
+            body { background: white !important; color: black !important; }
+            .container { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .problem-block { page-break-inside: auto; border: none; border-bottom: 1px dashed #ccc; }
+            .trap-box, .ans-box {
+                page-break-inside: avoid;
+                border: 3px solid #000 !important;
+            }
+            .solution-box { border-left: 5px solid #000 !important; }
+            .hack-box { border-left: 5px double #000 !important; }
+            strong { font-weight: bold; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button onclick="setTheme('light')">📄 預設好讀</button>
+        <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
+    </div>
+
+    <div class="container">
+        <h1>台北市立中山女子高級中學　高三數學週考考卷</h1>
+        <p style="text-align:center;">範圍：單元1 數列的極限與無窮等比級數</p>
+
+        <h2>一、單選題(每題6分，共18分)</h2>
+
+        <!-- Q1 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                1. 下列各無窮數列中，有幾個是收斂數列？<br>
+                $\langle \d\frac{n-2^{999}}{n+9^{999}} \rangle$ , $\langle \d\frac{2^n}{2^{-n}} \rangle$ , $\langle (-1)^n \d\frac{1}{n} \rangle$ , $\langle (1+\d\frac{1}{3n})^{3n} \rangle$ , $\langle \sin n \rangle$<br>
+                (1)1　(2)2　(3)3　(4)4　(5)5
+            </div>
+            <div class="ans-box">解答：(3)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                逐一檢查各數列的極限：<br>
+                ① $\d\lim_{n \to \infty} \frac{n-2^{999}}{n+9^{999}} = \d\lim_{n \to \infty} \frac{1 - \frac{2^{999}}{n}}{1 + \frac{9^{999}}{n}} = 1$ （收斂）<br>
+                ② $\d\lim_{n \to \infty} \frac{2^n}{2^{-n}} = \d\lim_{n \to \infty} 4^n = \infty$ （發散）<br>
+                ③ $\d\lim_{n \to \infty} (-1)^n \frac{1}{n} = 0$ （收斂，夾擠定理）<br>
+                ④ $\d\lim_{n \to \infty} (1+\frac{1}{3n})^{3n} = e$ （收斂，自然對數底數定義）<br>
+                ⑤ $\d\lim_{n \to \infty} \sin n$ 不存在（值在 $-1$ 與 $1$ 之間震盪，發散）<br>
+                共有 3 個收斂。
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                2. 設 $a_n = 0.\underbrace{333\cdots3}_{n\text{位}}$，求滿足 $|a_n - \d\frac{1}{3}| < \d\frac{1}{10^{10}}$ 的最小正整數 $n$ 為多少？<br>
+                (1)8　(2)9　(3)10　(4)11　(5)12
+            </div>
+            <div class="ans-box">解答：(3)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                將循環小數寫成等比級數：<br>
+                $a_n = 0.3 + 0.03 + \cdots + 3 \times 10^{-n} = \d\frac{0.3(1 - 0.1^n)}{1 - 0.1} = \frac{1}{3}(1 - 10^{-n})$<br>
+                代入絕對值不等式：<br>
+                $|\d\frac{1}{3}(1 - 10^{-n}) - \frac{1}{3}| < \frac{1}{10^{10}}$<br>
+                $|-\d\frac{1}{3} \times 10^{-n}| < 10^{-10}$<br>
+                $\d\frac{1}{3} \times 10^{-n} < 10^{-10}$<br>
+                $10^{-n} < 3 \times 10^{-10}$<br>
+                同乘 $10^{10}$ 得到 $10^{10-n} < 3$。<br>
+                當 $10-n = 0$ 時，$10^0 = 1 < 3$ 成立。即 $n = 10$。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸考場直覺】</strong><br>
+                $1/3 = 0.3333...$（無窮多個3）。<br>
+                $|a_n - 1/3|$ 就是小數點後第 $n+1$ 位開始都是 3 的數，即 $0.\underbrace{00\cdots 0}_{n\text{個}}333\cdots = \d\frac{1}{3} \times 10^{-n}$。<br>
+                要求 $\d\frac{1}{3} \times 10^{-n} < 10^{-10}$，顯然當 $n=10$ 時，$1/3 \times 10^{-10} < 10^{-10}$ 直接成立，秒殺！
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                3. 試求 $\d\lim_{n \to \infty}(\frac{1}{\sqrt{2n^2+1}} + \frac{1}{\sqrt{2n^2+2}} + \cdots + \frac{1}{\sqrt{2n^2+n}}) = ?$<br>
+                (1)$0$　(2)$1$　(3)$\d\frac{1}{2}$　(4)$\d\frac{1}{\sqrt{2}}$　(5)不存在
+            </div>
+            <div class="ans-box">解答：(4)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                這是一個典型的<strong>夾擠定理（Squeeze Theorem）</strong>題型。<br>
+                令原式總和為 $S_n$。<br>
+                將每一項的分母換成最大值 $\sqrt{2n^2+n}$，可得下界；換成最小值 $\sqrt{2n^2+1}$，可得上界。<br>
+                $\d\frac{n}{\sqrt{2n^2+n}} \le S_n \le \frac{n}{\sqrt{2n^2+1}}$<br>
+                計算兩端極限：<br>
+                左極限：$\d\lim_{n \to \infty} \frac{n}{\sqrt{2n^2+n}} = \d\lim_{n \to \infty} \frac{1}{\sqrt{2 + \frac{1}{n}}} = \frac{1}{\sqrt{2}}$<br>
+                右極限：$\d\lim_{n \to \infty} \frac{n}{\sqrt{2n^2+1}} = \d\lim_{n \to \infty} \frac{1}{\sqrt{2 + \frac{1}{n^2}}} = \frac{1}{\sqrt{2}}$<br>
+                由夾擠定理知，原式極限為 $\d\frac{1}{\sqrt{2}}$。
+            </div>
+        </div>
+
+        <h2>二、多重選擇題(每題8分，共32分。至少有一個選項正確，完全答對，可得8分；只錯一個選項可得5分；錯2個選項可得2分，其餘情形不給分亦不扣分。)</h2>
+
+        <!-- M1 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                1. 下列有關無窮數列 $\langle a_n \rangle$、$\langle b_n \rangle$、$\langle c_n \rangle$ 的敘述，請選出正確的選項：<br>
+                (1)若對於任意正整數 $n$，不等式 $a_{n+1} > a_n > 0$ 恆成立，則 $\d\lim_{n \to \infty} a_n = \infty$<br>
+                (2)若 $\d\lim_{n \to \infty} a_n = \alpha$ 且 $\d\lim_{n \to \infty} b_n = \beta$，$\alpha$、$\beta$ 為實數，則 $\d\lim_{n \to \infty}(a_n + b_n) = \alpha + \beta$<br>
+                (3)若 $\d\lim_{n \to \infty} a_n = \infty$ 且 $\d\lim_{n \to \infty} b_n = 0$，則 $\d\lim_{n \to \infty}(a_n b_n) = 0$<br>
+                (4)$\d\lim_{n \to \infty}(\frac{1}{n^2} + \frac{2}{n^2} + \frac{3}{n^2} + \cdots + \frac{n}{n^2}) = 0$<br>
+                (5)若對於所有正整數 $n$，不等式 $a_n \le b_n \le c_n$ 恆成立，且 $\langle a_n \rangle$、$\langle c_n \rangle$ 均收斂，則 $\langle b_n \rangle$ 收斂
+            </div>
+            <div class="ans-box">解答：(2)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                (1) 錯誤。反例：$a_n = 2 - \d\frac{1}{n}$，數列遞增且恆正，但極限為 $2$，不會趨向 $\infty$。<br>
+                (2) 正確。這是極限的基本加法定律（兩數列皆收斂時成立）。<br>
+                (3) 錯誤。這是不定型 $\infty \times 0$。反例：令 $a_n = n^2$（趨近 $\infty$），$b_n = \d\frac{1}{n}$（趨近 $0$），則 $a_n b_n = n \to \infty$，不為 $0$。<br>
+                (4) 錯誤。原式 $= \d\lim_{n \to \infty} \frac{1+2+\cdots+n}{n^2} = \d\lim_{n \to \infty} \frac{\frac{n(n+1)}{2}}{n^2} = \d\lim_{n \to \infty} \frac{n^2+n}{2n^2} = \frac{1}{2}$。<br>
+                (5) 錯誤。夾擠定理的嚴格條件是 $\langle a_n \rangle$ 與 $\langle c_n \rangle$ 必須收斂到<strong>同一個極限值</strong>，$\langle b_n \rangle$ 才會收斂。反例：$a_n = -1$, $c_n = 1$，兩者皆收斂，但 $b_n = (-1)^n$ 在 $-1$ 與 $1$ 之間跳動，為發散數列。
+            </div>
+            <div class="trap-box">
+                <div class="trap-title">🚨 觀念盲點提醒</div>
+                選項(5)是常考的陷阱題！很多學生看到「皆收斂」就以為可以夾擠，但若兩邊的牆壁沒有「擠在一起」（極限值不同），中間的數列完全可以到處震盪發散。
+            </div>
+        </div>
+
+        <!-- M2 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                2. 請選出正確的選項：<br>
+                (1)$0.4 + 0.09 + 0.009 + 0.0009 + \cdots + 9(0.1)^{1000} < 0.5$<br>
+                (2)級數和 $\d\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \cdots + (\frac{1}{2})^{100} < 1$<br>
+                (3)無窮級數和 $1 + (\d\frac{\pi}{3}) + (\frac{\pi}{3})^2 + \cdots + (\frac{\pi}{3})^n + \cdots = \frac{1}{1 - \frac{\pi}{3}}$<br>
+                (4)$\d\sum_{n=1}^{\infty} \frac{(-1)^n}{7} = \frac{(-1)^1}{7} + \frac{(-1)^2}{7} + \frac{(-1)^3}{7} + \cdots + \frac{(-1)^n}{7} + \cdots$ 級數和收斂<br>
+                (5)$\d\sum_{n=1}^{1000} 7^n + \sum_{n=1000}^{\infty} \frac{1}{7^n} = (7^1 + 7^2 + 7^3 + \cdots + 7^{1000}) + (\frac{1}{7^{1000}} + \frac{1}{7^{1001}} + \cdots)$ 級數和收斂
+            </div>
+            <div class="ans-box">解答：(1)(2)(5)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                (1) 正確。除了第一項，後面是一個等比級數：$0.4 + \d\frac{0.09(1 - 0.1^{999})}{1 - 0.1} = 0.4 + 0.1(1 - 0.1^{999}) = 0.5 - 0.1^{1000} < 0.5$。<br>
+                (2) 正確。等比級數和為 $\d\frac{\frac{1}{2}(1 - (\frac{1}{2})^{100})}{1 - \frac{1}{2}} = 1 - (\frac{1}{2})^{100} < 1$。<br>
+                (3) 錯誤。公比 $r = \d\frac{\pi}{3} > 1$（因為 $\pi \approx 3.14$），所以該無窮等比級數<strong>發散</strong>，不能套用公式。<br>
+                (4) 錯誤。公比 $r = -1$，$|r| = 1$ 不滿足收斂條件 $|r| < 1$，故發散。<br>
+                (5) 正確。前半部是有限項相加（必為定值），後半部是無窮等比級數，公比 $r = \d\frac{1}{7} < 1$，所以收斂。常數＋收斂＝收斂。
+            </div>
+        </div>
+
+        <!-- M3 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                3. 已知 $\overline{AB} = 18$，今以 $\overline{AB}$ 長的 $\d\frac{1}{3}$ 為邊長，作一正三角形 $S_1$，再以剩下線段長的 $\d\frac{1}{3}$ 為邊長作一正三角形 $S_2$，如此繼續下去，得到一序列的正三角形 $S_1, S_2, S_3, \cdots$ 如下圖所示。設正三角形 $S_n$ 的高為 $h_n$，面積為 $A_n$，試選出正確選項：<br>
+                (1)數列 $\langle h_n \rangle$ 形成一公比為 $\d\frac{\sqrt{3}}{9}$ 的無窮等比數列<br>
+                (2)數列 $\langle A_n \rangle$ 形成一公比為 $\d\frac{4}{9}$ 的無窮等比數列<br>
+                (3)無窮級數 $h_1 + h_2 + h_3 + \cdots + h_n + \cdots < 18$<br>
+                (4)無窮級數 $A_1 + A_2 + A_3 + \cdots + A_n + \cdots = \d\frac{81\sqrt{3}}{5}$<br>
+                (5)$\d\sum_{n=1}^{\infty} \frac{A_n}{h_n} = 18$
+            </div>
+            <div class="ans-box">解答：(2)(3)(4)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                先找出邊長數列 $a_n$ 的規律：<br>
+                $a_1 = 18 \times \d\frac{1}{3} = 6$<br>
+                剩下的線段長度為 $18 - 6 = 12$，$a_2 = 12 \times \d\frac{1}{3} = 4$<br>
+                所以邊長公比為 $\d\frac{4}{6} = \frac{2}{3}$。<br>
+                (1) 錯誤。高 $h_n = \d\frac{\sqrt{3}}{2}a_n$。長度的比例（公比）不變，所以 $\langle h_n \rangle$ 的公比也是 $\d\frac{2}{3}$。<br>
+                (2) 正確。面積 $A_n = \d\frac{\sqrt{3}}{4}a_n^2$。面積的公比為邊長公比的平方，即 $(\d\frac{2}{3})^2 = \d\frac{4}{9}$。<br>
+                (3) 正確。首項 $h_1 = \d\frac{\sqrt{3}}{2} \times 6 = 3\sqrt{3}$。<br>
+                $\d\sum h_n = \frac{3\sqrt{3}}{1 - \frac{2}{3}} = 9\sqrt{3} = \sqrt{243}$。因為 $18 = \sqrt{324}$，所以 $9\sqrt{3} < 18$。<br>
+                (4) 正確。首項 $A_1 = \d\frac{\sqrt{3}}{4} \times 6^2 = 9\sqrt{3}$。<br>
+                $\d\sum A_n = \frac{9\sqrt{3}}{1 - \frac{4}{9}} = \frac{9\sqrt{3}}{\frac{5}{9}} = \frac{81\sqrt{3}}{5}$。<br>
+                (5) 錯誤。因為 $A_n = \d\frac{1}{2} a_n h_n$，所以 $\d\frac{A_n}{h_n} = \frac{1}{2} a_n$。<br>
+                $\d\sum \frac{A_n}{h_n} = \frac{1}{2} \sum a_n = \frac{1}{2} \times \frac{6}{1 - \frac{2}{3}} = \frac{1}{2} \times 18 = 9 \neq 18$。
+            </div>
+        </div>
+
+        <!-- M4 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                4. 設 $\langle a_n \rangle$、$\langle b_n \rangle$ 為兩實數數列，且對所有的正整數 $n$，$a_n < b_n^2 < a_{n+1}$ 均成立。若已知 $\d\lim_{n \to \infty} a_n = 4$，試選出正確的選項。<br>
+                (1)對所有的正整數 $n$，$a_n > 3$ 均成立<br>
+                (2)存在正整數 $n$，使得 $a_{n+1} > 4$<br>
+                (3)對所有的正整數 $n$，$b_n^2 < b_{n+1}^2$ 均成立<br>
+                (4)$\d\lim_{n \to \infty} b_n^2 = 4$<br>
+                (5)$\d\lim_{n \to \infty} b_n = 2$ 或 $\d\lim_{n \to \infty} b_n = -2$
+            </div>
+            <div class="ans-box">解答：(3)(4)</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                由已知條件 $a_n < b_n^2 < a_{n+1}$，因為 $b_n^2$ 是實數的平方必不小於 0，連鎖不等式告訴我們 $a_n < a_{n+1}$，亦即 $\langle a_n \rangle$ 是一個<strong>嚴格遞增數列</strong>。又已知極限趨近於 $4$，因此對於所有 $n$，$a_n < 4$。<br>
+                (1) 錯誤。反例：設 $a_n = 4 - \d\frac{5}{n}$，當 $n=1$ 時 $a_1 = -1 \ngtr 3$。<br>
+                (2) 錯誤。因為嚴格遞增且極限為 4，所以 $a_n$ 永遠不會超過 4。<br>
+                (3) 正確。因為 $b_n^2 < a_{n+1}$ 且 $a_{n+1} < b_{n+1}^2$，所以 $b_n^2 < b_{n+1}^2$ 恆成立。<br>
+                (4) 正確。由夾擠定理，$a_n < b_n^2 < a_{n+1}$，兩邊取極限皆為 4，故 $\d\lim_{n \to \infty} b_n^2 = 4$。<br>
+                (5) 錯誤。雖然 $b_n^2 \to 4$，但 $b_n$ 不一定收斂。例如 $b_n$ 可能在接近 $2$ 與 $-2$ 之間跳動（例如 $b_n = (-1)^n \sqrt{a_n+0.1}$），這時 $b_n$ 發散。
+            </div>
+        </div>
+
+        <h2>三、填充題(每格5分，共50分)</h2>
+
+        <!-- F1 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                1. 試求下列各極限值：(若極限不存在，請寫「不存在」；若極限存在，請求出其極限值。)<br>
+                (1) $\d\lim_{n \to \infty}(\frac{2n}{n+1} - \frac{n+1}{2n}) =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+                (2) $\d\lim_{n \to \infty} \frac{101 \times C_2^n}{1+2+3+\cdots+n} =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+                (3) $\d\lim_{n \to \infty} \frac{(\sqrt{2})^{2n}}{2^{n-10}} =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+                (4) $\d\lim_{n \to \infty} \frac{2^{n+2} + 4^{n+1}}{2^{2n-1} + 3^{n+1}} =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+                (5) $\d\lim_{n \to \infty} \sqrt{n}(\sqrt{n+1} - \sqrt{n}) =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">
+                解答：(1) $\d\frac{3}{2}$　(2) $101$　(3) $1024$　(4) $8$　(5) $\d\frac{1}{2}$
+            </div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                (1) 分別取極限：$\d\lim_{n \to \infty} \frac{2n}{n+1} - \d\lim_{n \to \infty} \frac{n+1}{2n} = 2 - \frac{1}{2} = \frac{3}{2}$。<br><br>
+                (2) 展開組合數與級數和：<br>
+                分子 $= 101 \times \d\frac{n(n-1)}{2}$，分母 $= \d\frac{n(n+1)}{2}$。<br>
+                原式 $= \d\lim_{n \to \infty} \frac{101 \times n(n-1)}{n(n+1)}$，最高次方同為 $n^2$，係數比即為 $101$。<br><br>
+                (3) 指數化簡：$(\sqrt{2})^{2n} = ((\sqrt{2})^2)^n = 2^n$。<br>
+                原式 $= \d\lim_{n \to \infty} \frac{2^n}{2^{n-10}} = \d\lim_{n \to \infty} 2^{10} = 1024$。<br><br>
+                (4) 找出最大底數 $4^n$ 並上下同除以 $4^n$（注意 $2^{2n-1} = \frac{1}{2} \cdot 4^n$）：<br>
+                原式 $= \d\lim_{n \to \infty} \frac{4 \cdot 2^n + 4 \cdot 4^n}{\frac{1}{2} \cdot 4^n + 3 \cdot 3^n} = \d\lim_{n \to \infty} \frac{4 \cdot (\frac{2}{4})^n + 4}{\frac{1}{2} + 3 \cdot (\frac{3}{4})^n \cdot 3} = \frac{0 + 4}{\frac{1}{2} + 0} = 8$。<br><br>
+                (5) 根號相減遇極限，必定<strong>有理化</strong>：<br>
+                原式 $= \d\lim_{n \to \infty} \frac{\sqrt{n}(\sqrt{n+1} - \sqrt{n})(\sqrt{n+1} + \sqrt{n})}{\sqrt{n+1} + \sqrt{n}} = \d\lim_{n \to \infty} \frac{\sqrt{n}((n+1) - n)}{\sqrt{n+1} + \sqrt{n}} = \d\lim_{n \to \infty} \frac{\sqrt{n}}{\sqrt{n+1} + \sqrt{n}}$。<br>
+                上下同除 $\sqrt{n}$ 得到 $\d\lim_{n \to \infty} \frac{1}{\sqrt{1 + \frac{1}{n}} + 1} = \frac{1}{2}$。
+            </div>
+        </div>
+
+        <!-- F2 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                2. 設 $a$、$b$ 為實數，已知 $\d\lim_{n \to \infty}(\frac{n^2+3n}{n+1} + \frac{an^2+bn}{n+2}) = 4$，則數對 $(a,b) =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">解答：$(-1, 0)$</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                先通分：<br>
+                分子 $= (n^2+3n)(n+2) + (an^2+bn)(n+1) = (n^3 + 5n^2 + 6n) + (an^3 + (a+b)n^2 + bn) = (1+a)n^3 + (5+a+b)n^2 + (6+b)n$<br>
+                分母 $= (n+1)(n+2) = n^2 + 3n + 2$<br>
+                因為極限存在且為 $4$（有限非零實數），所以分子與分母的最高次數必須相等（皆為 2 次）。<br>
+                由此可知 $n^3$ 係數為 $0 \implies 1 + a = 0 \implies a = -1$。<br>
+                接著比較 $n^2$ 的係數：$\d\frac{5+a+b}{1} = 4 \implies 5 - 1 + b = 4 \implies 4 + b = 4 \implies b = 0$。<br>
+                故 $(a,b) = (-1, 0)$。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸考場驗算】</strong><br>
+                直覺分離法：<br>
+                $\d\frac{n^2+3n}{n+1} = \frac{n(n+1) + 2n}{n+1} \approx n + 2$<br>
+                $\d\frac{an^2+bn}{n+2} = \frac{an(n+2) + (b-2a)n}{n+2} \approx an + (b-2a)$<br>
+                兩者相加要收斂成常數 $4$，這代表 $n$ 的項必須互相抵銷！<br>
+                $n + an = 0 \implies a = -1$。<br>
+                常數項 $2 + (b-2(-1)) = 4 \implies 2 + b + 2 = 4 \implies b = 0$。10秒得出答案！
+            </div>
+        </div>
+
+        <!-- F3 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                3. 已知一隻小蟲每走完一步，就必須向逆時針方向旋轉 $90^{\circ}$，且其走的距離為上一步的一半，已知在 $xy$ 平面上，這隻小蟲第一步從 $(0,0)$ 走到 $(1,0)$，第二步從 $(1,0)$ 走到 $(1,\d\frac{1}{2})$，一直走下去，則最後會走到哪一點？ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">解答：$(\d\frac{4}{5}, \d\frac{2}{5})$</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                將運動軌跡拆分為 $x$ 座標與 $y$ 座標兩個獨立的無窮級數。<br>
+                $x$ 座標的變化：第一步向右走 $1$，第二步向上(不影響$x$)，第三步向左走 $\d\frac{1}{4}$，第四步向下，第五步向右走 $\d\frac{1}{16} \cdots$<br>
+                所以 $x = 1 - \d\frac{1}{4} + \frac{1}{16} - \cdots$<br>
+                這是一個首項 $a=1$，公比 $r = -\d\frac{1}{4}$ 的無窮等比級數：<br>
+                $x = \d\frac{1}{1 - (-\frac{1}{4})} = \frac{1}{\frac{5}{4}} = \frac{4}{5}$。<br><br>
+                $y$ 座標的變化：第一步不動，第二步向上走 $\d\frac{1}{2}$，第三步向左，第四步向下走 $\d\frac{1}{8}$，第五步向右，第六步向上走 $\d\frac{1}{32} \cdots$<br>
+                所以 $y = \d\frac{1}{2} - \frac{1}{8} + \frac{1}{32} - \cdots$<br>
+                這是一個首項 $a=\d\frac{1}{2}$，公比 $r = -\d\frac{1}{4}$ 的無窮等比級數：<br>
+                $y = \d\frac{\frac{1}{2}}{1 - (-\frac{1}{4})} = \frac{\frac{1}{2}}{\frac{5}{4}} = \frac{2}{5}$。<br>
+                極限點為 $(\d\frac{4}{5}, \frac{2}{5})$。
+            </div>
+        </div>
+
+        <!-- F4 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                4. 令 $n$ 為正整數，$T_n$ 為平面上以直線 $y = -\d\frac{1}{2n}x + 3$ 及 $x$ 軸、$y$ 軸所圍成的三角形區域(包含邊界)，若設 $T_n$ 的外接圓半徑為 $R_n$，則 $\d\lim_{n \to \infty} \frac{R_n}{n} =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">解答：$3$</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                找出直線與坐標軸的交點：<br>
+                當 $x = 0$ 時，$y = 3$，交點為 $(0,3)$。<br>
+                當 $y = 0$ 時，$0 = -\d\frac{1}{2n}x + 3 \implies x = 6n$，交點為 $(6n,0)$。<br>
+                該三角形為直角三角形（三頂點為 $(0,0)$、$(6n,0)$、$(0,3)$）。<br>
+                根據幾何性質，直角三角形的外接圓直徑即為其斜邊長。<br>
+                斜邊長 $= \sqrt{(6n)^2 + 3^2} = \sqrt{36n^2 + 9}$。<br>
+                因此，外接圓半徑 $R_n = \d\frac{1}{2}\sqrt{36n^2 + 9}$。<br>
+                所求極限 $\d\lim_{n \to \infty} \frac{R_n}{n} = \d\lim_{n \to \infty} \frac{\frac{1}{2}\sqrt{36n^2 + 9}}{n} = \d\lim_{n \to \infty} \frac{1}{2}\sqrt{36 + \frac{9}{n^2}} = \frac{1}{2} \times 6 = 3$。
+            </div>
+        </div>
+
+        <!-- F5 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                5. 謝爾賓斯基地毯 (Sierpinski carpet) 是波蘭數學家謝爾賓斯基 (Sierpinski，1882~1969) 在 1916 年提出的一種碎形結構；如下圖，邊長為 6 單位長的正方形，第一次將其平分成 9 塊(九宮格形)，然後挖去中間一塊；第二次再將剩餘各塊各平分成 9 塊，分別去掉中間各一塊，以此類推。<br>
+                設第 $n$ 次挖去之正方形面積和為 $a_n$，則 $\d\sum_{n=1}^{\infty} a_n =$ <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">解答：$36$</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                常規計算法：<br>
+                原本面積為 $36$。<br>
+                第 1 次挖去中間一塊，面積為 $a_1 = 36 \times \d\frac{1}{9} = 4$。<br>
+                第 2 次在剩下的 8 塊中，各挖去其 $\d\frac{1}{9}$，面積為 $a_2 = (36-4) \times \frac{1}{9} = 32 \times \frac{1}{9} = \frac{32}{9}$。<br>
+                可知數列 $\langle a_n \rangle$ 的首項為 $4$，公比為 $\d\frac{8}{9}$（因為每次都是取剩餘面積的 $1/9$，而剩餘面積每次變成原來的 $8/9$）。<br>
+                $\d\sum_{n=1}^{\infty} a_n = \frac{4}{1 - \frac{8}{9}} = \frac{4}{\frac{1}{9}} = 36$。
+            </div>
+            <div class="hack-box">
+                <strong>💡【學霸考場直覺】</strong><br>
+                物理意義法：無窮次操作後，謝爾賓斯基地毯的剩餘面積極限為 $0$。<br>
+                既然所有的面積最終都被挖光了，那麼「所有挖去的面積總和」必定等於「最初的總面積」！<br>
+                原始邊長為 $6$，總面積 $= 6 \times 6 = 36$，3秒鐘寫下答案，一字不差！
+            </div>
+        </div>
+
+        <!-- F6 -->
+        <div class="problem-block">
+            <div class="problem-text">
+                6. 坐標平面上，已知直線 $L: x - ny = 0$，$n$ 為正整數，圓 $C: (x-1)^2 + (y-1)^2 = 1$，設直線 $L$ 與圓 $C$ 交於 $P_n$、$Q_n$ 兩點，令 $a_n = \overline{P_n Q_n}$ ($P_n$、$Q_n$ 兩點之長度，以 $n$ 表示)，則 $\d\lim_{n \to \infty} (n \cdot a_n^2)$ 之值為 <u>&nbsp;&nbsp;&nbsp;&nbsp;</u>
+            </div>
+            <div class="ans-box">解答：$8$</div>
+            <div class="solution-box">
+                <strong>【詳解】</strong><br>
+                利用弦長公式：弦長 $a_n = 2\sqrt{r^2 - d^2}$，其中 $r$ 為半徑，$d$ 為圓心到直線的距離。<br>
+                已知圓 $C$ 的圓心為 $(1, 1)$，半徑 $r = 1$。<br>
+                圓心到直線 $L: x - ny = 0$ 的距離：<br>
+                $d = \d\frac{|1(1) - n(1)|}{\sqrt{1^2 + (-n)^2}} = \frac{|1-n|}{\sqrt{1+n^2}}$<br>
+                將 $d$ 代入弦長的平方：<br>
+                $a_n^2 = 4(r^2 - d^2) = 4 \left( 1 - \d\frac{(1-n)^2}{1+n^2} \right) = 4 \left( \frac{1+n^2 - (1 - 2n + n^2)}{1+n^2} \right) = 4 \left( \frac{2n}{1+n^2} \right) = \frac{8n}{1+n^2}$<br>
+                所求極限為：<br>
+                $\d\lim_{n \to \infty} (n \cdot a_n^2) = \d\lim_{n \to \infty} n \cdot \frac{8n}{1+n^2} = \d\lim_{n \to \infty} \frac{8n^2}{n^2+1} = 8$。
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function triggerPrint() {
+            MathJax.typesetPromise().then(() => { 
+                window.print(); 
+            });
+        }
+    </script>
+</body>
+</html>
