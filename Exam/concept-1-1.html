@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數甲觀念 1-1：數列的極限</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --warning-bg: #fff3cd;
+            --warning-border: #ffc107;
+            --warning-text: #856404;
+            --sol-bg: #e7f1ff;
+            --sol-border: #0d6efd;
+            --alt-bg: #fff8e1;
+            --alt-border: #ffc107;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+            --primary-color: #3f8cff;
+            --warning-bg: #4d3800;
+            --warning-border: #ffc107;
+            --warning-text: #ffeeba;
+            --sol-bg: #0d233a;
+            --sol-border: #3f8cff;
+            --alt-bg: #332701;
+            --alt-border: #ffc107;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Noto Sans TC';
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            padding-top: 70px;
+            transition: all 0.3s ease;
+        }
+
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.1s, opacity 0.2s;
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .btn-print { background-color: var(--success-color); color: white; }
+        .btn-back { background-color: var(--secondary-color); color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            page-break-inside: auto;
+        }
+
+        h2.title {
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .question-text {
+            font-size: 1.15em;
+            margin-bottom: 20px;
+        }
+
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 5px solid var(--sol-border);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .tip-card {
+            background-color: var(--warning-bg);
+            border: 2px solid var(--warning-border);
+            color: var(--warning-text);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .tip-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed var(--warning-border);
+            padding-bottom: 5px;
+        }
+
+        .concept-summary {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 15px;
+            border: 3px solid var(--success-color);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--success-color);
+            width: fit-content;
+            margin: 20px auto;
+        }
+
+        .analysis-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .analysis-item:last-child {
+            border-bottom: none;
+        }
+
+        strong.keyword {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        [data-theme="dark"] strong.keyword {
+            color: #ff85c0;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background-color: white !important;
+                color: black !important;
+                padding: 0 !important;
+            }
+            .toolbar {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none !important;
+                border: none !important;
+            }
+            h2.title {
+                color: black !important;
+                border-bottom: 2px solid black !important;
+            }
+            .solution-box {
+                background-color: white !important;
+                border: 2px solid black !important;
+                border-left: 8px solid black !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .tip-card {
+                background-color: white !important;
+                color: black !important;
+                border: 3px solid black !important;
+                border-left: 10px solid black !important;
+                page-break-inside: avoid;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .concept-summary {
+                border: 4px double black !important;
+                color: black !important;
+                page-break-inside: avoid;
+            }
+            strong {
+                font-weight: 900 !important;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <a href="concept.html" class="btn-back">🔙 返回觀念目錄</a>
+        <button onclick="setTheme('light')">📄 預設好讀</button>
+        <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button class="btn-print" onclick="triggerPrint()">🖨️ 立即列印</button>
+    </div>
+
+    <div class="container">
+        <!-- 核心定義區 -->
+        <div class="card">
+            <h2 class="title">🎯 核心定義：數列的極限</h2>
+            <div class="question-text">
+                對於一個數列 $\langle a_n \rangle$，當項數 $n$ 無限增大時（即 $n \to \infty$），若 $a_n$ 的值會越來越靠近一個固定的實數 $\alpha$，我們就稱這數列<strong>收斂 (Convergent)</strong>，並記作：
+                $$ \d\lim_{n \to \infty} a_n = \alpha $$
+                反之，若 $a_n$ 沒有趨近於任何固定的實數（例如無限飆大或上下震盪），則稱該數列為<strong>發散 (Divergent)</strong>。
+            </div>
+        </div>
+
+        <!-- 定理與性質區 -->
+        <div class="card">
+            <h2 class="title">📚 重要定理與性質</h2>
+            <div class="solution-box">
+                <p>在操作極限時，必須熟記以下三大基石：</p>
+                
+                <div class="analysis-item">
+                    <strong>1. 極限的四則運算性質</strong><br>
+                    <strong>【大前提】：</strong> 必須已知 $\d\lim_{n \to \infty} a_n = \alpha$ 且 $\d\lim_{n \to \infty} b_n = \beta$ <strong>（兩者皆收斂）</strong>，下列才成立：<br>
+                    <ul>
+                        <li>加減： $\d\lim_{n \to \infty} (a_n \pm b_n) = \alpha \pm \beta$</li>
+                        <li>相乘： $\d\lim_{n \to \infty} (a_n \cdot b_n) = \alpha \cdot \beta$</li>
+                        <li>相除： $\d\lim_{n \to \infty} \left(\frac{a_n}{b_n}\right) = \frac{\alpha}{\beta}$ （前提是 $\beta \neq 0$ 且 $b_n \neq 0$）</li>
+                    </ul>
+                </div>
+
+                <div class="analysis-item">
+                    <strong>2. 夾擠定理 (Squeeze Theorem)</strong><br>
+                    若存在三個數列滿足 $a_n \le b_n \le c_n$ （從某項開始恆成立即可）。<br>
+                    當左右兩邊的極限存在且相等，即 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n = L$ 時，<br>
+                    中間的數列必定會被「夾」向同一個極限： <strong>$\d\lim_{n \to \infty} b_n = L$</strong>。
+                </div>
+
+                <div class="analysis-item">
+                    <strong>3. 極限的保號性 (吃掉等號)</strong><br>
+                    若兩收斂數列滿足 $a_n < b_n$ （嚴格小於），在取極限後，可能會發生「無限逼近但不超越」的情況，因此等號必須補上：<br>
+                    $$ \d\lim_{n \to \infty} a_n \le \d\lim_{n \to \infty} b_n $$
+                </div>
+            </div>
+        </div>
+
+        <!-- 學霸提示區塊 -->
+        <div class="tip-card">
+            <div class="tip-title">💡 考場秒殺與學霸盲點掃描</div>
+            <p><strong>⚠️ 盲點 1：看到加減乘除就急著把 $\lim$ 拆開</strong><br> 
+            這是不對的！如果題目沒說「兩數列收斂」，絕對不能拆開！例如 $a_n = n$ (發散), $b_n = -n$ (發散)，但 $\d\lim (a_n+b_n) = 0$ 是收斂的。</p>
+            
+            <p><strong>⚠️ 盲點 2：忽略震盪型發散</strong><br> 
+            發散不是只有趨近無限大 ($\infty$)。遇到 $(-1)^n$ 這種在 $1$ 與 $-1$ 之間跳動的數列，雖然有界，但也是<strong>發散</strong>！</p>
+            
+            <p><strong>🎯 學霸解題心法：多項式分式型極限</strong><br> 
+            遇到 $\d\lim_{n \to \infty} \frac{An^p + \dots}{Bn^q + \dots}$，直接看最高次方的「老大」：<br>
+            1. <strong>分子次數 > 分母次數</strong> $(p>q)$：發散 (極限不存在)。<br>
+            2. <strong>分子次數 < 分母次數</strong> $(p<q)$：極限值為 $0$。<br>
+            3. <strong>分子次數 = 分母次數</strong> $(p=q)$：極限值為「最高次項係數比」 $\frac{A}{B}$。</p>
+        </div>
+
+        <!-- 總結 -->
+        <div class="concept-summary">
+            🚀 1-1 核心口訣：先判斷收斂，才能用定理；分式找老大，夾擠找靠山！
+        </div>
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function triggerPrint() {
+            if (window.MathJax) {
+                MathJax.typesetPromise().then(() => {
+                    window.print();
+                });
+            } else {
+                window.print();
+            }
+        }
+    </script>
+</body>
+</html>
