@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>觀念：數甲 1-1</title>
+    <title>高中數學學霸詳解</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script>
         window.MathJax = {
@@ -100,10 +100,6 @@
         }
 
         .btn-print { background-color: var(--success-color); color: white; }
-        
-        /* 新增的返回按鈕樣式 */
-        .btn-back { background-color: var(--secondary-color); color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; transition: opacity 0.2s; }
-        .btn-back:hover { opacity: 0.8; }
 
         .container {
             max-width: 900px;
@@ -128,21 +124,21 @@
         }
 
         .question-text {
-            font-size: 1.15em;
+            font-size: 1.25em;
             margin-bottom: 20px;
+            line-height: 2;
+            text-align: center;
+            font-weight: bold;
+            color: #1e3a5f;
+        }
+
+        [data-theme="dark"] .question-text {
+            color: #8bb4e7;
         }
 
         .solution-box {
             background-color: var(--sol-bg);
             border-left: 5px solid var(--sol-border);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 20px;
-        }
-
-        .alt-solution {
-            background-color: var(--alt-bg);
-            border-left: 5px solid var(--alt-border);
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 20px;
@@ -181,31 +177,21 @@
             margin: 20px auto;
         }
 
-        ul.options {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        ul.options li {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
         .analysis-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
             border-bottom: 1px dashed var(--border-color);
         }
         .analysis-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
 
-        strong.keyword {
+        strong.highlight {
             color: #d63384;
-            font-weight: bold;
         }
 
-        [data-theme="dark"] strong.keyword {
+        [data-theme="dark"] strong.highlight {
             color: #ff85c0;
         }
 
@@ -227,7 +213,7 @@
                 color: black !important;
                 border-bottom: 2px solid black !important;
             }
-            .solution-box, .alt-solution {
+            .solution-box {
                 background-color: white !important;
                 border: 2px solid black !important;
                 border-left: 8px solid black !important;
@@ -248,21 +234,12 @@
                 color: black !important;
                 page-break-inside: avoid;
             }
-            strong {
-                font-weight: 900 !important;
-                text-decoration: none !important;
-            }
-            strong.keyword {
-                color: black !important;
-            }
         }
     </style>
 </head>
 <body>
 
     <div class="toolbar">
-        <!-- 這裡加入了返回目錄的按鈕 -->
-        <a href="concept.html" class="btn-back">🔙 返回觀念目錄</a>
         <button onclick="setTheme('light')">📄 預設好讀</button>
         <button onclick="setTheme('dark')">🌙 護眼暗色</button>
         <button class="btn-print" onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
@@ -271,14 +248,9 @@
     <div class="container">
         <!-- 題目原題區 -->
         <div class="card">
-            <h2 class="title">📖 觀念：數甲 1-1 經典題型</h2>
+            <h2 class="title">原題還原</h2>
             <div class="question-text">
-                試問下列何者正確？<br>
-                (A)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩數列，若 $\d\lim_{n \to \infty} (a_n+b_n)$ 存在，則 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$<br>
-                (B)設 $\langle a_n \rangle$ 為一數列，若 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} a_n = 0$<br>
-                (C)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$，$\langle c_n \rangle$ 為三個數列，且對任意正整數 $n$，$a_n \le b_n \le c_n$ 均成立，則當 $\d\lim_{n \to \infty} a_n$ 與 $\d\lim_{n \to \infty} c_n$ 都存在時，$\d\lim_{n \to \infty} b_n$ 也存在<br>
-                (D)設 $\langle a_n \rangle$ 為一收斂數列且對任意正整數 $n$ 使 $a_n \neq 0$，則 $\d\lim_{n \to \infty} \frac{1}{a_n}$ 也是收斂數列<br>
-                (E)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩收斂數列，且 $\d\lim_{n \to \infty} a_n = \alpha$，$\d\lim_{n \to \infty} b_n = \beta$，若對每一個自然數 $n$ 都有 $a_n < b_n$，則 $\alpha < \beta$。
+                試求二次分式函數 $f(x) = \d\frac{2x^2 - 4x}{x^2 - 2x + 3}$ 的值域。
             </div>
         </div>
 
@@ -286,38 +258,45 @@
         <div class="card">
             <h2 class="title">名師詳解</h2>
             <div class="solution-box">
-                <p>我們逐一檢查每一個選項，判斷極限定理的適用條件並舉反例排除錯誤選項：</p>
+                <p>解二次分式函數的值域，最標準的做法是將它<strong>轉換成以 $x$ 為變數的二次方程式</strong>，再利用實根條件（判別式）來求 $y$ 的範圍。</p>
                 
                 <div class="analysis-item">
-                    <strong>(A) 錯誤。</strong><br>
-                    極限的加法性質 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$ 成立的前提是 <strong>兩者個別的極限都必須存在</strong>。若只知道相加後的極限存在，並不能保證個別極限存在。<br>
-                    <strong>[反例]：</strong>令 $a_n = (-1)^n$， $b_n = (-1)^{n+1}$。此時兩數列皆發散（在 $1$ 和 $-1$ 之間震盪）。但是 $a_n + b_n = 0$，其極限 $\d\lim_{n \to \infty} (a_n+b_n) = 0$ 存在。此時等式右側無意義。
+                    <strong>步驟一：將函數轉換為多項式方程式</strong><br>
+                    令 $y = f(x) = \d\frac{2x^2 - 4x}{x^2 - 2x + 3}$。<br>
+                    首先確認分母：由於 $x^2 - 2x + 3 = (x - 1)^2 + 2 > 0$ 恆成立，這代表對於任何實數 $x$，分母都不為 $0$。因此函數的定義域為全體實數 $\mathbb{R}$。<br>
+                    將等式兩邊同乘分母，整理成關於 $x$ 的方程式：
+                    $$ y(x^2 - 2x + 3) = 2x^2 - 4x $$
+                    $$ yx^2 - 2yx + 3y = 2x^2 - 4x $$
+                    移項合併同類項：
+                    $$ (y - 2)x^2 - (2y - 4)x + 3y = 0 \quad \cdots (*) $$
                 </div>
 
                 <div class="analysis-item">
-                    <strong>(B) 正確。</strong><br>
-                    這可以由 <strong>夾擠定理 (Squeeze Theorem)</strong> 直接證明。對於任何實數，必滿足：
-                    $$ -|a_n| \le a_n \le |a_n| $$
-                    已知 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} -|a_n| = 0$。由夾擠定理可知，被夾在中間的 $a_n$ 其極限必定為：
-                    $$ \d\lim_{n \to \infty} a_n = 0 $$
+                    <strong>步驟二：利用判別式求解 $y$ 的範圍</strong><br>
+                    因為對應每一個值域內的 $y$，都至少存在一個實數 $x$ 滿足方程式 $(*)$。我們必須分情況討論 $x^2$ 的係數是否為零：<br><br>
+                    
+                    <strong class="highlight">情況 1：當二次項係數 $(y - 2) \neq 0$，即 $y \neq 2$ 時</strong><br>
+                    此時 $(*)$ 為一元二次方程式，有實根的條件是<strong>判別式 $D \ge 0$</strong>：
+                    $$ D = [-(2y - 4)]^2 - 4(y - 2)(3y) \ge 0 $$
+                    提出公因式 $4(y-2)$ 來簡化計算：
+                    $$ 4(y - 2)^2 - 12y(y - 2) \ge 0 $$
+                    $$ 4(y - 2) [ (y - 2) - 3y ] \ge 0 $$
+                    $$ 4(y - 2) ( -2y - 2 ) \ge 0 $$
+                    兩邊同除以 $-8$ （注意：<strong>同除負數，不等號要變向</strong>）：
+                    $$ (y - 2)(y + 1) \le 0 $$
+                    解得：$-1 \le y \le 2$。<br>
+                    但因為本情況的前提是 $y \neq 2$，所以此條件下 $y$ 的範圍為 <strong>$-1 \le y < 2$</strong>。<br><br>
+
+                    <strong class="highlight">情況 2：當二次項係數 $(y - 2) = 0$，即 $y = 2$ 時</strong><br>
+                    將 $y = 2$ 直接代回方程式 $(*)$ 檢驗：
+                    $$ (2 - 2)x^2 - (4 - 4)x + 3(2) = 0 $$
+                    $$ 0 = -6 $$
+                    此等式矛盾（不成立）！這代表沒有任何實數 $x$ 帶入後可以讓 $y = 2$。因此 $y$ 絕對不可能是 $2$。
                 </div>
 
                 <div class="analysis-item">
-                    <strong>(C) 錯誤。</strong><br>
-                    夾擠定理成立的條件不僅僅是兩端極限存在，還必須 <strong>兩端極限值相等</strong> （即 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n = L$）。若左右極限值不同，中間的數列不一定收斂。<br>
-                    <strong>[反例]：</strong>令 $a_n = -1$，$c_n = 1$，$b_n = (-1)^n$。對所有正整數 $n$ 皆有 $-1 \le (-1)^n \le 1$ 成立。雖然 $\d\lim a_n = -1$ 且 $\d\lim c_n = 1$ 皆存在，但是中間的 $\d\lim b_n$ 發散不存在。
-                </div>
-
-                <div class="analysis-item">
-                    <strong>(D) 錯誤。</strong><br>
-                    若收斂數列極限為 $0$（即 $\d\lim_{n \to \infty} a_n = 0$），則取倒數後的分母趨近於 $0$，會導致數列發散（趨近於無窮大或不存在）。<br>
-                    <strong>[反例]：</strong>令 $a_n = \frac{1}{n}$。此數列收斂於 $0$ 且每一項都不等於 $0$。但是其倒數數列 $\frac{1}{a_n} = n$ 為發散數列。
-                </div>
-
-                <div class="analysis-item">
-                    <strong>(E) 錯誤。</strong><br>
-                    極限具有 <strong>保號性 (弱不等式)</strong>，取極限後嚴格不等號可能會變成等號（即 $a_n \le b_n$ 或 $a_n < b_n$ 取極限後皆只能保證 $\alpha \le \beta$）。<br>
-                    <strong>[反例]：</strong>令 $a_n = 1 - \frac{1}{n}$，$b_n = 1 + \frac{1}{n}$。對所有自然數 $n$，顯然 $1 - \frac{1}{n} < 1 + \frac{1}{n}$（即 $a_n < b_n$）。但是取極限後 $\alpha = \d\lim a_n = 1$，$\beta = \d\lim b_n = 1$，得到 $\alpha = \beta$，並沒有 $\alpha < \beta$。
+                    <strong>結論：</strong><br>
+                    綜合上述兩種情況，函數 $f(x)$ 的值域為 <strong>$-1 \le y < 2$</strong>。
                 </div>
             </div>
         </div>
@@ -325,14 +304,17 @@
         <!-- 學霸提示區塊 -->
         <div class="tip-card">
             <div class="tip-title">💡 考場秒殺與學霸盲點掃描</div>
-            <p><strong>盲點 1：</strong> 看到極限符號就急著分配進去（如選項 A）。這是不對的，<strong>加減乘除的極限定理</strong>前提是「個別數列必須收斂」！只要沒說收斂，就先懷疑它會震盪（找 $(-1)^n$ 做反例）。</p>
-            <p><strong>盲點 2：</strong> 選項 (E) 是極限最經典的「極限會吃掉等號」陷阱。在無窮遠處，兩條原本不相交的曲線可能會「無限貼近」甚至共用同一條漸近線。永遠記得取極限後，<strong>嚴格大於 $(<, >)$ 必須加上等號 $(\le, \ge)$</strong>。</p>
-            <p><strong>學霸考場戰略：</strong> 這種觀念題不用花時間嚴格證明，直接把心中常備的幾個極端「壞寶寶」（如 $a_n = (-1)^n$、 $a_n = \frac{1}{n}$ ）代入選項測試，10秒內就能揪出錯誤選項！</p>
+            <p><strong>🚨 致命盲點：忘記檢查二次項係數！</strong><br>這題最大的陷阱在於，很多同學直接狂寫 $D \ge 0$ 算出 $-1 \le y \le 2$ 就把 $2$ 給包進答案裡了。請死死記住，<strong>判別式 $D$ 只適用於「二次」方程式</strong>。當首項係數含有未知數（如 $y-2$）時，它有可能是 $0$ 而退化成一次方程式，因此<strong>首項係數等於 $0$ 的情況必須獨立拿出來代入檢驗！</strong></p>
+            <hr style="border-top: 1px dashed var(--warning-border); margin: 15px 0;">
+            <p><strong>🚀 學霸視角（微積分降維打擊）：</strong><br>如果你是高三生，已經學過微分，這題可以用微積分一眼看穿：<br>
+            1. <strong>找極值：</strong> 將函數求導 $f'(x) = \frac{12(x-1)}{(x^2-2x+3)^2}$。令 $f'(x)=0$ 得到極值點發生在 $x=1$。代入得極小值 $f(1) = -1$。<br>
+            2. <strong>找漸近線：</strong> 當 $x \to \pm\infty$ 時，看最高次項係數比為 $\frac{2}{1} = 2$，所以圖形在無窮遠處會趨近於水平線 $y=2$。<br>
+            圖形從 $y=2$ 附近降到最低點 $-1$ 再回升趨向 $y=2$（且永遠碰不到），值域立刻浮現：$[-1, 2)$！</p>
         </div>
 
         <!-- 最終答案 -->
         <div class="final-answer">
-            本題正確答案為：(B)
+            本題值域為：$[-1, 2)$ 或 $\{ y \in \mathbb{R} \mid -1 \le y < 2 \}$
         </div>
     </div>
 

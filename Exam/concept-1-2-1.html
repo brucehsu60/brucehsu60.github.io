@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>觀念：數甲 1-1</title>
+    <title>高中數學學霸詳解</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script>
         window.MathJax = {
@@ -100,10 +100,6 @@
         }
 
         .btn-print { background-color: var(--success-color); color: white; }
-        
-        /* 新增的返回按鈕樣式 */
-        .btn-back { background-color: var(--secondary-color); color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; transition: opacity 0.2s; }
-        .btn-back:hover { opacity: 0.8; }
 
         .container {
             max-width: 900px;
@@ -130,6 +126,7 @@
         .question-text {
             font-size: 1.15em;
             margin-bottom: 20px;
+            line-height: 2;
         }
 
         .solution-box {
@@ -261,8 +258,6 @@
 <body>
 
     <div class="toolbar">
-        <!-- 這裡加入了返回目錄的按鈕 -->
-        <a href="concept.html" class="btn-back">🔙 返回觀念目錄</a>
         <button onclick="setTheme('light')">📄 預設好讀</button>
         <button onclick="setTheme('dark')">🌙 護眼暗色</button>
         <button class="btn-print" onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
@@ -271,14 +266,14 @@
     <div class="container">
         <!-- 題目原題區 -->
         <div class="card">
-            <h2 class="title">📖 觀念：數甲 1-1 經典題型</h2>
+            <h2 class="title">原題還原</h2>
             <div class="question-text">
-                試問下列何者正確？<br>
-                (A)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩數列，若 $\d\lim_{n \to \infty} (a_n+b_n)$ 存在，則 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$<br>
-                (B)設 $\langle a_n \rangle$ 為一數列，若 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} a_n = 0$<br>
-                (C)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$，$\langle c_n \rangle$ 為三個數列，且對任意正整數 $n$，$a_n \le b_n \le c_n$ 均成立，則當 $\d\lim_{n \to \infty} a_n$ 與 $\d\lim_{n \to \infty} c_n$ 都存在時，$\d\lim_{n \to \infty} b_n$ 也存在<br>
-                (D)設 $\langle a_n \rangle$ 為一收斂數列且對任意正整數 $n$ 使 $a_n \neq 0$，則 $\d\lim_{n \to \infty} \frac{1}{a_n}$ 也是收斂數列<br>
-                (E)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩收斂數列，且 $\d\lim_{n \to \infty} a_n = \alpha$，$\d\lim_{n \to \infty} b_n = \beta$，若對每一個自然數 $n$ 都有 $a_n < b_n$，則 $\alpha < \beta$。
+                下列何者正確？（多選）<br>
+                (A)設 $\langle a_n \rangle$ 為一數列，若 $\d\lim_{n \to \infty} a_n = 0$，則 $\d\sum_{n=1}^{\infty} a_n$ 是收斂級數<br>
+                (B)設 $S_n = \d\sum_{k=1}^n b_k$，且 $\d\sum_{n=1}^{\infty} b_n = \beta$，則 $\d\lim_{n \to \infty} (S_n - \beta) = 0$<br>
+                (C)若數列 $\langle a_n \rangle$ 趨近於無限大且數列 $\langle b_n \rangle$ 趨近於 $0$，則 $\d\lim_{n \to \infty} a_n b_n = 0$<br>
+                (D)存在有 $n_0 \in \mathbb{N}$，使得 $n \ge n_0$ 時 $a_n \le b_n \le c_n$ 並且 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n$，則 $\langle b_n \rangle$ 也是收斂數列<br>
+                (E)若 $\langle a_n \rangle$ 為一收斂數列，且任意正整數 $n$，$a_n \neq 0$，則數列 $\left\langle \d\frac{1}{a_n} \right\rangle$ 也是收斂數列。
             </div>
         </div>
 
@@ -286,38 +281,37 @@
         <div class="card">
             <h2 class="title">名師詳解</h2>
             <div class="solution-box">
-                <p>我們逐一檢查每一個選項，判斷極限定理的適用條件並舉反例排除錯誤選項：</p>
+                <p>這是一道測試極限與無窮級數核心觀念的多選題，我們逐一剖析每個選項的真偽：</p>
                 
                 <div class="analysis-item">
                     <strong>(A) 錯誤。</strong><br>
-                    極限的加法性質 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$ 成立的前提是 <strong>兩者個別的極限都必須存在</strong>。若只知道相加後的極限存在，並不能保證個別極限存在。<br>
-                    <strong>[反例]：</strong>令 $a_n = (-1)^n$， $b_n = (-1)^{n+1}$。此時兩數列皆發散（在 $1$ 和 $-1$ 之間震盪）。但是 $a_n + b_n = 0$，其極限 $\d\lim_{n \to \infty} (a_n+b_n) = 0$ 存在。此時等式右側無意義。
+                    一般項的極限為 $0$ （即 $\d\lim_{n \to \infty} a_n = 0$）只是無窮級數收斂的<strong>必要條件</strong>，而非充分條件。<br>
+                    <strong>[反例]：</strong>令 $a_n = \d\frac{1}{n}$（調和級數），此時 $\d\lim_{n \to \infty} \d\frac{1}{n} = 0$，但是 $\d\sum_{n=1}^{\infty} \d\frac{1}{n}$ 是一個發散至無限大的級數。
                 </div>
 
                 <div class="analysis-item">
                     <strong>(B) 正確。</strong><br>
-                    這可以由 <strong>夾擠定理 (Squeeze Theorem)</strong> 直接證明。對於任何實數，必滿足：
-                    $$ -|a_n| \le a_n \le |a_n| $$
-                    已知 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} -|a_n| = 0$。由夾擠定理可知，被夾在中間的 $a_n$ 其極限必定為：
-                    $$ \d\lim_{n \to \infty} a_n = 0 $$
+                    由無窮級數的定義可知，級數的和 $\beta$ 就是其部分和數列 $S_n$ 在無窮遠處的極限值，即：
+                    $$ \d\sum_{n=1}^{\infty} b_n = \d\lim_{n \to \infty} S_n = \beta $$
+                    因為極限值存在且等於 $\beta$，根據極限的四則運算性質：
+                    $$ \d\lim_{n \to \infty} (S_n - \beta) = \left( \d\lim_{n \to \infty} S_n \right) - \beta = \beta - \beta = 0 $$
                 </div>
 
                 <div class="analysis-item">
                     <strong>(C) 錯誤。</strong><br>
-                    夾擠定理成立的條件不僅僅是兩端極限存在，還必須 <strong>兩端極限值相等</strong> （即 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n = L$）。若左右極限值不同，中間的數列不一定收斂。<br>
-                    <strong>[反例]：</strong>令 $a_n = -1$，$c_n = 1$，$b_n = (-1)^n$。對所有正整數 $n$ 皆有 $-1 \le (-1)^n \le 1$ 成立。雖然 $\d\lim a_n = -1$ 且 $\d\lim c_n = 1$ 皆存在，但是中間的 $\d\lim b_n$ 發散不存在。
+                    當一個數列趨近於 $\infty$，另一個數列趨近於 $0$ 時，兩者相乘屬於 $\infty \times 0$ 的<strong>極限不定型</strong>，其結果可能收斂為任何實數，也可能發散。<br>
+                    <strong>[反例]：</strong>令 $a_n = n$ （趨近於 $\infty$）， $b_n = \d\frac{1}{n}$ （趨近於 $0$）。兩數列相乘 $a_n b_n = n \times \d\frac{1}{n} = 1$。此時其極限 $\d\lim_{n \to \infty} a_n b_n = 1 \neq 0$。
                 </div>
 
                 <div class="analysis-item">
-                    <strong>(D) 錯誤。</strong><br>
-                    若收斂數列極限為 $0$（即 $\d\lim_{n \to \infty} a_n = 0$），則取倒數後的分母趨近於 $0$，會導致數列發散（趨近於無窮大或不存在）。<br>
-                    <strong>[反例]：</strong>令 $a_n = \frac{1}{n}$。此數列收斂於 $0$ 且每一項都不等於 $0$。但是其倒數數列 $\frac{1}{a_n} = n$ 為發散數列。
+                    <strong>(D) 正確。</strong><br>
+                    這就是微積分中非常重要的<strong>夾擠定理 (Squeeze Theorem)</strong>的廣義條件。夾擠定理並不要求不等式必須對「所有」正整數成立，只要從「某一項 $n_0$ 開始的以後每一項」滿足 $a_n \le b_n \le c_n$ 恆成立，且左右護法數列收斂至同一極限，被夾在中間的 $b_n$ 就必定收斂至相同的極限值。
                 </div>
 
                 <div class="analysis-item">
                     <strong>(E) 錯誤。</strong><br>
-                    極限具有 <strong>保號性 (弱不等式)</strong>，取極限後嚴格不等號可能會變成等號（即 $a_n \le b_n$ 或 $a_n < b_n$ 取極限後皆只能保證 $\alpha \le \beta$）。<br>
-                    <strong>[反例]：</strong>令 $a_n = 1 - \frac{1}{n}$，$b_n = 1 + \frac{1}{n}$。對所有自然數 $n$，顯然 $1 - \frac{1}{n} < 1 + \frac{1}{n}$（即 $a_n < b_n$）。但是取極限後 $\alpha = \d\lim a_n = 1$，$\beta = \d\lim b_n = 1$，得到 $\alpha = \beta$，並沒有 $\alpha < \beta$。
+                    雖然 $a_n$ 為收斂數列且每一項皆不為 $0$，但如果 $a_n$ 收斂到極限值 $0$，取倒數後分母趨近於 $0$，會導致整個倒數數列發散至無窮大。<br>
+                    <strong>[反例]：</strong>令 $a_n = \d\frac{1}{n}$。雖然此數列收斂至 $0$ 且對任意正整數 $n$ 都有 $a_n \neq 0$，但其倒數數列 $\left\langle \d\frac{1}{a_n} \right\rangle = \langle n \rangle$ 卻是趨近於無限大的發散數列。
                 </div>
             </div>
         </div>
@@ -325,14 +319,14 @@
         <!-- 學霸提示區塊 -->
         <div class="tip-card">
             <div class="tip-title">💡 考場秒殺與學霸盲點掃描</div>
-            <p><strong>盲點 1：</strong> 看到極限符號就急著分配進去（如選項 A）。這是不對的，<strong>加減乘除的極限定理</strong>前提是「個別數列必須收斂」！只要沒說收斂，就先懷疑它會震盪（找 $(-1)^n$ 做反例）。</p>
-            <p><strong>盲點 2：</strong> 選項 (E) 是極限最經典的「極限會吃掉等號」陷阱。在無窮遠處，兩條原本不相交的曲線可能會「無限貼近」甚至共用同一條漸近線。永遠記得取極限後，<strong>嚴格大於 $(<, >)$ 必須加上等號 $(\le, \ge)$</strong>。</p>
-            <p><strong>學霸考場戰略：</strong> 這種觀念題不用花時間嚴格證明，直接把心中常備的幾個極端「壞寶寶」（如 $a_n = (-1)^n$、 $a_n = \frac{1}{n}$ ）代入選項測試，10秒內就能揪出錯誤選項！</p>
+            <p><strong>盲點 1：(A)選項是段考與大考的「必考陷阱」！</strong><br>許多學生會誤以為 $\lim a_n = 0$ 就代表級數會收斂。請把<strong>「調和級數 (Harmonic Series)」</strong>當作你的常備護身符，只要問到此觀念，先拿 $a_n = \frac{1}{n}$ 出來擋。</p>
+            <p><strong>盲點 2：(C)選項的「不定型」直覺誤判！</strong><br>在極限運算中，$\infty \times 0$、$\frac{\infty}{\infty}$、$\frac{0}{0}$ 絕對不能憑直覺判斷！它們就像是在拔河，誰的速度快，結果就偏向誰。因此結果可能是任何非零實數、$0$、或是無限大。</p>
+            <p><strong>學霸考場戰略：反例武器庫！</strong><br>面對是非選擇題，不要嘗試在考場上做嚴格證明。腦中只要備妥 <strong>1. 調和數列 ($1/n$)</strong>、<strong>2. 震盪數列 ($(-1)^n$)</strong>、<strong>3. 自然數列 ($n$)</strong>，交替代入每個選項，十秒鐘就能踢破所有假象！</p>
         </div>
 
         <!-- 最終答案 -->
         <div class="final-answer">
-            本題正確答案為：(B)
+            本題正確答案為：(B)、(D)
         </div>
     </div>
 
