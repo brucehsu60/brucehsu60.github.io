@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>數甲觀念 1-1：數列的極限</title>
+    <title>高中數學學霸詳解</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script>
         window.MathJax = {
@@ -100,7 +101,6 @@
         }
 
         .btn-print { background-color: var(--success-color); color: white; }
-        .btn-back { background-color: var(--secondary-color); color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
 
         .container {
             max-width: 900px;
@@ -122,9 +122,6 @@
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
             color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .question-text {
@@ -135,6 +132,14 @@
         .solution-box {
             background-color: var(--sol-bg);
             border-left: 5px solid var(--sol-border);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .alt-solution {
+            background-color: var(--alt-bg);
+            border-left: 5px solid var(--alt-border);
             padding: 20px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 20px;
@@ -160,17 +165,27 @@
             padding-bottom: 5px;
         }
 
-        .concept-summary {
+        .final-answer {
             text-align: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
             padding: 15px;
-            border: 3px solid var(--success-color);
+            border: 3px solid var(--primary-color);
             border-radius: 8px;
             background-color: var(--card-bg);
-            color: var(--success-color);
+            color: var(--primary-color);
             width: fit-content;
             margin: 20px auto;
+        }
+
+        ul.options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.options li {
+            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
         .analysis-item {
@@ -209,7 +224,7 @@
                 color: black !important;
                 border-bottom: 2px solid black !important;
             }
-            .solution-box {
+            .solution-box, .alt-solution {
                 background-color: white !important;
                 border: 2px solid black !important;
                 border-left: 8px solid black !important;
@@ -225,7 +240,7 @@
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
             }
-            .concept-summary {
+            .final-answer {
                 border: 4px double black !important;
                 color: black !important;
                 page-break-inside: avoid;
@@ -234,56 +249,70 @@
                 font-weight: 900 !important;
                 text-decoration: none !important;
             }
+            strong.keyword {
+                color: black !important;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="toolbar">
-        <a href="concept.html" class="btn-back">🔙 返回觀念目錄</a>
         <button onclick="setTheme('light')">📄 預設好讀</button>
         <button onclick="setTheme('dark')">🌙 護眼暗色</button>
-        <button class="btn-print" onclick="triggerPrint()">🖨️ 立即列印</button>
+        <button class="btn-print" onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
     </div>
 
     <div class="container">
-        <!-- 核心定義區 -->
+        <!-- 題目原題區 -->
         <div class="card">
-            <h2 class="title">🎯 核心定義：數列的極限</h2>
+            <h2 class="title">原題還原</h2>
             <div class="question-text">
-                對於一個數列 $\langle a_n \rangle$，當項數 $n$ 無限增大時（即 $n \to \infty$），若 $a_n$ 的值會越來越靠近一個固定的實數 $\alpha$，我們就稱這數列<strong>收斂 (Convergent)</strong>，並記作：
-                $$ \d\lim_{n \to \infty} a_n = \alpha $$
-                反之，若 $a_n$ 沒有趨近於任何固定的實數（例如無限飆大或上下震盪），則稱該數列為<strong>發散 (Divergent)</strong>。
+                試問下列何者正確？<br>
+                (A)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩數列，若 $\d\lim_{n \to \infty} (a_n+b_n)$ 存在，則 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$<br>
+                (B)設 $\langle a_n \rangle$ 為一數列，若 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} a_n = 0$<br>
+                (C)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$，$\langle c_n \rangle$ 為三個數列，且對任意正整數 $n$，$a_n \le b_n \le c_n$ 均成立，則當 $\d\lim_{n \to \infty} a_n$ 與 $\d\lim_{n \to \infty} c_n$ 都存在時，$\d\lim_{n \to \infty} b_n$ 也存在<br>
+                (D)設 $\langle a_n \rangle$ 為一收斂數列且對任意正整數 $n$ 使 $a_n \neq 0$，則 $\d\lim_{n \to \infty} \frac{1}{a_n}$ 也是收斂數列<br>
+                (E)設 $\langle a_n \rangle$ ，$\langle b_n \rangle$ 為兩收斂數列，且 $\d\lim_{n \to \infty} a_n = \alpha$，$\d\lim_{n \to \infty} b_n = \beta$，若對每一個自然數 $n$ 都有 $a_n < b_n$，則 $\alpha < \beta$。
             </div>
         </div>
 
-        <!-- 定理與性質區 -->
+        <!-- 正規詳解區 -->
         <div class="card">
-            <h2 class="title">📚 重要定理與性質</h2>
+            <h2 class="title">名師詳解</h2>
             <div class="solution-box">
-                <p>在操作極限時，必須熟記以下三大基石：</p>
+                <p>我們逐一檢查每一個選項，判斷極限定理的適用條件並舉反例排除錯誤選項：</p>
                 
                 <div class="analysis-item">
-                    <strong>1. 極限的四則運算性質</strong><br>
-                    <strong>【大前提】：</strong> 必須已知 $\d\lim_{n \to \infty} a_n = \alpha$ 且 $\d\lim_{n \to \infty} b_n = \beta$ <strong>（兩者皆收斂）</strong>，下列才成立：<br>
-                    <ul>
-                        <li>加減： $\d\lim_{n \to \infty} (a_n \pm b_n) = \alpha \pm \beta$</li>
-                        <li>相乘： $\d\lim_{n \to \infty} (a_n \cdot b_n) = \alpha \cdot \beta$</li>
-                        <li>相除： $\d\lim_{n \to \infty} \left(\frac{a_n}{b_n}\right) = \frac{\alpha}{\beta}$ （前提是 $\beta \neq 0$ 且 $b_n \neq 0$）</li>
-                    </ul>
+                    <strong>(A) 錯誤。</strong><br>
+                    極限的加法性質 $\d\lim_{n \to \infty} (a_n+b_n) = \d\lim_{n \to \infty} a_n + \d\lim_{n \to \infty} b_n$ 成立的前提是 <strong>兩者個別的極限都必須存在</strong>。若只知道相加後的極限存在，並不能保證個別極限存在。<br>
+                    <strong>[反例]：</strong>令 $a_n = (-1)^n$， $b_n = (-1)^{n+1}$。此時兩數列皆發散（在 $1$ 和 $-1$ 之間震盪）。但是 $a_n + b_n = 0$，其極限 $\d\lim_{n \to \infty} (a_n+b_n) = 0$ 存在。此時等式右側無意義。
                 </div>
 
                 <div class="analysis-item">
-                    <strong>2. 夾擠定理 (Squeeze Theorem)</strong><br>
-                    若存在三個數列滿足 $a_n \le b_n \le c_n$ （從某項開始恆成立即可）。<br>
-                    當左右兩邊的極限存在且相等，即 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n = L$ 時，<br>
-                    中間的數列必定會被「夾」向同一個極限： <strong>$\d\lim_{n \to \infty} b_n = L$</strong>。
+                    <strong>(B) 正確。</strong><br>
+                    這可以由 <strong>夾擠定理 (Squeeze Theorem)</strong> 直接證明。對於任何實數，必滿足：
+                    $$ -|a_n| \le a_n \le |a_n| $$
+                    已知 $\d\lim_{n \to \infty} |a_n| = 0$，則 $\d\lim_{n \to \infty} -|a_n| = 0$。由夾擠定理可知，被夾在中間的 $a_n$ 其極限必定為：
+                    $$ \d\lim_{n \to \infty} a_n = 0 $$
                 </div>
 
                 <div class="analysis-item">
-                    <strong>3. 極限的保號性 (吃掉等號)</strong><br>
-                    若兩收斂數列滿足 $a_n < b_n$ （嚴格小於），在取極限後，可能會發生「無限逼近但不超越」的情況，因此等號必須補上：<br>
-                    $$ \d\lim_{n \to \infty} a_n \le \d\lim_{n \to \infty} b_n $$
+                    <strong>(C) 錯誤。</strong><br>
+                    夾擠定理成立的條件不僅僅是兩端極限存在，還必須 <strong>兩端極限值相等</strong> （即 $\d\lim_{n \to \infty} a_n = \d\lim_{n \to \infty} c_n = L$）。若左右極限值不同，中間的數列不一定收斂。<br>
+                    <strong>[反例]：</strong>令 $a_n = -1$，$c_n = 1$，$b_n = (-1)^n$。對所有正整數 $n$ 皆有 $-1 \le (-1)^n \le 1$ 成立。雖然 $\d\lim a_n = -1$ 且 $\d\lim c_n = 1$ 皆存在，但是中間的 $\d\lim b_n$ 發散不存在。
+                </div>
+
+                <div class="analysis-item">
+                    <strong>(D) 錯誤。</strong><br>
+                    若收斂數列極限為 $0$（即 $\d\lim_{n \to \infty} a_n = 0$），則取倒數後的分母趨近於 $0$，會導致數列發散（趨近於無窮大或不存在）。<br>
+                    <strong>[反例]：</strong>令 $a_n = \frac{1}{n}$。此數列收斂於 $0$ 且每一項都不等於 $0$。但是其倒數數列 $\frac{1}{a_n} = n$ 為發散數列。
+                </div>
+
+                <div class="analysis-item">
+                    <strong>(E) 錯誤。</strong><br>
+                    極限具有 <strong>保號性 (弱不等式)</strong>，取極限後嚴格不等號可能會變成等號（即 $a_n \le b_n$ 或 $a_n < b_n$ 取極限後皆只能保證 $\alpha \le \beta$）。<br>
+                    <strong>[反例]：</strong>令 $a_n = 1 - \frac{1}{n}$，$b_n = 1 + \frac{1}{n}$。對所有自然數 $n$，顯然 $1 - \frac{1}{n} < 1 + \frac{1}{n}$（即 $a_n < b_n$）。但是取極限後 $\alpha = \d\lim a_n = 1$，$\beta = \d\lim b_n = 1$，得到 $\alpha = \beta$，並沒有 $\alpha < \beta$。
                 </div>
             </div>
         </div>
@@ -291,22 +320,14 @@
         <!-- 學霸提示區塊 -->
         <div class="tip-card">
             <div class="tip-title">💡 考場秒殺與學霸盲點掃描</div>
-            <p><strong>⚠️ 盲點 1：看到加減乘除就急著把 $\lim$ 拆開</strong><br> 
-            這是不對的！如果題目沒說「兩數列收斂」，絕對不能拆開！例如 $a_n = n$ (發散), $b_n = -n$ (發散)，但 $\d\lim (a_n+b_n) = 0$ 是收斂的。</p>
-            
-            <p><strong>⚠️ 盲點 2：忽略震盪型發散</strong><br> 
-            發散不是只有趨近無限大 ($\infty$)。遇到 $(-1)^n$ 這種在 $1$ 與 $-1$ 之間跳動的數列，雖然有界，但也是<strong>發散</strong>！</p>
-            
-            <p><strong>🎯 學霸解題心法：多項式分式型極限</strong><br> 
-            遇到 $\d\lim_{n \to \infty} \frac{An^p + \dots}{Bn^q + \dots}$，直接看最高次方的「老大」：<br>
-            1. <strong>分子次數 > 分母次數</strong> $(p>q)$：發散 (極限不存在)。<br>
-            2. <strong>分子次數 < 分母次數</strong> $(p<q)$：極限值為 $0$。<br>
-            3. <strong>分子次數 = 分母次數</strong> $(p=q)$：極限值為「最高次項係數比」 $\frac{A}{B}$。</p>
+            <p><strong>盲點 1：</strong> 看到極限符號就急著分配進去（如選項 A）。這是不對的，<strong>加減乘除的極限定理</strong>前提是「個別數列必須收斂」！只要沒說收斂，就先懷疑它會震盪（找 $(-1)^n$ 做反例）。</p>
+            <p><strong>盲點 2：</strong> 選項 (E) 是極限最經典的「極限會吃掉等號」陷阱。在無窮遠處，兩條原本不相交的曲線可能會「無限貼近」甚至共用同一條漸近線。永遠記得取極限後，<strong>嚴格大於 $(<, >)$ 必須加上等號 $(\le, \ge)$</strong>。</p>
+            <p><strong>學霸考場戰略：</strong> 這種觀念題不用花時間嚴格證明，直接把心中常備的幾個極端「壞寶寶」（如 $a_n = (-1)^n$、 $a_n = \frac{1}{n}$ ）代入選項測試，10秒內就能揪出錯誤選項！</p>
         </div>
 
-        <!-- 總結 -->
-        <div class="concept-summary">
-            🚀 1-1 核心口訣：先判斷收斂，才能用定理；分式找老大，夾擠找靠山！
+        <!-- 最終答案 -->
+        <div class="final-answer">
+            本題正確答案為：(B)
         </div>
     </div>
 
