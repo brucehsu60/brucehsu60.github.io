@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計程車費與高斯符號應用</title>
+    
+    <!-- MathJax 3 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                },
+                tags: 'ams'
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 全局變數與基礎設定 */
+        :root {
+            --bg-color: #fafbfc;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+            --primary-color: #0366d6;
+            --primary-light: #f1f8ff;
+            --alt-color: #b07d00;
+            --alt-light: #fffbdd;
+            --danger-color: #d73a49;
+            --danger-light: #ffeef0;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --table-header-bg: #e0f2f1;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --primary-color: #58a6ff;
+            --primary-light: #1f2a3a;
+            --alt-color: #e3b341;
+            --alt-light: #2d2616;
+            --danger-color: #f85149;
+            --danger-light: #3a1d1e;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+            --table-header-bg: #1a3a38;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* 關鍵紅字標示 */
+        .text-red {
+            color: var(--danger-color);
+            font-weight: 700;
+        }
+
+        /* 懸浮工具列 */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s;
+        }
+
+        .btn {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--border-color);
+        }
+
+        /* 區塊通用樣式 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* 原題呈現與表格 */
+        .problem-card {
+            border-left: 6px solid #6e7681;
+            font-size: 1.1em;
+        }
+        
+        .problem-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .problem-table th, .problem-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+        }
+        .problem-table .table-header {
+            background-color: var(--table-header-bg);
+            font-weight: 500;
+            width: 15%;
+        }
+
+        /* 正規詳解 */
+        .solution-card {
+            background-color: var(--primary-light);
+            border-left: 6px solid var(--primary-color);
+        }
+
+        /* 學霸另解 */
+        .alt-solution-card {
+            background-color: var(--alt-light);
+            border-left: 6px solid var(--alt-color);
+        }
+
+        /* 盲點提示 */
+        .warning-card {
+            background-color: var(--danger-light);
+            border: 2px solid var(--danger-color);
+            border-radius: 8px;
+        }
+        .warning-card h4 {
+            margin-top: 0;
+            color: var(--danger-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 最終答案 */
+        .answer-card {
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 3px double var(--primary-color);
+            background-color: var(--card-bg);
+        }
+
+        /* 步驟列表樣式 */
+        .steps {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .steps > li {
+            margin-bottom: 18px;
+            padding-left: 32px;
+            position: relative;
+        }
+        .steps > li::before {
+            content: "Step " counter(step-counter) ".";
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 0.9em;
+        }
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        /* 列印樣式 */
+        @media print {
+            @page { margin: 1.5cm; }
+            body {
+                background-color: white !important;
+                color: black !important;
+                padding-top: 0;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .toolbar { display: none !important; }
+            .container { max-width: 100%; box-shadow: none; }
+            .card {
+                box-shadow: none !important;
+                page-break-inside: auto;
+                border-color: #000 !important;
+            }
+            .problem-table th, .problem-table td { border-color: #000 !important; }
+            .solution-card {
+                background-color: #f8fbff !important;
+                border-left: 6px solid #000 !important;
+            }
+            .alt-solution-card {
+                background-color: #fffdef !important;
+                border-left: 6px solid #000 !important;
+            }
+            .warning-card {
+                border: 3px solid #000 !important;
+                border-left: 10px solid #000 !important;
+                page-break-inside: avoid;
+            }
+            .answer-card {
+                border: 4px double #000 !important;
+                page-break-inside: avoid;
+            }
+            strong, .text-red {
+                color: black !important;
+                font-weight: bold !important;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂部懸浮工具列 -->
+    <div class="toolbar">
+        <button class="btn" onclick="setTheme('light')">📄 預設好讀</button>
+        <button class="btn" onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button class="btn" onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
+    </div>
+
+    <div class="container">
+        <h1>🚕 計程車車資與高斯符號應用</h1>
+
+        <!-- 原題區塊 -->
+        <div class="card problem-card">
+            <h3>📝 原題呈現</h3>
+            <p>民國200年的計程車車資 $y$(元)隨里程 $x$(公里)而定，計算標準如下表所示：</p>
+            
+            <table class="problem-table">
+                <tr>
+                    <th class="table-header">里程<br>$x$公里</th>
+                    <td>$0 < x < 2$</td>
+                    <td>$2 \leq x < 2.5$</td>
+                    <td>$2.5 \leq x < 3$</td>
+                    <td>$3 \leq x < 3.5$</td>
+                    <td>$\cdots$</td>
+                </tr>
+                <tr>
+                    <th class="table-header">車資<br>$y$元</th>
+                    <td>100</td>
+                    <td>110</td>
+                    <td>120</td>
+                    <td>130</td>
+                    <td>$\cdots$</td>
+                </tr>
+            </table>
+
+            <p>由上表可知未滿2公里車資為100元，之後每500公尺跳10元，未滿500公尺以500公尺計。則<br>
+            (1)某人搭乘計程車里程為3公里，則應付車資多少元？<br>
+            (2)若搭乘計程車里程為$x$公里，則應付車資$y = f(x)$，則$f(x) =$？</p>
+        </div>
+
+        <!-- 盲點與核心觀念提示 -->
+        <div class="card warning-card">
+            <h4>🚨 易錯盲點：區間邊界的「等號」歸屬</h4>
+            <p>在計算第 (1) 小題時，很多同學會直觀地算「3公里比2公里多了兩個500公尺」，於是誤算為 $100 + 10 \times 2 = 120$。這犯了忽略<strong>計費起始點</strong>的錯誤。<br>
+            請務必緊盯表格中的 <strong>$2 \leq x < 2.5$</strong>，這代表一達到 $2.0$ 公里時，車資就「已經」跳了第一次變成 $110$ 元。因此找 $x=3$ 對應的區間時，必須看清楚等號，它落在 $3 \leq x < 3.5$ 這一格。</p>
+        </div>
+
+        <!-- 正規詳解區塊 -->
+        <div class="card solution-card">
+            <h3>💡 頂尖名師詳解</h3>
+            <ul class="steps">
+                <li>
+                    <strong>解題 (1) - 查表對應法：</strong><br>
+                    題目欲求里程 $x = 3$ 公里時的車資。<br>
+                    直接觀察題目給定的表格區間：<br>
+                    $2.5 \leq x < 3$ 的車資為 $120$ 元（不包含 $x=3$）。<br>
+                    <strong>$3 \leq x < 3.5$</strong> 的車資為 $130$ 元（包含 $x=3$）。<br>
+                    故 $x = 3$ 落在第四個區間，對應的車資為 <strong>$130$ 元</strong>。
+                </li>
+                <li>
+                    <strong>解題 (2) - 分段函數建構 (前段)：</strong><br>
+                    建立車資函數 $f(x)$ 必須根據題意分段處理。<br>
+                    第一段為基本里程：當 $0 < x < 2$ 時，表格明確指出車資為固定值，因此：
+                    $$f(x) = 100 \quad (0 < x < 2)$$
+                </li>
+                <li>
+                    <strong>解題 (2) - 高斯函數建構 (後段)：</strong><br>
+                    當里程 $x \geq 2$ 時，每 $0.5$ 公里（500公尺）車資增加 $10$ 元。這是一個標準的「階梯函數」，我們可利用高斯符號 $[ \cdot ]$ 來處理。<br><br>
+                    
+                    高斯符號 $[t]$ 的天性是「逢整數 $1$ 就跳階」。要讓函數在每經過 $0.5$ 單位時就產生跳動，我們必須進行單位換算：<br>
+                    <span class="text-red">核心思考：在目前的里程 $x$ 當中，到底包含了「幾個」 $0.5$ 公里？</span><br>
+                    <span class="text-red">計算「包含個數」直覺的數學運算就是除法，因此我們構造變數 $\d\frac{x}{0.5} = 2x$。</span><br><br>
+
+                    這樣一來，當 $x$ 每增加 $0.5$，變數 $2x$ 就剛好增加 $1$，完美對接高斯符號的跳動週期！我們將其套用至表格中觀察：
+                    <ul>
+                        <li>當 $x \in [2, 2.5)$ 時，$[2x] = [4, 5) = 4$，此時車資 $y = 110$</li>
+                        <li>當 $x \in [2.5, 3)$ 時，$[2x] = [5, 6) = 5$，此時車資 $y = 120$</li>
+                        <li>當 $x \in [3, 3.5)$ 時，$[2x] = [6, 7) = 6$，此時車資 $y = 130$</li>
+                    </ul>
+                    我們發現車資 $y$ 與 $[2x]$ 之間呈現線性的規律。設 $y = 10 \cdot [2x] + k$，將 $([2x]=4, y=110)$ 代入，可得 $110 = 40 + k \implies k = 70$。<br>
+                    因此，當 $x \geq 2$ 時，車資的通式為：
+                    $$f(x) = 10[2x] + 70 \quad (x \geq 2)$$
+                </li>
+                <li>
+                    <strong>整合答案：</strong><br>
+                    將前後兩段函數合併，即可得到完整的計程車資函數。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 學霸另解區塊 -->
+        <div class="card alt-solution-card">
+            <h3>⚡ 學霸邏輯直推法（不需死背公式）</h3>
+            <p>遇到這種「起跳＋後續累加」的題目，學霸腦中是這樣組裝公式的：<br>
+            <strong>車資 = 基本費 + (跳表次數) $\times$ 每次跳表金額</strong></p>
+            <p>1. <strong>基本費：</strong> 毫無疑問是 $100$ 元。<br>
+            2. <strong>跳表次數：</strong> $x$ 超過 $2$ 公里後才開始算跳表。超出的距離是 $(x - 2)$。<br>
+            依據前述「每 0.5 跳一次就除以 0.5」的邏輯，跳表次數為 $[ \d\frac{x-2}{0.5} ] + 1$ ，整理得 $[2x - 4] + 1$ 次。<br>
+            （註：因為 $+1$ 是因為一達到 $2.0$ 就已經跳了第一次。而 $[2x - 4]$ 裡面的整數可直接移出，拆成 $[2x] - 4$）</p>
+            <p>3. <strong>組合驗算：</strong><br>
+            當 $x \geq 2$ 時：<br>
+            $f(x) = 100 + 10 \times (\text{跳表次數})$<br>
+            $f(x) = 100 + 10 \times ([2x - 4] + 1)$<br>
+            $f(x) = 100 + 10 \times ([2x] - 3)$<br>
+            $f(x) = 100 + 10[2x] - 30 = \mathbf{10[2x] + 70}$</p>
+            <p>兩種思維殊途同歸，最後導出的式子極度簡潔完美！</p>
+        </div>
+
+        <!-- 最終答案 -->
+        <div class="card answer-card">
+            <h3>🎯 最終答案</h3>
+            <p style="text-align: left; padding-left: 20px; font-size: 0.9em; margin-bottom: 0;">(1)</p>
+            <div style="color: var(--primary-color);">
+                $130 \text{ 元}$
+            </div>
+            <hr style="border-top: 1px dashed var(--border-color); margin: 20px 0;">
+            <p style="text-align: left; padding-left: 20px; font-size: 0.9em; margin-bottom: 0;">(2)</p>
+            <div style="color: var(--primary-color);">
+                $$f(x) = \begin{cases} 100, & 0 < x < 2 \\ 10[2x] + 70, & x \geq 2 \end{cases}$$
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 互動腳本 -->
+    <script>
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+
+        function triggerPrint() {
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise().then(() => {
+                    window.print();
+                }).catch((err) => {
+                    console.error('MathJax 渲染失敗：', err);
+                    window.print();
+                });
+            } else {
+                window.print();
+            }
+        }
+    </script>
+</body>
+</html>

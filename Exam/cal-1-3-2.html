@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高斯方程式五大解法總整理</title>
+    
+    <!-- MathJax 3 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                },
+                tags: 'ams'
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* 全局變數與基礎設定 */
+        :root {
+            --bg-color: #fafbfc;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+            
+            /* 各方法的專屬配色 */
+            --m1-color: #0366d6; --m1-bg: #f1f8ff;
+            --m2-color: #b07d00; --m2-bg: #fffbdd;
+            --m3-color: #22c55e; --m3-bg: #f0fdf4;
+            --m4-color: #7e22ce; --m4-bg: #faf5ff;
+            --m5-color: #0f766e; --m5-bg: #f0fdfa;
+            
+            --danger-color: #e11d48; /* 關鍵紅字顏色 */
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            
+            --m1-color: #58a6ff; --m1-bg: #1f2a3a;
+            --m2-color: #e3b341; --m2-bg: #2d2616;
+            --m3-color: #4ade80; --m3-bg: #052e16;
+            --m4-color: #a855f7; --m4-bg: #2b1a3a;
+            --m5-color: #2dd4bf; --m5-bg: #132f2c;
+            
+            --danger-color: #fb7185; /* 暗色模式的紅字 */
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 { color: var(--text-color); margin-top: 0; }
+        strong { font-weight: 600; }
+        
+        /* 關鍵紅字樣式 */
+        .text-red { 
+            color: var(--danger-color); 
+            font-weight: 800; 
+            background-color: rgba(225, 29, 72, 0.08); /* 微微的紅底色增加凸顯 */
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* 懸浮工具列 */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s;
+        }
+
+        .btn {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .btn:hover { background-color: var(--border-color); }
+
+        /* 區塊通用樣式 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* 原題呈現 */
+        .problem-card {
+            border-left: 6px solid #6e7681;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* 各方法顏色配置 */
+        .method-1 { background-color: var(--m1-bg); border-left: 6px solid var(--m1-color); }
+        .method-1 h3 { color: var(--m1-color); }
+        .method-2 { background-color: var(--m2-bg); border-left: 6px solid var(--m2-color); }
+        .method-2 h3 { color: var(--m2-color); }
+        .method-3 { background-color: var(--m3-bg); border-left: 6px solid var(--m3-color); }
+        .method-3 h3 { color: var(--m3-color); }
+        .method-4 { background-color: var(--m4-bg); border-left: 6px solid var(--m4-color); }
+        .method-4 h3 { color: var(--m4-color); }
+        .method-5 { background-color: var(--m5-bg); border-left: 6px solid var(--m5-color); }
+        .method-5 h3 { color: var(--m5-color); }
+
+        /* 步驟列表樣式 */
+        .steps {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .steps > li {
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+        }
+        .steps > li::before {
+            content: "Step " counter(step-counter) ".";
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        .method-1 .steps > li::before { color: var(--m1-color); }
+        .method-2 .steps > li::before { color: var(--m2-color); }
+        .method-3 .steps > li::before { color: var(--m3-color); }
+        .method-4 .steps > li::before { color: var(--m4-color); }
+        .method-5 .steps > li::before { color: var(--m5-color); }
+        .steps { counter-reset: step-counter; }
+
+        /* 最終答案 */
+        .answer-card {
+            text-align: center;
+            font-size: 1.4em;
+            font-weight: bold;
+            border: 3px double #d73a49;
+            background-color: var(--card-bg);
+            color: #d73a49;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button class="btn" onclick="setTheme('light')">📄 預設好讀</button>
+        <button class="btn" onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button class="btn" onclick="window.print()">🖨️ 立即列印</button>
+    </div>
+
+    <div class="container">
+        <h1>🎯 高斯方程式五大核心解法總整理</h1>
+
+        <!-- 原題區塊 -->
+        <div class="card problem-card">
+            對於任意實數 $x$，$[x] \leq x < [x]+1$<br>
+            利用此性質求滿足 <strong>$[x] = 2x - 1$</strong> 的所有解。
+        </div>
+
+        <!-- 方法一 -->
+        <div class="card method-1">
+            <h3>🛡️ 方法一：正規代數參數法（最穩健，手寫題必備）</h3>
+            <ul class="steps">
+                <li>
+                    <strong>參數化：</strong> <span class="text-red">令 $[x] = k$（其中 $k \in \mathbb{Z}$）</span>。
+                </li>
+                <li>
+                    <strong>代換方程式：</strong> 將 $[x] = k$ 代入原方程式，得 $k = 2x - 1 \implies x = \d\frac{k + 1}{2}$。
+                </li>
+                <li>
+                    <strong>代入不等式限制：</strong> 題目已給定性質 $[x] \leq x < [x]+1$，<span class="text-red">將 $k$ 與 $x$ 同時代入不等式</span>：
+                    $$k \leq \d\frac{k + 1}{2} < k + 1$$
+                </li>
+                <li>
+                    <strong>解不等式求整數 $k$：</strong> 同乘 2 得 $2k \leq k + 1 < 2k + 2$。<br>
+                    拆分左右求解後合併範圍，得到 <span class="text-red">$-1 < k \leq 1$</span>。<br>
+                    因 $k$ 為整數，故 $k = 0$ 或 $k = 1$。
+                </li>
+                <li>
+                    <strong>收尾求 $x$：</strong> 代回 $x = \frac{k+1}{2}$，得到解為 $x = 0.5$ 或 $x = 1$。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 方法二 -->
+        <div class="card method-2">
+            <h3>⚡ 方法二：小數部分與整數特性分析（學霸秒殺法）</h3>
+            <ul class="steps">
+                <li>
+                    <strong>鎖定倍數特性：</strong> 方程式 $[x] = 2x - 1$ 中，左邊是整數，<span class="text-red">所以右邊的 $2x - 1$ 也必須是整數</span>。推論出 $2x$ 是整數，即 <strong>$x$ 必定是 $0.5$ 的整數倍</strong>。
+                </li>
+                <li>
+                    <strong>引入小數部分 $\{x\}$：</strong> 實數可拆為 $x = [x] + \{x\}$，移項得 $[x] = x - \{x\}$。
+                </li>
+                <li>
+                    <strong>代入原式：</strong> 將其代入原式： $x - \{x\} = 2x - 1 \implies x = 1 - \{x\}$。
+                </li>
+                <li>
+                    <strong>利用小數範圍精準打擊：</strong> 因為小數部分 $0 \leq \{x\} < 1$，所以 $1 - \{x\}$ 的範圍落在：
+                    <span class="text-red">$$0 < 1 - \{x\} \leq 1$$</span>
+                    這代表 <span class="text-red">解答 $x$ 必須落在 $(0, 1]$ 區間內</span>。結合 Step 1 得知，在此區間內 $0.5$ 的倍數只有 $0.5$ 與 $1$ 兩個可能。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 方法三 -->
+        <div class="card method-3">
+            <h3>📉 方法三：函數圖形交點法（幾何直觀，最強驗算工具）</h3>
+            <ul class="steps">
+                <li>
+                    <strong>拆解方程式：</strong> <span class="text-red">將原式視為尋找 $y_1 = [x]$ 與 $y_2 = 2x - 1$ 兩個函數的交點</span>。
+                </li>
+                <li>
+                    <strong>作圖分析：</strong> 
+                    <ul>
+                        <li>$y_1$ 是階梯函數（每經過整數跳躍一次）。</li>
+                        <li>$y_2$ 是斜率為 2 的直線。</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>尋找交點：</strong> 
+                    在 $0 \leq x < 1$ 時階梯高度為 $0$；直線 $2x-1 = 0 \implies x = 0.5$。<span class="text-red">得到交點 $(0.5, 0)$</span>。<br>
+                    在 $x = 1$ 時階梯躍升為 $1$；直線 $2(1)-1 = 1$。<span class="text-red">得到交點 $(1, 1)$</span>。
+                </li>
+                <li>
+                    極限判斷直線太陡，不會再有其他交點。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 方法四 -->
+        <div class="card method-4">
+            <h3>🔮 方法四：直接不等式夾擠法（免設代號，最快求範圍）</h3>
+            <ul class="steps">
+                <li>
+                    <strong>直接替換不等式核心：</strong> 題目給定 $[x] \leq x < [x] + 1$。<br>
+                    我們<span class="text-red">直接將其中的 $[x]$ 全部用 $(2x - 1)$ 替換掉</span>：
+                    $$2x - 1 \leq x < (2x - 1) + 1 \implies 2x - 1 \leq x < 2x$$
+                </li>
+                <li>
+                    <strong>解開絕對領域：</strong> 將不等式拆成兩半來解：<br>
+                    左半邊：$2x - 1 \leq x \implies x \leq 1$<br>
+                    右半邊：$x < 2x \implies 0 < x$<br>
+                    兩者交集立刻得到： <span class="text-red">$$0 < x \leq 1$$</span>
+                </li>
+                <li>
+                    <strong>整數收斂：</strong> 因 $[x]=2x-1$ 為整數，故 $2x$ 必須為整數。將剛求出的範圍同乘 2 得 $0 < 2x \leq 2$。裡面的整數僅有 $1$ 與 $2$，推得 $x = 0.5$ 或 $1$。
+                </li>
+            </ul>
+        </div>
+
+        <!-- 方法五 -->
+        <div class="card method-5">
+            <h3>🧩 方法五：整數奇偶分類法（邏輯狂人專用）</h3>
+            <ul class="steps">
+                <li>
+                    <strong>假設分數型態：</strong> 由原式知 $2x$ 是整數，<span class="text-red">令 $x = \d\frac{n}{2}$（其中 $n \in \mathbb{Z}$）</span>。
+                </li>
+                <li>
+                    <strong>建立整數方程式：</strong> 代入原式得： $\left[\d\frac{n}{2}\right] = n - 1$。
+                </li>
+                <li>
+                    <strong>針對 $n$ 進行奇偶探討：</strong> <br>
+                    <strong>【偶數】</strong> <span class="text-red">令 $n = 2m$</span>： $\left[\d\frac{2m}{2}\right] = 2m - 1 \implies m = 2m - 1 \implies m = 1$。此時 $n=2$，$x = \mathbf{1}$。<br>
+                    <strong>【奇數】</strong> <span class="text-red">令 $n = 2m + 1$</span>： $\left[\d\frac{2m+1}{2}\right] = (2m+1) - 1 \implies [m + 0.5] = 2m$。<br>
+                    整數加 0.5 取高斯會捨去尾數，故 $m = 2m \implies m = 0$。此時 $n=1$，$x = \mathbf{0.5}$。
+                </li>
+            </ul>
+        </div>
+
+        <div class="answer-card">
+            🎯 最終答案： $x = \d\frac{1}{2}$ 或 $x = 1$
+        </div>
+
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+    </script>
+</body>
+</html>
