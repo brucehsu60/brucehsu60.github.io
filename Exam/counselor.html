@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美英拼寫差異解析：Counselor 與更多實例</title>
+    
+    <style>
+        /* 全局變數與基礎設定 */
+        :root {
+            --bg-color: #fafbfc;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+            --primary-color: #0366d6;
+            --primary-light: #f1f8ff;
+            --us-color: #b07d00;
+            --us-light: #fffbdd;
+            --uk-color: #d73a49;
+            --uk-light: #ffeef0;
+            --rule-color: #22c55e;
+            --rule-light: #f0fdf4;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --table-header-bg: #e0f2f1;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --primary-color: #58a6ff;
+            --primary-light: #1f2a3a;
+            --us-color: #e3b341;
+            --us-light: #2d2616;
+            --uk-color: #f85149;
+            --uk-light: #3a1d1e;
+            --rule-color: #4ade80;
+            --rule-light: #052e16;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+            --table-header-bg: #1a3a38;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* 懸浮工具列 */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s;
+        }
+
+        .btn {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background-color: var(--border-color); }
+
+        /* 區塊通用樣式 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .word-header {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* 發音按鈕樣式 */
+        .pronunciation {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--border-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            font-size: 0.9em;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s, transform 0.1s;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .pronunciation:hover { opacity: 0.8; }
+        .pronunciation:active { transform: scale(0.97); }
+
+        .us-section {
+            background-color: var(--us-light);
+            border-left: 6px solid var(--us-color);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        .us-section h4 { color: var(--us-color); margin: 0 0 10px 0; }
+
+        .uk-section {
+            background-color: var(--uk-light);
+            border-left: 6px solid var(--uk-color);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        .uk-section h4 { color: var(--uk-color); margin: 0 0 10px 0; }
+
+        .rule-section {
+            background-color: var(--rule-light);
+            border-left: 6px solid var(--rule-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .example-sentence {
+            font-style: italic;
+            color: #6e7681;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* 比較表格樣式 */
+        .diff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 1.05em;
+        }
+        .diff-table th, .diff-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+        }
+        .diff-table th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+        }
+        .diff-table .category {
+            background-color: var(--bg-color);
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        /* 表格內的小發音按鈕 */
+        .mini-audio-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-left: 8px;
+            padding: 0;
+            transition: transform 0.1s;
+            filter: grayscale(0.5);
+        }
+        .mini-audio-btn:hover { filter: grayscale(0); transform: scale(1.1); }
+        .mini-audio-btn:active { transform: scale(0.9); }
+
+        /* 列印樣式 */
+        @media print {
+            body { background-color: white !important; color: black !important; padding-top: 0; }
+            .toolbar { display: none !important; }
+            .card { box-shadow: none !important; border: 2px solid #ddd !important; }
+            .pronunciation { border: 1px solid #000; background-color: #fff; color: #000; box-shadow: none; }
+            .mini-audio-btn { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button class="btn" onclick="setTheme('light')">📄 預設好讀</button>
+        <button class="btn" onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button class="btn" onclick="window.print()">🖨️ 立即列印</button>
+    </div>
+
+    <div class="container">
+        
+        <!-- 字義解析 -->
+        <div class="card">
+            <div class="word-header">counselor / counsellor</div>
+            <p>這兩個字的意思完全相同，都表示<strong>「顧問、輔導員、諮商師、營隊小隊長」</strong>（另外在法律領域也可指律師）。之所以有兩種拼法，純粹是因為<strong>「美式英語」與「英式英語」的拼字習慣不同</strong>。</p>
+
+            <div class="us-section">
+                <h4>🇺🇸 美式拼寫 (American English)：單一個 L</h4>
+                <div class="pronunciation" onclick="speakWord('counselor', 'en-US')" title="點擊聽美式發音">
+                    🔊 美式發音: counselor [ˈkaʊn.səl.ɚ]
+                </div>
+                <p>在美國，標準拼法是只有一個 L 的 <strong>counselor</strong>。</p>
+                <span class="example-sentence">She works as a school counselor. (她擔任學校的輔導老師。)</span>
+            </div>
+
+            <div class="uk-section">
+                <h4>🇬🇧 英式拼寫 (British English)：雙寫 L</h4>
+                <div class="pronunciation" onclick="speakWord('counsellor', 'en-GB')" title="點擊聽英式發音">
+                    🔊 英式發音: counsellor [ˈkaʊn.səl.ər]
+                </div>
+                <p>在英國、澳洲、加拿大及紐西蘭等大英國協國家，標準拼法是兩個 L 的 <strong>counsellor</strong>。</p>
+                <span class="example-sentence">He is a marriage counsellor. (他是一位婚姻諮商師。)</span>
+            </div>
+        </div>
+
+        <!-- 核心原因：歷史與拼寫規則 -->
+        <div class="card">
+            <h3 style="color: var(--primary-color);">💡 為什麼會產生這種差異？</h3>
+            <p>這要追溯到兩個原因：**「字母 L 的字尾加綴規則」** 以及 **「美國詞典編纂家 Noah Webster 的拼字改革」**。</p>
+
+            <div class="rule-section">
+                <h4 style="color: var(--rule-color); margin-top:0;">📚 原始字根：Counsel (建議、勸告)</h4>
+                <p>當我們要將字尾加上代表「人」的 <strong>-or</strong> 或表示動名詞的 <strong>-ing</strong> 等母音開頭的字尾時，英美的規則出現了分歧：</p>
+                
+                <ol>
+                    <li style="margin-bottom: 15px;">
+                        <strong>🇬🇧 英國傳統規則：無腦雙寫 L</strong><br>
+                        在英式英語中，只要一個單字以單個母音加上字母 L 結尾，不管重音在哪裡，在加上母音開頭的字尾時，<strong>一律要重複字尾的 L</strong>。<br>
+                        👉 counsel + or = counse<strong>ll</strong>or<br>
+                        👉 travel + er = trave<strong>ll</strong>er
+                    </li>
+                    <li>
+                        <strong>🇺🇸 美國拼字改革：看「重音」決定</strong><br>
+                        美國早期的語言學家 Noah Webster 推動了拼字簡化運動。他訂下規則：<strong>如果重音不在最後一個音節，就「不」重複字尾字母</strong>。<br>
+                        單字 counsel 的重音在前面 (<strong>COUN</strong>-sel)，因此美式英語不重複 L。<br>
+                        👉 counsel + or = counse<strong>l</strong>or<br>
+                        👉 travel + er = trave<strong>l</strong>er
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 其他英美拼寫差異實例 -->
+        <div class="card">
+            <h3 style="color: var(--primary-color);">🌍 還有哪些常見的「美式 vs. 英式」拼字差異？</h3>
+            <p>其實除了字尾加 L 的規則外，Noah Webster 當年的「化繁為簡」運動，還造就了今天我們常見的幾大類英美拼寫差異：</p>
+            
+            <table class="diff-table">
+                <thead>
+                    <tr>
+                        <th width="25%">差異規則</th>
+                        <th width="37%">🇺🇸 美式拼法 (US)</th>
+                        <th width="38%">🇬🇧 英式拼法 (UK)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- L / LL 差異 -->
+                    <tr>
+                        <td class="category" rowspan="2">單 L / 雙 LL<br><span style="font-size:0.85em; color:var(--text-color); font-weight:normal;">(重音不在字尾時)</span></td>
+                        <td>
+                            travel<strong>er</strong> (旅行者)
+                            <button class="mini-audio-btn" onclick="speakWord('traveler', 'en-US')" title="美式發音">🔊</button>
+                        </td>
+                        <td>
+                            trave<strong>ller</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('traveller', 'en-GB')" title="英式發音">🔊</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            cancel<strong>ed</strong> (取消)
+                            <button class="mini-audio-btn" onclick="speakWord('canceled', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            cance<strong>lled</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('cancelled', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    
+                    <!-- -or / -our 差異 -->
+                    <tr>
+                        <td class="category" rowspan="2">-or / -our</td>
+                        <td>
+                            col<strong>or</strong> (顏色)
+                            <button class="mini-audio-btn" onclick="speakWord('color', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            col<strong>our</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('colour', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            flav<strong>or</strong> (口味)
+                            <button class="mini-audio-btn" onclick="speakWord('flavor', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            flav<strong>our</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('flavour', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+
+                    <!-- -er / -re 差異 -->
+                    <tr>
+                        <td class="category" rowspan="2">-er / -re</td>
+                        <td>
+                            cent<strong>er</strong> (中心)
+                            <button class="mini-audio-btn" onclick="speakWord('center', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            cent<strong>re</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('centre', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            theat<strong>er</strong> (劇院)
+                            <button class="mini-audio-btn" onclick="speakWord('theater', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            theat<strong>re</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('theatre', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+
+                    <!-- -ize / -ise 差異 -->
+                    <tr>
+                        <td class="category" rowspan="2">-ize / -ise</td>
+                        <td>
+                            real<strong>ize</strong> (意識到)
+                            <button class="mini-audio-btn" onclick="speakWord('realize', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            real<strong>ise</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('realise', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            apolog<strong>ize</strong> (道歉)
+                            <button class="mini-audio-btn" onclick="speakWord('apologize', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            apolog<strong>ise</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('apologise', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    
+                    <!-- -ense / -ence 差異 -->
+                    <tr>
+                        <td class="category" rowspan="2">-ense / -ence</td>
+                        <td>
+                            def<strong>ense</strong> (防禦)
+                            <button class="mini-audio-btn" onclick="speakWord('defense', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            def<strong>ence</strong>
+                            <button class="mini-audio-btn" onclick="speakWord('defence', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            lic<strong>ense</strong> (執照-名詞)
+                            <button class="mini-audio-btn" onclick="speakWord('license', 'en-US')">🔊</button>
+                        </td>
+                        <td>
+                            lic<strong>ence</strong> (英式名詞用c，動詞用s)
+                            <button class="mini-audio-btn" onclick="speakWord('licence', 'en-GB')">🔊</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 15px; font-size: 0.95em;">
+                <strong>💡 學習建議：</strong> 在台灣的學校教育或多益(TOEIC)考試中，通常以「美式拼寫」為主；若是準備雅思(IELTS)或前往大英國協國家，建議熟悉「英式拼寫」。在寫作時，<strong>最重要的是「保持一致性」</strong>，不要在同一篇文章中混用美式與英式拼法即可！
+            </p>
+        </div>
+
+    </div>
+
+    <!-- 腳本區域 (包含主題切換與語音功能) -->
+    <script>
+        // --- 主題切換功能 ---
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+        
+        // 自動偵測系統深色模式
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+
+        // --- 語音朗讀功能 (Web Speech API) ---
+        function speakWord(word, lang = 'en-US') {
+            // 檢查瀏覽器是否支援語音功能
+            if ('speechSynthesis' in window) {
+                // 先停止正在播放的語音
+                window.speechSynthesis.cancel();
+                
+                let utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = lang;    // 動態設定語系（美英口音切換）
+                utterance.rate = 0.85;    // 語速稍微放慢一點點，聽得更清楚
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("您的瀏覽器不支援語音功能喔！");
+            }
+        }
+    </script>
+</body>
+</html>

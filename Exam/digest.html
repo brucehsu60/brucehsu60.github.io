@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Digest 與 Digest 單字解析 (含語音功能)</title>
+    
+    <style>
+        /* 全局變數與基礎設定 */
+        :root {
+            --bg-color: #fafbfc;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+            --primary-color: #0366d6;
+            --primary-light: #f1f8ff;
+            --noun-color: #b07d00;
+            --noun-light: #fffbdd;
+            --verb-color: #22c55e;
+            --verb-light: #f0fdf4;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --primary-color: #58a6ff;
+            --primary-light: #1f2a3a;
+            --noun-color: #e3b341;
+            --noun-light: #2d2616;
+            --verb-color: #4ade80;
+            --verb-light: #052e16;
+            --shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            padding-top: 80px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        /* 懸浮工具列 */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s;
+        }
+
+        .btn {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background-color: var(--border-color); }
+
+        /* 區塊通用樣式 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .word-header {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* 發音按鈕樣式 (升級互動效果) */
+        .pronunciation {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--border-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            font-size: 0.9em;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s, transform 0.1s;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .pronunciation:hover {
+            opacity: 0.8;
+        }
+        .pronunciation:active {
+            transform: scale(0.97);
+        }
+
+        .noun-section {
+            background-color: var(--noun-light);
+            border-left: 6px solid var(--noun-color);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        .noun-section h4 { color: var(--noun-color); margin: 0 0 10px 0; }
+
+        .verb-section {
+            background-color: var(--verb-light);
+            border-left: 6px solid var(--verb-color);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+        .verb-section h4 { color: var(--verb-color); margin: 0 0 10px 0; }
+
+        .magazine-section {
+            background-color: var(--primary-light);
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .example-sentence {
+            font-style: italic;
+            color: #6e7681;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* 列印樣式 */
+        @media print {
+            body { background-color: white !important; color: black !important; padding-top: 0; }
+            .toolbar { display: none !important; }
+            .card { box-shadow: none !important; border: 2px solid #ddd !important; }
+            .pronunciation { border: 1px solid #000; background-color: #fff; color: #000; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button class="btn" onclick="setTheme('light')">📄 預設好讀</button>
+        <button class="btn" onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button class="btn" onclick="window.print()">🖨️ 立即列印</button>
+    </div>
+
+    <div class="container">
+        
+        <!-- Digest 解析 -->
+        <div class="card">
+            <div class="word-header">digest</div>
+            <p>要了解 English Digest，必須先拆解 <strong>digest</strong> 這個字。它同時具有動詞與名詞的詞性，且<strong>發音與重音位置會隨詞性改變</strong>。</p>
+
+            <div class="verb-section">
+                <h4>動詞 (Verb)：消化、理解</h4>
+                <div class="pronunciation" onclick="speakWord('digest', true)" title="點擊聽發音">
+                    🔊 KK: [daɪˈdʒest] 或 [dɪˈdʒest] (重音在後)
+                </div>
+                <p><strong>1. 生理上的消化：</strong>把吃進去的食物分解吸收。</p>
+                <span class="example-sentence">Cheese can be hard to digest. (起司有時很難消化。)</span>
+                
+                <p style="margin-top: 15px;"><strong>2. 資訊上的消化：</strong>吸收龐大或複雜的資訊並轉化為自己的理解。</p>
+                <span class="example-sentence">I need time to digest all this new information. (我需要時間消化這些新資訊。)</span>
+            </div>
+
+            <div class="noun-section">
+                <h4>名詞 (Noun)：文摘、摘要</h4>
+                <div class="pronunciation" onclick="speakWord('digest')" title="點擊聽發音">
+                    🔊 KK: [ˈdaɪ.dʒest] (重音在前)
+                </div>
+                <p>既然動詞是「消化」，名詞指的就是<strong>「被消化、濃縮過後的產物」</strong>。用來指將長篇大論的文章、新聞精簡提煉出來的「精華薈萃」。</p>
+                <span class="example-sentence">Reader's Digest (全球知名的老牌雜誌《讀者文摘》)</span>
+            </div>
+        </div>
+
+        <!-- English Digest 解析 -->
+        <div class="card magazine-section">
+            <div class="word-header" style="color: var(--primary-color);">English Digest</div>
+            <div class="pronunciation" onclick="speakWord('English digest')" title="點擊聽發音">
+                🔊 KK: [ˈɪŋ.ɡlɪʃ ˈdaɪ.dʒest]
+            </div>
+            
+            <h3 style="margin-top: 15px;">1. 字面涵義：英文文摘 / 英語精華</h3>
+            <p>結合了 English (英文) 與 Digest (名詞：文摘)。字面上的意思是將各種英文文章、時事新聞或知識濃縮、整理後的「英文精華版」。</p>
+
+            <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 20px 0;">
+
+            <h3>2. 台灣專屬代稱：《實用空中美語》雜誌</h3>
+            <p>在台灣的學習環境中，當提到 <strong>English Digest</strong> 時，99% 是指由 AMC（空中美語文教機構）所發行的同名知名英文學習月刊。</p>
+            <ul>
+                <li><strong>發行目的：</strong>編輯團隊幫讀者在茫茫外國新聞中，挑選出優質內容並加以「消化、濃縮」，做成一本容易吸收的英文文摘。</li>
+                <li><strong>適用對象：</strong>程度屬中高級（約 3500 - 6000 字彙量），是許多高中生、大學生準備<strong>學測、指考、全民英檢中高級或多益 (TOEIC)</strong> 的指定讀物。</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- 腳本區域 (包含主題切換與語音功能) -->
+    <script>
+        // --- 主題切換功能 ---
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+        
+        // 自動偵測系統深色模式
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setTheme('dark');
+        }
+
+        // --- 語音朗讀功能 (Web Speech API) ---
+        function speakWord(word, isVerb = false) {
+            // 檢查瀏覽器是否支援語音功能
+            if ('speechSynthesis' in window) {
+                // 先停止正在播放的語音（避免連按時聲音重疊）
+                window.speechSynthesis.cancel();
+                
+                // 技巧：Digest 的動詞與名詞發音不同，單獨唸單字時系統通常預設唸名詞。
+                // 若要強迫系統發出「動詞」的重音，可以加上 "to " 騙過語音引擎。
+                let textToSpeak = isVerb ? "to " + word : word;
+                
+                let utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'en-US'; // 設定為美式發音
+                utterance.rate = 0.9;     // 語速稍微放慢一點點，聽得更清楚
+                
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("您的瀏覽器不支援語音功能喔！");
+            }
+        }
+    </script>
+</body>
+</html>
