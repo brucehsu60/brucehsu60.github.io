@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考卷作答盲點與學習診斷報告</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --sol-bg: #f3f4f6;
+            --sol-border: #6b7280;
+            --hack-bg: #ecfdf5;
+            --hack-border: #10b981;
+            --trap-bg: #fff1f2;
+            --trap-border: #f43f5e;
+            --highlight-text: #e11d48;
+            --highlight-good: #059669;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --border-color: #444;
+            --sol-bg: #374151;
+            --sol-border: #9ca3af;
+            --hack-bg: #064e3b;
+            --hack-border: #34d399;
+            --trap-bg: #4c0519;
+            --trap-border: #fb7185;
+            --highlight-text: #fda4af;
+            --highlight-good: #6ee7b7;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--container-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .toolbar button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .toolbar button:hover {
+            filter: brightness(0.9);
+        }
+        .container {
+            max-width: 900px;
+            margin: 70px auto 40px;
+            background: var(--container-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.6em;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+        .coach-comment {
+            background-color: #fffbeb;
+            border-left: 5px solid #f59e0b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            color: #92400e;
+            font-size: 1.1em;
+        }
+        [data-theme="dark"] .coach-comment {
+            background-color: #422006;
+            border-color: #fbbf24;
+            color: #fde68a;
+        }
+        h2 {
+            font-size: 1.25em;
+            margin-top: 35px;
+            color: var(--text-color);
+            border-left: 4px solid var(--text-color);
+            padding-left: 10px;
+        }
+        .problem-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            page-break-inside: auto;
+        }
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 5px solid var(--sol-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .trap-box {
+            background-color: var(--trap-bg);
+            border: 2px dashed var(--trap-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .hack-box {
+            background-color: var(--hack-bg);
+            border-left: 5px solid var(--hack-border);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .strong-red {
+            color: var(--highlight-text);
+            font-weight: 900;
+            font-size: 1.05em;
+        }
+        .strong-green {
+            color: var(--highlight-good);
+            font-weight: 900;
+            font-size: 1.05em;
+        }
+        
+        @media print {
+            .toolbar { display: none !important; }
+            body { background: white !important; color: black !important; padding: 0;}
+            .container { box-shadow: none; margin: 0; padding: 0; width: 100%; max-width: 100%; }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .trap-box { border: 2px dashed #dc3545 !important; page-break-inside: avoid; }
+            .hack-box { border-left: 5px solid #198754 !important; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button onclick="setTheme('light')">📄 預設好讀</button>
+        <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
+    </div>
+
+    <div class="container">
+        <h1>🌟 考卷作答盲點與學習診斷報告</h1>
+        
+        <div class="coach-comment">
+            <strong>👨‍🏫 教練悄悄話：</strong><br>
+            恭喜你拿到了 <strong>94 分</strong> 的優異成績！從這張考卷可以看出，你的代數運算底子非常扎實，也願意耐心地將題目推導出來。不過，為了在分秒必爭的大考中脫穎而出，我們除了「會算」，還要學會<strong>「看穿題目的設計」</strong>。以下為你整理了幾個考卷上的小盲點，就算是你算對的題目，我也幫你準備了更省時的<strong>「學霸視角」</strong>，讓我們一起把實力提升到下一個境界吧！
+        </div>
+
+        <!-- 盲點一 -->
+        <div class="problem-block">
+            <h2>一、對自己的推導沒自信？別被高斯符號的刻板印象綁架了！（單選 2）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                在選項 (2) 旁邊，你很聰明地寫下了：$x \to 0 \implies x^2 \to 0^+$，甚至推導出了極限是 $0$。但最後你可能因為顧慮「高斯函數遇到整數極限不存在」的常規印象，把這個正確的推導劃掉了。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                這是一個很容易掉進去的溫柔陷阱！你記得「高斯函數在整數點會斷層」，這觀念很好。但是，<span class="strong-red">平方具有非負性，它會改變逼近的方向！</span><br>
+                因為 $x^2$ 永遠是大於 $0$ 的，所以無論 $x$ 從左邊還是右邊靠近 $0$，$x^2$ 都只會從 $0$ 的「右側」靠近。既然它不會跨越 $0$，當然就不會發生斷層跳躍囉！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：</strong><br>
+                下次遇到高斯符號內有 <span class="strong-green">「偶數次方」</span> 或 <span class="strong-green">「絕對值」</span>，請給自己一個大大的微笑，並大膽相信你自己的推導！它往往就是那個「極限存在」的特殊陷阱題。
+            </div>
+        </div>
+
+        <!-- 盲點二 -->
+        <div class="problem-block">
+            <h2>二、眼睛稍微花了嗎？小心長得很像的極限符號！（多選 10）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                選項 (3) 是 $\d\lim_{x \to 1} f(1) = f(1)$。你在這題把它打叉了，似乎認為極限不存在。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                你在做選項 (2) $\d\lim_{x \to 1} f(x)$ 的時候，判斷出左右極限不相等，非常正確！但選項 (3) 把裡面的 $f(x)$ 換成了 $f(1)$。<br>
+                這是一個小小的視力測驗，<span class="strong-red">$f(1)$ 其實是一個「實實在在的常數」</span>。題目問的其實是常數的極限，而常數的極限永遠等於常數本身！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：</strong><br>
+                做多選題時，大腦很容易產生「慣性思維」。做完前一個選項後，遇到長得很像的符號，請先深呼吸，<span class="strong-green">把常數值直接代進去看看（例如這題 $f(1)=1$，原式就變成 $\d\lim_{x \to 1} 1$）</span>，答案就會瞬間明朗。
+            </div>
+        </div>
+
+        <!-- 盲點三 -->
+        <div class="problem-block">
+            <h2>三、太有耐心的硬核展開法，其實可以更輕鬆！（多選 11）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                為了判斷選項 (4) $(f \circ g)(x)$ 的奇偶性，你在考卷上很認真地把它完整展開成 $\d\frac{x^3 \sin^3 x}{|x \sin x|}$，然後才判斷出它是偶函數。最後也順利選對了！
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                你的代數推導完全正確，這展現了你扎實的基本功！但在考場上，這叫做「殺雞用牛刀」。如果今天的 $g(x)$ 是一個非常複雜的函數，展開它可能會花掉你寶貴的 3 分鐘，而且還容易抄錯符號。
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：利用「四則與合成法則」</strong><br>
+                我們可以用更直觀的觀念來秒殺奇偶函數：<br>
+                1. <strong>四則運算：</strong> <span class="strong-green">同號得偶、異號得奇</span>。($f(x)$ 分子奇、分母偶，異號得奇；$g(x)$ 兩項都是奇，同號得偶)。<br>
+                2. <strong>合成函數：</strong> <span class="strong-green">只要內外層「有任何一個」是偶函數，結果必為偶函數！</span><br>
+                既然你知道 $g(x)$ 是偶函數，那麼 $f(g(x))$ 連筆都不用動，直接宣判為偶函數，3 秒鐘拿分！
+            </div>
+        </div>
+
+        <!-- 盲點四 -->
+        <div class="problem-block">
+            <h2>四、過度謹慎的制約反應，先觀察分子再說！（填充 13）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                面對 $\d\lim_{x \to 2} (\frac{1}{x} + \frac{|x|-x}{|x-2|})$，你在考卷上非常標準地將它拆成了「右極限 $x \to 2^+$」與「左極限 $x \to 2^-$」來分別計算。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                看到分母有絕對值 $|x-2|$，直覺想到要拆左右極限，代表你的極限觀念十分標準！但是，我們不妨先抬頭看看<span class="strong-red">「分子」發生了什麼事</span>。<br>
+                因為 $x \to 2$，代表 $x$ 在 $2$ 的附近，絕對是個正數。所以第一層絕對值可以直接拆去：$|x| = x$。此時分子 $|x|-x$ 會<span class="strong-red">精準等於 0</span>！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：</strong><br>
+                只要分子是「絕對的 0」，且分母不為 0（極限逼近時 $x \neq 2$），整個分數的值就是 0。<span class="strong-green">分母的絕對值到底是正還是負，根本就不重要了。</span>下次看到絕對值，記得先檢查另一半是不是 0，可以省下大量分段討論的時間！
+            </div>
+        </div>
+
+        <!-- 盲點五 -->
+        <div class="problem-block">
+            <h2>五、太認真把所有線索找齊，反而多走了冤枉路！（填充 18）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                你看到 $\d\lim_{x \to -1} \frac{f(x)}{x+1} = -21$，馬上展開火力算出了 $g(-1) = 7$。結果算完發現後面的題目根本不需要它，你很可愛地在旁邊畫了箭頭寫下「沒用到」。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                你把所有條件都轉換成多項式的能力非常好！但大考中心常常會給出「冗餘條件」來消耗考生的時間。<span class="strong-red">順著讀題目並一路算到底，有時候會讓大腦記憶體超載。</span>
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：從終點回推的「刺客解題法」</strong><br>
+                拿到題目，可以先瞄一眼最後一句話問什麼：$\alpha = \d\lim_{x \to 2} \frac{f(x)}{x-2}$。<br>
+                整理後會發現，目標其實只是要求 <span class="strong-green">$3 \times g(2)$</span>。<br>
+                這時候，你的雷達就只需要去文章裡尋找「能得到 $g(2)$ 的條件」就好！直接鎖定「$g(x)$ 除以 $x-2$ 餘 $13$」，瞬間秒殺，前面那個 $-21$ 連理都不用理！
+            </div>
+        </div>
+
+        <!-- 盲點六 -->
+        <div class="problem-block">
+            <h2>六、徒手找遞迴規律很棒，但如果有工具會更快！（多選 8）</h2>
+            <div class="solution-box">
+                <strong>✏️ 你的作答足跡：</strong><br>
+                為了找 $f_n(3)$，你很耐心地在右上角把 $f_1, f_2, f_3$ 算出來（$5, \frac{17}{3}, \frac{53}{9}\dots$），最後成功湊出了規律，順利拿分！
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                你能徒手找出規律，代表你的「數感」非常靈敏，這點很值得稱讚！不過，這次是因為數字剛好還算漂亮，萬一今天的公比是 $-\frac{2}{7}$ 這種醜數字，要在考場的高壓下湊出規律是非常危險的。
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：啟動「不動點法」</strong><br>
+                遇到 $f_{n+1}(x) = \d\frac{1}{3}f_n(x) + 4$ 這種「乘一個倍數又加一個常數」的遞迴，我們可以用標準 SOP：<br>
+                1. <span class="strong-green">找不動點：</span>令 $x = \d\frac{1}{3}x + 4 \implies x = 6$。<br>
+                2. <span class="strong-green">平移改造：</span>兩邊同減 $6$，直接秒變等比數列：$f_{n+1}(3) - 6 = \d\frac{1}{3}(f_n(3) - 6)$。<br>
+                3. <span class="strong-green">寫出通式：</span>$f_n(3) - 6 = (5-6) \times (\d\frac{1}{3})^{n-1}$。<br>
+                這套流程不依賴數感，可以在 20 秒內機械化破解任何數字的線性遞迴，把它當成你的秘密武器吧！
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function triggerPrint() {
+            MathJax.typesetPromise().then(() => { 
+                window.print(); 
+            });
+        }
+    </script>
+</body>
+</html>
