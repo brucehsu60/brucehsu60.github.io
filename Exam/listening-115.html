@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高中英聽練習 - 試題示例 11</title>
+    <title>高中英聽練習 - 試題示例 11 (115年度)</title>
 
     <style>
         * {
@@ -42,7 +42,7 @@
         .header-bar h1 {
             margin: 0;
             font-size: 24px;
-            color: #d63384; /* 呼應首頁英聽按鈕的莓果色 */
+            color: #d63384; 
             display: flex;
             align-items: center;
             gap: 8px;
@@ -63,7 +63,7 @@
             background-color: #5a6268;
         }
 
-        /* 音訊播放器區塊（常駐頂部方便邊聽邊看題） */
+        /* 音訊播放器區塊 */
         .audio-section {
             position: sticky;
             top: 10px;
@@ -112,6 +112,38 @@
             background: #d63384;
             color: white;
             border-color: #d63384;
+        }
+
+        .audio-helper-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #868e96;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .local-file-upload {
+            background: #fff;
+            border: 1px dashed #d63384;
+            color: #d63384;
+            padding: 4px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .local-file-upload:hover {
+            background: #fff0f6;
+        }
+
+        .local-file-upload input {
+            display: none;
         }
 
         audio {
@@ -279,39 +311,41 @@
     <div class="container">
         <!-- 頂部標題與返回按鈕 -->
         <div class="header-bar">
-            <h1>🎧 高中英語聽力測驗：試題示例 11</h1>
+            <h1>🎧 高中英語聽力測驗：試題示例 11 (115年度)</h1>
             <a href="listening.html" class="back-btn">⬅ 返回英聽列表</a>
         </div>
 
-        <!-- 1. 音訊播放器區塊 -->
+        <!-- 音訊播放器區塊 -->
         <div class="audio-section">
             <div class="audio-header">
-                <div class="audio-title">🎵 播音檔：試題示例11.mp3</div>
+                <div class="audio-title" id="audioStatusTitle">🎵 播音檔：試題示例11.mp3</div>
                 <div class="audio-controls">
                     <button class="ctrl-btn" onclick="skipTime(-5)">⏪ -5秒</button>
                     <button class="ctrl-btn" onclick="skipTime(5)">⏩ +5秒</button>
                     <button class="ctrl-btn" onclick="setSpeed(0.85, this)">0.85x</button>
                     <button class="ctrl-btn active" onclick="setSpeed(1.0, this)">1.0x</button>
+                    <button class="ctrl-btn" onclick="setSpeed(1.15, this)">1.15x</button>
+                    <button class="ctrl-btn" onclick="setSpeed(1.25, this)">1.25x</button>
                 </div>
             </div>
             <audio id="listeningAudio" controls preload="metadata">
                 <source src="試題示例11.mp3" type="audio/mpeg">
-                您的瀏覽器不支援音訊播放，請直接下載檔案。
+                您的瀏覽器不支援音訊播放。
             </audio>
-            <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-                <label class="ctrl-btn" style="cursor:pointer" for="localAudioFile">📂 選擇本機 MP3</label>
-                <input id="localAudioFile" type="file" accept="audio/*,.mp3" style="display:none">
-                <a href="https://www.ceec.edu.tw/files/file_pool/1/0Q203409606544602901/%E8%A9%A6%E9%A1%8C%E7%A4%BA%E4%BE%8B11.mp3" target="_blank" rel="noopener">開啟大考中心原始音檔</a>
+            <div class="audio-helper-row">
+                <label class="local-file-upload">
+                    📁 選擇本機 MP3
+                    <input type="file" id="localAudioInput" accept="audio/mp3,audio/*" onchange="loadLocalAudio(event)">
+                </label>
+                <span>若線上讀取失敗，可直接點左側選取電腦中的 MP3 檔案播放</span>
             </div>
-            <p id="audioStatus" role="status" style="font-size:14px;line-height:1.6;margin-bottom:0">預設讀取同資料夾的「試題示例11.mp3」。若無法播放，請按「選擇本機 MP3」。</p>
         </div>
-        
-        <!-- 2~5. 四份 PDF 教材切換區 -->
+
+        <!-- 測驗卷與詳解教材 -->
         <div class="section-title">📚 測驗卷與詳解教材（點擊下方卡片可直接在下方切換預覽）：</div>
 
         <div class="pdf-grid">
-            <!-- 檔案 2：試題 -->
-            <div class="pdf-card active" onclick="loadPdf('試題示例11-試題.pdf', '📄 試題示例11 - 試題卷', this)">
+            <div class="pdf-card active" onclick="loadPdf('試題示例11-試題.pdf', '📄 試題示例11 - 試題', this)">
                 <div>
                     <span class="card-tag tag-exam">STEP 1 測驗</span>
                     <h3 class="card-title">📄 試題示例 11 - 試題</h3>
@@ -322,7 +356,6 @@
                 </div>
             </div>
 
-            <!-- 檔案 3：參考答案 -->
             <div class="pdf-card" onclick="loadPdf('試題示例11-參考答案.pdf', '✅ 試題示例11 - 參考答案', this)">
                 <div>
                     <span class="card-tag tag-ans">STEP 2 對答案</span>
@@ -334,7 +367,6 @@
                 </div>
             </div>
 
-            <!-- 檔案 4：逐字稿 -->
             <div class="pdf-card" onclick="loadPdf('高中英語聽力測驗 試題示例 11_逐字稿.pdf', '📝 高中英語聽力測驗 試題示例 11 - 逐字稿', this)">
                 <div>
                     <span class="card-tag tag-script">STEP 3 聽力原文</span>
@@ -346,7 +378,6 @@
                 </div>
             </div>
 
-            <!-- 檔案 5：易錯陷阱與逐題診斷 -->
             <div class="pdf-card" onclick="loadPdf('英聽試題示例11_易錯陷阱與逐題診斷.pdf', '💡 英聽試題示例11 - 易錯陷阱與逐題診斷', this)">
                 <div>
                     <span class="card-tag tag-trap">STEP 4 深度訂正</span>
@@ -372,47 +403,12 @@
     <script>
         const audio = document.getElementById('listeningAudio');
 
-        const audioStatus = document.getElementById('audioStatus');
-        let localAudioUrl = null;
-        audio.addEventListener('loadedmetadata', () => {
-            const duration = audio.duration;
-            const length = Number.isFinite(duration) ? `（${Math.floor(duration / 60)}分${String(Math.floor(duration % 60)).padStart(2, '0')}秒）` : '';
-            audioStatus.textContent = '音檔已載入' + length + '，請按播放器的播放鍵。';
-        });
-        audio.addEventListener('error', () => {
-            const code = audio.error && audio.error.code;
-            audioStatus.textContent = code === 3 || code === 4
-                ? '音檔無法解碼或來源無法使用。請確認下載的是完整 MP3，再按「選擇本機 MP3」重新指定。'
-                : '音檔載入失敗。請確認 MP3 與 HTML 在同一資料夾且檔名完全相同，或按「選擇本機 MP3」。';
-        });
-        const defaultAudioSource = audio.querySelector('source');
-        defaultAudioSource.addEventListener('error', () => {
-            audioStatus.textContent = '無法讀取預設音檔。請把「試題示例11.mp3」放到 HTML 同一資料夾；或直接按「選擇本機 MP3」。';
-        });
-        document.getElementById('localAudioFile').addEventListener('change', event => {
-            const file = event.target.files[0];
-            if (!file) return;
-            audio.pause();
-            if (localAudioUrl) URL.revokeObjectURL(localAudioUrl);
-            localAudioUrl = URL.createObjectURL(file);
-            audio.src = localAudioUrl;
-            audioStatus.textContent = '正在載入：' + file.name;
-            audio.load();
-        });
-        window.addEventListener('beforeunload', () => {
-            if (localAudioUrl) URL.revokeObjectURL(localAudioUrl);
-        });
-
-        // 快轉 / 倒退功能
         function skipTime(seconds) {
-            if (audio.readyState < 1 || !Number.isFinite(audio.duration)) return;
-            audio.currentTime = Math.min(audio.duration, Math.max(0, audio.currentTime + seconds));
+            audio.currentTime = Math.max(0, audio.currentTime + seconds);
         }
 
-        // 切換播放倍速功能
         function setSpeed(rate, btnElement) {
             audio.playbackRate = rate;
-            // 更新按鈕高亮狀態
             const buttons = document.querySelectorAll('.audio-controls .ctrl-btn');
             buttons.forEach(btn => {
                 if (btn.textContent.includes('x')) {
@@ -422,14 +418,23 @@
             btnElement.classList.add('active');
         }
 
-        // 切換下方預覽的 PDF
+        // 載入本機 MP3 檔案以供順暢播放
+        function loadLocalAudio(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                audio.src = fileURL;
+                audio.play();
+                document.getElementById('audioStatusTitle').textContent = '🎵 播音檔：' + file.name + ' (已載入本機檔案)';
+            }
+        }
+
         function loadPdf(filename, titleText, cardElement) {
             const encodedUrl = encodeURI(filename);
             document.getElementById('pdfFrame').src = encodedUrl;
             document.getElementById('viewerTitle').textContent = '目前預覽：' + titleText;
             document.getElementById('viewerExternalLink').href = encodedUrl;
 
-            // 更新卡片選中狀態
             const cards = document.querySelectorAll('.pdf-card');
             cards.forEach(card => card.classList.remove('active'));
             cardElement.classList.add('active');
