@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高中英語聽力測驗 - 歷年試題示例入口</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px 15px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 頂部標題與返回按鈕 */
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f1f3f5;
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-bar h1 {
+            margin: 0;
+            font-size: 26px;
+            color: #d63384; /* 呼應首頁英聽按鈕的莓果色 */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #6c757d;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        /* 6份試卷卡片網格 */
+        .exam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+        }
+
+        .exam-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 22px;
+            border: 2px solid #f1f3f5;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            background: #ffffff;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 左側裝飾色條 */
+        .exam-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: #d63384;
+            transition: width 0.2s;
+        }
+
+        .exam-card:hover {
+            border-color: #f783ac;
+            background-color: #fff9fb;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(214, 51, 132, 0.12);
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding-left: 6px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .badge-year {
+            background-color: #d63384;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .badge-syllabus {
+            background-color: #f1f3f5;
+            color: #495057;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .exam-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #212529;
+            margin: 2px 0 0 0;
+        }
+
+        .exam-desc {
+            font-size: 13px;
+            color: #868e96;
+            margin: 0;
+        }
+
+        .arrow-icon {
+            font-size: 20px;
+            color: #d63384;
+            background: #fff0f6;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .exam-card:hover .arrow-icon {
+            background: #d63384;
+            color: white;
+            transform: translateX(3px);
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container {
+                padding: 25px 18px;
+            }
+            .header-bar h1 {
+                font-size: 22px;
+            }
+            .exam-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-bar">
+            <h1>🎧 高中英語聽力測驗</h1>
+            <a href="../index.html" class="back-btn">⬅ 返回首頁入口</a>
+        </div>
+
+        <p class="subtitle">108課綱歷年參考試卷與試題示例（包含語音檔、試題、參考答案、逐字稿與診斷）：</p>
+
+        <div class="exam-grid">
+            <!-- 1. 115年度：試題示例11 -->
+            <a href="listening-115.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">115 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">試題示例 11</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+
+            <!-- 2. 114年度：試題示例10 -->
+            <a href="listening-114.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">114 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">試題示例 10</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+
+            <!-- 3. 113年度：試題示例9 -->
+            <a href="listening-113.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">113 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">試題示例 9</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+
+            <!-- 4. 112年度：試題示例8 -->
+            <a href="listening-112.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">112 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">試題示例 8</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+
+            <!-- 5. 111年度：試題示例7 -->
+            <a href="listening-111.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">111 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">試題示例 7</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+
+            <!-- 6. 110年度：參考試卷3 -->
+            <a href="listening-110.html" class="exam-card">
+                <div class="card-info">
+                    <div class="badges">
+                        <span class="badge-year">110 年度</span>
+                        <span class="badge-syllabus">108 課綱</span>
+                    </div>
+                    <h2 class="exam-title">參考試卷 3</h2>
+                    <p class="exam-desc">🎵 語音檔・📄 試題・✅ 答案・📝 逐字稿・💡 診斷</p>
+                </div>
+                <div class="arrow-icon">➔</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
