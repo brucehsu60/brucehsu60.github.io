@@ -269,6 +269,22 @@ window.MathJax = {
     gap: 6px;
   }
 
+  .aux-svg-box {
+    margin: 14px 0 6px 0;
+    padding: 12px;
+    background: var(--bg-card);
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .aux-caption {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
   /* 最終答案框 */
   .final-ans-box {
     background-color: var(--ans-bg);
@@ -472,10 +488,54 @@ window.MathJax = {
       3. 在右半邊 $[0 , 4\pi]$ 中，長度為 $4\pi$，共包含 $\d\frac{4\pi}{\pi} = 4$ 個完整週期。每個週期的「正半波（波峰高為 $2$）」都會被直線 $y = \d\frac{x}{2\pi}$ 穿過 $2$ 次（第 4 個波峰在 $x = \d\frac{13\pi}{4} < 4\pi$，此時直線高度僅 $\d\frac{13}{8} < 2$），故在 $x \ge 0$ 共有 $4 \times 2 = 8$ 個交點（含原點 $(0,0)$，即原點與 $x > 0$ 的 $7$ 個交點）。<br>
       4. 由<strong>奇函數對稱於原點</strong>的性質，在 $[-4\pi , 0)$ 亦有 $7$ 個交點。<br>
       5. 總交點數 $= 7 + 1 + 7 = 15$ 個，故選 (4)。
+
+      <div class="aux-svg-box">
+        <!-- 視覺化輔助圖：y = 2sin(2x) 與 y = x/(2pi) 交點數圖解 -->
+        <!-- 座標映射：中心 O(300, 85)，x軸每 pi 為 60px (-4pi=60, 4pi=540)，y軸每單位 30px (y=2 -> 25, y=-2 -> 145) -->
+        <svg width="600" height="175" viewBox="0 0 600 175">
+          <!-- 上下界虛線 y = 2 與 y = -2 -->
+          <line x1="40" y1="25" x2="560" y2="25" class="svg-line" stroke-dasharray="4,3" stroke-width="0.9" opacity="0.6"/>
+          <line x1="40" y1="145" x2="560" y2="145" class="svg-line" stroke-dasharray="4,3" stroke-width="0.9" opacity="0.6"/>
+          <!-- 垂直邊界虛線 x = -4pi 與 x = 4pi -->
+          <line x1="60" y1="25" x2="60" y2="145" class="svg-line" stroke-dasharray="3,3" stroke-width="0.9" opacity="0.6"/>
+          <line x1="540" y1="25" x2="540" y2="145" class="svg-line" stroke-dasharray="3,3" stroke-width="0.9" opacity="0.6"/>
+          <!-- 座標軸 -->
+          <line x1="25" y1="85" x2="575" y2="85" class="svg-line" stroke-width="1.4"/>
+          <line x1="300" y1="165" x2="300" y2="10" class="svg-line" stroke-width="1.4"/>
+          <!-- 正弦波 y = 2 sin(2x) 共 8 個週期 (-4pi 到 4pi)，每半波寬 30px -->
+          <path d="M 60 85
+                   Q 75 -35, 90 85 Q 105 205, 120 85
+                   Q 135 -35, 150 85 Q 165 205, 180 85
+                   Q 195 -35, 210 85 Q 225 205, 240 85
+                   Q 255 -35, 270 85 Q 285 205, 300 85
+                   Q 315 -35, 330 85 Q 345 205, 360 85
+                   Q 375 -35, 390 85 Q 405 205, 420 85
+                   Q 435 -35, 450 85 Q 465 205, 480 85
+                   Q 495 -35, 510 85 Q 525 205, 540 85"
+                fill="none" stroke="#2563eb" stroke-width="2"/>
+          <!-- 斜直線 y = x / (2pi) 通過 (60, 145), (300, 85), (540, 25) -->
+          <line x1="40" y1="150" x2="560" y2="20" stroke="#ef4444" stroke-width="2"/>
+          <!-- 標示原點與交點區域 -->
+          <circle cx="300" cy="85" r="4" fill="#ef4444"/>
+          <!-- 刻度標籤 -->
+          <text x="565" y="99" class="svg-text">x</text>
+          <text x="306" y="18" class="svg-text">y</text>
+          <text x="304" y="100" class="svg-text-normal">O</text>
+          <text x="305" y="23" class="svg-text-normal">2</text>
+          <text x="282" y="158" class="svg-text-normal">-2</text>
+          <text x="48" y="79" class="svg-text-normal">-4π</text>
+          <text x="170" y="79" class="svg-text-normal">-2π</text>
+          <text x="415" y="102" class="svg-text-normal">2π</text>
+          <text x="533" y="102" class="svg-text-normal">4π</text>
+          <text x="470" y="20" fill="#ef4444" font-size="12" font-weight="bold">y = x / (2π)</text>
+          <text x="325" y="22" fill="#2563eb" font-size="12" font-weight="bold">y = 2 sin 2x</text>
+        </svg>
+        <div class="aux-caption">▲ 視覺化圖解：右半邊 $[0, 4\pi]$ 有 $4$ 個正半波被紅線穿過（共 $8$ 點含原點），左半邊對稱有 $7$ 點，合計 $7+1+7=15$ 個交點</div>
+      </div>
     </div>
 
     <div class="special-card">
-      <div class="box-title">💡 考場秒殺公式与易錯盲點</div>
+      <div class="box-title">💡 考場秒殺公式與易錯盲點</div>
       對於奇函數 $y = A\sin(\omega x)$ 與過原點斜直線 $y = mx$ 的交點個數問題：<br>
       ・因為圖形對稱於原點 $(0,0)$，且 $(0,0)$ 必為交點，<strong>總交點數必為奇數</strong>！直接刪去偶數選項 (1) 12、(3) 14、(5) 16，二選一瞬間鎖定 (2) 或 (4)。<br>
       ・右半邊共有 $n = 4$ 座波峰高於直線，交點總數秒殺公式為 <strong>$4n - 1 = 4(4) - 1 = 15$</strong> 個！
@@ -500,8 +560,8 @@ window.MathJax = {
       <div class="question-figure">
         <svg width="200" height="140" viewBox="0 0 200 140">
           <circle cx="70" cy="70" r="45" fill="none" class="svg-line" stroke-width="1.8"/>
-          <line x1="92.5" y1="31" x2="160" y2="70" class="svg-line" stroke-width="1.6"/>
-          <line x1="92.5" y1="109" x2="160" y2="70" class="svg-line" stroke-width="1.6"/>
+          <line x1="92.5" y1="31.03" x2="160" y2="70" class="svg-line" stroke-width="1.6"/>
+          <line x1="92.5" y1="108.97" x2="160" y2="70" class="svg-line" stroke-width="1.6"/>
           <circle cx="70" cy="70" r="2.5" class="svg-text"/>
           <text x="64" y="65" class="svg-text">O</text>
           <text x="90" y="24" class="svg-text">A</text>
@@ -745,13 +805,13 @@ window.MathJax = {
         <svg width="200" height="140" viewBox="0 0 200 140">
           <!-- Horizontal line L -->
           <line x1="15" y1="75" x2="185" y2="75" class="svg-line" stroke-width="1.6"/>
-          <!-- L1 positive slope -->
+          <!-- L1 positive slope passing through (100, 75) -->
           <line x1="50" y1="125" x2="150" y2="25" class="svg-line" stroke-width="1.6"/>
-          <!-- L2 negative slope -->
+          <!-- L2 negative slope passing through (100, 75) -->
           <line x1="40" y1="25" x2="160" y2="125" class="svg-line" stroke-width="1.6"/>
           <!-- Arcs for theta1 and theta2 -->
-          <path d="M 122 75 A 22 22 0 0 0 115.5 59.5" fill="none" class="svg-line" stroke-width="1.2"/>
-          <path d="M 125 75 A 25 25 0 0 1 119 91" fill="none" class="svg-line" stroke-width="1.2"/>
+          <path d="M 122 75 A 22 22 0 0 0 115.56 59.44" fill="none" class="svg-line" stroke-width="1.2"/>
+          <path d="M 125 75 A 25 25 0 0 1 119.2 91" fill="none" class="svg-line" stroke-width="1.2"/>
           <text x="172" y="70" class="svg-text">L</text>
           <text x="152" y="24" class="svg-text">L₁</text>
           <text x="32" y="22" class="svg-text">L₂</text>
@@ -797,18 +857,19 @@ window.MathJax = {
         9. 如右圖，設 $O$ 為扇形 $OAB$ 與扇形 $ODC$ 的圓心，$\overline{OB} = r_1$，$\overline{OC} = r_2$，若 $\angle AOB = \d\frac{\pi}{5}$，$\overline{BC} = 4$，且灰色區域的面積為 $4\pi$，則數對 $(r_1 , r_2) =$ <u>&nbsp;&nbsp;( (9-1) , (9-2) )&nbsp;&nbsp;</u>。
       </div>
       <div class="question-figure">
-        <svg width="160" height="150" viewBox="0 0 160 150">
+        <svg width="160" height="155" viewBox="0 0 160 155">
+          <!-- Center O(80, 135). Outer B(45, 30), A(115, 30), R1 = 110.68. Inner C(65, 90), D(95, 90), R2 = 47.43 -->
           <!-- Shaded annular sector -->
-          <path d="M 45 25 A 115 115 0 0 1 115 25 L 95 90 A 50 50 0 0 0 65 90 Z" class="svg-shade"/>
+          <path d="M 45 30 A 110.68 110.68 0 0 1 115 30 L 95 90 A 47.43 47.43 0 0 0 65 90 Z" class="svg-shade"/>
           <!-- Outer sector lines -->
-          <path d="M 80 135 L 45 25 A 115 115 0 0 1 115 25 Z" fill="none" class="svg-line" stroke-width="1.6"/>
+          <path d="M 80 135 L 45 30 A 110.68 110.68 0 0 1 115 30 Z" fill="none" class="svg-line" stroke-width="1.6"/>
           <!-- Inner arc -->
-          <path d="M 65 90 A 50 50 0 0 1 95 90" fill="none" class="svg-line" stroke-width="1.6"/>
-          <text x="31" y="25" class="svg-text">B</text>
-          <text x="119" y="25" class="svg-text">A</text>
+          <path d="M 65 90 A 47.43 47.43 0 0 1 95 90" fill="none" class="svg-line" stroke-width="1.6"/>
+          <text x="31" y="30" class="svg-text">B</text>
+          <text x="119" y="30" class="svg-text">A</text>
           <text x="51" y="94" class="svg-text">C</text>
           <text x="100" y="94" class="svg-text">D</text>
-          <text x="75" y="148" class="svg-text">O</text>
+          <text x="75" y="150" class="svg-text">O</text>
         </svg>
       </div>
     </div>
@@ -844,18 +905,18 @@ window.MathJax = {
       </div>
       <div class="question-figure">
         <svg width="180" height="150" viewBox="0 0 180 150">
-          <!-- Triangle ABC -->
+          <!-- Triangle ABC: A(25,130), B(145,130), C(135,20) -->
           <polygon points="25,130 145,130 135,20" fill="none" class="svg-line" stroke-width="1.6"/>
-          <!-- Angle bisector AD -->
-          <line x1="25" y1="130" x2="141" y2="86" class="svg-line" stroke-width="1.5"/>
-          <!-- Altitude DE -->
-          <line x1="141" y1="86" x2="141" y2="130" class="svg-line" stroke-width="1.4"/>
+          <!-- Angle bisector AD intersecting BC at D(140.6, 82) -->
+          <line x1="25" y1="130" x2="140.6" y2="82" class="svg-line" stroke-width="1.5"/>
+          <!-- Altitude DE perpendicular to AB at E(140.6, 130) -->
+          <line x1="140.6" y1="82" x2="140.6" y2="130" class="svg-line" stroke-width="1.4"/>
           <!-- Right angle mark at E -->
-          <polyline points="134,130 134,123 141,123" fill="none" class="svg-line" stroke-width="1.2"/>
+          <polyline points="133.6,130 133.6,123 140.6,123" fill="none" class="svg-line" stroke-width="1.2"/>
           <text x="12" y="135" class="svg-text">A</text>
           <text x="150" y="135" class="svg-text">B</text>
           <text x="132" y="15" class="svg-text">C</text>
-          <text x="146" y="88" class="svg-text">D</text>
+          <text x="145" y="85" class="svg-text">D</text>
           <text x="136" y="144" class="svg-text">E</text>
         </svg>
       </div>
@@ -904,6 +965,27 @@ window.MathJax = {
       \end{aligned}$$
       3. 由<strong>正弦定理</strong>，外接圓直徑 $2R$ 為：
       $$2R = \d\frac{\overline{AB}}{\sin C} = \d\frac{16}{\d\frac{16}{65}} = 65$$
+
+      <div class="aux-svg-box">
+        <!-- 視覺化輔助圖：鈍角三角形 ABC 與外接圓正弦定理 -->
+        <!-- 外接圓心 O(160, 85), R = 68. 點 A(93.8, 100.8), B(129.6, 145.9), C(226.2, 69.2) -->
+        <svg width="320" height="170" viewBox="0 0 320 170">
+          <!-- 外接圓 -->
+          <circle cx="160" cy="85" r="68" fill="none" class="svg-line" stroke-width="1.5"/>
+          <!-- 外接圓直徑虛線 (過 A 與圓心 O 到 A') -->
+          <line x1="93.8" y1="100.8" x2="226.2" y2="69.2" stroke="#ef4444" stroke-dasharray="4,3" stroke-width="1.5"/>
+          <!-- 鈍角三角形 ABC: A(93.8, 100.8), B(129.6, 145.9), C(218, 49.5) -->
+          <polygon points="93.8,100.8 129.6,145.9 218,49.5" fill="rgba(37, 99, 235, 0.08)" stroke="#2563eb" stroke-width="1.8"/>
+          <!-- 圓心 O -->
+          <circle cx="160" cy="85" r="3" fill="#ef4444"/>
+          <text x="155" y="77" fill="#ef4444" font-size="12" font-weight="bold">O (2R = 65)</text>
+          <text x="76" y="105" class="svg-text">A</text>
+          <text x="125" y="162" class="svg-text">B (鈍角)</text>
+          <text x="223" y="48" class="svg-text">C</text>
+          <text x="82" y="135" fill="#2563eb" font-size="12" font-weight="bold">16</text>
+        </svg>
+        <div class="aux-caption">▲ 視覺化圖解：$\cos B < 0$ 代表 $\angle B$ 為鈍角（外心 $O$ 在 $\triangle ABC$ 外部），由正弦定理 $2R = \d\frac{\overline{AB}}{\sin C} = 65$</div>
+      </div>
     </div>
 
     <div class="check-card">
@@ -941,11 +1023,48 @@ window.MathJax = {
     </div>
 
     <div class="alt-box">
-      <div class="box-title">⚡ 學霸另解（圖形對稱與斜率最陡直覺法）</div>
-      題目等同於：用一個寬度固定為 $\d\frac{\pi}{2}$ 的移動視窗，去框住 $y = \sin x$ 的圖形，問<strong>高低落差 $A - B$ 何時最大</strong>？<br>
+      <div class="box-title">⚡ 學霸另解（移動視窗法與反曲點對稱直覺）</div>
+      題目等同於：用一個寬度固定為 $\d\frac{\pi}{2}$ 的<strong>移動視窗</strong>，去框住 $y = \sin x$ 的圖形，問<strong>高低落差 $A - B$ 何時最大</strong>？<br>
       正弦波下降最陡峭的地方在<strong>反曲點 $x = \pi$</strong> 附近！由圖形對稱性，當視窗以 $x = \pi$ 為正中心左右對稱張開，即區間取 $\left[\pi - \d\frac{\pi}{4} , \pi + \d\frac{\pi}{4}\right] = \left[\d\frac{3\pi}{4} , \d\frac{5\pi}{4}\right]$ 時，高低落差必最大：<br>
       $$A - B = \sin\d\frac{3\pi}{4} - \sin\d\frac{5\pi}{4} = \d\frac{\sqrt{2}}{2} - \left(-\d\frac{\sqrt{2}}{2}\right) = \sqrt{2}$$
       5 秒鐘直接心算收工！
+
+      <div class="aux-svg-box">
+        <!-- 視覺化輔助圖：移動視窗法求 y = sin x 在寬度 pi/2 區間的最大高低差 -->
+        <!-- O(45, 90), pi/2 = 80px -> pi/2 at 125, pi at 205, 3pi/2 at 285, 2pi at 365. y=1 at 30, y=-1 at 150 (1 unit = 60px) -->
+        <!-- 3pi/4 at 165, y = sqrt(2)/2 = 0.7071 -> 90 - 42.4 = 47.6 -->
+        <!-- 5pi/4 at 245, y = -sqrt(2)/2 = -0.7071 -> 90 + 42.4 = 132.4 -->
+        <svg width="430" height="180" viewBox="0 0 430 180">
+          <!-- 移動視窗紅色虛線框 [3pi/4, 5pi/4] x [B, A] -->
+          <rect x="165" y="47.6" width="80" height="84.8" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-dasharray="4,3" stroke-width="1.8"/>
+          <!-- 座標軸 -->
+          <line x1="25" y1="90" x2="395" y2="90" class="svg-line" stroke-width="1.4"/>
+          <line x1="45" y1="165" x2="45" y2="15" class="svg-line" stroke-width="1.4"/>
+          <!-- 正弦曲線 y = sin x (0 到 2pi) -->
+          <path d="M 45 90 C 71.6 30, 98.4 30, 125 30 C 151.6 30, 178.4 60, 205 90 C 231.6 120, 258.4 150, 285 150 C 311.6 150, 338.4 150, 365 90"
+                fill="none" stroke="#2563eb" stroke-width="2.2"/>
+          <!-- 端點與反曲點標示 -->
+          <circle cx="165" cy="47.6" r="4" fill="#ef4444"/>
+          <circle cx="205" cy="90" r="3.5" fill="#1e293b"/>
+          <circle cx="245" cy="132.4" r="4" fill="#ef4444"/>
+          <!-- 垂直投影虛線 -->
+          <line x1="165" y1="47.6" x2="165" y2="90" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1.2"/>
+          <line x1="245" y1="132.4" x2="245" y2="90" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1.2"/>
+          <!-- 標籤 -->
+          <text x="400" y="94" class="svg-text">x</text>
+          <text x="41" y="12" class="svg-text">y</text>
+          <text x="32" y="104" class="svg-text-normal">O</text>
+          <text x="116" y="105" class="svg-text-normal">π/2</text>
+          <text x="150" y="105" fill="#ef4444" font-size="11" font-weight="bold">3π/4</text>
+          <text x="201" y="83" class="svg-text-normal">π</text>
+          <text x="235" y="84" fill="#ef4444" font-size="11" font-weight="bold">5π/4</text>
+          <text x="275" y="105" class="svg-text-normal">3π/2</text>
+          <text x="115" y="43" fill="#ef4444" font-size="12" font-weight="bold">A = √2 / 2</text>
+          <text x="252" y="137" fill="#ef4444" font-size="12" font-weight="bold">B = -√2 / 2</text>
+          <text x="253" y="96" fill="#ef4444" font-size="12" font-weight="bold">↕ 最大落差 A - B = √2</text>
+        </svg>
+        <div class="aux-caption">▲ 移動視窗法：當寬度 $\d\frac{\pi}{2}$ 的紅色視窗對稱跨過最陡的反曲點 $(\pi, 0)$ 時，高低差 $A-B=\sqrt{2}$ 最大</div>
+      </div>
     </div>
 
     <div class="final-ans-box">最終答案：$\sqrt{2}$（即格號 (12) 填 $2$）</div>
@@ -976,11 +1095,11 @@ window.MathJax = {
       <div class="question-figure">
         <svg width="200" height="200" viewBox="0 0 200 200">
           <!-- Shaded regions: top-right (PAC) and bottom-left (PBD) -->
-          <!-- Circle center (100, 100), radius 65. P=(118, 61) -->
+          <!-- Circle center (100, 100), radius 65 (2.6px per unit). P=(7,15) -> (118.2, 61) -->
           <!-- y=61 intersects circle at x = 100 +- 52 => B(48, 61), A(152, 61) -->
-          <!-- x=118 intersects circle at y = 100 +- 62.4 => C(118, 37.6), D(118, 162.4) -->
-          <path d="M 118 61 L 152 61 A 65 65 0 0 0 118 37.6 Z" class="svg-shade"/>
-          <path d="M 118 61 L 48 61 A 65 65 0 0 0 118 162.4 Z" class="svg-shade"/>
+          <!-- x=118.2 intersects circle at y = 100 +- 62.4 => C(118.2, 37.6), D(118.2, 162.4) -->
+          <path d="M 118.2 61 L 152 61 A 65 65 0 0 0 118.2 37.6 Z" class="svg-shade"/>
+          <path d="M 118.2 61 L 48 61 A 65 65 0 0 0 118.2 162.4 Z" class="svg-shade"/>
           <!-- Circle -->
           <circle cx="100" cy="100" r="65" fill="none" class="svg-line" stroke-width="1.8"/>
           <!-- Axes x and y -->
@@ -988,7 +1107,7 @@ window.MathJax = {
           <line x1="100" y1="185" x2="100" y2="15" class="svg-line" stroke-width="1.3"/>
           <!-- Chords AB and CD -->
           <line x1="48" y1="61" x2="152" y2="61" class="svg-line" stroke-width="1.6"/>
-          <line x1="118" y1="37.6" x2="118" y2="162.4" class="svg-line" stroke-width="1.6"/>
+          <line x1="118.2" y1="37.6" x2="118.2" y2="162.4" class="svg-line" stroke-width="1.6"/>
           <!-- Labels -->
           <text x="187" y="104" class="svg-text">x</text>
           <text x="96" y="12" class="svg-text">y</text>
@@ -1059,6 +1178,40 @@ window.MathJax = {
       &= \overparen{EF} + \overparen{GH} = \d\frac{1}{4}\text{圓周} + \d\frac{1}{4}\text{圓周} = \text{半圓周長}
       \end{aligned}$$
       為圓周的一半，故<strong>小玉和小英吃的 pizza 邊的長度一樣長</strong>。
+
+      <div class="aux-svg-box">
+        <!-- 視覺化輔助圖：解法二与解法三的圓弧對稱搬移法 -->
+        <svg width="240" height="215" viewBox="0 0 240 215">
+          <!-- 灰色區域 -->
+          <path d="M 138.2 66 L 172 66 A 65 65 0 0 0 138.2 42.6 Z" class="svg-shade"/>
+          <path d="M 138.2 66 L 68 66 A 65 65 0 0 0 138.2 167.4 Z" class="svg-shade"/>
+          <!-- 圓與座標軸 (圓心 120, 105, R = 65) -->
+          <circle cx="120" cy="105" r="65" fill="none" class="svg-line" stroke-width="1.6"/>
+          <line x1="30" y1="105" x2="210" y2="105" class="svg-line" stroke-width="1.3"/>
+          <line x1="120" y1="190" x2="120" y2="20" class="svg-line" stroke-width="1.3"/>
+          <!-- 弦 AB 與 CD -->
+          <line x1="68" y1="66" x2="172" y2="66" class="svg-line" stroke-width="1.4"/>
+          <line x1="138.2" y1="42.6" x2="138.2" y2="167.4" class="svg-line" stroke-width="1.4"/>
+          <!-- 對稱相等的紅弧 BG = AE -->
+          <path d="M 68 66 A 65 65 0 0 0 55 105" fill="none" stroke="#ef4444" stroke-width="3.5"/>
+          <path d="M 172 66 A 65 65 0 0 1 185 105" fill="none" stroke="#ef4444" stroke-dasharray="4,2" stroke-width="3.5"/>
+          <!-- 對稱相等的藍弧 HD = CF -->
+          <path d="M 120 170 A 65 65 0 0 0 138.2 167.4" fill="none" stroke="#2563eb" stroke-width="3.5"/>
+          <path d="M 120 40 A 65 65 0 0 1 138.2 42.6" fill="none" stroke="#2563eb" stroke-dasharray="4,2" stroke-width="3.5"/>
+          <!-- 端點標籤 -->
+          <text x="176" y="68" class="svg-text">A(20,15)</text>
+          <text x="52" y="68" class="svg-text">B</text>
+          <text x="136" y="36" class="svg-text">C(7,24)</text>
+          <text x="138" y="182" class="svg-text">D</text>
+          <text x="188" y="118" fill="#ef4444" font-size="13" font-weight="bold">E</text>
+          <text x="106" y="36" fill="#2563eb" font-size="13" font-weight="bold">F</text>
+          <text x="40" y="118" fill="#ef4444" font-size="13" font-weight="bold">G</text>
+          <text x="105" y="183" fill="#2563eb" font-size="13" font-weight="bold">H</text>
+          <text x="108" y="119" class="svg-text">O</text>
+          <text x="142" y="80" class="svg-text">P</text>
+        </svg>
+        <div class="aux-caption">▲ 圓弧對稱搬移法：紅弧 $\overparen{BG} = \overparen{AE}$、藍弧 $\overparen{HD} = \overparen{CF}$，故 $\overparen{AC} + \overparen{BD} = \overparen{EF} + \overparen{GH} =$ 半圓周長</div>
+      </div>
     </div>
 
     <div class="special-card">
