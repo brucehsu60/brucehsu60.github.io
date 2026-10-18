@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三角函數動區間極值問題：16:9 視覺化解題資訊圖表與完整詳解</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: {
+      d: '\\displaystyle'
+    }
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #cbd5e1;
+    --primary-color: #2563eb;
+    --sol-bg: #eff6ff;
+    --sol-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fdf2f8;
+    --tip-border: #ec4899;
+    --check-bg: #f0fdf4;
+    --check-border: #22c55e;
+    --ans-bg: #f8fafc;
+    --ans-border: #0f172a;
+    --toolbar-bg: rgba(255, 255, 255, 0.94);
+    --svg-stroke: #1e293b;
+    --svg-grid: #e2e8f0;
+    --infographic-bg: #f1f5f9;
+  }
+
+  body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --sol-bg: #172554;
+    --sol-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #500724;
+    --tip-border: #f43f5e;
+    --check-bg: #052e16;
+    --check-border: #22c55e;
+    --ans-bg: #0f172a;
+    --ans-border: #e2e8f0;
+    --toolbar-bg: rgba(30, 41, 59, 0.94);
+    --svg-stroke: #f1f5f9;
+    --svg-grid: #334155;
+    --infographic-bg: #0f172a;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 72px 16px 48px 16px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.65;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  /* 頂部懸浮工具列 */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--toolbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toolbar button:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .toolbar button.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+  }
+
+  /* ==================== 16:9 橫式資訊圖表 (Infographic) ==================== */
+  .infographic-board {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 680px;
+    background: var(--infographic-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+    margin-bottom: 32px;
+  }
+
+  /* 1. 頂部深藍色橫幅 */
+  .info-top-banner {
+    background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+    color: #ffffff;
+    padding: 14px 24px 0 24px;
+    flex-shrink: 0;
+  }
+
+  .info-main-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .info-main-title .highlight-yellow {
+    color: #facc15;
+  }
+
+  .info-sub-bar {
+    background: #dbeafe;
+    color: #0f172a;
+    font-size: 0.94rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    margin: 0 -24px;
+    border-bottom: 2px solid #93c5fd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* 2. 中間 2x3 卡片網格 */
+  .info-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  .info-card-header {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.98rem;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .header-1-brown  { background: linear-gradient(90deg, #78350f, #a16207); }
+  .header-2-blue   { background: linear-gradient(90deg, #1e40af, #2563eb); }
+  .header-3-orange { background: linear-gradient(90deg, #9a3412, #ea580c); }
+  .header-4-green  { background: linear-gradient(90deg, #14532d, #16a34a); }
+  .header-5-cyan   { background: linear-gradient(90deg, #155e75, #0891b2); }
+  .header-6-purple { background: linear-gradient(90deg, #4c1d95, #7c3aed); }
+
+  .info-card-body {
+    flex: 1;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .info-bullets {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.55;
+    flex: 1.05;
+  }
+
+  .info-bullets li {
+    margin-bottom: 4px;
+  }
+
+  .info-figure {
+    flex: 1.25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(148, 163, 184, 0.07);
+    border-radius: 8px;
+    padding: 4px;
+    height: 100%;
+  }
+
+  /* 卡片 6 專用三列排版 */
+  .trap-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .trap-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 10px;
+    border-radius: 7px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-left: 4px solid transparent;
+  }
+
+  .trap-wrong {
+    background: rgba(239, 68, 68, 0.1);
+    border-left-color: #ef4444;
+  }
+
+  .trap-warn {
+    background: rgba(245, 158, 11, 0.12);
+    border-left-color: #f59e0b;
+  }
+
+  .trap-tip {
+    background: rgba(34, 197, 94, 0.12);
+    border-left-color: #22c55e;
+  }
+
+  .trap-icon {
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  /* 3. 底部深紅色橫幅 */
+  .info-bottom-banner {
+    background: linear-gradient(90deg, #7f1d1d 0%, #991b1b 50%, #b91c1c 100%);
+    color: #ffffff;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+
+  .target-badge {
+    background: #fef2f2;
+    color: #991b1b;
+    font-weight: 900;
+    font-size: 0.95rem;
+    padding: 5px 14px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .bottom-conclusion-text {
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .bottom-conclusion-text .yellow-ans {
+    color: #fde047;
+    font-weight: 900;
+    text-decoration: underline;
+  }
+
+  /* ==================== 傳統詳解卡片與區塊 ==================== */
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  }
+
+  .question-text {
+    font-size: 1.08rem;
+    margin-bottom: 16px;
+  }
+
+  .sol-box {
+    background-color: var(--sol-bg);
+    border-left: 6px solid var(--sol-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .alt-box {
+    background-color: var(--alt-bg);
+    border-left: 6px solid var(--alt-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .special-card {
+    border: 2px solid var(--tip-border);
+    border-left: 8px solid var(--tip-border);
+    background-color: var(--tip-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .check-card {
+    border: 2px solid var(--check-border);
+    border-left: 8px solid var(--check-border);
+    background-color: var(--check-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .box-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .final-ans-box {
+    background-color: var(--ans-bg);
+    border: 4px double var(--ans-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 18px;
+    font-size: 1.08rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg-axis {
+    stroke: var(--svg-stroke);
+  }
+
+  .svg-label {
+    fill: var(--svg-stroke);
+    font-family: "Noto Sans TC", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  .svg-math {
+    fill: var(--svg-stroke);
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 11.5px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 1024px) {
+    .infographic-board {
+      aspect-ratio: auto;
+    }
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 680px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+    .info-card-body {
+      flex-direction: column;
+    }
+  }
+
+  /* 列印專用樣式強化 */
+  @media print {
+    @page {
+      size: A4 landscape;
+      margin: 8mm;
+    }
+
+    * {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+      padding: 0;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .infographic-board {
+      page-break-inside: avoid;
+      page-break-after: always;
+      border: 2px solid #000;
+      box-shadow: none;
+      margin-bottom: 16px;
+    }
+
+    .question-card {
+      page-break-inside: auto;
+      border: 1px solid #999;
+      box-shadow: none;
+    }
+
+    .special-card, .check-card {
+      border: 3px solid #000 !important;
+      border-left: 10px solid #000 !important;
+      page-break-inside: avoid;
+    }
+
+    .sol-box, .alt-box {
+      page-break-inside: avoid;
+    }
+
+    .final-ans-box {
+      page-break-inside: avoid;
+      border: 4px double #000 !important;
+      background-color: #f8fafc !important;
+      color: #000 !important;
+    }
+
+    strong {
+      font-weight: 800 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="btn-light" class="active" onclick="setMode('light')">📄 預設好讀</button>
+  <button id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+  <button onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+  <!-- ==================== 16:9 橫式高解析度繁體中文解題資訊圖表 ==================== -->
+  <div class="infographic-board">
+
+    <!-- 1. 頂部深藍色橫幅 -->
+    <div class="info-top-banner">
+      <h1 class="info-main-title">
+        <span>高中數學 A 關鍵解題圖表：<span class="highlight-yellow">三角函數動區間極值與移動視窗法</span></span>
+        <span style="font-size: 0.9rem; font-weight: 700; background: rgba(255,255,255,0.15); padding: 3px 10px; border-radius: 6px;">16:9 精準座標資訊圖表</span>
+      </h1>
+      <div class="info-sub-bar">
+        <span>📌 <strong>原題條件：</strong>已知函數 $y = \sin x$，$\alpha \le x \le \alpha + \dfrac{\pi}{2}$，其中 $0 < \alpha < \pi$。</span>
+        <span>🎯 <strong>求解目標：</strong>設區間內最大值為 $A$、最小值為 $B$，求高低落差 $A - B$ 之最大值 $\sqrt{(12)}$。</span>
+      </div>
+    </div>
+
+    <!-- 2. 中間 2x3 卡片網格 -->
+    <div class="info-grid">
+
+      <!-- 卡片 1：1.棕【題目條件與模型】 -->
+      <div class="info-card">
+        <div class="info-card-header header-1-brown">
+          <span>1. 題目條件與模型</span>
+        </div>
+        <div class="info-card-body">
+          <ul class="info-bullets">
+            <li>目標函數：$y = \sin x$ 正弦波</li>
+            <li>移動視窗寬度固定為 $\dfrac{\pi}{2}$</li>
+            <li>左端點範圍：$0 < \alpha < \pi$</li>
+            <li>右端點範圍：$\dfrac{\pi}{2} < \alpha + \dfrac{\pi}{2} < \dfrac{3\pi}{2}$</li>
+            <li>$(0,\pi)$ 在 $x$ 軸上；$(\pi,\frac{3\pi}{2})$ 在軸下</li>
+          </ul>
+          <div class="info-figure">
+            <!-- 精準座標圖 1：y = sin x 於 [0, 3pi/2] 全貌 -->
+            <!-- O(28, 72), x=0->28, pi/2->88, pi->148, 3pi/2->208; y=1->26, y=0->72, y=-1->118 -->
+            <svg width="240" height="145" viewBox="0 0 240 145">
+              <!-- 正負區間淡色底 -->
+              <path d="M 28 72 C 50.9 45.6, 65.1 26, 88 26 C 110.9 26, 125.1 45.6, 148 72 Z" fill="rgba(37, 99, 235, 0.10)"/>
+              <path d="M 148 72 C 170.9 98.4, 185.1 118, 208 118 L 208 72 Z" fill="rgba(239, 68, 68, 0.10)"/>
+              <!-- 虛線對齊刻度 -->
+              <line x1="28" y1="26" x2="88" y2="26" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <line x1="88" y1="26" x2="88" y2="72" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <line x1="28" y1="118" x2="208" y2="118" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <line x1="208" y1="72" x2="208" y2="118" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <!-- 座標軸 -->
+              <line x1="15" y1="72" x2="228" y2="72" class="svg-axis" stroke-width="1.3"/>
+              <line x1="28" y1="132" x2="28" y2="12" class="svg-axis" stroke-width="1.3"/>
+              <!-- 正弦曲線 y = sin x -->
+              <path d="M 28 72 C 50.9 45.6, 65.1 26, 88 26 C 110.9 26, 125.1 45.6, 148 72 C 170.9 98.4, 185.1 118, 208 118"
+                    fill="none" stroke="#2563eb" stroke-width="2.2"/>
+              <!-- 關鍵節點 -->
+              <circle cx="28" cy="72" r="3" fill="#1e293b"/>
+              <circle cx="88" cy="26" r="3.8" fill="#ef4444"/>
+              <circle cx="148" cy="72" r="3.2" fill="#1e293b"/>
+              <circle cx="208" cy="118" r="3.8" fill="#f97316"/>
+              <!-- 標籤 -->
+              <text x="229" y="75" class="svg-math">x</text>
+              <text x="24" y="10" class="svg-math">y</text>
+              <text x="16" y="83" class="svg-label">0</text>
+              <text x="17" y="30" class="svg-label">1</text>
+              <text x="11" y="122" class="svg-label">-1</text>
+              <text x="72" y="21" fill="#ef4444" font-size="10" font-weight="bold">波峰(π/2, 1)</text>
+              <text x="138" y="66" class="svg-label">(π,0)</text>
+              <text x="162" y="133" fill="#ea580c" font-size="10" font-weight="bold">波谷(3π/2, -1)</text>
+              <text x="58" y="65" fill="#1d4ed8" font-size="9.5" font-weight="bold">y &gt; 0</text>
+              <text x="172" y="86" fill="#dc2626" font-size="9.5" font-weight="bold">y &lt; 0</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 2：2.藍【關鍵階段一】 -->
+      <div class="info-card">
+        <div class="info-card-header header-2-blue">
+          <span>2. 關鍵階段一：跨波峰區間</span>
+        </div>
+        <div class="info-card-body">
+          <ul class="info-bullets">
+            <li>當 $0 < \alpha < \dfrac{\pi}{2}$ 時跨過山頂</li>
+            <li>區間包住波峰 $x = \dfrac{\pi}{2}$</li>
+            <li>最大值釘在山頂：$A = 1$</li>
+            <li>兩端點皆在 $x$ 軸上：$B > 0$</li>
+            <li>高低落差：$0 < A - B < 1$</li>
+          </ul>
+          <div class="info-figure">
+            <!-- 精準座標圖 2：0 < alpha < pi/2 局部精確圖 -->
+            <!-- O(28, 118), x=0->28, pi/2->112, pi->196 (pi/2 = 84px). y=1->34 (1 unit = 84px) -->
+            <!-- 取 alpha = pi/6 (x = 56, y = 118 - 42 = 76) 到 2pi/3 (x = 140, y = 118 - 72.7 = 45.3) -->
+            <svg width="240" height="145" viewBox="0 0 240 145">
+              <!-- 視窗框 [alpha, alpha+pi/2] -->
+              <rect x="56" y="34" width="84" height="42" fill="rgba(59, 130, 246, 0.12)" stroke="#2563eb" stroke-dasharray="3,2" stroke-width="1.4"/>
+              <!-- 軸與刻度虛線 -->
+              <line x1="28" y1="34" x2="112" y2="34" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <line x1="56" y1="76" x2="56" y2="118" stroke="#f97316" stroke-dasharray="2,2" stroke-width="1.1"/>
+              <line x1="112" y1="34" x2="112" y2="118" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1.1"/>
+              <line x1="140" y1="45.3" x2="140" y2="118" class="svg-axis" stroke-dasharray="2,2" stroke-width="1.1" opacity="0.6"/>
+              <line x1="15" y1="118" x2="222" y2="118" class="svg-axis" stroke-width="1.3"/>
+              <line x1="28" y1="130" x2="28" y2="15" class="svg-axis" stroke-width="1.3"/>
+              <!-- [0, pi] 正弦曲線 -->
+              <path d="M 28 118 C 60.1 65.8, 79.9 34, 112 34 C 144.1 34, 163.9 65.8, 196 118"
+                    fill="none" stroke="#2563eb" stroke-width="2.2"/>
+              <!-- 極值色點：紅點標最大 A=1、橘點標最小 B>0 -->
+              <circle cx="112" cy="34" r="4.2" fill="#ef4444"/>
+              <circle cx="56" cy="76" r="4.2" fill="#f97316"/>
+              <circle cx="140" cy="45.3" r="3" fill="#2563eb"/>
+              <!-- 標註 -->
+              <text x="17" y="38" class="svg-label">1</text>
+              <text x="17" y="122" class="svg-label">0</text>
+              <text x="51" y="131" class="svg-math">α</text>
+              <text x="103" y="131" class="svg-label">π/2</text>
+              <text x="132" y="131" class="svg-label">α+π/2</text>
+              <text x="192" y="131" class="svg-label">π</text>
+              <text x="82" y="27" fill="#ef4444" font-size="10.5" font-weight="bold">A = 1 (波峰)</text>
+              <text x="32" y="72" fill="#ea580c" font-size="10" font-weight="bold">B &gt; 0</text>
+              <text x="145" y="64" fill="#1d4ed8" font-size="10" font-weight="bold">A-B &lt; 1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 3：3.橘【關鍵階段二】 -->
+      <div class="info-card">
+        <div class="info-card-header header-3-orange">
+          <span>3. 關鍵階段二：純遞減區間</span>
+        </div>
+        <div class="info-card-body">
+          <ul class="info-bullets">
+            <li>當 $\dfrac{\pi}{2} \le \alpha < \pi$ 全程遞減</li>
+            <li>左端點最高：$A = \sin\alpha$</li>
+            <li>右端點最低：$B = \cos\alpha$</li>
+            <li>反曲點 $(\pi,0)$ 斜率最陡峭</li>
+            <li>取 $\left[\dfrac{3\pi}{4}, \dfrac{5\pi}{4}\right]$ 落差達 $\sqrt{2}$</li>
+          </ul>
+          <div class="info-figure">
+            <!-- 精準座標圖 3：[pi/2, 3pi/2] 純遞減與反曲點對稱視窗 -->
+            <!-- x=pi/2->36, 3pi/4->78, pi->120, 5pi/4->162, 3pi/2->204. y=0->72, y=1->24, y=-1->120 (1 unit = 48px) -->
+            <!-- A(3pi/4, sqrt(2)/2) -> (78, 72 - 33.94 = 38.06); B(5pi/4, -sqrt(2)/2) -> (162, 72 + 33.94 = 105.94) -->
+            <svg width="240" height="145" viewBox="0 0 240 145">
+              <!-- 最佳視窗紅色框 -->
+              <rect x="78" y="38.06" width="84" height="67.88" fill="rgba(239, 68, 68, 0.11)" stroke="#ef4444" stroke-dasharray="4,2" stroke-width="1.6"/>
+              <!-- 對齊虛線 -->
+              <line x1="78" y1="38.06" x2="78" y2="72" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1.1"/>
+              <line x1="162" y1="105.94" x2="162" y2="72" stroke="#2563eb" stroke-dasharray="2,2" stroke-width="1.1"/>
+              <!-- 座標軸 -->
+              <line x1="20" y1="72" x2="225" y2="72" class="svg-axis" stroke-width="1.3"/>
+              <line x1="36" y1="132" x2="36" y2="12" class="svg-axis" stroke-width="1.3"/>
+              <!-- 遞減正弦曲線 [pi/2, 3pi/2] 100% 通過 (78, 38.06), (120, 72), (162, 105.94) -->
+              <path d="M 36 24 C 68.1 24, 87.9 45.5, 120 72 C 152.1 98.5, 171.9 120, 204 120"
+                    fill="none" stroke="#ea580c" stroke-width="2.3"/>
+              <!-- 色點標示：紅點最大 A、藍點最小 B、黑點反曲點 (pi, 0) -->
+              <circle cx="78" cy="38.06" r="4.2" fill="#ef4444"/>
+              <circle cx="120" cy="72" r="3.5" fill="#0f172a"/>
+              <circle cx="162" cy="105.94" r="4.2" fill="#2563eb"/>
+              <!-- 標籤 -->
+              <text x="16" y="28" class="svg-label">1</text>
+              <text x="10" y="124" class="svg-label">-1</text>
+              <text x="38" y="84" class="svg-label">π/2</text>
+              <text x="65" y="85" fill="#ef4444" font-size="9.5" font-weight="bold">3π/4</text>
+              <text x="116" y="65" class="svg-label">π</text>
+              <text x="150" y="67" fill="#2563eb" font-size="9.5" font-weight="bold">5π/4</text>
+              <text x="195" y="84" class="svg-label">3π/2</text>
+              <text x="58" y="32" fill="#ef4444" font-size="10" font-weight="bold">A = √2/2</text>
+              <text x="132" y="120" fill="#2563eb" font-size="10" font-weight="bold">B = -√2/2</text>
+              <text x="166" y="55" fill="#dc2626" font-size="10" font-weight="bold">↕ √2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 4：4.綠【關鍵數據對照】 -->
+      <div class="info-card">
+        <div class="info-card-header header-4-green">
+          <span>4. 關鍵數據對照</span>
+        </div>
+        <div class="info-card-body">
+          <ul class="info-bullets">
+            <li>$\alpha = \dfrac{\pi}{4} \Rightarrow A-B = 1 - \dfrac{\sqrt{2}}{2}$</li>
+            <li>$\alpha = \dfrac{\pi}{2} \Rightarrow A=1, B=0, \text{差}=1$</li>
+            <li>$\alpha = \dfrac{3\pi}{4} \Rightarrow A=\dfrac{\sqrt{2}}{2}, B=-\dfrac{\sqrt{2}}{2}$</li>
+            <li>最大高低落差：$A - B = \sqrt{2}$</li>
+            <li>對應題目根號格號：$(12) = 2$</li>
+          </ul>
+          <div class="info-figure">
+            <!-- 精準配圖 4：醒目無單位圓環徽章標示最終極值與答案（嚴禁 % 符號） -->
+            <svg width="165" height="145" viewBox="0 0 165 145">
+              <!-- 外圓環與內發光環 -->
+              <circle cx="82.5" cy="64" r="50" fill="none" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="82.5" cy="64" r="50" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="260 60" stroke-linecap="round" transform="rotate(-90 82.5 64)"/>
+              <circle cx="82.5" cy="64" r="39" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+              <!-- 圓環中心文字 -->
+              <text x="82.5" y="48" text-anchor="middle" fill="#15803d" font-size="10" font-weight="800">A - B 最大極值</text>
+              <text x="82.5" y="76" text-anchor="middle" fill="#14532d" font-size="25" font-weight="900">√2</text>
+              <text x="82.5" y="92" text-anchor="middle" fill="#166534" font-size="9.5" font-weight="700">(約 1.414)</text>
+              <!-- 底部答案膠囊徽章 -->
+              <rect x="22.5" y="120" width="120" height="21" rx="10.5" fill="#15803d"/>
+              <text x="82.5" y="134.5" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="900">最終答案：(12) = 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 5：5.青【核心公式與轉化】 -->
+      <div class="info-card">
+        <div class="info-card-header header-5-cyan">
+          <span>5. 核心公式與轉化</span>
+        </div>
+        <div class="info-card-body">
+          <ul class="info-bullets">
+            <li>誘導化簡：$\sin\!\left(\alpha+\dfrac{\pi}{2}\right)=\cos\alpha$</li>
+            <li>落差函數：$g(\alpha)=\sin\alpha-\cos\alpha$</li>
+            <li>正餘弦疊合提出振幅 $\sqrt{2}$：</li>
+            <li>$g(\alpha)=\sqrt{2}\sin\!\left(\alpha-\dfrac{\pi}{4}\right)$</li>
+            <li>當 $\alpha=\dfrac{3\pi}{4}$ 時 $\sin\dfrac{\pi}{2}=1$ 最大</li>
+          </ul>
+          <div class="info-figure">
+            <!-- 精準座標圖 5：疊合後函數 g(alpha) = sqrt(2) sin(alpha - pi/4) -->
+            <!-- alpha 軸位於 y = 116. alpha=pi/4->38 (y=116), pi/2->92 (g=1 -> y=58), 3pi/4->146 (g=sqrt(2) -> y=34), pi->200 (g=1 -> y=58) -->
+            <svg width="240" height="145" viewBox="0 0 240 145">
+              <!-- 極值水平切線與對齊虛線 -->
+              <line x1="25" y1="34" x2="195" y2="34" stroke="#ef4444" stroke-dasharray="4,2" stroke-width="1.2"/>
+              <line x1="25" y1="58" x2="200" y2="58" class="svg-axis" stroke-dasharray="3,2" stroke-width="0.9" opacity="0.6"/>
+              <line x1="92" y1="58" x2="92" y2="116" class="svg-axis" stroke-dasharray="2,2" stroke-width="1" opacity="0.6"/>
+              <line x1="146" y1="34" x2="146" y2="116" stroke="#ef4444" stroke-dasharray="2,2" stroke-width="1.2"/>
+              <line x1="200" y1="58" x2="200" y2="116" class="svg-axis" stroke-dasharray="2,2" stroke-width="1" opacity="0.6"/>
+              <!-- 座標軸 -->
+              <line x1="18" y1="116" x2="225" y2="116" class="svg-axis" stroke-width="1.3"/>
+              <line x1="25" y1="130" x2="25" y2="14" class="svg-axis" stroke-width="1.3"/>
+              <!-- 延伸虛線段 [pi/4, pi/2] -->
+              <path d="M 38 116 Q 65 82, 92 58" fill="none" stroke="#0891b2" stroke-dasharray="3,2" stroke-width="1.6"/>
+              <!-- 實線有效定義域段 [pi/2, pi] 頂點 (146, 34) -->
+              <path d="M 92 58 Q 146 10, 200 58" fill="none" stroke="#0891b2" stroke-width="2.4"/>
+              <!-- 節點標示 -->
+              <circle cx="38" cy="116" r="3" fill="#0891b2"/>
+              <circle cx="92" cy="58" r="3.5" fill="#0e7490"/>
+              <circle cx="146" cy="34" r="4.5" fill="#ef4444"/>
+              <circle cx="200" cy="58" r="3.5" fill="#0e7490"/>
+              <!-- 標籤 -->
+              <text x="226" y="120" class="svg-math">α</text>
+              <text x="6" y="38" fill="#ef4444" font-size="10" font-weight="bold">√2</text>
+              <text x="14" y="62" class="svg-label">1</text>
+              <text x="14" y="120" class="svg-label">0</text>
+              <text x="30" y="129" class="svg-label">π/4</text>
+              <text x="83" y="129" class="svg-label">π/2</text>
+              <text x="134" y="129" fill="#ef4444" font-size="10" font-weight="bold">3π/4</text>
+              <text x="196" y="129" class="svg-label">π</text>
+              <text x="102" y="26" fill="#ef4444" font-size="10.5" font-weight="bold">頂點 (3π/4, √2)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 6：6.紫【易錯陷阱與心法】 -->
+      <div class="info-card">
+        <div class="info-card-header header-6-purple">
+          <span>6. 易錯陷阱與心法</span>
+        </div>
+        <div class="info-card-body">
+          <div class="trap-list">
+            <div class="trap-item trap-wrong">
+              <span class="trap-icon">❌</span>
+              <div><strong>直覺陷阱：</strong>誤拿兩端點直接相減，忽略波峰在區間內</div>
+            </div>
+            <div class="trap-item trap-warn">
+              <span class="trap-icon">⚠️</span>
+              <div><strong>忽略機制：</strong>未以 $\alpha = \dfrac{\pi}{2}$ 分段討論極值公式變化</div>
+            </div>
+            <div class="trap-item trap-tip">
+              <span class="trap-icon">💡</span>
+              <div><strong>幾何直觀：</strong>視窗對稱跨過反曲點 $(\pi, 0)$ 斜率最陡</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. 底部深紅色橫幅 -->
+    <div class="info-bottom-banner">
+      <div class="target-badge">
+        <span>🎯 核心結論</span>
+      </div>
+      <div class="bottom-conclusion-text">
+        破題關鍵：將寬度 $\dfrac{\pi}{2}$ 的視窗對稱跨在 $y=\sin x$ 下降最陡的反曲點 $(\pi,0)$ 左右，即區間取 $\left[\dfrac{3\pi}{4}, \dfrac{5\pi}{4}\right]$ 時，最大高低差 <span class="yellow-ans">$A - B = \sqrt{2}$，故格號 (12) 填 2</span>。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== 原始題目與完整文字詳解區 ==================== -->
+  <div class="question-card">
+    <div class="question-text">
+      12. 已知函數 $y = \sin x$，$\alpha \le x \le \alpha + \d\frac{\pi}{2}$，其中 $0 < \alpha < \pi$。若 $y$ 的最大值為 $A$，最小值為 $B$，則 $A - B$ 之最大值為 $\sqrt{\text{(12)}}$。
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解（分段討論＋正餘弦疊合法）</div>
+      以波峰 $x = \d\frac{\pi}{2}$ 為界，分兩階段討論寬度為 $\d\frac{\pi}{2}$ 的閉區間 $\left[\alpha , \alpha + \d\frac{\pi}{2}\right]$：
+      <ul>
+        <li><strong>階段一（跨波峰區間）：當 $0 < \alpha < \d\frac{\pi}{2}$ 時</strong>，右端點範圍為 $\d\frac{\pi}{2} < \alpha + \d\frac{\pi}{2} < \pi$。<br>
+        此時區間包含波峰 $x = \d\frac{\pi}{2}$，且整個區間皆落在 $(0, \pi)$ 的 $x$ 軸上方（$y > 0$），故：
+        $$A = \sin\d\frac{\pi}{2} = 1 \quad , \quad B = \min\left\{\sin\alpha , \sin\left(\alpha + \d\frac{\pi}{2}\right)\right\} > 0$$
+        因此高低落差必滿足 $0 < A - B < 1$。</li>
+        <li><strong>階段二（純遞減區間）：當 $\d\frac{\pi}{2} \le \alpha < \pi$ 時</strong>，右端點範圍為 $\pi \le \alpha + \d\frac{\pi}{2} < \d\frac{3\pi}{2}$。<br>
+        在區間 $\left[\d\frac{\pi}{2} , \d\frac{3\pi}{2}\right]$ 上，$y = \sin x$ 為<strong>嚴格遞減函數</strong>，故最大值發生於左端點、最小值發生於右端點：
+        $$A = \sin\alpha \quad , \quad B = \sin\left(\alpha + \d\frac{\pi}{2}\right) = \cos\alpha$$
+        利用<strong>正餘弦疊合</strong>求 $A - B$ 的最大值：
+        $$A - B = \sin\alpha - \cos\alpha = \sqrt{2}\left(\sin\alpha\cos\d\frac{\pi}{4} - \cos\alpha\sin\d\frac{\pi}{4}\right) = \sqrt{2}\sin\left(\alpha - \d\frac{\pi}{4}\right)$$
+        因為 $\d\frac{\pi}{2} \le \alpha < \pi \implies \d\frac{\pi}{4} \le \alpha - \d\frac{\pi}{4} < \d\frac{3\pi}{4}$，當 $\alpha = \d\frac{3\pi}{4}$ 時，$\sqrt{2}\sin\left(\alpha - \d\frac{\pi}{4}\right)$ 有最大值 $\sqrt{2}\sin\d\frac{\pi}{2} = \sqrt{2}$。</li>
+      </ul>
+      綜合階段一與階段二，得 $A - B$ 之最大值為 $\sqrt{2}$，故 $\text{(12)} = 2$。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（移動視窗與反曲點對稱秒殺法）</div>
+      將區間 $\left[\alpha , \alpha + \d\frac{\pi}{2}\right]$ 視為寬度固定為 $\d\frac{\pi}{2}$ 的<strong>移動視窗</strong>。欲使視窗內的鉛直落差 $A - B$ 最大，視窗必須框在正弦波<strong>斜率最陡峭的反曲點 $( \pi , 0 )$</strong> 正中央！<br>
+      由對稱性，將視窗自 $x = \pi$ 向左右各張開 $\d\frac{\pi}{4}$，即取區間 $\left[\pi - \d\frac{\pi}{4} , \pi + \d\frac{\pi}{4}\right] = \left[\d\frac{3\pi}{4} , \d\frac{5\pi}{4}\right]$（此時 $\alpha = \d\frac{3\pi}{4} \in (0, \pi)$）：
+      $$A - B = \sin\d\frac{3\pi}{4} - \sin\d\frac{5\pi}{4} = \d\frac{\sqrt{2}}{2} - \left(-\d\frac{\sqrt{2}}{2}\right) = \sqrt{2}$$
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算（端點特值快速夾擊）</div>
+      在考場上花 5 秒鐘代入兩個指標角度驗證：<br>
+      ・代 $\alpha = \d\frac{\pi}{2}$（區間 $\left[\d\frac{\pi}{2}, \pi\right]$）：$A - B = 1 - 0 = 1$，故最大值必大於 $1$。<br>
+      ・代 $\alpha = \d\frac{3\pi}{4}$（區間 $\left[\d\frac{3\pi}{4}, \d\frac{5\pi}{4}\right]$）：$A - B = \d\frac{\sqrt{2}}{2} - \left(-\d\frac{\sqrt{2}}{2}\right) = \sqrt{2} \approx 1.414 > 1$，瞬間確認答案為 $\sqrt{2}$！
+    </div>
+
+    <div class="final-ans-box">最終答案：$\sqrt{2}$（即格號 (12) 填 $2$）</div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode) {
+    const body = document.body;
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    if (mode === 'dark') {
+      body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+    } else {
+      body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+    }
+  }
+
+  function printPage() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise().then(() => {
+        window.print();
+      });
+    } else {
+      window.print();
+    }
+  }
+</script>
+
+</body>
+</html>
