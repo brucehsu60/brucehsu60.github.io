@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入口</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f8f9fa;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* 4x2 網格排列，確保每個方塊一樣大 */
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        /* 自然科子選單（2個方塊置中排列） */
+        .sub-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 360px;
+            margin: 0 auto 25px auto;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 64px; /* 固定高度，確保所有方塊大小完全一致 */
+            padding: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.25s, transform 0.15s;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* 數學：藍色 */
+        .btn-math { background-color: #007bff; }
+        .btn-math:hover { background-color: #0056b3; }
+
+        /* 英文：綠色 */
+        .btn-english { background-color: #28a745; }
+        .btn-english:hover { background-color: #1e7e34; }
+
+        /* 自然：青色 */
+        .btn-natural { background-color: #17a2b8; }
+        .btn-natural:hover { background-color: #117a8b; }
+
+        /* 試卷：紅色 */
+        .btn-exam { background-color: #dc3545; }
+        .btn-exam:hover { background-color: #c82333; }
+
+        /* 英文釋疑：深青色 */
+        .btn-english-help { background-color: #20a4a8; }
+        .btn-english-help:hover { background-color: #16777a; }
+
+        /* 中叢：紫色 */
+        .btn-series { background-color: #6f42c1; }
+        .btn-series:hover { background-color: #56339a; }
+
+        /* 英聽：洋紅/莓果色 */
+        .btn-listening { background-color: #d63384; }
+        .btn-listening:hover { background-color: #ab296a; }
+
+        /* 計畫：橘色 */
+        .btn-plan { background-color: #fd7e14; }
+        .btn-plan:hover { background-color: #e36402; }
+
+        /* 自然子選單 - 歷屆：青藍色 */
+        .btn-past-exam { background-color: #17a2b8; }
+        .btn-past-exam:hover { background-color: #117a8b; }
+
+        /* 自然子選單 - 化學：翡翠綠/藍綠色 */
+        .btn-chemistry { background-color: #20c997; }
+        .btn-chemistry:hover { background-color: #17a077; }
+
+        /* 返回按鈕 */
+        .btn-back {
+            display: inline-block;
+            padding: 10px 24px;
+            font-size: 15px;
+            color: #555;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-back:hover {
+            background-color: #dde2e6;
+        }
+
+        /* 控制主選單與子選單顯示切換 */
+        .hidden {
+            display: none;
+        }
+
+        /* 手機版適配：維持一排 4 個（若螢幕極小字體自動微調） */
+        @media (max-width: 540px) {
+            body {
+                padding: 25px 10px;
+            }
+            .container {
+                padding: 25px 12px;
+            }
+            .button-grid {
+                gap: 8px;
+            }
+            .btn {
+                height: 54px;
+                font-size: 15px;
+                padding: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 主選單區塊 -->
+        <div id="main-menu">
+            <h1>📚 入口</h1>
+            <p>請選擇你要練習的科目或測驗：</p>
+
+            <div class="button-grid">
+                <!-- 第一排 4 個 -->
+                <a href="https://brucehsu60.github.io/math/" class="btn btn-math">數學</a>
+                <a href="https://brucehsu60.github.io/English/" class="btn btn-english">英文</a>
+                <button type="button" class="btn btn-natural" onclick="showNaturalMenu()">自然</button>
+                <a href="https://brucehsu60.github.io/Exam/" class="btn btn-exam">試卷</a>
+
+                <!-- 第二排 4 個 -->
+                <a href="Exam/english-help.html" class="btn btn-english-help">英文釋疑</a>
+                <a href="https://brucehsu60.github.io/series/" class="btn btn-series">中叢</a>
+                <a href="Exam/listening.html" class="btn btn-listening">英聽</a>
+                <a href="https://brucehsu60.github.io/sch/" class="btn btn-plan">計畫</a>
+            </div>
+        </div>
+
+        <!-- 自然科子選單區塊（點擊「自然」後顯示） -->
+        <div id="natural-menu" class="hidden">
+            <h1>🌿 自然科</h1>
+            <p>請選擇自然科練習項目：</p>
+
+            <div class="sub-grid">
+                <!-- 請將 href 修改為您實際的「歷屆」與「化學」網址 -->
+                <a href="https://brucehsu60.github.io/natural/" class="btn btn-past-exam">歷屆</a>
+                <a href="natural/chemistry.html" class="btn btn-chemistry">化學</a>
+            </div>
+
+            <button type="button" class="btn-back" onclick="showMainMenu()">⬅ 返回主選單</button>
+        </div>
+    </div>
+
+    <script>
+        function showNaturalMenu() {
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('natural-menu').classList.remove('hidden');
+        }
+
+        function showMainMenu() {
+            document.getElementById('natural-menu').classList.add('hidden');
+            document.getElementById('main-menu').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
