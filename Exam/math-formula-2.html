@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高中數學第二冊：34個核心公式 × 12大實戰解題資訊圖表（完整版 01～12）</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap');
+  body {
+    margin: 0;
+    padding: 0 0 60px 0;
+    background-color: #0f172a;
+    font-family: 'Noto Sans TC', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    overflow-x: hidden;
+  }
+  #top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #334155;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+  }
+  .nav-btn {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #60a5fa;
+  }
+  .slide-outer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    overflow: hidden;
+  }
+  .canvas-wrapper {
+    width: 1600px;
+    height: 900px;
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    transform-origin: top center;
+    flex-shrink: 0;
+  }
+  .top-banner-1 {
+    background: #153268;
+    height: 64px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .top-banner-2 {
+    background: #dbeafe;
+    height: 48px;
+    padding: 0 28px;
+    border-bottom: 1px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    flex-shrink: 0;
+  }
+  .card-grid {
+    padding: 16px 24px;
+    gap: 16px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    min-height: 0;
+  }
+  .info-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .card-header {
+    height: 42px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .bg-card-1 { background: linear-gradient(90deg, #9a5b13, #b4690e); }
+  .bg-card-2 { background: linear-gradient(90deg, #1d4ed8, #2563eb); }
+  .bg-card-3 { background: linear-gradient(90deg, #c2410c, #ea580c); }
+  .bg-card-4 { background: linear-gradient(90deg, #15803d, #16a34a); }
+  .bg-card-5 { background: linear-gradient(90deg, #0f766e, #0891b2); }
+  .bg-card-6 { background: linear-gradient(90deg, #6b21a8, #9333ea); }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    padding: 12px 14px;
+    gap: 8px;
+    min-height: 0;
+    align-items: center;
+  }
+  .left-col {
+    width: 54%;
+    min-width: 0;
+    overflow: hidden;
+    padding-right: 6px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .right-col {
+    width: 46%;
+    flex-shrink: 0;
+    height: 100%;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bullet-list {
+    list-style: none;
+    padding-left: 18px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bullet-list li {
+    position: relative;
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f172a;
+    word-break: break-word;
+  }
+  .bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: -16px;
+    top: -1px;
+    font-size: 18px;
+    color: #1e293b;
+  }
+  .card6-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 16px;
+    gap: 8px;
+  }
+  .pill-bar {
+    min-height: 56px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+  }
+  .pill-red { background: #fee2e2; border: 1.5px solid #f87171; color: #7f1d1d; }
+  .pill-yellow { background: #fef3c7; border: 1.5px solid #fbbf24; color: #78350f; }
+  .pill-green { background: #dcfce7; border: 1.5px solid #4ade80; color: #14532d; }
+
+  mjx-container {
+    font-size: 105% !important;
+    display: inline-block !important;
+    margin: 0 2px !important;
+    vertical-align: middle !important;
+  }
+  .top-banner-2 mjx-container {
+    font-size: 100% !important;
+  }
+
+  /* === 自動修復器注入樣式 === */
+  html { scroll-behavior: smooth; }
+  .slide-outer { scroll-margin-top: 96px !important; }
+  .top-banner-2 { height: auto !important; min-height: 48px !important; padding-top: 6px !important; padding-bottom: 6px !important; overflow: visible !important; }
+  .left-col { overflow: visible !important; height: auto !important; min-height: fit-content !important; }
+  .nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    margin-right: 6px;
+    background-color: #6c757d;
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-back-btn:hover { background-color: #5a6268; }
+</style>
+</head>
+<body>
+
+<nav id="top-nav">
+  <a href="math-formula.html" class="nav-back-btn">🔙 返回公式集</a>
+  <span class="text-amber-400 font-black text-sm mr-1">📚 第二冊 12 大實戰主題：</span>
+  <a href="#t1" class="nav-btn">01 等差數列與級數</a>
+  <a href="#t2" class="nav-btn">02 等比數列與複利</a>
+  <a href="#t3" class="nav-btn">03 級數求和公式</a>
+  <a href="#t4" class="nav-btn">04 均量差量與標準差</a>
+  <a href="#t5" class="nav-btn">05 平移伸縮與標準化</a>
+  <a href="#t6" class="nav-btn">06 相關係數與迴歸線</a>
+  <a href="#t7" class="nav-btn">07 邏輯與集合子集</a>
+  <a href="#t8" class="nav-btn">08 笛摩根與取捨原理</a>
+  <a href="#t9" class="nav-btn">09 排列組合與二項式</a>
+  <a href="#t10" class="nav-btn">10 極坐標與廣義角</a>
+  <a href="#t11" class="nav-btn">11 三角恆等式與反三角</a>
+  <a href="#t12" class="nav-btn">12 正餘弦與面積公式</a>
+</nav>
+
+<!-- ==================== 主題 01（公式 1） ==================== -->
+<div class="slide-outer" id="t1">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 01｜等差數列一般項與前 n 項和（公式 1）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：等差數列 $\langle a_n \rangle$ 滿足 $a_3 = 7$、$a_9 = 19$，且前 $n$ 項和記為 $S_n$</div>
+      <div>🎯 求解目標：先求公差 $d$ 與一般項，再利用正中間項性質求前 $11$ 項和 $S_{11} = (1)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>對應公式 1 等差數列與求和</li>
+              <li>已知第 $3$ 項 $a_3 = 7$</li>
+              <li>已知第 $9$ 項 $a_9 = 19$</li>
+              <li>奇數項和等於正中間項乘項數</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">等差級數「頭尾配對與正中間項」</text>
+              <line x1="25" y1="150" x2="235" y2="150" stroke="#334155" stroke-width="2"/>
+              <rect x="35" y="130" width="20" height="20" fill="#93c5fd"/>
+              <rect x="70" y="112" width="20" height="38" fill="#60a5fa"/>
+              <rect x="120" y="85" width="20" height="65" fill="#dc2626"/>
+              <rect x="170" y="58" width="20" height="92" fill="#60a5fa"/>
+              <rect x="205" y="40" width="20" height="110" fill="#93c5fd"/>
+              <line x1="25" y1="85" x2="235" y2="85" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="4,3"/>
+              <text x="45" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">a₁</text>
+              <text x="80" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">a₃=7</text>
+              <text x="130" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">a₆=13</text>
+              <text x="180" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">a₉=19</text>
+              <text x="215" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">a₁₁</text>
+              <text x="105" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">正中間項 a₆ = 13</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：求公差與一般項</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>兩項差：$a_9 - a_3 = 6d$</li>
+              <li>代數值：$19 - 7 = 12$</li>
+              <li>解得公差：$d = 2$，首項 $a_1 = 3$</li>
+              <li>一般項：$a_n = 2n + 1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">等差數列「斜率公差法」</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">d = (a₉ - a₃) / (9 - 3) = 2</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">aₙ = a₃ + (n - 3)d</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">aₙ = 7 + 2(n - 3) = 2n + 1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：正中間項求和</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>前 $11$ 項之正中間項為 $a_6$</li>
+              <li>因 $3+9 = 2 \times 6$，得等差中項</li>
+              <li>計算中項：$\displaystyle a_6 = \frac{7+19}{2} = 13$</li>
+              <li>奇數項和：$S_{11} = 11 \times a_6 = 143$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 1③：奇數項求和秒殺法</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">足碼和相等：a₁+a₁₁ = a₃+a₉ = 2a₆</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">正中間項 a₆ = (7 + 19) / 2 = 13</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">S₁₁ = a₆ × 11 = 13 × 11 = 143</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>首項與公差：$a_1 = 3, d = 2$</li>
+              <li>第 $11$ 項末項：$a_{11} = 23$</li>
+              <li>正中間項：$a_6 = 13$</li>
+              <li>前 $11$ 項總和：$(1) = 143$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">前 11 項總和 S₁₁</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">143</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 13 × 11)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(1) = 143</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>一般項：$a_n = a_1 + (n-1)d$</li>
+              <li>梯形和：$\displaystyle S_n = \frac{n(a_1+a_n)}{2}$</li>
+              <li>首項公差和：$\displaystyle n a_1 + \frac{n(n-1)}{2}d$</li>
+              <li>項與和：$n \ge 2$ 時 $a_n = S_n - S_{n-1}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">等差函數特徵對照</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">一般項為 n 的一次式：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">aₙ = d·n + k  (一次係數即公差 d)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">前 n 項和為無常數二次式：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">Sₙ = (d/2)n² + Bn</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：由 $S_n-S_{n-1}$ 求 $a_n$ 僅限 $n \ge 2$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：首項必用 $a_1 = S_1$ 獨立檢驗是否符合</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：知道 $a_3, a_9$ 免求首項，直接算中項 $a_6$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 02（公式 2、4） ==================== -->
+<div class="slide-outer" id="t2">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 02｜等比數列求和與複利本利和（公式 2、4）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：每年初存入 $10$ 萬元，年利率 $10\%$ 每年複利計息一次，已知 $1.1^5 \approx 1.61$</div>
+      <div>🎯 求解目標：結合複利公式與等比級數求和，求第 $5$ 年底之本利和總額 $(2)$ 萬元</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 2 等比與公式 4 複利</li>
+              <li>單筆本利和為 $P(1+r)^n$</li>
+              <li>每年初存入構成 $5$ 筆複利</li>
+              <li>加總即為公比 $1.1$ 之等比級數</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">定期定額「年初存入、年底結算」數線圖</text>
+              <line x1="25" y1="85" x2="235" y2="85" stroke="#1e293b" stroke-width="2.5"/>
+              <circle cx="40" cy="85" r="4.5" fill="#2563eb"/>
+              <circle cx="80" cy="85" r="4.5" fill="#2563eb"/>
+              <circle cx="120" cy="85" r="4.5" fill="#2563eb"/>
+              <circle cx="160" cy="85" r="4.5" fill="#2563eb"/>
+              <circle cx="200" cy="85" r="4.5" fill="#dc2626"/>
+              <circle cx="230" cy="85" r="5.5" fill="#16a34a"/>
+              <text x="40" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#1d4ed8">第1年初</text>
+              <text x="200" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">第5年初</text>
+              <text x="225" y="106" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">5年底</text>
+              <path d="M 200 92 Q 215 120 230 92" fill="none" stroke="#dc2626" stroke-width="2"/>
+              <text x="130" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">最後一筆（第5年初）也滾息 1 期！</text>
+              <text x="130" y="168" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">首項 a₁ = 10 × 1.1 = 11 萬</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：各期複利列式</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>第 $5$ 年初存：$10 \times 1.1^1$</li>
+              <li>第 $4$ 年初存：$10 \times 1.1^2$</li>
+              <li>第 $1$ 年初存：$10 \times 1.1^5$</li>
+              <li>首項 $a_1 = 11$，公比 $r = 1.1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 4：複利與等比數列</text>
+              <rect x="22" y="48" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">本利和 = 本金 × (1 + 期利率)^期數</text>
+              <rect x="22" y="92" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">5筆由小到大排成等比數列：</text>
+              <rect x="22" y="136" width="216" height="36" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">10(1.1)¹ + 10(1.1)² + ... + 10(1.1)⁵</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：等比級數求和</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>求和公式：$\displaystyle S_n = \frac{a_1(r^n-1)}{r-1}$</li>
+              <li>代數值：$\displaystyle S_5 = \frac{11(1.1^5-1)}{1.1-1}$</li>
+              <li>代入 $1.1^5 \approx 1.61$ 化簡</li>
+              <li>計算得：$110 \times 0.61 = 67.1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 2②：等比求和計算步驟</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">分子：11 × (1.61 - 1) = 11 × 0.61</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">分母：r - 1 = 1.1 - 1 = 0.1</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">總額 = 6.71 / 0.1 = 67.1 萬元</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>首項本利和：$a_1 = 11$ 萬元</li>
+              <li>公比倍率：$r = 1.1$</li>
+              <li>累積倍率：$1.1^5 \approx 1.61$</li>
+              <li>第 $5$ 年底總額：$(2) = 67.1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">期末本利和總額</text>
+              <text x="130" y="102" text-anchor="middle" font-size="20" font-weight="900" fill="#14532d">67.1 萬</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(總本金 50 萬)</text>
+              <rect x="30" y="160" width="200" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(2) = 67.1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>等比一般項：$a_n = a_1 r^{n-1}$</li>
+              <li>等比中項：$b^2 = ac \Rightarrow b = \pm\sqrt{ac}$</li>
+              <li>當 $r = 1$ 時總和為 $S_n = n a_1$</li>
+              <li>半年複利一次：期利率除以 $2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">等比級數公式選用技巧</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">當公比 r &gt; 1 時：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">用 a₁(rⁿ - 1) / (r - 1)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">當公比 r &lt; 1 時：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">用 a₁(1 - rⁿ) / (1 - r) 免負號</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：年初存入年底結算，首項為 $P(1+r)$ 非 $P$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：未知公比代公式前，須先討論 $r=1$ 特例</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：等比求和分子次方數 $n$ 代表「總項數」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 03（公式 3） ==================== -->
+<div class="slide-outer" id="t3">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 03｜三大連續整數級數求和公式（公式 3）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：級數 $S = 1 \times 2 + 2 \times 3 + 3 \times 4 + \cdots + 10 \times 11$，共 $10$ 項相乘相加</div>
+      <div>🎯 求解目標：先寫出第 $k$ 項一般式 $a_k$，再拆解套用平方和與一次和公式求總和 $S = (3)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>對應公式 3 三大級數求和公式</li>
+              <li>觀察第 $k$ 項為 $a_k = k(k+1)$</li>
+              <li>展開一般項得 $a_k = k^2 + k$</li>
+              <li>拆成平方和與一次和分別計算</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 3：三大級數求和視覺總表</text>
+              <rect x="20" y="46" width="220" height="36" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+              <text x="130" y="69" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">① Σk = n(n + 1) / 2</text>
+              <rect x="20" y="90" width="220" height="38" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+              <text x="130" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">② Σk² = n(n + 1)(2n + 1) / 6</text>
+              <rect x="20" y="136" width="220" height="38" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">③ Σk³ = [ n(n + 1) / 2 ]²</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：計算平方和與一次和</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>項數 $n = 10$ 代入求和公式</li>
+              <li>一次和：$\displaystyle \sum k = \frac{10 \times 11}{2} = 55$</li>
+              <li>平方和：$\displaystyle \frac{10 \times 11 \times 21}{6}$</li>
+              <li>約分得平方和為 $385$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">n = 10 代入公式速算</text>
+              <rect x="22" y="52" width="216" height="50" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">1 + 2 + ... + 10：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">(10 × 11) / 2 = 55</text>
+              <rect x="22" y="112" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">1² + 2² + ... + 10²：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(10 × 11 × 21) / 6 = 385</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：合併求和與秒殺公式</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>總和 $S = \sum k^2 + \sum k$</li>
+              <li>代入數據：$S = 385 + 55 = 440$</li>
+              <li>通分提出公因式可得秒殺公式</li>
+              <li>$\displaystyle \sum k(k+1) = \frac{n(n+1)(n+2)}{3}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">連續兩整數乘積和「秒殺公式」</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">1×2 + 2×3 + ... + n(n+1)</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#ea580c">= n(n + 1)(n + 2) / 3</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">代入 n = 10 驗證：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(10 × 11 × 12) / 3 = 440</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>前 $10$ 項一次和：$55$</li>
+              <li>前 $10$ 項平方和：$385$</li>
+              <li>前 $10$ 項立方和：$55^2 = 3025$</li>
+              <li>本題所求總和：$(3) = 440$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">級數總和 S</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">440</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(385 + 55)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(3) = 440</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>平方和第 $3$ 個因式為 $2n+1$</li>
+              <li>立方和恰為一次和的完全平方</li>
+              <li>分式型：$\displaystyle \frac{1}{k(k+1)} = \frac{1}{k} - \frac{1}{k+1}$</li>
+              <li>非從 $1$ 開始須用全段減前段</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">倒數分項對消法對照</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">乘積在分子：k(k + 1)</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">→ 展開為 k² + k 代公式 3</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">乘積在分母：1 / [ k(k + 1) ]</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">→ 拆成 1/k - 1/(k+1) 前後對消</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：平方和公式分子為 $2n+1$，切勿寫成 $n+2$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：公式 3 必須從 $1$ 開始加，缺前項須相減</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：熟記 $n=10$ 時平方和為 $385$，大考常直接用</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 04（公式 5、6、7） ==================== -->
+<div class="slide-outer" id="t4">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 04｜均量、差量 Sxx 與標準差（公式 5、6、7）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：五筆一維數據 $2, 4, 6, 8, 10$，算術平均數為 $\mu$，離差平方和為 $S_{xx}$</div>
+      <div>🎯 求解目標：先求平均數 $\mu$ 與離差平方和 $S_{xx}$，再求母體標準差 $\sigma = (4)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>整合公式 5 均量、6 差量與 7 標準差</li>
+              <li>算術平均數 $\mu$ 為數據重心</li>
+              <li>離差平方和 $S_{xx} = \sum(x_i-\mu)^2$</li>
+              <li>標準差 $\displaystyle \sigma = \sqrt{\frac{S_{xx}}{n}}$ 量測分散度</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">一維數據「重心 μ 與離差」數線模型</text>
+              <line x1="25" y1="105" x2="235" y2="105" stroke="#1e293b" stroke-width="2.5"/>
+              <circle cx="40" cy="105" r="5" fill="#2563eb"/>
+              <circle cx="85" cy="105" r="5" fill="#2563eb"/>
+              <circle cx="130" cy="105" r="6.5" fill="#dc2626"/>
+              <circle cx="175" cy="105" r="5" fill="#ea580c"/>
+              <circle cx="220" cy="105" r="5" fill="#ea580c"/>
+              <text x="40" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">2(-4)</text>
+              <text x="85" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">4(-2)</text>
+              <text x="130" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">μ=6</text>
+              <text x="175" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">8(+2)</text>
+              <text x="220" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">10(+4)</text>
+              <polygon points="130,135 122,152 138,152" fill="#dc2626"/>
+              <text x="130" y="172" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">離差總和必為 0，平方和 Sxx = 40</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：求均量與差量 Sxx</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>對稱等差數據平均數為正中間項</li>
+              <li>得算術平均數 $\mu = 6$</li>
+              <li>各點離差為 $-4, -2, 0, 2, 4$</li>
+              <li>離差平方和：$16+4+0+4+16 = 40$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 6：Sxx 兩種算法比較</text>
+              <rect x="22" y="48" width="216" height="54" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 定義法（μ 為整數時最快）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">Sxx = Σ(xᵢ - μ)² = 40</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">② 展開法（μ 非整數時必用）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">Sxx = Σxᵢ² - n·μ² = 220 - 5(36)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：求變異數與標準差</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>變異數公式：$\displaystyle \sigma^2 = \frac{S_{xx}}{n}$</li>
+              <li>代入得變異數：$\displaystyle \sigma^2 = \frac{40}{5} = 8$</li>
+              <li>標準差公式：$\displaystyle \sigma = \sqrt{\frac{S_{xx}}{n}}$</li>
+              <li>開根號得：$\sigma = \sqrt{8} = 2\sqrt{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 7：變異數與標準差關係</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">離差平方和 Sxx = 40</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">除以筆數 n=5 ⇒ 變異數 σ² = 8</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">開根號 ⇒ 標準差 σ = 2√2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>算術平均數：$\mu = 6$</li>
+              <li>離差平方和：$S_{xx} = 40$</li>
+              <li>數據變異數：$\sigma^2 = 8$</li>
+              <li>母體標準差：$(4) = 2\sqrt{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="275 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">母體標準差 σ</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">2√2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(約 2.828)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(4) = 2√2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>幾何平均數：$\sqrt[n]{x_1 x_2 \cdots x_n}$</li>
+              <li>全距：最大減最小（易受極端值影響）</li>
+              <li>四分位距：$Q_3 - Q_1$（抗極端值）</li>
+              <li>平方和公式：$\sum x_i^2 = n(\sigma^2+\mu^2)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">平均成長率必用「幾何平均數」</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">公式 5：n 筆正數幾何平均</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">G = ⁿ√(x₁ × x₂ × ... × xₙ)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">平均成長率 r：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">1 + r = ⁿ√[(1+r₁)(1+r₂)...(1+rₙ)]</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：成長率不可算術平均，須用幾何平均數</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：展開公式 $\sum x_i^2 - n\mu^2$ 勿漏乘 $n$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：標準差愈小，代表數據愈集中於平均數</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 05（公式 8、9） ==================== -->
+<div class="slide-outer" id="t5">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 05｜數據平移伸縮與標準化資料（公式 8、9）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：原數據 $X$ 平均數 $\mu_x = 60$、標準差 $\sigma_x = 8$，經線性調整為 $Y = -2X + 150$</div>
+      <div>🎯 求解目標：結合平移伸縮法則求新數據之平均數 $\mu_y$ 與標準差 $\sigma_y$，並算 $\mu_y + \sigma_y = (5)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 8 平移伸縮與 9 標準化</li>
+              <li>線性變換：$y_i = m x_i + d$</li>
+              <li>均量跟著乘 $m$ 再加 $d$</li>
+              <li>差量只受伸縮 $|m|$ 影響，與平移無關</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 8：平移與伸縮幾何效果</text>
+              <rect x="22" y="48" width="216" height="54" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">① 平移 (+d)：整體左右移動</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">平均數 + d ， 標準差「不變」</text>
+              <rect x="22" y="112" width="216" height="60" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">② 伸縮 (×m)：間距放大 |m| 倍</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">平均數 × m ， 標準差 × |m|</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：計算新平均數與標準差</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>新平均：$\mu_y = -2\mu_x + 150$</li>
+              <li>代入 $\mu_x = 60$ 得 $\mu_y = 30$</li>
+              <li>新標準差：$\sigma_y = |-2|\sigma_x$</li>
+              <li>代入 $\sigma_x = 8$ 得 $\sigma_y = 16$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">Y = -2X + 150 變換對照</text>
+              <rect x="22" y="52" width="216" height="50" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">平均數直接代換：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">μ_y = -2(60) + 150 = 30</text>
+              <rect x="22" y="112" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">標準差去常數加絕對值：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">σ_y = |-2| × 8 = 16</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：標準化資料性質</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>標準化公式：$\displaystyle z_i = \frac{x_i - \mu}{\sigma}$</li>
+              <li>相當於乘 $\displaystyle \frac{1}{\sigma}$ 再減 $\displaystyle \frac{\mu}{\sigma}$</li>
+              <li>標準化後新平均數必為 $\mu_z = 0$</li>
+              <li>標準化後新標準差必為 $\sigma_z = 1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 9：標準化資料 (Z 分數)</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f172a">xᵢ' = (xᵢ - μ) / σ</text>
+              <text x="130" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#ea580c">消去單位，比較不同科目相對表現</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">恆定不變性質：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="14" font-weight="900" fill="#dc2626">新平均 = 0 ， 新標準差 = 1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>新平均數：$\mu_y = 30$</li>
+              <li>新標準差：$\sigma_y = 16$</li>
+              <li>新變異數：$\sigma_y^2 = (-2)^2 \times 64 = 256$</li>
+              <li>所求總和：$(5) = 30 + 16 = 46$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">μ_y + σ_y 總和</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">46</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(30 + 16)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(5) = 46</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>中位數與眾數同享 $m x + d$ 規則</li>
+              <li>全距與四分位距皆乘以 $|m|$</li>
+              <li>變異數伸縮須乘平方倍 $m^2$</li>
+              <li>若 $m < 0$ 中位數順序會反轉</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">各類統計量線性變換總整理</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">均量 (平均、中位)：m·μ + d</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">差量 (標準差、全距)：|m|·σ</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">變異數 (平方單位)：m²·σ²</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：標準差恆非負，乘負數 $m$ 務必加絕對值 $|m|$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：平移常數 $+150$ 對標準差與全距毫無影響</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：任何數據標準化後，平均必為 $0$、標準差必為 $1$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 06（公式 10、11、12、13） ==================== -->
+<div class="slide-outer" id="t6">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 06｜相關係數與最小平方法迴歸直線（公式 10～13）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：二維數據滿足 $\mu_x = 4, \mu_y = 6$，且 $S_{xx} = 16, S_{yy} = 25, S_{xy} = 12$</div>
+      <div>🎯 求解目標：先求相關係數 $r$ 與迴歸直線方程式，再預測當 $x = 8$ 時之 $y$ 值 $(6)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 10、11、12、13 二維分析</li>
+              <li>離差乘積和 $S_{xy}$ 決定正負相關</li>
+              <li>相關係數範圍為 $-1 \le r \le 1$</li>
+              <li>迴歸直線必通過重心點 $(\mu_x, \mu_y)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">散佈圖與最小平方法迴歸直線</text>
+              <line x1="30" y1="160" x2="230" y2="160" stroke="#334155" stroke-width="2"/>
+              <line x1="30" y1="160" x2="30" y2="35" stroke="#334155" stroke-width="2"/>
+              <line x1="40" y1="145" x2="220" y2="55" stroke="#2563eb" stroke-width="3"/>
+              <circle cx="65" cy="125" r="4" fill="#64748b"/>
+              <circle cx="95" cy="128" r="4" fill="#64748b"/>
+              <circle cx="130" cy="100" r="6.5" fill="#dc2626"/>
+              <circle cx="165" cy="72" r="4" fill="#64748b"/>
+              <circle cx="200" cy="70" r="4" fill="#64748b"/>
+              <text x="135" y="120" font-size="11" font-weight="bold" fill="#dc2626">必過重心 (4, 6)</text>
+              <text x="90" y="65" font-size="12" font-weight="bold" fill="#1d4ed8">m = Sxy / Sxx = 3/4</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：計算相關係數 r</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>公式：$\displaystyle r = \frac{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}}$</li>
+              <li>代入：$\displaystyle r = \frac{12}{\sqrt{16} \times \sqrt{25}}$</li>
+              <li>計算得：$\displaystyle r = \frac{12}{20} = 0.6$</li>
+              <li>因 $r > 0$ 代表呈現正相關趨勢</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 11：相關係數雙表示法</text>
+              <rect x="22" y="48" width="216" height="54" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 離差公式：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">r = Sxy / √(Sxx · Syy) = 0.6</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">② 標準差公式：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">r = Sxy / (n · σx · σy)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：迴歸直線與預測</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>迴歸斜率：$\displaystyle m = \frac{S_{xy}}{S_{xx}} = \frac{3}{4}$</li>
+              <li>點斜式：$\displaystyle y - 6 = \frac{3}{4}(x - 4)$</li>
+              <li>化簡得：$\displaystyle y = \frac{3}{4}x + 3$</li>
+              <li>代入 $x = 8$ 預測得 $y = 9$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 12、13：原始 vs 標準化迴歸</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">原始迴歸斜率：m = r · (σy / σx)</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">y - 6 = (3/4)(x - 4)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">標準化資料迴歸直線（公式 13）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="14" font-weight="900" fill="#dc2626">y' = r · x' (斜率即為 r = 0.6)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>相關係數：$r = 0.6$</li>
+              <li>迴歸斜率：$\displaystyle m = \frac{3}{4} = 0.75$</li>
+              <li>迴歸直線：$\displaystyle y = \frac{3}{4}x + 3$</li>
+              <li>預測數值：$(6) = 9$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">x=8 時預測值 y</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">y = 9</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(r = 0.6 正相關)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(6) = 9</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>展開式：$S_{xy} = \sum x_i y_i - n\mu_x\mu_y$</li>
+              <li>標準化相關：$\displaystyle r = \frac{1}{n}\sum x_i' y_i'$</li>
+              <li>線性變換後 $|r|$ 大小維持不變</li>
+              <li>斜率 $m$ 與相關係數 $r$ 必同號</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">線性變換對相關係數 r 的影響</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">設 X' = aX + b , Y' = cY + d</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">① 當 a·c &gt; 0 時：新 r' = +r</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">② 當 a·c &lt; 0 時：新 r' = -r</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">相關程度 |r| 永遠不會改變！</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：迴歸斜率分母是 $S_{xx}$ 與 $\sigma_x$，切勿放反</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：水平或鉛直排列之散佈圖，相關係數 $r=0$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：標準化後迴歸線必過原點，即 $y' = r \cdot x'$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== 主題 07（公式 14、15、16） ==================== -->
+<div class="slide-outer" id="t7">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 07｜邏輯敘述、充要條件與集合子集（公式 14～16）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：設集合 $A = \{1, 2\}$、$B = \{1, 2, 3, 4, 5\}$，且有限集合 $C$ 滿足 $A \subset C \subset B$</div>
+      <div>🎯 求解目標：判別 $x \in A$ 為 $x \in B$ 之何種條件，並求滿足包含關係之集合 $C$ 個數 $(7)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 14、15 邏輯與 16 子集</li>
+              <li>小範圍推大範圍：$A \subset B$</li>
+              <li>若 $P \Rightarrow Q$ 則 $P$ 為充分條件</li>
+              <li>集合 $C$ 必含 $1, 2$，可選 $3, 4, 5$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">集合包含與充分必要條件同心圓</text>
+              <ellipse cx="130" cy="112" rx="95" ry="62" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+              <ellipse cx="120" cy="115" rx="68" ry="44" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+              <ellipse cx="110" cy="118" rx="38" ry="26" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+              <text x="110" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">A{1,2}</text>
+              <text x="165" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">C</text>
+              <text x="200" y="85" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e40af">B (含 3,4,5)</text>
+              <text x="130" y="183" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">小集合 A 是大集合 B 的「充分條件」</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：充分與必要判別</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>因為 $A \subset B$，故 $x \in A \Rightarrow x \in B$</li>
+              <li>箭頭左方 $x \in A$ 稱為充分條件</li>
+              <li>箭頭右方 $x \in B$ 稱為必要條件</li>
+              <li>原命題與逆否命題「非 $Q \Rightarrow$ 非 $P$」同義</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 14、15：邏輯與充要條件</text>
+              <rect x="22" y="48" width="216" height="54" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">P ⇒ Q （P 推得出 Q）</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">P 為充分條件 ， Q 為必要條件</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">否定敘述（且與或互換）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">「P 且 Q」否定為「非P 或 非Q」</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：子集個數計算</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>公式 16：子集總數為 $2^{n(A)}$</li>
+              <li>元素 $1, 2$ 必在 $C$ 中（各 $1$ 種選擇）</li>
+              <li>元素 $3, 4, 5$ 可選可不選（各 $2$ 種）</li>
+              <li>集合 $C$ 個數：$1^2 \times 2^3 = 8$ 個</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 16：子集個數二元選擇法</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">元素 1, 2：必入選 → 1 × 1 = 1</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">元素 3, 4, 5：可選不選 → 2³ = 8</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">滿足 A⊂C⊂B 共有 2^(5-2) = 8 個</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>集合 $A$ 子集數：$2^2 = 4$ 個</li>
+              <li>集合 $B$ 子集數：$2^5 = 32$ 個</li>
+              <li>自由元素個數：$5 - 2 = 3$ 個</li>
+              <li>滿足之集合 $C$ 個數：$(7) = 8$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">集合 C 的個數</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">8 個</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 2³ = 8)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(7) = 8</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>元素與集合用屬於記號 $x \in A$</li>
+              <li>子集與集合用包含記號 $A \subset B$</li>
+              <li>空集合 $\varnothing$ 為任意集合的子集</li>
+              <li>雙向互推 $P \Leftrightarrow Q$ 互為充要條件</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">屬於 ∈ 與包含 ⊂ 嚴格區分</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">元素對集合：1 ∈ {1, 2}</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">加花括號變子集：{1} ⊂ {1, 2}</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">空集合鐵律：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">∅ ⊂ A 恆成立（空集合必為子集）</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：逆命題「若 $Q$ 則 $P$」不一定與原命題同真假</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：若題目要求「真子集」，須扣除本身集合減 $1$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：小範圍可推大範圍，故小集合為大集合充分條件</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 08（公式 17、18、19） ==================== -->
+<div class="slide-outer" id="t8">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 08｜集合運算、笛摩根律與取捨原理（公式 17～19）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：在 $1$ 到 $100$ 的正整數中，設 $A$ 為 $2$ 的倍數集合、$B$ 為 $3$ 的倍數集合</div>
+      <div>🎯 求解目標：結合笛摩根律與取捨原理，求既不是 $2$ 的倍數也不是 $3$ 的倍數之個數 $(8)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>串聯公式 17 集合、18 笛摩根與 19 取捨</li>
+              <li>宇集個數：$n(U) = 100$</li>
+              <li>所求為 $n(A' \cap B')$</li>
+              <li>由笛摩根律轉為 $n(U) - n(A \cup B)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+              <text x="42" y="34" font-size="11" font-weight="bold" fill="#b45309">宇集 U (100)</text>
+              <circle cx="100" cy="105" r="46" fill="#dbeafe" stroke="#2563eb" stroke-width="2" opacity="0.85"/>
+              <circle cx="160" cy="105" r="46" fill="#fee2e2" stroke="#dc2626" stroke-width="2" opacity="0.85"/>
+              <text x="76" y="108" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e40af">A(50)</text>
+              <text x="184" y="108" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">B(33)</text>
+              <text x="130" y="108" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b21a8">16</text>
+              <text x="130" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">外部黃色區域 A'∩B' = (A∪B)' = 33</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：取捨原理求聯集</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>$2$ 的倍數：$n(A) = \lfloor \frac{100}{2} \rfloor = 50$</li>
+              <li>$3$ 的倍數：$n(B) = \lfloor \frac{100}{3} \rfloor = 33$</li>
+              <li>$6$ 的倍數：$n(A \cap B) = \lfloor \frac{100}{6} \rfloor = 16$</li>
+              <li>聯集：$50 + 33 - 16 = 67$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 19：取捨原理（排容原理）</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">兩集合聯集：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">n(A∪B) = n(A) + n(B) - n(A∩B)</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">三集合口訣：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">單項加、兩兩交集減、三交集加</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：笛摩根律求補集</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>笛摩根律：$A' \cap B' = (A \cup B)'$</li>
+              <li>代表宇集扣除聯集區域</li>
+              <li>列式：$n(U) - n(A \cup B)$</li>
+              <li>計算得：$100 - 67 = 33$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 18：笛摩根律雙公式對照</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="13" font-weight="bold" fill="#0f172a">① A' ∩ B' = (A ∪ B)'</text>
+              <text x="130" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#ea580c">（既非 A 且非 B ＝ A或B 的外部）</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="13" font-weight="bold" fill="#9a3412">② A' ∪ B' = (A ∩ B)'</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">口訣：括號提補集，交集變聯集</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>兩集合個數：$n(A)=50, n(B)=33$</li>
+              <li>共同交集數：$n(A \cap B) = 16$</li>
+              <li>聯集總個數：$n(A \cup B) = 67$</li>
+              <li>皆非之個數：$(8) = 33$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">n(A' ∩ B') 個數</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">33 個</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(100 - 67)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(8) = 33</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>差集定義：$A - B = A \cap B'$</li>
+              <li>差集個數：$n(A) - n(A \cap B)$</li>
+              <li>補集個數：$n(A') = n(U) - n(A)$</li>
+              <li>至少其一即求聯集 $n(A \cup B)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">公式 17：差集 A - B 視覺轉化</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">屬於 A 但不屬於 B：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">A - B = A - (A ∩ B) = A ∩ B'</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">個數計算鐵律：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">n(A - B) = n(A) - n(A ∩ B)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：差集個數是 $n(A)-n(A\cap B)$ 而非 $n(A)-n(B)$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：兩集合交集須取最小公倍數 $\text{lcm}(a,b)$ 而非直接相乘</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：遇到「皆非」必用笛摩根律轉為「全體減聯集」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 09（公式 20、21、22、23、24） ==================== -->
+<div class="slide-outer" id="t9">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 09｜排列組合、巴斯卡與二項式定理（公式 20～24）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：一、將 $a, a, a, b, c, c$ 六字母全取排成一列；二、多項式 $\left(x^2 + \frac{2}{x}\right)^6$ 展開式</div>
+      <div>🎯 求解目標：求相同物直線排列數 $M$，並求二項式展開中 $x^3$ 項係數 $(9)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 20～24 排列組合與二項式</li>
+              <li>相異物排列 $P^n_r$ 考慮順序</li>
+              <li>組合選取 $C^n_r$ 不考慮順序</li>
+              <li>二項式一般項為 $C^n_r a^{n-r} b^r$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 20～23：排列組合核心關係</text>
+              <rect x="20" y="46" width="220" height="36" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+              <text x="130" y="69" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">Pⁿᵣ = Cⁿᵣ × r!  (先選 C 再排 r!)</text>
+              <rect x="20" y="90" width="220" height="38" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+              <text x="130" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">與餘集對稱：Cⁿᵣ = Cⁿₙ₋ᵣ</text>
+              <rect x="20" y="136" width="220" height="38" rx="6" fill="#f0fdf4" stroke="#86efac"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">巴斯卡定理：Cⁿᵣ + Cⁿᵣ₊₁ = Cⁿ⁺¹ᵣ₊₁</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：相同物排列與巴斯卡</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>共有 $3$ 個 $a$、$1$ 個 $b$、$2$ 個 $c$</li>
+              <li>相同物視為無順序須除以階乘</li>
+              <li>排列數：$\displaystyle M = \frac{6!}{3! \times 2!} = 60$</li>
+              <li>巴斯卡口訣：上標同加一、下標取大</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 22：有相同物的直線排列</text>
+              <rect x="22" y="52" width="216" height="50" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">a, a, a, b, c, c 全取排列：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">6! / (3! × 1! × 2!) = 720 / 12 = 60</text>
+              <rect x="22" y="112" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">等價於組合選位置：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">C⁶₃ × C³₁ × C²₂ = 20 × 3 × 1 = 60</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：二項式定理求係數</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>一般項：$C^6_r (x^2)^{6-r} (2x^{-1})^r$</li>
+              <li>整理次方：$C^6_r \cdot 2^r \cdot x^{12-3r}$</li>
+              <li>令次方 $12 - 3r = 3 \Rightarrow r = 3$</li>
+              <li>求係數：$C^6_3 \times 2^3 = 20 \times 8 = 160$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 24：二項式定理一般項破題</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">Step 1：Tᵣ₊₁ = C⁶ᵣ (x²)⁶⁻ᵣ (2/x)ʳ</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">Step 2：指數 12 - 3r = 3 ⇒ r = 3</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">Step 3：C⁶₃ × 2³ = 20 × 8 = 160</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>相同物排列數：$M = 60$ 種</li>
+              <li>命中項次指標：$r = 3$</li>
+              <li>組合數與倍率：$C^6_3 = 20, 2^3 = 8$</li>
+              <li>所求 $x^3$ 項係數：$(9) = 160$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">x³ 項之係數</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">160</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(C⁶₃ × 2³)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(9) = 160</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>組合總和：$C^n_0 + C^n_1 + \cdots + C^n_n = 2^n$</li>
+              <li>奇偶交錯：$C^n_0 - C^n_1 + C^n_2 - \cdots = 0$</li>
+              <li>奇數項和等於偶數項和 $= 2^{n-1}$</li>
+              <li>求各項係數總和：直接令 $x = y = 1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">公式 24：組合級數兩大恆等式</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">令 x=1, y=1 代入 (x+y)ⁿ：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">Cⁿ₀ + Cⁿ₁ + ... + Cⁿₙ = 2ⁿ</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">令 x=1, y=-1 代入 (x+y)ⁿ：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">Cⁿ₀ - Cⁿ₁ + Cⁿ₂ - ... = 0</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：二項式求係數時，切勿漏乘括號內的常數次方 $2^r$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：組合級數若缺首項 $C^n_0$，答案須減去 $1$ 即 $2^n-1$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：棋盤方格走捷徑問題，本質即為「相同物排列」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 10（公式 25、26、27） ==================== -->
+<div class="slide-outer" id="t10">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 10｜銳角三角比、極坐標與廣義角（公式 25～27）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：有向角 $\theta$ 終邊通過第二象限點 $P(-3, 4)$，且另一點 $Q$ 極坐標為 $[6, 120^\circ]$</div>
+      <div>🎯 求解目標：先求點 $P$ 廣義角三角比 $\sin\theta + \cos\theta = (10)$，再將極坐標 $Q$ 化為直角坐標</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 25 銳角、26 極坐標與 27 廣義角</li>
+              <li>逆時針旋轉為正向角，順時針為負</li>
+              <li>距離半徑：$r = \sqrt{a^2+b^2} > 0$</li>
+              <li>廣義角定義：$\displaystyle \sin\theta = \frac{y}{r}, \cos\theta = \frac{x}{r}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <line x1="25" y1="145" x2="235" y2="145" stroke="#334155" stroke-width="2"/>
+              <line x1="145" y1="180" x2="145" y2="20" stroke="#334155" stroke-width="2"/>
+              <polygon points="145,145 65,145 65,45" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <circle cx="65" cy="45" r="5.5" fill="#dc2626"/>
+              <path d="M 170 145 A 25 25 0 0 0 129.4 125.5" fill="none" stroke="#dc2626" stroke-width="2"/>
+              <polygon points="129.4,125.5 136,123 133,130" fill="#dc2626"/>
+              <text x="65" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">P(-3, 4)</text>
+              <text x="105" y="162" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">x = -3</text>
+              <text x="52" y="98" text-anchor="end" font-size="11" font-weight="bold" fill="#1e3a8a">y = 4</text>
+              <text x="116" y="88" font-size="12" font-weight="bold" fill="#15803d">r = 5</text>
+              <text x="165" y="125" font-size="12" font-weight="bold" fill="#dc2626">θ</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：廣義角三角比計算</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>由 $P(-3, 4)$ 得 $r = \sqrt{(-3)^2+4^2} = 5$</li>
+              <li>正弦值：$\displaystyle \sin\theta = \frac{y}{r} = \frac{4}{5}$</li>
+              <li>餘弦值：$\displaystyle \cos\theta = \frac{x}{r} = -\frac{3}{5}$</li>
+              <li>相加得：$\displaystyle \sin\theta + \cos\theta = \frac{1}{5}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 27：單位圓與四象限正負</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">單位圓 (r=1) 上點坐標即為：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">(x, y) = (cos θ , sin θ)</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">範圍限制與正負：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">-1 ≤ sin θ , cos θ ≤ 1</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：極坐標轉直角坐標</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>極坐標 $[r, \theta]$ 轉換公式為 $(r\cos\theta, r\sin\theta)$</li>
+              <li>代入 $r = 6, \theta = 120^\circ$</li>
+              <li>橫坐標：$x = 6\cos 120^\circ = -3$</li>
+              <li>縱坐標：$y = 6\sin 120^\circ = 3\sqrt{3}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 26：極坐標 [r, θ] 互轉</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">極坐標 [6, 120°] 轉直角坐標：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">x = 6·(-1/2) = -3 , y = 6·(√3/2) = 3√3</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">核心轉換公式：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(x, y) = (r cos θ , r sin θ)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正弦與餘弦：$\displaystyle \sin\theta = \frac{4}{5}, \cos\theta = -\frac{3}{5}$</li>
+              <li>正切斜率：$\displaystyle \tan\theta = \frac{y}{x} = -\frac{4}{3}$</li>
+              <li>點 $Q$ 直角坐標：$(-3, 3\sqrt{3})$</li>
+              <li>所求三角比和：$\displaystyle (10) = \frac{1}{5}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="275 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">sin θ + cos θ</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">1 / 5</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(4/5 - 3/5)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(10) = 1/5</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>銳角正弦：$\displaystyle \sin\theta = \frac{\text{對邊}}{\text{斜邊}}$</li>
+              <li>銳角餘弦：$\displaystyle \cos\theta = \frac{\text{鄰邊}}{\text{斜邊}}$</li>
+              <li>銳角正切：$\displaystyle \tan\theta = \frac{\text{對邊}}{\text{鄰邊}}$</li>
+              <li>同界角性質：相差 $360^\circ \times k$ 三角比相同</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">四象限三角比正負口訣「才字圖」</text>
+              <line x1="40" y1="110" x2="220" y2="110" stroke="#0f766e" stroke-width="2"/>
+              <line x1="130" y1="45" x2="130" y2="175" stroke="#0f766e" stroke-width="2"/>
+              <text x="175" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">I 全正 (+)</text>
+              <text x="85" y="80" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">II sin 正</text>
+              <text x="85" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">III tan 正</text>
+              <text x="175" y="145" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">IV cos 正</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：距離半徑 $r = \sqrt{a^2+b^2}$ 永遠為正數，切勿帶負號</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：極坐標 $[r,\theta]$ 用方括號表示，順序為先長 $r$ 後角 $\theta$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：$\sin\theta$ 看 $y$ 坐標上下正負，$\cos\theta$ 看 $x$ 坐標左右正負</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 11（公式 28、29、34） ==================== -->
+<div class="slide-outer" id="t11">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 11｜商數平方關係、角度變換與反三角（公式 28、29、34）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：已知銳角 $\theta$ 滿足 $\sin\theta + \cos\theta = \frac{7}{5}$，且反餘弦角 $\alpha = \cos^{-1}\left(-\frac{1}{2}\right)$</div>
+      <div>🎯 求解目標：先由平方關係求 $\sin\theta\cos\theta = (11)$，再決定反三角函數 $\alpha$ 之角度</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>整合公式 28 恆等式、29 變換與 34 反三角</li>
+              <li>商數關係：$\displaystyle \tan\theta = \frac{\sin\theta}{\cos\theta}$</li>
+              <li>平方關係：$\sin^2\theta + \cos^2\theta = 1$</li>
+              <li>看到和與積互求，優先將兩邊平方</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 28：平方與商數恆等式金三角</text>
+              <polygon points="130,155 65,55 195,55" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="65" cy="55" r="22" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+              <circle cx="195" cy="55" r="22" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2"/>
+              <circle cx="130" cy="155" r="18" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+              <text x="65" y="59" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">sin²θ</text>
+              <text x="195" y="59" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">cos²θ</text>
+              <text x="130" y="159" text-anchor="middle" font-size="13" font-weight="bold" fill="#dc2626">1</text>
+              <text x="130" y="48" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">+</text>
+              <text x="130" y="98" text-anchor="middle" font-size="12" font-weight="900" fill="#15803d">(sinθ±cosθ)² = 1 ± 2sinθcosθ</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：平方關係求乘積</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>將 $\sin\theta+\cos\theta = \frac{7}{5}$ 兩邊平方</li>
+              <li>展開：$\sin^2\theta+\cos^2\theta+2\sin\theta\cos\theta = \frac{49}{25}$</li>
+              <li>代入平方和為 $1$：$1 + 2\sin\theta\cos\theta = \frac{49}{25}$</li>
+              <li>移項除以 $2$ 得：$\displaystyle \sin\theta\cos\theta = \frac{12}{25}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 29：四大角度變換速查表</text>
+              <rect x="20" y="46" width="220" height="30" rx="5" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">① 餘角 (90°-θ)：sin(90°-θ) = cos θ</text>
+              <rect x="20" y="80" width="220" height="30" rx="5" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="100" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">② 補角 (180°-θ)：sin 同號，cos/tan 異號</text>
+              <rect x="20" y="114" width="220" height="30" rx="5" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">③ 負角 (-θ)：cos(-θ)=cos θ，sin/tan 異號</text>
+              <rect x="20" y="148" width="220" height="30" rx="5" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">④ 加減 180°：tan(θ±180°)=tan θ，餘異號</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：反三角函數範圍判別</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>反餘弦定義域：$0^\circ \le \alpha \le 180^\circ$</li>
+              <li>已知 $\cos\alpha = -\frac{1}{2} < 0$</li>
+              <li>落在第二象限補角區間</li>
+              <li>得唯一角度：$\alpha = 180^\circ - 60^\circ = 120^\circ$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 34：反三角函數定義值域</text>
+              <rect x="22" y="48" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① sin⁻¹ k：-90° ≤ θ ≤ 90° (一、四象限)</text>
+              <rect x="22" y="92" width="216" height="36" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="115" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">② cos⁻¹ k：0° ≤ θ ≤ 180° (一、二象限)</text>
+              <rect x="22" y="136" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">③ tan⁻¹ k：-90° &lt; θ &lt; 90° (不含端點)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>兩數之和：$\displaystyle \sin\theta + \cos\theta = \frac{7}{5}$</li>
+              <li>兩數之差：$\displaystyle |\sin\theta - \cos\theta| = \frac{1}{5}$</li>
+              <li>反餘弦角：$\cos^{-1}\left(-\frac{1}{2}\right) = 120^\circ$</li>
+              <li>所求乘積：$\displaystyle (11) = \frac{12}{25}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">sin θ · cos θ 乘積</text>
+              <text x="130" y="102" text-anchor="middle" font-size="20" font-weight="900" fill="#14532d">12 / 25</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 0.48)</text>
+              <rect x="30" y="160" width="200" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(11) = 12/25</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>齊次分式同除以 $\cos\theta$ 轉為 $\tan\theta$</li>
+              <li>$\displaystyle \tan\theta + \frac{1}{\tan\theta} = \frac{1}{\sin\theta\cos\theta}$</li>
+              <li>$(\sin\theta-\cos\theta)^2 = 1 - 2\sin\theta\cos\theta$</li>
+              <li>口訣：奇變偶不變、正負看象限</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">大考秒殺：3-4-5 直角三角形代值</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">看到 sin θ + cos θ = 7/5：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">秒聯想 3/5 + 4/5 = 7/5</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">直接相乘免展開：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">sin θ · cos θ = (3/5) × (4/5) = 12/25</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：上標 $\sin^{-1}k$ 代表「反三角角度」而非倒數 $\frac{1}{\sin k}$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：負數之 $\sin^{-1}$ 取負銳角，但 $\cos^{-1}$ 須取鈍角</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：補角相加 $180^\circ$，僅 $\sin$ 保持同號，餘皆變號</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 12（公式 30、31、32、33） ==================== -->
+<div class="slide-outer" id="t12">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 12｜正弦、餘弦、中線定理與面積公式（公式 30～33）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：$\triangle ABC$ 三邊長為 $a = 7, b = 5, c = 8$，設外接圓半徑為 $R$、內切圓半徑為 $r$</div>
+      <div>🎯 求解目標：先由餘弦定理求 $\angle A$，再由面積與正弦定理求面積 $\triangle$、$R$ 與 $r = (12)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 30 正弦、31 餘弦、32 中線、33 面積</li>
+              <li>已知三邊長（SSS）優先用餘弦定理</li>
+              <li>面積可用兩邊夾角或海龍公式求得</li>
+              <li>由 $\triangle = rs$ 與正弦定理求 $r, R$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <circle cx="130" cy="106.25" r="73.15" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <polygon points="90,45 65,145 195,145" fill="#fef3c7" stroke="#ea580c" stroke-width="2.5"/>
+              <circle cx="106" cy="114" r="31" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+              <text x="90" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">A(60°)</text>
+              <text x="50" y="152" font-size="12" font-weight="bold" fill="#0f172a">B</text>
+              <text x="202" y="152" font-size="12" font-weight="bold" fill="#0f172a">C</text>
+              <text x="130" y="162" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">a = 7</text>
+              <text x="60" y="95" font-size="11" font-weight="bold" fill="#c2410c">c=8</text>
+              <text x="155" y="92" font-size="11" font-weight="bold" fill="#c2410c">b=5</text>
+              <text x="106" y="118" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">內切 r</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：餘弦定理與正弦求 R</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>餘弦公式：$\displaystyle \cos A = \frac{b^2+c^2-a^2}{2bc}$</li>
+              <li>代入三邊：$\displaystyle \cos A = \frac{25+64-49}{80} = \frac{1}{2}$</li>
+              <li>得 $\angle A = 60^\circ$，故 $\displaystyle \sin A = \frac{\sqrt{3}}{2}$</li>
+              <li>正弦定理：$\displaystyle 2R = \frac{a}{\sin A} = \frac{14}{\sqrt{3}}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 30、31：正弦與餘弦定理</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">正弦定理（邊角對稱與外接圓）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">a / sin A = 2R  ⇒  R = 7 / √3</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">黃金邊長組 (5, 7, 8)：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">邊長 7 對角必為 60°！</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：面積公式求內切圓 r</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>半周長：$\displaystyle s = \frac{7+5+8}{2} = 10$</li>
+              <li>海龍面積：$\sqrt{10(3)(5)(2)} = 10\sqrt{3}$</li>
+              <li>利用內切圓面積公式：$\triangle = r \cdot s$</li>
+              <li>代入得：$10\sqrt{3} = 10r \Rightarrow r = \sqrt{3}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 33：三角形四大面積公式</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 夾角：Δ = ½ bc sin A = 10√3</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">② 海龍：√[s(s-a)(s-b)(s-c)]</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">③ 內切圓：Δ = r·s ⇒ r = √3</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>三角形面積：$\triangle = 10\sqrt{3}$</li>
+              <li>外接圓半徑：$\displaystyle R = \frac{7\sqrt{3}}{3}$</li>
+              <li>半周長數值：$s = 10$</li>
+              <li>內切圓半徑：$(12) = \sqrt{3}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">內切圓半徑 r</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">√3</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(約 1.732)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(12) = √3</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正弦比例：$a : b : c = \sin A : \sin B : \sin C$</li>
+              <li>外接圓面積式：$\displaystyle \triangle = \frac{abc}{4R}$</li>
+              <li>中線定理：$\overline{AB}^2+\overline{AC}^2 = 2(\overline{AM}^2+\overline{MB}^2)$</li>
+              <li>鈍角判別：最大邊平方 $>$ 另兩邊平方和</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">公式 32：三角形中線定理</text>
+              <polygon points="110,45 45,125 195,125" fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+              <line x1="110" y1="45" x2="120" y2="125" stroke="#dc2626" stroke-width="2.5"/>
+              <circle cx="120" cy="125" r="4.5" fill="#dc2626"/>
+              <text x="110" y="40" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">A</text>
+              <text x="36" y="128" font-size="11" font-weight="bold" fill="#0f172a">B</text>
+              <text x="202" y="128" font-size="11" font-weight="bold" fill="#0f172a">C</text>
+              <text x="120" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">M(中點)</text>
+              <text x="130" y="170" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">AB² + AC² = 2 ( AM² + BM² )</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：正弦定理比值等於直徑 $2R$，求半徑 $R$ 務必除以 $2$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：邊比等於正弦比 $\sin A:\sin B:\sin C$，非角度比 $A:B:C$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：求外接圓 $R$ 用正弦定理，求內切圓 $r$ 必用面積 $\triangle = rs$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 16:9 自動縮放適應螢幕腳本 -->
+<script>
+  function autoScaleSlides() {
+    const wrappers = document.querySelectorAll('.canvas-wrapper');
+    const outers = document.querySelectorAll('.slide-outer');
+    const availableWidth = document.documentElement.clientWidth - 32;
+    const scale = Math.min(1, availableWidth / 1600);
+    wrappers.forEach((wrapper, idx) => {
+      wrapper.style.transform = `scale(${scale})`;
+      if (outers[idx]) {
+        outers[idx].style.height = `${900 * scale}px`;
+      }
+    });
+  }
+  window.addEventListener('resize', autoScaleSlides);
+  window.addEventListener('DOMContentLoaded', autoScaleSlides);
+  autoScaleSlides();
+</script>
+</body>
+</html>

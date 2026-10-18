@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高中數學第四冊A：25個核心公式 × 10大實戰解題資訊圖表（完整版 01～10）</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap');
+  body {
+    margin: 0;
+    padding: 0 0 60px 0;
+    background-color: #0f172a;
+    font-family: 'Noto Sans TC', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    overflow-x: hidden;
+  }
+  #top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(15, 23, 42, 0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #334155;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.45);
+  }
+  .nav-btn {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #60a5fa;
+  }
+  .slide-outer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    overflow: hidden;
+  }
+  .canvas-wrapper {
+    width: 1600px;
+    height: 900px;
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+    transform-origin: top center;
+    flex-shrink: 0;
+  }
+  .top-banner-1 {
+    background: #153268;
+    height: 64px;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .top-banner-2 {
+    background: #dbeafe;
+    height: 48px;
+    padding: 0 28px;
+    border-bottom: 1px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e3a8a;
+    flex-shrink: 0;
+  }
+  .card-grid {
+    padding: 16px 24px;
+    gap: 16px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    min-height: 0;
+  }
+  .info-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .card-header {
+    height: 42px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .bg-card-1 { background: linear-gradient(90deg, #9a5b13, #b4690e); }
+  .bg-card-2 { background: linear-gradient(90deg, #1d4ed8, #2563eb); }
+  .bg-card-3 { background: linear-gradient(90deg, #c2410c, #ea580c); }
+  .bg-card-4 { background: linear-gradient(90deg, #15803d, #16a34a); }
+  .bg-card-5 { background: linear-gradient(90deg, #0f766e, #0891b2); }
+  .bg-card-6 { background: linear-gradient(90deg, #6b21a8, #9333ea); }
+
+  
+  
+  
+  .bullet-list {
+    list-style: none;
+    padding-left: 18px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .bullet-list li {
+    position: relative;
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #0f172a;
+    word-break: break-word;
+  }
+  .bullet-list li::before {
+    content: "•";
+    position: absolute;
+    left: -16px;
+    top: -1px;
+    font-size: 18px;
+    color: #1e293b;
+  }
+  .card6-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 14px 16px;
+    gap: 8px;
+  }
+  .pill-bar {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 6px;
+}
+  .pill-red { background: #fee2e2; border: 1.5px solid #f87171; color: #7f1d1d; }
+  .pill-yellow { background: #fef3c7; border: 1.5px solid #fbbf24; color: #78350f; }
+  .pill-green { background: #dcfce7; border: 1.5px solid #4ade80; color: #14532d; }
+
+  mjx-container {
+    font-size: 105% !important;
+    display: inline-block !important;
+    margin: 0 2px !important;
+    vertical-align: middle !important;
+  }
+  .top-banner-2 mjx-container {
+    font-size: 100% !important;
+  }
+
+  /* === 自動修復器注入樣式 === */
+  html { scroll-behavior: smooth; }
+  .slide-outer { scroll-margin-top: 96px !important; }
+  .top-banner-2 { height: auto !important; min-height: 48px !important; padding-top: 6px !important; padding-bottom: 6px !important; overflow: visible !important; }
+  
+  .nav-back-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    margin-right: 6px;
+    background-color: #6c757d;
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-back-btn:hover { background-color: #5a6268; }
+
+  /* === 智慧圖文分離與自動縮放防護樣式 === */
+  .card-body {
+    flex: 1 !important;
+    display: flex !important;
+    padding: 10px 12px !important;
+    gap: 12px !important;
+    min-height: 0 !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .left-col {
+    flex: 1 1 52% !important;
+    min-width: 0 !important;
+    max-width: 55% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  .right-col {
+    flex: 0 0 43% !important;
+    min-width: 180px !important;
+    max-width: 45% !important;
+    height: 100% !important;
+    background: #f8fafc !important;
+    border-radius: 10px !important;
+    border: 1px solid #e2e8f0 !important.
+    padding: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  /* 針對長數學式進行智慧縮放與字型保護 */
+  .bullet-list li {
+    font-size: 14.5px !important; /* 微調基礎字體讓長算式更容易容納 */
+    letter-spacing: -0.2px;
+  }
+  mjx-container {
+    max-width: 100% !important;
+    transform-origin: left center;
+  }
+</style>
+</head>
+<body>
+
+<nav id="top-nav">
+  <a href="math-formula.html" class="nav-back-btn">🔙 返回公式集</a>
+  <span class="text-amber-400 font-black text-sm mr-1">📚 第四冊A 10 大實戰主題：</span>
+  <a href="#t1" class="nav-btn">01 二面角與三垂線定理</a>
+  <a href="#t2" class="nav-btn">02 錐體與正四面體</a>
+  <a href="#t3" class="nav-btn">03 空間內積與柯西</a>
+  <a href="#t4" class="nav-btn">04 空間外積與體積</a>
+  <a href="#t5" class="nav-btn">05 平面直線與點面距</a>
+  <a href="#t6" class="nav-btn">06 條件機率與獨立事件</a>
+  <a href="#t7" class="nav-btn">07 分割與貝氏定理</a>
+  <a href="#t8" class="nav-btn">08 三平面與矩陣列運算</a>
+  <a href="#t9" class="nav-btn">09 二階反方陣與乘法</a>
+  <a href="#t10" class="nav-btn">10 轉移矩陣與線性變換</a>
+</nav>
+
+<!-- ==================== 主題 01（公式 1、2、3） ==================== -->
+<div class="slide-outer" id="t1">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 01｜空間線面關係、二面角與三垂線定理（公式 1～3）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：點 $A$ 在平面 $E$ 外，$\overleftrightarrow{AB} \perp E$ 於 $B$，且 $\overline{BC} \perp$ 直線 $L$ 於 $C$，已知 $\overline{AB}=3, \overline{BC}=4, \overline{CD}=12$</div>
+      <div>🎯 求解目標：由三垂線定理求點 $A$ 到 $L$ 上點 $D$ 之距離 $\overline{AD} = (1)$，並求二面角餘弦值</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 1 線面、2 二面角與 3 三垂線</li>
+              <li>第一垂：$\overleftrightarrow{AB} \perp$ 平面 $E$</li>
+              <li>第二垂：$\overline{BC} \perp$ 直線 $L$</li>
+              <li>結論第三垂：$\overline{AC} \perp$ 直線 $L$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="30" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 3：三垂線定理立體幾何圖</text>
+              <polygon points="25,165 185,165 235,105 75,105" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+              <line x1="50" y1="160" x2="105" y2="108" stroke="#0f172a" stroke-width="2.5"/>
+              <line x1="165" y1="42" x2="165" y2="132" stroke="#2563eb" stroke-width="2.5"/>
+              <line x1="165" y1="132" x2="80" y2="132" stroke="#16a34a" stroke-width="2.5"/>
+              <line x1="165" y1="42" x2="80" y2="132" stroke="#dc2626" stroke-width="2.5"/>
+              <line x1="165" y1="42" x2="55" y2="155" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
+              <circle cx="165" cy="42" r="4.5" fill="#2563eb"/>
+              <circle cx="165" cy="132" r="4.5" fill="#0f172a"/>
+              <circle cx="80" cy="132" r="4.5" fill="#dc2626"/>
+              <circle cx="55" cy="155" r="4.5" fill="#9333ea"/>
+              <text x="175" y="45" font-size="11" font-weight="bold" fill="#1d4ed8">A</text>
+              <text x="175" y="138" font-size="11" font-weight="bold" fill="#0f172a">B</text>
+              <text x="68" y="126" font-size="11" font-weight="bold" fill="#dc2626">C</text>
+              <text x="42" y="155" font-size="11" font-weight="bold" fill="#6b21a8">D</text>
+              <text x="108" y="102" font-size="11" font-weight="bold" fill="#0f172a">L</text>
+              <text x="130" y="182" text-anchor="middle" font-size="11" font-weight="900" fill="#dc2626">AB⊥E 且 BC⊥L ⇒ AC⊥L</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：三垂線定理連算畢氏</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>在 $\text{Rt}\triangle ABC$ 中，$\angle ABC = 90^\circ$</li>
+              <li>求斜邊：$\overline{AC} = \sqrt{3^2+4^2} = 5$</li>
+              <li>由三垂線知 $\overline{AC} \perp L$（即 $\angle ACD = 90^\circ$）</li>
+              <li>再算畢氏：$\overline{AD} = \sqrt{5^2+12^2} = 13$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">兩次畢氏定理「連環直角三角形」</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">第一層直角 ΔABC (3-4-5)：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">AC = √(AB² + BC²) = √(9+16) = 5</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">第二層直角 ΔACD (5-12-13)：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">AD = √(AC² + CD²) = √(25+144) = 13</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：二面角與投影面積</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>因 $\overline{AC}\perp L$ 且 $\overline{BC}\perp L$ 於同點 $C$</li>
+              <li>故 $\angle ACB = \theta$ 即為兩平面之二面角</li>
+              <li>二面角餘弦：$\displaystyle \cos\theta = \frac{\overline{BC}}{\overline{AC}} = \frac{4}{5}$</li>
+              <li>投影面積公式：$A_{\text{投}} = A_{\text{原}} |\cos\theta|$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 2：二面角定義與正射影面積</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 找二面角必備條件：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">兩射線須在「稜線同車點 C」垂直稜線</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">② 面積投影收縮律（公式 2②）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">投影面積 = 原面積 a × |cos θ|</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>點 $A$ 到直線 $L$ 距離：$\overline{AC} = 5$</li>
+              <li>二面角餘弦：$\displaystyle \cos\theta = \frac{4}{5}$</li>
+              <li>空間總平方和：$3^2+4^2+12^2 = 169$</li>
+              <li>所求線段長度：$(1) = 13$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">空間距離 AD</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">13</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(√(3²+4²+12²))</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(1) = 13</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>不共面兩直線必為「歪斜線」</li>
+              <li>直線垂直平面上兩相交直線則垂直該面</li>
+              <li>三垂線逆定理：$\overleftrightarrow{AB}\perp E, \overline{AC}\perp L \Rightarrow \overline{BC}\perp L$</li>
+              <li>空間畢氏：$\overline{AD}^2 = \overline{AB}^2 + \overline{BC}^2 + \overline{CD}^2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">公式 1：空間中兩直線四大關係</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">共平面（決定唯一平面或重合）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">① 重合 、 ② 交於一點 、 ③ 平行</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">不共平面（空間獨有）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">④ 歪斜線（不平行且不相交）</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：空間中不相交的兩條直線，可能是平行或歪斜</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：若只有 $\overline{AC}\perp L$ 與 $\overline{BC}\perp L$，無法推得 $\overleftrightarrow{AB}\perp E$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：三段兩兩垂直向量和之長度，直接開三維畢氏平方和</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 02（公式 4、5、6） ==================== -->
+<div class="slide-outer" id="t2">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 02｜長方體、錐體與正四面體黃金數據（公式 4～6）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：一正四面體 $ABCD$ 之稜長為 $a = 6$，設其高為 $h$、外接球半徑為 $R$、內切球半徑為 $r$</div>
+      <div>🎯 求解目標：結合正四面體公式與錐體體積公式，求高 $h$、球半徑 $R, r$ 及正四面體體積 $V = (2)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 4 長方體、5 錐體與 6 正四面體</li>
+              <li>長方體對角線：$\sqrt{a^2+b^2+c^2}$</li>
+              <li>錐體體積：$\displaystyle V = \frac{1}{3} \times \text{底面積} \times \text{高}$</li>
+              <li>正四面體由 $4$ 個全等正三角形構成</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 6：正四面體高 h = R + r (3 : 1)</text>
+              <polygon points="130,38 45,152 155,165" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+              <polygon points="130,38 155,165 215,132" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <line x1="45" y1="152" x2="215" y2="132" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="130" y1="38" x2="130" y2="148" stroke="#dc2626" stroke-width="2.5"/>
+              <circle cx="130" cy="120" r="5" fill="#16a34a"/>
+              <circle cx="130" cy="148" r="4" fill="#0f172a"/>
+              <text x="130" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">A</text>
+              <text x="142" y="92" font-size="11" font-weight="bold" fill="#dc2626">R = 3/4 h</text>
+              <text x="142" y="138" font-size="11" font-weight="bold" fill="#15803d">r = 1/4 h</text>
+              <text x="130" y="180" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">球心 O 分高為 3 : 1 (R = 3r)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：正四面體高與球半徑</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正四面體高：$\displaystyle h = \frac{\sqrt{6}}{3}a = 2\sqrt{6}$</li>
+              <li>外接球半徑：$\displaystyle R = \frac{3}{4}h = \frac{\sqrt{6}}{4}a = \frac{3\sqrt{6}}{2}$</li>
+              <li>內切球半徑：$\displaystyle r = \frac{1}{4}h = \frac{\sqrt{6}}{12}a = \frac{\sqrt{6}}{2}$</li>
+              <li>外接球與內切球半徑比恆為 $3 : 1$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 6：正四面體三大長度公式</text>
+              <rect x="22" y="48" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 高 h = (√6 / 3) a</text>
+              <rect x="22" y="92" width="216" height="36" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">② 外接球半徑 R = (√6 / 4) a</text>
+              <rect x="22" y="136" width="216" height="36" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">③ 內切球半徑 r = (√6 / 12) a</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：錐體體積公式計算</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正三角形底面積：$\displaystyle \frac{\sqrt{3}}{4}a^2 = 9\sqrt{3}$</li>
+              <li>代入錐體體積：$\displaystyle V = \frac{1}{3} \times \text{底} \times \text{高}$</li>
+              <li>列式：$\displaystyle V = \frac{1}{3} \times 9\sqrt{3} \times 2\sqrt{6}$</li>
+              <li>化簡得體積：$V = 6\sqrt{18} = 18\sqrt{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 5、6：正四面體體積與二面角</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">體積公式：V = (√2 / 12) a³</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">代入 a = 6 ⇒ (√2/12)(216) = 18√2</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">必記常數（正四面體兩面角 θ）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">cos θ = 1 / 3  (斜高重心分 2:1)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正四面體高：$h = 2\sqrt{6}$</li>
+              <li>外接與內切球：$\displaystyle R = \frac{3\sqrt{6}}{2}, r = \frac{\sqrt{6}}{2}$</li>
+              <li>底面正三角形面積：$9\sqrt{3}$</li>
+              <li>正四面體體積：$(2) = 18\sqrt{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">正四面體體積 V</text>
+              <text x="130" y="102" text-anchor="middle" font-size="20" font-weight="900" fill="#14532d">18√2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(約 25.46)</text>
+              <rect x="30" y="160" width="200" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(2) = 18√2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>正方體削去四個直角錐可得正四面體</li>
+              <li>正四面體對稜必互相垂直（內積 $0$）</li>
+              <li>正四面體對稜中點距離為 $\displaystyle \frac{\sqrt{2}}{2}a$</li>
+              <li>正金字塔（四角錐）底面為正方形</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">正方體內嵌正四面體坐標法</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">邊長 b 之正方體，面對角線 a = √2 b</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">四頂點取 (0,0,0),(b,b,0),(b,0,b),(0,b,b)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">體積秒殺（正方體減 4 個角落錐體）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">V = b³ - 4 × (1/6 b³) = 1/3 b³</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：錐體體積務必乘以 $\frac{1}{3}$，切勿只算底面積乘高</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：正四面體兩面角 $\cos\theta = \frac{1}{3}$，但金字塔側面與底面夾角不同</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：正四面體因為有 $4$ 個面，內切球半徑 $r$ 恰為高 $h$ 的 $\frac{1}{4}$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 03（公式 7、8、9） ==================== -->
+<div class="slide-outer" id="t3">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 03｜空間向量運算、內積與柯西不等式（公式 7～9）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：空間中實數 $x, y, z$ 滿足 $x^2 + y^2 + z^2 = 14$，搭配常數向量 $\vec{b} = (1, 2, 3)$</div>
+      <div>🎯 求解目標：由三維柯西不等式求 $x + 2y + 3z$ 之最大值 $M = (3)$，並求等號成立時之 $(x,y,z)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>整合公式 7 空間向量、8 內積與 9 柯西</li>
+              <li>空間向量長：$|\vec{a}| = \sqrt{x^2+y^2+z^2}$</li>
+              <li>空間內積：$\vec{a}\cdot\vec{b} = x_1x_2+y_1y_2+z_1z_2$</li>
+              <li>柯西不等式：$(\vec{a}\cdot\vec{b})^2 \le |\vec{a}|^2|\vec{b}|^2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 7、8：空間三維坐標與向量內積</text>
+              <line x1="95" y1="125" x2="95" y2="35" stroke="#334155" stroke-width="2"/>
+              <line x1="95" y1="125" x2="225" y2="125" stroke="#334155" stroke-width="2"/>
+              <line x1="95" y1="125" x2="35" y2="175" stroke="#334155" stroke-width="2"/>
+              <line x1="95" y1="125" x2="185" y2="62" stroke="#dc2626" stroke-width="3"/>
+              <polygon points="190,59 179,61 185,69" fill="#dc2626"/>
+              <text x="95" y="28" text-anchor="middle" font-size="11" font-weight="bold" fill="#334155">z</text>
+              <text x="232" y="129" font-size="11" font-weight="bold" fill="#334155">y</text>
+              <text x="25" y="182" font-size="11" font-weight="bold" fill="#334155">x</text>
+              <text x="180" y="52" font-size="12" font-weight="bold" fill="#dc2626">b = (1, 2, 3)</text>
+              <text x="155" y="168" text-anchor="middle" font-size="12" font-weight="900" fill="#1d4ed8">|b| = √(1²+2²+3²) = √14</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：三維柯西不等式列式</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>設動向量：$\vec{a} = (x, y, z)$</li>
+              <li>設常向量：$\vec{b} = (1, 2, 3)$</li>
+              <li>列柯西：$(x+2y+3z)^2 \le (x^2+y^2+z^2)(1^2+2^2+3^2)$</li>
+              <li>代入數值：$(x+2y+3z)^2 \le 14 \times 14 = 196$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 9：三維柯西不等式結構</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">左式（內積平方）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">(1·x + 2·y + 3·z)²</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">右式（長度平方乘積）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(x² + y² + z²)(1² + 2² + 3²) = 196</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：開根號與平行求點坐標</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>開根號範圍：$-14 \le x+2y+3z \le 14$</li>
+              <li>等號成立於 $\vec{a} \parallel \vec{b}$，即 $\displaystyle \frac{x}{1}=\frac{y}{2}=\frac{z}{3}=t$</li>
+              <li>代回 $x+2y+3z=14$ 得 $14t = 14 \Rightarrow t=1$</li>
+              <li>最大時坐標為 $(x,y,z) = (1, 2, 3)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">等號成立參數 t 速算法</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">Step 1：設 x = t , y = 2t , z = 3t</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">Step 2：代入一次式 14t = ±14 ⇒ t = ±1</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">Step 3：t=1 得最大 14；t=-1 得最小 -14</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>兩向量長度：$|\vec{a}| = \sqrt{14}, |\vec{b}| = \sqrt{14}$</li>
+              <li>最大值點坐標：$(1, 2, 3)$</li>
+              <li>最小值點坐標：$(-1, -2, -3)$</li>
+              <li>所求最大值：$(3) = 14$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">x+2y+3z 最大值</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">14</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(發生於 (1, 2, 3))</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(3) = 14</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>空間夾角：$\displaystyle \cos\theta = \frac{x_1x_2+y_1y_2+z_1z_2}{|\vec{a}||\vec{b}|}$</li>
+              <li>空間正射影：$\displaystyle \left(\frac{\vec{a}\cdot\vec{b}}{|\vec{b}|^2}\right)\vec{b}$</li>
+              <li>空間分點與共線定理與平面完全相同</li>
+              <li>附係數平方和如 $4x^2$ 須配向量 $(2x, \dots)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">進階配湊：平方項帶係數之柯西</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">若已知 4x² + 9y² + z² = k：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">動向量須設為 a = (2x , 3y , z)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">再將一次式配湊對齊內積：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">等號成立於 2x/b₁ = 3y/b₂ = z/b₃</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：等號成立是對應分量成比例，切勿令 $x=y=z$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：代回求 $(x,y,z)$ 時，優先代回「一次式」免正負增根</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：此題本質為求原點到平面 $x+2y+3z=k$ 之切球半徑</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 04（公式 10、11） ==================== -->
+<div class="slide-outer" id="t4">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 04｜空間向量外積、面積與六面體體積（公式 10、11）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：空間三向量 $\vec{a} = (1, 1, 0)$、$\vec{b} = (0, 1, 1)$、$\vec{c} = (1, 0, 1)$</div>
+      <div>🎯 求解目標：先求外積 $\vec{a}\times\vec{b}$ 與張成面積，再求三向量張成之平行六面體體積 $V_{\text{六}} = (4)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 10 外積與公式 11 體積</li>
+              <li>外積 $\vec{a}\times\vec{b}$ 是一個同時垂直 $\vec{a},\vec{b}$ 的向量</li>
+              <li>外積長度 $|\vec{a}\times\vec{b}|$ 為平行四邊形面積</li>
+              <li>三重積 $|(\vec{a}\times\vec{b})\cdot\vec{c}|$ 為六面體體積</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 10、11：右手定則外積與六面體</text>
+              <polygon points="45,155 155,155 205,115 95,115" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <line x1="45" y1="155" x2="45" y2="45" stroke="#dc2626" stroke-width="3"/>
+              <polygon points="45,40 40,50 50,50" fill="#dc2626"/>
+              <line x1="45" y1="155" x2="85" y2="65" stroke="#16a34a" stroke-width="2.5"/>
+              <polygon points="87,60 79,67 88,71" fill="#16a34a"/>
+              <text x="105" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">a</text>
+              <text x="60" y="132" font-size="11" font-weight="bold" fill="#1d4ed8">b</text>
+              <text x="100" y="72" font-size="11" font-weight="bold" fill="#15803d">c</text>
+              <text x="55" y="48" font-size="12" font-weight="900" fill="#dc2626">a × b (公垂向量)</text>
+              <text x="150" y="138" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">底面積 = |a×b|</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：外積計算與平行四邊形面積</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>由行列式口訣算 $\vec{a}\times\vec{b}$：去頭去尾取中間</li>
+              <li>得公垂向量：$\vec{a}\times\vec{b} = (1, -1, 1)$</li>
+              <li>平行四邊形面積：$|\vec{a}\times\vec{b}| = \sqrt{1+1+1} = \sqrt{3}$</li>
+              <li>所圍三角形面積為一半：$\displaystyle \frac{\sqrt{3}}{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 10：外積「抄兩遍去頭尾」速算</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">a : (1)   1   0   1   1   (0)</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">b : (0)   1   1   0   1   (1)</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">中間三組二階行列式：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">a × b = (1-0 , 0-1 , 1-0) = (1, -1, 1)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：平行六面體與四面體體積</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>六面體體積：$V_{\text{六}} = |(\vec{a}\times\vec{b})\cdot\vec{c}|$</li>
+              <li>將 $(1,-1,1)$ 與 $\vec{c}=(1,0,1)$ 作內積</li>
+              <li>計算得：$V_{\text{六}} = |1(1) + (-1)(0) + 1(1)| = 2$</li>
+              <li>四面體體積乘 $\displaystyle \frac{1}{6}$：$\displaystyle V_{\text{四}} = 2 \times \frac{1}{6} = \frac{1}{3}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 11：平行六面體 vs 四面體體積</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 平行六面體 V_六 = |(a × b) · c|</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">等價於三階行列式絕對值 = 2</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">② 四面體 V_四（底減半、錐體乘 1/3）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">V_四 = |(a × b) · c| × (1/6) = 1/3</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>外積向量：$\vec{a}\times\vec{b} = (1, -1, 1)$</li>
+              <li>平行四邊形面積：$|\vec{a}\times\vec{b}| = \sqrt{3}$</li>
+              <li>四面體體積：$\displaystyle V_{\text{四}} = \frac{1}{3}$</li>
+              <li>平行六面體體積：$(4) = 2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">平行六面體體積</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(四面體體積 = 1/3)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(4) = 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>外積反交換律：$\vec{b}\times\vec{a} = -(\vec{a}\times\vec{b})$</li>
+              <li>自身或平行向量外積必為零向量 $\vec{0}$</li>
+              <li>畢氏恆等式：$|\vec{a}\cdot\vec{b}|^2 + |\vec{a}\times\vec{b}|^2 = |\vec{a}|^2|\vec{b}|^2$</li>
+              <li>四點共面充要條件：四面體體積為 $0$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">內積 (Dot) vs 外積 (Cross) 終極對照</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">內積 a·b = |a||b|cosθ（純量）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">用於「垂直判別 (=0)」與「求夾角」</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">外積 a×b（向量，長 |a||b|sinθ）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">用於「求公垂法向量」與「求面積」</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：內積結果是「實數」，外積結果是「空間向量」</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：求「四面體」體積時，三重積務必乘以 $\frac{1}{6}$ 而非 $\frac{1}{3}$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：算出外積後，立刻與原兩向量內積檢驗是否為 $0$</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 05（公式 12、13、14、15） ==================== -->
+<div class="slide-outer" id="t5">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 05｜平面方程式、空間直線與點面距（公式 12～15）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：空間點 $K(2, 1, 3)$，與平面 $E : 2x - y + 2z = 3$</div>
+      <div>🎯 求解目標：先由點面距公式求 $K$ 到 $E$ 之距離 $d(K,E) = (5)$，再由直線參數式求投影點坐標</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 12、13 平面與 14、15 直線距離</li>
+              <li>平面 $2x-y+2z=3$ 法向量 $\vec{n}=(2,-1,2)$</li>
+              <li>過 $K$ 垂直平面之直線方向向量即為 $\vec{n}$</li>
+              <li>點面距公式直接推廣自二維點線距</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 12、14、15：點面距與投影點模型</text>
+              <polygon points="25,155 185,155 235,105 75,105" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <line x1="130" y1="45" x2="130" y2="130" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3"/>
+              <line x1="175" y1="130" x2="175" y2="75" stroke="#16a34a" stroke-width="2.5"/>
+              <polygon points="175,70 170,80 180,80" fill="#16a34a"/>
+              <circle cx="130" cy="45" r="5" fill="#dc2626"/>
+              <circle cx="130" cy="130" r="5" fill="#1d4ed8"/>
+              <text x="130" y="36" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">K(2, 1, 3)</text>
+              <text x="130" y="148" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">投影點 H(2/3, 5/3, 5/3)</text>
+              <text x="105" y="92" font-size="12" font-weight="900" fill="#dc2626">d = 2</text>
+              <text x="205" y="95" font-size="11" font-weight="bold" fill="#15803d">n=(2,-1,2)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：點到平面距離公式</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>公式：$\displaystyle d(K,E) = \frac{|ap+bq+cr-d|}{\sqrt{a^2+b^2+c^2}}$</li>
+              <li>分子代入：$|2(2) - 1(1) + 2(3) - 3| = 6$</li>
+              <li>分母長度：$\sqrt{2^2 + (-1)^2 + 2^2} = 3$</li>
+              <li>相除得點面距：$\displaystyle d = \frac{6}{3} = 2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 12、13：平面截距式與兩面夾角</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 平面截距式（交三軸於 p, q, r）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">x/p + y/q + z/r = 1</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">② 兩平面夾角 θ（公式 13②）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">cos θ = ± (n₁ · n₂) / (|n₁| × |n₂|)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：直線參數式求投影點</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>設垂線參數式：$H(2+2t, 1-t, 3+2t)$</li>
+              <li>代入平面 $E$：$2(2+2t)-(1-t)+2(3+2t)=3$</li>
+              <li>化簡解得：$9t + 9 = 3 \Rightarrow t = -\frac{2}{3}$</li>
+              <li>得投影點：$\displaystyle H = \left(\frac{2}{3}, \frac{5}{3}, \frac{5}{3}\right)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 14：空間直線三種表示法</text>
+              <rect x="20" y="48" width="220" height="36" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="71" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#0f172a">① 參數式：x=p+at, y=q+bt, z=r+ct</text>
+              <rect x="20" y="92" width="220" height="36" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="115" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#ea580c">② 比例式：(x-p)/a = (y-q)/b = (z-r)/c</text>
+              <rect x="20" y="136" width="220" height="36" rx="5" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="159" text-anchor="middle" font-size="11.5" font-weight="900" fill="#dc2626">③ 兩面式：方向向量 v = n₁ × n₂ (外積)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>法向量長度：$|\vec{n}| = \sqrt{4+1+4} = 3$</li>
+              <li>垂足參數值：$\displaystyle t = -\frac{2}{3}$</li>
+              <li>對稱點参数：代 $2t = -\frac{4}{3}$ 得 $\left(-\frac{2}{3}, \frac{7}{3}, \frac{1}{3}\right)$</li>
+              <li>點到平面距離：$(5) = 2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">點面距 d(K, E)</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">d = 2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 |6| / 3)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(5) = 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>兩平行面距離：$\displaystyle \frac{|d_1 - d_2|}{\sqrt{a^2+b^2+c^2}}$</li>
+              <li>點到直線距離：設參數動點與方向向量垂直</li>
+              <li>歪斜線距離：用兩方向向量外積作平行平面</li>
+              <li>平面交三軸四面體體積：$\displaystyle \frac{1}{6}|pqr|$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">公式 15③：兩歪斜線距離兩大招</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">方法 A（求公垂線兩垂足點）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">設 P(t), Q(s) 令 PQ·v₁ = 0 且 PQ·v₂ = 0</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">方法 B（只求距離，正射影長最快）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">d = | AB · (v₁ × v₂) | / | v₁ × v₂ |</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：空間中 $ax+by=c$ 代表「平面」而非直線！</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：直線比例式分子的 $x,y,z$ 係數必須先化為 $+1$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：凡遇到空間直線交點、垂足或極值，一律改寫為「參數式」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== 主題 06（公式 16、17、19） ==================== -->
+<div class="slide-outer" id="t6">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 06｜條件機率、乘法法則與獨立事件（公式 16、17、19）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：設 $A, B$ 為獨立事件，已知 $P(A) = 0.4$、$P(A \cup B) = 0.7$</div>
+      <div>🎯 求解目標：結合獨立事件性質與排容原理，求 $P(B)$ 之值與條件機率 $P(A \mid B') = (6)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 16 條件、17 乘法與 19 獨立</li>
+              <li>條件機率將樣本空間縮小至分母 $B$</li>
+              <li>獨立定義：$P(A \cap B) = P(A)P(B)$</li>
+              <li>獨立性質：$B$ 是否發生不影響 $A$ 機率</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 16：條件機率 P(A|B) 縮小樣本空間</text>
+              <circle cx="95" cy="105" r="45" fill="#dbeafe" stroke="#2563eb" stroke-width="2" opacity="0.8"/>
+              <circle cx="155" cy="105" r="48" fill="#fef3c7" stroke="#ea580c" stroke-width="2.5" opacity="0.85"/>
+              <path d="M 125 68 A 48 48 0 0 0 125 142 A 45 45 0 0 0 125 68 Z" fill="#fca5a5" stroke="#dc2626" stroke-width="2"/>
+              <text x="70" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">A</text>
+              <text x="180" y="108" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">分母 B</text>
+              <text x="125" y="108" text-anchor="middle" font-size="11" font-weight="900" fill="#991b1b">A∩B</text>
+              <text x="130" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">P(A | B) = P(A ∩ B) / P(B)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：由獨立與聯集求 P(B)</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>排容原理：$P(A\cup B)=P(A)+P(B)-P(A\cap B)$</li>
+              <li>代入獨立：$0.7 = 0.4 + P(B) - 0.4 P(B)$</li>
+              <li>整理得：$0.3 = 0.6 P(B)$</li>
+              <li>解得機率：$P(B) = 0.5$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 17、19：乘法法則 vs 獨立事件</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 一般乘法法則（不見得獨立）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">P(A ∩ B) = P(A) × P(B | A)</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">② 當 A, B 獨立時 P(B|A) = P(B)：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">P(A ∩ B) = P(A) × P(B)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：獨立事件與餘事件性質</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>由公式 19：若 $A, B$ 獨立則 $A, B'$ 亦獨立</li>
+              <li>恆等式：$P(A) = P(A \mid B) = P(A \mid B')$</li>
+              <li>無須重算交集，直接讀取 $P(A)$</li>
+              <li>得所求條件機率：$P(A \mid B') = 0.4$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 19：獨立事件三大等價推論</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">若 A 與 B 獨立，則以下皆獨立：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">(A, B') 、 (A', B) 、 (A', B')</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">秒殺恆等式：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">P(A | B) = P(A | B') = P(A) = 0.4</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>事件 $B$ 機率：$P(B) = 0.5$</li>
+              <li>兩事件交集：$P(A \cap B) = 0.2$</li>
+              <li>皆不發生機率：$P(A' \cap B') = 0.3$</li>
+              <li>條件機率值：$(6) = 0.4$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">條件機率 P(A|B')</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">0.4</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(等於 P(A) = 2/5)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(6) = 0.4</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>條件機率補集：$P(A'\mid B) = 1 - P(A\mid B)$</li>
+              <li>條件分配：$P(A_1\cup A_2\mid B)$ 可拆開（互斥時）</li>
+              <li>抽籤不放回：每人抽中機率皆相等（公平）</li>
+              <li>互斥定義為 $A\cap B=\varnothing$，與獨立完全不同</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">大考必考觀念 PK：獨立 vs 互斥</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 互斥事件（無共同交集）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">A ∩ B = ∅  ⇒  P(A ∩ B) = 0</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">② 獨立事件（互不影響）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">P(A ∩ B) = P(A)P(B) (非零事件互斥必不獨立)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：$P(A'\mid B) = 1-P(A\mid B)$，但 $P(A\mid B') \neq 1-P(A\mid B)$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：若 $P(A)>0, P(B)>0$，兩事件「互斥」則絕對「不獨立」</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：條件機率只有直線左方（分子事件）可作集合補集運算</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 07（公式 18） ==================== -->
+<div class="slide-outer" id="t7">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 07｜樣本空間分割與貝氏定理（公式 18）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：甲、乙兩廠產量占 $60\%, 40\%$，不良率分別為 $2\%, 3\%$，今抽出一件檢驗為不良品 $B$</div>
+      <div>🎯 求解目標：由全機率公式求不良品總機率 $P(B)$，再由貝氏定理求其來自甲廠之機率 $P(A_1\mid B) = (7)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>對應公式 18 分割與貝氏定理</li>
+              <li>甲廠占 $P(A_1)=0.6$，不良率 $P(B\mid A_1)=0.02$</li>
+              <li>乙廠占 $P(A_2)=0.4$，不良率 $P(B\mid A_2)=0.03$</li>
+              <li>已知結果 $B$ 反推原因 $A_1$ 為貝氏定理</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 18：貝氏定理樹狀圖分支模型</text>
+              <circle cx="35" cy="105" r="5" fill="#0f172a"/>
+              <line x1="35" y1="105" x2="105" y2="65" stroke="#2563eb" stroke-width="2.5"/>
+              <line x1="35" y1="105" x2="105" y2="145" stroke="#ea580c" stroke-width="2.5"/>
+              <line x1="105" y1="65" x2="180" y2="50" stroke="#dc2626" stroke-width="2.5"/>
+              <line x1="105" y1="145" x2="180" y2="130" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="65" y="75" font-size="11" font-weight="bold" fill="#1d4ed8">0.6</text>
+              <text x="65" y="140" font-size="11" font-weight="bold" fill="#c2410c">0.4</text>
+              <text x="105" y="55" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">甲 A₁</text>
+              <text x="105" y="162" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">乙 A₂</text>
+              <text x="145" y="48" font-size="10" font-weight="bold" fill="#dc2626">0.02</text>
+              <text x="145" y="128" font-size="10" font-weight="bold" fill="#dc2626">0.03</text>
+              <text x="215" y="54" text-anchor="middle" font-size="11" font-weight="900" fill="#dc2626">0.012</text>
+              <text x="215" y="134" text-anchor="middle" font-size="11" font-weight="900" fill="#ea580c">0.012</text>
+              <text x="130" y="180" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">P(A₁|B) = 0.012 / (0.012+0.012) = 1/2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：分割全機率求分母 P(B)</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>甲廠且不良：$P(A_1\cap B) = 0.6 \times 0.02 = 0.012$</li>
+              <li>乙廠且不良：$P(A_2\cap B) = 0.4 \times 0.03 = 0.012$</li>
+              <li>全機率相加：$P(B) = 0.012 + 0.012$</li>
+              <li>得總不良率：$P(B) = 0.024$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 18：樣本空間分割與全機率</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">將不良品 B 拆成各來源交集和：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">P(B) = P(A₁∩B) + P(A₂∩B)</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">各路徑乘法相加：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">P(B) = 0.012 + 0.012 = 0.024</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：貝氏定理求指定來源比例</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>貝氏公式：$\displaystyle P(A_1\mid B) = \frac{P(A_1\cap B)}{P(B)}$</li>
+              <li>分母放全部不良路徑，分子放甲廠路徑</li>
+              <li>代入數值：$\displaystyle \frac{0.012}{0.012 + 0.012}$</li>
+              <li>約分得事後機率：$\displaystyle P(A_1\mid B) = \frac{1}{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">貝氏定理「部分除以全部」面積圖</text>
+              <rect x="30" y="55" width="110" height="55" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+              <rect x="140" y="55" width="90" height="55" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+              <text x="85" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#991b1b">甲不良 A₁∩B</text>
+              <text x="85" y="98" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">1.2%</text>
+              <text x="185" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#9a3412">乙不良 A₂∩B</text>
+              <text x="185" y="98" text-anchor="middle" font-size="12" font-weight="900" fill="#ea580c">1.2%</text>
+              <text x="130" y="142" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">分子 = 甲不良 (1.2%)</text>
+              <text x="130" y="166" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">分母 = 總不良 (2.4%) ⇒ 比值 = 1/2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>甲廠不良占全體：$1.2\%$</li>
+              <li>乙廠不良占全體：$1.2\%$</li>
+              <li>總不良品機率：$P(B) = 2.4\%$</li>
+              <li>來自甲廠機率：$\displaystyle (7) = \frac{1}{2}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">貝氏機率 P(A₁|B)</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">1 / 2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 0.5)</text>
+              <rect x="35" y="160" width="190" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(7) = 1/2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>事前機率：$P(A_i)$ 為檢驗前之比例</li>
+              <li>事後機率：$P(A_i\mid B)$ 為檢驗後更新比例</li>
+              <li>醫療快篩：陽性反應包含「真陽性」與「偽陽性」</li>
+              <li>設總人數為 $1000$ 人列表計算最快</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">醫療篩檢「真陽性 vs 偽陽性」</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">檢驗呈陽性 (+) 的兩種可能：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">① 有病且驗出(+) ＋ ② 無病卻誤判(+)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">陽性下真正患病機率：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">真陽性 / (真陽性 + 偽陽性)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：切勿將不良率 $P(B\mid A_1)$ 直接當成來源機率 $P(A_1\mid B)$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：分母必須加總「所有」能產生結果 $B$ 的分支路徑</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：畫出樹狀圖，貝氏定理即「指定路徑積 $\div$ 所有達標路徑和」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 08（公式 20、21） ==================== -->
+<div class="slide-outer" id="t8">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 08｜三平面聯立方程與矩陣列運算（公式 20、21）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：三元一次方程組之增廣矩陣經列運算化為 $\left[\begin{array}{ccc|c} 1 & 2 & 1 & 4 \\ 0 & 1 & -1 & 2 \\ 0 & 0 & k^2-4 & k-2 \end{array}\right]$</div>
+      <div>🎯 求解目標：由第三列判別三平面交於一點、交於一線（無限多解）與無解時之 $k$ 值 $(8)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 20 三平面聯立與 21 列運算</li>
+              <li>三大基本列運算不改變方程組的解</li>
+              <li>化為階梯形矩陣後觀察最底列</li>
+              <li>最底列代表 $(k^2-4)z = k-2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 20：三相異平面相交幾何意義</text>
+              <rect x="20" y="46" width="220" height="36" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+              <text x="130" y="69" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">① 恰有一解 → 三平面交於唯一點</text>
+              <rect x="20" y="90" width="220" height="36" rx="5" fill="#eff6ff" stroke="#3b82f6"/>
+              <text x="130" y="113" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">② 無限多解 → 三平面共線交於一直線</text>
+              <rect x="20" y="134" width="220" height="40" rx="5" fill="#fee2e2" stroke="#ef4444"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="900" fill="#991b1b">③ 無解 → 兩兩相交且三交線互相平行</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：矩陣三大基本列運算</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>列運算一：將某列乘上非零數值</li>
+              <li>列運算二：將某列乘 $k$ 倍加到另一列</li>
+              <li>列運算三：將某兩列位置上下對調</li>
+              <li>高斯消去法消去左下角元素得上三角</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 21：高斯消去法目標型態</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">增廣矩陣 [ A | B ] 消去左下角：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">只准做「列運算」，嚴禁做行運算！</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">最底列還原為方程式：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(k + 2)(k - 2) z = k - 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：最底列參數討論三情況</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>當 $k \neq \pm 2$ 時：$z$ 係數非零，恰有一解</li>
+              <li>當 $k = 2$ 時：化為 $0z = 0$，無限多解</li>
+              <li>當 $k = -2$ 時：化為 $0z = -4$，矛盾無解</li>
+              <li>清楚對應三平面空間相交關係</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">最底列 [ 0  0  a | b ] 判別鐵律</text>
+              <rect x="20" y="48" width="220" height="36" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="71" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">a ≠ 0 (k ≠ ±2) ⇒ 恰有一解 (交一點)</text>
+              <rect x="20" y="92" width="220" height="36" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">a = 0 且 b = 0 (k = 2) ⇒ 無限多解</text>
+              <rect x="20" y="136" width="220" height="36" rx="5" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">a = 0 且 b ≠ 0 (k = -2) ⇒ 無解</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>恰有一解條件：$k \neq 2$ 且 $k \neq -2$</li>
+              <li>無限多解（交一線）：$k = 2$</li>
+              <li>無解（三角柱平行）：$k = -2$</li>
+              <li>無限多解與無解：$(8) : k = 2 \text{ 或 } -2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">無限多解 / 無解</text>
+              <text x="130" y="102" text-anchor="middle" font-size="18" font-weight="900" fill="#14532d">k = 2 , -2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(k=2 多解, k=-2 無解)</text>
+              <rect x="25" y="160" width="210" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(8) k=2(多), -2(無)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>化為簡約列階梯形可直接讀出解</li>
+              <li>無限多解時可令自由變數 $z = t$ 表為參數式</li>
+              <li>三平面法向量共面時必無唯一交點</li>
+              <li>列運算等同於加減消去法與代入消去法</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">當 k = 2 無限多解時之直線參數式</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">令自由變數 z = t (t ∈ R)：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">由第 2 列 y - z = 2 ⇒ y = 2 + t</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">代回第 1 列求 x：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">x = 4 - 2(2+t) - t = -3t (交於一直線)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：方程組 $(k^2-4)z=k-2$ 切勿直接約掉 $k-2$ 漏掉討論</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：某列乘非零數值，不可乘以 $0$（乘 $0$ 會破壞等價性）</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：三平面交於一直線，代表該直線方向向量垂直三法向量</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 09（公式 22、23） ==================== -->
+<div class="slide-outer" id="t9">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 09｜二階反方陣與矩陣乘法性質（公式 22、23）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：設二階方陣 $A = \begin{bmatrix} 3 & 5 \\ 1 & 2 \end{bmatrix}$、$B = \begin{bmatrix} 2 & -1 \\ 0 & 3 \end{bmatrix}$</div>
+      <div>🎯 求解目標：先由公式求反方陣 $A^{-1} = (9)$，再由行列式乘積性質求 $\det(A^3 B^2)$ 之值</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 22 二階反方陣與 23 乘法性質</li>
+              <li>反方陣存在充要條件：$\det(A) \neq 0$</li>
+              <li>矩陣乘法不具交換律：$AB \neq BA$</li>
+              <li>行列式可拆開相乘：$\det(AB) = \det(A)\det(B)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 22：二階反方陣「主對調、副變號」</text>
+              <rect x="22" y="48" width="216" height="54" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">原方陣 A = [ a , b ; c , d ]</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">行列式 det(A) = ad - bc ≠ 0</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#fff7ed" stroke="#fdba74"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">反方陣公式：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">A⁻¹ = (1 / det A) [ d , -b ; -c , a ]</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：計算二階反方陣 A⁻¹</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>先算行列式：$\det(A) = 3(2) - 5(1) = 1$</li>
+              <li>主對角線 $3, 2$ 對調位置</li>
+              <li>副對角線 $5, 1$ 加上負號</li>
+              <li>得反方陣：$A^{-1} = \begin{bmatrix} 2 & -5 \\ -1 & 3 \end{bmatrix}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">利用反方陣解矩陣方程 AX = B</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">若 AX = B（A 在左邊）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">同左乘 A⁻¹  ⇒  X = A⁻¹ B</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">若 XA = B（A 在右邊）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">同右乘 A⁻¹  ⇒  X = B A⁻¹</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：乘法性質與行列式拆解</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>由公式 23⑤：$\det(AB) = \det(A)\det(B)$</li>
+              <li>計算 $\det(B) = 2(3) - (-1)(0) = 6$</li>
+              <li>拆解次方：$\det(A^3 B^2) = (\det A)^3 (\det B)^2$</li>
+              <li>代入得：$1^3 \times 6^2 = 36$（免乘開矩陣）</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 23：矩陣乘法五大性質檢核</text>
+              <rect x="20" y="48" width="220" height="36" rx="5" fill="#fee2e2" stroke="#ef4444"/>
+              <text x="130" y="71" text-anchor="middle" font-size="12" font-weight="900" fill="#991b1b">① 交換律不成立：AB ≠ BA</text>
+              <rect x="20" y="92" width="220" height="36" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">② 結合律與分配律成立：(AB)C = A(BC)</text>
+              <rect x="20" y="136" width="220" height="36" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+              <text x="130" y="159" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">③ 行列式乘積：det(AB) = det(A)det(B)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>行列式值：$\det(A) = 1, \det(B) = 6$</li>
+              <li>反方陣行列式：$\displaystyle \det(A^{-1}) = \frac{1}{\det(A)} = 1$</li>
+              <li>高次行列式：$\det(A^3 B^2) = 36$</li>
+              <li>所求反方陣：$(9) = \begin{bmatrix} 2 & -5 \\ -1 & 3 \end{bmatrix}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="72" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">反方陣 A⁻¹</text>
+              <text x="130" y="96" text-anchor="middle" font-size="15" font-weight="900" fill="#14532d">[ 2 , -5 ]</text>
+              <text x="130" y="116" text-anchor="middle" font-size="15" font-weight="900" fill="#14532d">[ -1 , 3 ]</text>
+              <rect x="25" y="160" width="210" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffffff">最終答案：(9) [2, -5; -1, 3]</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>單位方陣乘法：$AI = IA = A$</li>
+              <li>反方陣恆等式：$AA^{-1} = A^{-1}A = I$</li>
+              <li>乘積反方陣順序顛倒：$(AB)^{-1} = B^{-1}A^{-1}$</li>
+              <li>純量倍數行列式：$\det(kA) = k^2 \det(A)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">矩陣乘法展開與反方陣必考變形</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">因 AB ≠ BA，乘法公式須展開為：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">(A + B)² = A² + AB + BA + B²</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">穿脫鞋襪法則（反方陣顛倒）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">(AB)⁻¹ = B⁻¹ A⁻¹</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：矩陣無消去律，$AB=AC$（$A\neq O$）不一定推得 $B=C$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：二階方陣乘 $k$ 倍，行列式是乘兩次即 $\det(kA)=k^2\det(A)$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：解 $AX=B$ 時，$A$ 在左就左乘 $A^{-1}$，位置絕對不可放反</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 10（公式 24、25） ==================== -->
+<div class="slide-outer" id="t10">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 10｜轉移矩陣與四大平面線性變換（公式 24、25）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：一、轉移矩陣 $P = \begin{bmatrix} 0.7 & 0.2 \\ 0.3 & 0.8 \end{bmatrix}$；二、面積為 $6$ 之圖形經方陣 $M = \begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}$ 線性變換</div>
+      <div>🎯 求解目標：先求轉移矩陣穩定狀態機率向量，再求圖形經 $M$ 變換後之新面積 $(10)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 24 轉移矩陣與 25 線性變換</li>
+              <li>轉移矩陣：各元非負且「每一行」和為 $1$</li>
+              <li>穩定狀態滿足 $PX = X$ 且 $x+y=1$</li>
+              <li>線性變換面積倍率為 $|\det(M)|$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">公式 25①：線性變換面積放大 |det(M)| 倍</text>
+              <rect x="30" y="75" width="55" height="55" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <text x="57.5" y="106" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">原面積 6</text>
+              <line x1="95" y1="102" x2="125" y2="102" stroke="#dc2626" stroke-width="2.5"/>
+              <polygon points="128,102 118,97 118,107" fill="#dc2626"/>
+              <text x="110" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">×M</text>
+              <polygon points="140,145 205,125 235,55 170,75" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+              <text x="188" y="105" text-anchor="middle" font-size="11" font-weight="900" fill="#15803d">新面積 30</text>
+              <text x="130" y="176" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">新面積 = 原面積 × |det(M)| = 6 × 5 = 30</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：轉移矩陣求穩定狀態</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>設穩定狀態行矩陣 $X = \begin{bmatrix} x \\ y \end{bmatrix}$</li>
+              <li>由 $PX = X$ 得 $0.7x + 0.2y = x$</li>
+              <li>移項化簡：$0.3x = 0.2y \Rightarrow x : y = 2 : 3$</li>
+              <li>結合總和 $x+y=1$ 得 $\displaystyle x = \frac{2}{5}, y = \frac{3}{5}$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">公式 24：轉移矩陣定義與穩定狀態速算</text>
+              <rect x="22" y="48" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="68" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">直行和必為 1（上面來自下、下面去向）：</text>
+              <text x="130" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb">0.7 + 0.3 = 1 ， 0.2 + 0.8 = 1</text>
+              <rect x="22" y="110" width="216" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">副對角線比值秒殺法：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">x : y = p₁₂ : p₂₁ = 0.2 : 0.3 = 2 : 3</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：四大幾何變換與面積計算</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>計算行列式：$\det(M) = 2(3) - 1(1) = 5$</li>
+              <li>新面積公式：$\text{原面積} \times |\det(M)|$</li>
+              <li>代入數據：$6 \times |5| = 30$</li>
+              <li>旋轉、鏡射與推移之 $|\det|$ 皆為 $1$（保面積）</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">公式 25②～⑤：四大平面線性變換</text>
+              <rect x="20" y="46" width="220" height="30" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">② 旋轉 θ：[ cosθ , -sinθ ; sinθ , cosθ ]</text>
+              <rect x="20" y="80" width="220" height="30" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="100" text-anchor="middle" font-size="11" font-weight="bold" fill="#ea580c">③ 鏡射 (對 y=tanθ·x)：[ cos2θ , sin2θ ; sin2θ , -cos2θ ]</text>
+              <rect x="20" y="114" width="220" height="30" rx="5" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="134" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563eb">④ 伸縮：[ a , 0 ; 0 , b ] (面積變 ab 倍)</text>
+              <rect x="20" y="148" width="220" height="30" rx="5" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="168" text-anchor="middle" font-size="11" font-weight="900" fill="#dc2626">⑤ 推移：沿 x 軸 [ 1 , k ; 0 , 1 ] ；沿 y 軸 [ 1 , 0 ; k , 1 ]</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>穩定狀態比：$x : y = 2 : 3$</li>
+              <li>穩定機率值：$\displaystyle x = \frac{2}{5}, y = \frac{3}{5}$</li>
+              <li>面積伸縮倍率：$|\det(M)| = 5$</li>
+              <li>變換後新面積：$(10) = 30$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">變換後新面積</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">30</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 6 × |5|)</text>
+              <rect x="40" y="160" width="180" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(10) = 30</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>線性性質：$A(p\vec{u}+q\vec{v}) = pA\vec{u} + qA\vec{v}$</li>
+              <li>連續旋轉：$\theta_1$ 再轉 $\theta_2$ 等於轉 $\theta_1+\theta_2$</li>
+              <li>對直線鏡射兩次會回到原點：$M^2 = I$</li>
+              <li>看標準基底 $(1,0), (0,1)$ 的像即可寫出方陣</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">旋轉方陣 vs 鏡射方陣特徵區分</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">旋轉方陣（主同號、副異號）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">det = cos²θ + sin²θ = +1</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">鏡射方陣（主異號、副同號、2倍角）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">det = -cos²2θ - sin²2θ = -1 (方向反轉)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：鏡射方陣角度為二倍角 $2\theta$（其中 $\tan\theta=m$ 為斜率）</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：先經 $A$ 變換再經 $B$ 變換，合成方陣須「由右向左」寫為 $BA$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：推移變換如同把一疊書推斜，底與高皆不變故面積不變</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 16:9 自動縮放適應螢幕腳本 -->
+<script>
+  function autoScaleSlides() {
+    const wrappers = document.querySelectorAll('.canvas-wrapper');
+    const outers = document.querySelectorAll('.slide-outer');
+    const availableWidth = document.documentElement.clientWidth - 32;
+    const scale = Math.min(1, availableWidth / 1600);
+    wrappers.forEach((wrapper, idx) => {
+      wrapper.style.transform = `scale(${scale})`;
+      if (outers[idx]) {
+        outers[idx].style.height = `${900 * scale}px`;
+      }
+    });
+  }
+  window.addEventListener('resize', autoScaleSlides);
+  window.addEventListener('DOMContentLoaded', autoScaleSlides);
+  autoScaleSlides();
+</script>
+</body>
+</html>
