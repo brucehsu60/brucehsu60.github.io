@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新大滿貫複習講義．數學A測驗卷 11 向量的運算與內積 詳解</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: {
+      d: '\\displaystyle'
+    }
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #e2e8f0;
+    --primary-color: #2563eb;
+    --sol-bg: #eff6ff;
+    --sol-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fdf2f8;
+    --tip-border: #ec4899;
+    --check-bg: #f0fdf4;
+    --check-border: #22c55e;
+    --ans-bg: #f8fafc;
+    --ans-border: #0f172a;
+    --toolbar-bg: rgba(255, 255, 255, 0.92);
+    --svg-stroke: #1e293b;
+    --svg-fill-gray: #cbd5e1;
+  }
+
+  body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --sol-bg: #172554;
+    --sol-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #500724;
+    --tip-border: #f43f5e;
+    --check-bg: #052e16;
+    --check-border: #22c55e;
+    --ans-bg: #0f172a;
+    --ans-border: #e2e8f0;
+    --toolbar-bg: rgba(30, 41, 59, 0.92);
+    --svg-stroke: #f1f5f9;
+    --svg-fill-gray: #475569;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 76px 16px 48px 16px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.75;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* 頂部懸浮工具列 */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--toolbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toolbar button:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .toolbar button.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+  }
+
+  /* 考卷主標題與快速對答區 */
+  .header-banner {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .summary-table th, .summary-table td {
+    border: 1px solid var(--border-color);
+    padding: 8px 6px;
+  }
+
+  .summary-table th {
+    background: var(--sol-bg);
+    font-weight: 700;
+  }
+
+  /* 大題標題 */
+  .section-header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 34px 0 16px 0;
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+
+  /* 題目卡片 */
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .question-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .question-text {
+    flex: 1;
+    font-size: 1.06rem;
+  }
+
+  .question-figure {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px 16px;
+    margin-top: 10px;
+  }
+
+  .options-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .source-tag {
+    display: inline-block;
+    float: right;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  /* 詳解與各種區塊配色 */
+  .sol-box {
+    background-color: var(--sol-bg);
+    border-left: 6px solid var(--sol-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .alt-box {
+    background-color: var(--alt-bg);
+    border-left: 6px solid var(--alt-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .special-card {
+    border: 2px solid var(--tip-border);
+    border-left: 8px solid var(--tip-border);
+    background-color: var(--tip-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .check-card {
+    border: 2px solid var(--check-border);
+    border-left: 8px solid var(--check-border);
+    background-color: var(--check-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .box-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 最終答案框 */
+  .final-ans-box {
+    background-color: var(--ans-bg);
+    border: 4px double var(--ans-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 18px;
+    font-size: 1.08rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg-line {
+    stroke: var(--svg-stroke);
+  }
+  .svg-text {
+    fill: var(--svg-stroke);
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .svg-text-normal {
+    fill: var(--svg-stroke);
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+  .svg-shade {
+    fill: var(--svg-fill-gray);
+  }
+
+  @media (max-width: 680px) {
+    .question-layout {
+      flex-direction: column;
+    }
+    .question-figure {
+      align-self: center;
+    }
+  }
+
+  /* 列印專用樣式強化 */
+  @media print {
+    * {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+      padding: 0;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .question-card {
+      page-break-inside: auto;
+      border: 1px solid #999;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+
+    .special-card, .check-card {
+      border: 3px solid #000 !important;
+      border-left: 10px solid #000 !important;
+      page-break-inside: avoid;
+    }
+
+    .sol-box, .alt-box {
+      page-break-inside: avoid;
+    }
+
+    .final-ans-box {
+      page-break-inside: avoid;
+      border: 4px double #000 !important;
+      background-color: #f8fafc !important;
+      color: #000 !important;
+    }
+
+    strong {
+      font-weight: 800 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="btn-light" class="active" onclick="setMode('light')">📄 預設好讀</button>
+  <button id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+  <button onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+  <div class="header-banner">
+    <h1 class="header-title">新大滿貫複習講義．數學A測驗卷 11 向量的運算與內積</h1>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th colspan="12">答案欄（標準答案快速核對）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1.</strong> (3)</td>
+          <td><strong>2.</strong> (2)</td>
+          <td><strong>3.</strong> (2)</td>
+          <td><strong>4.</strong> (4)</td>
+          <td><strong>5.</strong> (2)(3)</td>
+          <td><strong>6.</strong> (3)(4)(5)</td>
+        </tr>
+        <tr>
+          <td><strong>7.</strong> (1)(2)(4)(5)</td>
+          <td><strong>8.</strong> (1)(2)(4)(5)</td>
+          <td><strong>9.</strong> $120$</td>
+          <td><strong>10.</strong> $\left( 5 , \d\frac{-8}{3} \right)$</td>
+          <td><strong>11.</strong> $2\sqrt{3}$</td>
+          <td><strong>12.</strong> $240$</td>
+        </tr>
+        <tr>
+          <td colspan="12"><strong>四、混合題：</strong> <strong>1.</strong> (2) 　｜　 <strong>2.</strong> 直角或鈍角（詳細證明見下方題解）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== 一、單選題 ==================== -->
+  <div class="section-header">一、單選題（每題 7 分，共 28 分）</div>
+
+  <!-- 第 1 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        <span class="source-tag">素養題</span>
+        (　　) 1. 如右圖，12 個小正立方體堆疊而成長方體，請問下列哪一個選項中的向量為 $2\overrightarrow{PQ} + \overrightarrow{SR}$？
+        <div class="options-list">
+          <div>(1) $\overrightarrow{PA}$</div>
+          <div>(2) $\overrightarrow{PB}$</div>
+          <div>(3) $\overrightarrow{PC}$</div>
+          <div>(4) $\overrightarrow{PD}$</div>
+          <div>(5) $\overrightarrow{PE}$</div>
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="200" height="175" viewBox="0 0 200 175">
+          <!-- 3x2x2 block isometric projection -->
+          <!-- Top face: P(65,15), right-back(140,45), front-right(105,80), front-left S(30,50) -->
+          <polygon points="65,15 140,45 105,80 30,50" fill="none" class="svg-line" stroke-width="1.5"/>
+          <!-- Top grid lines (3 along right-back, 2 along front-left) -->
+          <line x1="90" y1="25" x2="55" y2="60" class="svg-line" stroke-width="1"/>
+          <line x1="115" y1="35" x2="80" y2="70" class="svg-line" stroke-width="1"/>
+          <line x1="47.5" y1="32.5" x2="122.5" y2="62.5" class="svg-line" stroke-width="1"/>
+          <!-- Front-left face: S(30,50), front-bottom(105,140), R(30,110) -->
+          <polygon points="30,50 105,80 105,140 30,110" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="30" y1="80" x2="105" y2="110" class="svg-line" stroke-width="1"/>
+          <line x1="55" y1="60" x2="55" y2="120" class="svg-line" stroke-width="1"/>
+          <line x1="80" y1="70" x2="80" y2="130" class="svg-line" stroke-width="1"/>
+          <!-- Front-right face: (105,80) to (140,45) down to (140,105) to (105,140) -->
+          <polygon points="105,80 140,45 140,105 105,140" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="105" y1="110" x2="140" y2="75" class="svg-line" stroke-width="1"/>
+          <line x1="122.5" y1="62.5" x2="122.5" y2="122.5" class="svg-line" stroke-width="1"/>
+          <!-- Highlighted vectors PQ, PF, FC -->
+          <line x1="65" y1="15" x2="97.5" y2="72.5" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,2"/>
+          <!-- Labels -->
+          <text x="58" y="12" class="svg-text">P</text>
+          <text x="64" y="42" class="svg-text">Q</text>
+          <text x="82" y="64" class="svg-text">F</text>
+          <text x="17" y="54" class="svg-text">S</text>
+          <text x="17" y="114" class="svg-text">R</text>
+          <text x="45" y="88" class="svg-text">A</text>
+          <text x="45" y="133" class="svg-text">B</text>
+          <text x="70" y="99" class="svg-text">C</text>
+          <text x="72" y="143" class="svg-text">D</text>
+          <text x="98" y="155" class="svg-text">E</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      1. 由右圖頂層的 $2 \times 2$ 正方形對角線可知，設 $\overrightarrow{PQ}$ 延伸兩倍到達頂面邊緣點 $F$，則：
+      $$\overrightarrow{PF} = 2\overrightarrow{PQ}$$
+      2. 又鉛直向下的向量 $\overrightarrow{SR}$ 長度為 $2$ 格高，與從 $F$ 鉛直向下 $2$ 格到達 $C$ 點的向量相等，即：
+      $$\overrightarrow{FC} = \overrightarrow{SR}$$
+      3. 由<strong>向量加法的三角形法（頭尾相接）</strong>：
+      $$2\overrightarrow{PQ} + \overrightarrow{SR} = \overrightarrow{PF} + \overrightarrow{FC} = \overrightarrow{PC}$$
+      故選 (3)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（三維位移分量秒殺法）</div>
+      以 $P$ 為起點，定義三個獨立方向為（往右前、往左前、往下）：<br>
+      ・走一個 $\overrightarrow{PQ}$ 是「往右前 $1$ 格、往左前 $1$ 格、往下 $0$ 格」，即 $\overrightarrow{PQ} = (1 , 1 , 0) \implies 2\overrightarrow{PQ} = (2 , 2 , 0)$。<br>
+      ・走一個 $\overrightarrow{SR}$ 是「純粹往下 $2$ 格」，即 $\overrightarrow{SR} = (0 , 0 , 2)$。<br>
+      ・相加得 $2\overrightarrow{PQ} + \overrightarrow{SR} = (2 , 2 , 2)$，從 $P$ 往右前 $2$ 格、往左前 $2$ 格、再往下 $2$ 格，正好落於底面 $C$ 點，即 $\overrightarrow{PC}$！
+    </div>
+
+    <div class="final-ans-box">最終答案：(3)</div>
+  </div>
+
+  <!-- 第 2 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 2. 如右圖，$ABCDEF$ 為一正六邊形。請問下列向量內積中，何者最大？
+        <div class="options-list">
+          <div>(1) $\overrightarrow{AB} \cdot \overrightarrow{AB}$</div>
+          <div>(2) $\overrightarrow{AB} \cdot \overrightarrow{AC}$</div>
+          <div>(3) $\overrightarrow{AB} \cdot \overrightarrow{AD}$</div>
+          <div>(4) $\overrightarrow{AB} \cdot \overrightarrow{AE}$</div>
+          <div>(5) $\overrightarrow{AB} \cdot \overrightarrow{AF}$</div>
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="180" height="150" viewBox="0 0 180 150">
+          <!-- Regular hexagon centered at (90, 75), R=52 -->
+          <!-- A(64, 120), B(116, 120), C(142, 75), D(116, 30), E(64, 30), F(38, 75) -->
+          <polygon points="64,120 116,120 142,75 116,30 64,30 38,75" fill="none" class="svg-line" stroke-width="1.6"/>
+          <!-- Projection dashed lines onto line AB -->
+          <line x1="20" y1="120" x2="160" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <line x1="142" y1="75" x2="142" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <line x1="116" y1="30" x2="116" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <line x1="64" y1="30" x2="64" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <line x1="38" y1="75" x2="38" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <text x="58" y="135" class="svg-text">A</text>
+          <text x="112" y="135" class="svg-text">B</text>
+          <text x="147" y="79" class="svg-text">C</text>
+          <text x="137" y="135" class="svg-text">C'</text>
+          <text x="114" y="24" class="svg-text">D</text>
+          <text x="58" y="24" class="svg-text">E</text>
+          <text x="23" y="79" class="svg-text">F</text>
+          <text x="32" y="135" class="svg-text">F'</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      如右圖，分別作 $C , D , E , F$ 之垂線至直線 $AB$（設 $C , F$ 之垂足分別為 $C' , F'$），利用<strong>內積的幾何意義（固定向量長 $\times$ 有向正射影長）</strong>比較大小：
+      <ul>
+        <li>(1) $\overrightarrow{AB} \cdot \overrightarrow{AB} = |\overrightarrow{AB}||\overrightarrow{AB}|\cos 0^\circ = |\overrightarrow{AB}||\overrightarrow{AB}|$</li>
+        <li>(2) $\overrightarrow{AB} \cdot \overrightarrow{AC} = |\overrightarrow{AB}||\overrightarrow{AC}|\cos\angle CAB = |\overrightarrow{AB}||\overrightarrow{AC'}|$</li>
+        <li>(3) $\overrightarrow{AB} \cdot \overrightarrow{AD} = |\overrightarrow{AB}||\overrightarrow{AD}|\cos\angle DAB = |\overrightarrow{AB}||\overrightarrow{AB}|$</li>
+        <li>(4) $\overrightarrow{AB} \cdot \overrightarrow{AE} = 0$（因為 $\overrightarrow{AE} \perp \overrightarrow{AB}$）</li>
+        <li>(5) $\overrightarrow{AB} \cdot \overrightarrow{AF} < 0$（因為 $\angle BAF = 120^\circ$ 為鈍角）</li>
+      </ul>
+      因為 $C$ 點在直線 $AB$ 上的投影點 $C'$ 落在最右方，滿足 $|\overrightarrow{AC'}| > |\overrightarrow{AB}| > 0$，所以 $\overrightarrow{AB} \cdot \overrightarrow{AC}$ 最大，故選 (2)。
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算（3 秒投影線掃描法）</div>
+      當第一個向量固定為水平向右的 $\overrightarrow{AB}$ 時，$\overrightarrow{AB} \cdot \overrightarrow{AP}$ 的大小<strong>完全取決於終點 $P$ 有多靠右邊（$x$ 坐標有多大）</strong>！觀察正六邊形六個頂點，最右邊的頂點就是 $C$ 點（比 $B, D$ 還往右凸出半個邊長），連算都不用算，1 秒直選 (2)！
+    </div>
+
+    <div class="final-ans-box">最終答案：(2)</div>
+  </div>
+
+  <!-- 第 3 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 3. 坐標平面上，已知向量 $\vec{u} = (a , b)$，$\vec{v} = (c , d)$，其中 $a^2 + b^2 = 12$，$c^2 + d^2 = 3$，則 $\vec{u} \cdot \vec{v}$ 之最大值為下列何者？
+        <div class="options-grid">
+          <div>(1) 3</div>
+          <div>(2) 6</div>
+          <div>(3) 12</div>
+          <div>(4) 15</div>
+          <div>(5) 36</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      由向量內積的坐標表示法知 $\vec{u} \cdot \vec{v} = ac + bd$。<br>
+      由<strong>柯西不等式</strong>：
+      $$(a^2 + b^2)(c^2 + d^2) \ge (ac + bd)^2$$
+      將 $a^2 + b^2 = 12$ 與 $c^2 + d^2 = 3$ 代入得：
+      $$12 \times 3 \ge (ac + bd)^2 \implies (ac + bd)^2 \le 36 \implies -6 \le ac + bd \le 6$$
+      所以 $\vec{u} \cdot \vec{v} = ac + bd$ 之最大值為 $6$，故選 (2)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（向量長度與夾角餘弦法）</div>
+      題目給的 $a^2 + b^2 = 12$ 與 $c^2 + d^2 = 3$ 就是向量長度的平方！<br>
+      故 $|\vec{u}| = \sqrt{12} = 2\sqrt{3}$，$|\vec{v}| = \sqrt{3}$。由內積定義：
+      $$\vec{u} \cdot \vec{v} = |\vec{u}||\vec{v}|\cos\theta = 2\sqrt{3} \times \sqrt{3} \cos\theta = 6\cos\theta$$
+      當兩向量同向（$\theta = 0^\circ, \cos 0^\circ = 1$）時，內積有最大值 $6$！
+    </div>
+
+    <div class="final-ans-box">最終答案：(2)</div>
+  </div>
+
+  <!-- 第 4 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 4. 設 $\vec{u} , \vec{v}$ 為兩非零向量。以 $|\vec{u}|$ 表 $\vec{u}$ 之長度，若 $|\vec{u}| = 2|\vec{v}| = |\vec{u} + 2\vec{v}|$，且 $\theta$ 表 $\vec{u}$ 與 $\vec{v}$ 之夾角，則 $\theta$ 之度數為下列何者？
+        <div class="options-grid">
+          <div>(1) $30^\circ$</div>
+          <div>(2) $60^\circ$</div>
+          <div>(3) $90^\circ$</div>
+          <div>(4) $120^\circ$</div>
+          <div>(5) $150^\circ$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      1. 設 $|\vec{v}| = r$（$r > 0$），則 $|\vec{u}| = 2r$，且 $|\vec{u} + 2\vec{v}| = 2r$。<br>
+      2. 利用<strong>向量長度的平方等於自身內積</strong>，將 $|\vec{u} + 2\vec{v}| = 2r$ 兩邊平方展開：
+      $$\begin{aligned}
+      |\vec{u} + 2\vec{v}|^2 = 4r^2 &\implies |\vec{u}|^2 + 4\vec{u} \cdot \vec{v} + 4|\vec{v}|^2 = 4r^2 \\
+      &\implies 4r^2 + 4\vec{u} \cdot \vec{v} + 4r^2 = 4r^2 \\
+      &\implies \vec{u} \cdot \vec{v} = -r^2
+      \end{aligned}$$
+      3. 由內積求夾角公式：
+      $$\cos\theta = \d\frac{\vec{u} \cdot \vec{v}}{|\vec{u}||\vec{v}|} = \d\frac{-r^2}{2r \times r} = -\d\frac{1}{2} \implies \theta = 120^\circ$$
+      故選 (4)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（正三角形幾何秒殺法）</div>
+      把 $2\vec{v}$ 視為一個整體向量 $\vec{w} = 2\vec{v}$，則題目條件 $|\vec{u}| = |2\vec{v}| = |\vec{u} + 2\vec{v}|$ 代表：
+      $$|\vec{u}| = |\vec{w}| = |\vec{u} + \vec{w}|$$
+      兩個等長向量相加後長度竟然還是原本的長度！這表示 $\vec{u}$、$\vec{w}$ 與對角線 $\vec{u}+\vec{w}$ 圍成兩個<strong>正三角形</strong>（菱形兩鄰邊夾角必為 $120^\circ$）！因為 $\vec{w} = 2\vec{v}$ 與 $\vec{v}$ 同向，所以 $\vec{u}$ 與 $\vec{v}$ 的夾角必為 $120^\circ$，3 秒鐘免動筆！
+    </div>
+
+    <div class="final-ans-box">最終答案：(4)</div>
+  </div>
+
+  <!-- ==================== 二、多選題 ==================== -->
+  <div class="section-header">二、多選題（所有選項均答對者，得 7 分；答錯 1 個選項者，得 4 分；答錯 2 個選項者，得 1 分；答錯多於 2 個選項或所有選項均未作答者，該題以零分計算，共 28 分）</div>
+
+  <!-- 第 5 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 5. 在坐標空間中給定兩點 $A(1 , 2 , 3)$ 與 $B(7 , 6 , 5)$。設點 $P$ 在 $xy$ 平面上且滿足內積 $\overrightarrow{PA} \cdot \overrightarrow{PB} = 11$，則點 $P$ 之坐標可能為下列何者？
+        <div class="options-grid">
+          <div>(1) $(1 , 2 , 0)$</div>
+          <div>(2) $(1 , 4 , 0)$</div>
+          <div>(3) $(4 , 1 , 0)$</div>
+          <div>(4) $(-1 , -4 , 0)$</div>
+          <div>(5) $(-4 , -1 , 0)$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      將各選項之點 $P$ 坐標分別代入計算 $\overrightarrow{PA} = A - P$ 與 $\overrightarrow{PB} = B - P$ 的內積：
+      <ul>
+        <li><strong>(1) 錯誤：</strong>若 $P(1 , 2 , 0)$，則 $\overrightarrow{PA} = (0 , 0 , 3)$，$\overrightarrow{PB} = (6 , 4 , 5) \implies \overrightarrow{PA} \cdot \overrightarrow{PB} = 0 + 0 + 15 = 15 \neq 11$。</li>
+        <li><strong>(2) 正確：</strong>若 $P(1 , 4 , 0)$，則 $\overrightarrow{PA} = (0 , -2 , 3)$，$\overrightarrow{PB} = (6 , 2 , 5) \implies \overrightarrow{PA} \cdot \overrightarrow{PB} = 0 - 4 + 15 = 11$。</li>
+        <li><strong>(3) 正確：</strong>若 $P(4 , 1 , 0)$，則 $\overrightarrow{PA} = (-3 , 1 , 3)$，$\overrightarrow{PB} = (3 , 5 , 5) \implies \overrightarrow{PA} \cdot \overrightarrow{PB} = -9 + 5 + 15 = 11$。</li>
+        <li><strong>(4) 錯誤：</strong>若 $P(-1 , -4 , 0)$，則 $\overrightarrow{PA} = (2 , 6 , 3)$，$\overrightarrow{PB} = (8 , 10 , 5) \implies \overrightarrow{PA} \cdot \overrightarrow{PB} = 16 + 60 + 15 = 91 \neq 11$。</li>
+        <li><strong>(5) 錯誤：</strong>若 $P(-4 , -1 , 0)$，則 $\overrightarrow{PA} = (5 , 3 , 3)$，$\overrightarrow{PB} = (11 , 7 , 5) \implies \overrightarrow{PA} \cdot \overrightarrow{PB} = 55 + 21 + 15 = 91 \neq 11$。</li>
+      </ul>
+      故選 (2)(3)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（中點極化恆等式／圓方程式法）</div>
+      設 $xy$ 平面上的點 $P(x , y , 0)$，則：
+      $$\begin{aligned}
+      \overrightarrow{PA} \cdot \overrightarrow{PB} &= (1 - x)(7 - x) + (2 - y)(6 - y) + 3 \times 5 = 11 \\
+      &\implies (x^2 - 8x + 7) + (y^2 - 8y + 12) + 15 = 11 \\
+      &\implies (x - 4)^2 + (y - 4)^2 = 9
+      \end{aligned}$$
+      原來點 $P$ 在 $xy$ 平面上的軌跡是以 <strong>$M(4 , 4 , 0)$ 為圓心、半徑為 $3$ 的圓</strong>！<br>
+      觀察五個選項，哪個點與 $(4 , 4 , 0)$ 距離為 $3$？只有往左 $3$ 格的 $(1 , 4 , 0)$ 與往下 $3$ 格的 $(4 , 1 , 0)$，一眼秒殺 (2)(3)！
+    </div>
+
+    <div class="final-ans-box">最終答案：(2)(3)</div>
+  </div>
+
+  <!-- 第 6 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 6. 如右圖 $O-ABCD$ 為一金字塔，底是邊長為 2 之正方形，頂點 $O$ 與 $A$、$B$、$C$、$D$ 之距離均為 2。請選出正確的選項。
+        <div class="options-list">
+          <div>(1) $\overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC} + \overrightarrow{OD} = \vec{0}$</div>
+          <div>(2) $\overrightarrow{OA} + \overrightarrow{OB} - \overrightarrow{OC} - \overrightarrow{OD} = \vec{0}$</div>
+          <div>(3) $\overrightarrow{OA} - \overrightarrow{OB} + \overrightarrow{OC} - \overrightarrow{OD} = \vec{0}$</div>
+          <div>(4) $\overrightarrow{OA} \cdot \overrightarrow{OB} = \overrightarrow{OC} \cdot \overrightarrow{OD}$</div>
+          <div>(5) $\overrightarrow{OA} \cdot \overrightarrow{OC} = 0$</div>
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="180" height="150" viewBox="0 0 180 150">
+          <!-- Pyramid O-ABCD -->
+          <!-- O(90, 20), A(30, 110), B(65, 130), C(150, 130), D(115, 110) -->
+          <line x1="90" y1="20" x2="115" y2="110" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="30" y1="110" x2="115" y2="110" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="115" y1="110" x2="150" y2="130" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="90" y1="20" x2="30" y2="110" class="svg-line" stroke-width="1.6"/>
+          <line x1="90" y1="20" x2="65" y2="130" class="svg-line" stroke-width="1.6"/>
+          <line x1="90" y1="20" x2="150" y2="130" class="svg-line" stroke-width="1.6"/>
+          <line x1="30" y1="110" x2="65" y2="130" class="svg-line" stroke-width="1.6"/>
+          <line x1="65" y1="130" x2="150" y2="130" class="svg-line" stroke-width="1.6"/>
+          <text x="86" y="15" class="svg-text">O</text>
+          <text x="17" y="114" class="svg-text">A</text>
+          <text x="58" y="145" class="svg-text">B</text>
+          <text x="154" y="142" class="svg-text">C</text>
+          <text x="103" y="108" class="svg-text">D</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      <ul>
+        <li><strong>(1) 錯誤：</strong>四個向量 $\overrightarrow{OA}, \overrightarrow{OB}, \overrightarrow{OC}, \overrightarrow{OD}$ 皆由頂點 $O$ 指向下方的底面（若設底面中心為 $M$，則總和為 $4\overrightarrow{OM} \neq \vec{0}$）。</li>
+        <li><strong>(2) 錯誤：</strong>$(\overrightarrow{OA} - \overrightarrow{OD}) + (\overrightarrow{OB} - \overrightarrow{OC}) = \overrightarrow{DA} + \overrightarrow{CB} = 2\overrightarrow{DA} \neq \vec{0}$。</li>
+        <li><strong>(3) 正確：</strong>由向量減法，$\overrightarrow{OA} - \overrightarrow{OB} = \overrightarrow{BA}$，$\overrightarrow{OC} - \overrightarrow{OD} = \overrightarrow{DC}$。因為底面 $ABCD$ 為正方形，$\overrightarrow{BA} = -\overrightarrow{DC}$，故：
+        $$\overrightarrow{OA} - \overrightarrow{OB} + \overrightarrow{OC} - \overrightarrow{OD} = \overrightarrow{BA} + \overrightarrow{DC} = \vec{0}$$</li>
+        <li><strong>(4) 正確：</strong>側面 $\triangle OAB$ 與 $\triangle OCD$ 皆為邊長為 $2$ 的正三角形（夾角 $60^\circ$），故：
+        $$\overrightarrow{OA} \cdot \overrightarrow{OB} = 2 \times 2 \times \cos 60^\circ = 2 = \overrightarrow{OC} \cdot \overrightarrow{OD}$$</li>
+        <li><strong>(5) 正確：</strong>在邊長為 $2$ 的正方形 $ABCD$ 中，對角線 $\overline{AC} = 2\sqrt{2}$。在 $\triangle OAC$ 中：
+        $$\overline{OA}^2 + \overline{OC}^2 = 2^2 + 2^2 = 8 = (2\sqrt{2})^2 = \overline{AC}^2 \implies \angle AOC = 90^\circ \implies \overrightarrow{OA} \cdot \overrightarrow{OC} = 0$$</li>
+      </ul>
+      故選 (3)(4)(5)。
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算（正八面體上半部模型記憶）</div>
+      腰長與底邊長相等的金字塔（四角錐），正是<strong>正八面體的上半部</strong>！其頂點 $O$ 的鉛直高度正好等於正方形外接圓半徑 $\sqrt{2}$，因此相對的兩條側稜 $\overline{OA} \perp \overline{OC}$、$\overline{OB} \perp \overline{OD}$ 恆互相垂直，選項 (5) 1 秒判對！
+    </div>
+
+    <div class="final-ans-box">最終答案：(3)(4)(5)</div>
+  </div>
+
+  <!-- 第 7 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 7. 如右圖，正立方體 $ABCD-EFGH$ 的稜長等於 6（即 $\overline{AB} = 6$），$K$ 為正方形 $ABCD$ 的中心，$M$、$N$ 分別在 $\overline{BF}$、$\overline{EF}$ 上，且滿足 $\overline{BM} = 2\overline{MF}$，$\overline{EN} = \overline{NF}$。請選出正確的選項。
+        <div class="options-list">
+          <div>(1) $\overrightarrow{KM} = \d\frac{1}{2}\overrightarrow{AB} - \d\frac{1}{2}\overrightarrow{AD} + \d\frac{2}{3}\overrightarrow{AE}$</div>
+          <div>(2) $\overrightarrow{KN}$ 與 $\overrightarrow{EF}$ 互相垂直</div>
+          <div>(3) $\overline{KM} > \overline{KN}$</div>
+          <div>(4) $\overrightarrow{KM} \cdot \overrightarrow{KN} = 33$</div>
+          <div>(5) $\angle MKN$ 為銳角</div>
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="190" height="175" viewBox="0 0 190 175">
+          <!-- Cube ABCD-EFGH -->
+          <!-- Top: A(65,20), D(155,20), C(120,55), B(30,55) -->
+          <!-- Bottom: E(65,110), H(155,110), G(120,145), F(30,145) -->
+          <polygon points="65,20 155,20 120,55 30,55" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="30" y1="55" x2="30" y2="145" class="svg-line" stroke-width="1.5"/>
+          <line x1="120" y1="55" x2="120" y2="145" class="svg-line" stroke-width="1.5"/>
+          <line x1="155" y1="20" x2="155" y2="110" class="svg-line" stroke-width="1.5"/>
+          <line x1="30" y1="145" x2="120" y2="145" class="svg-line" stroke-width="1.5"/>
+          <line x1="120" y1="145" x2="155" y2="110" class="svg-line" stroke-width="1.5"/>
+          <!-- Hidden edges from E(65,110) -->
+          <line x1="65" y1="20" x2="65" y2="110" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="65" y1="110" x2="30" y2="145" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="65" y1="110" x2="155" y2="110" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <!-- K(92.5, 37.5), M(30, 115), N(47.5, 127.5) -->
+          <circle cx="92.5" cy="37.5" r="2.5" class="svg-text"/>
+          <circle cx="30" cy="115" r="2.5" class="svg-text"/>
+          <circle cx="47.5" cy="127.5" r="2.5" class="svg-text"/>
+          <line x1="92.5" y1="37.5" x2="30" y2="115" class="svg-line" stroke-width="1.5"/>
+          <line x1="92.5" y1="37.5" x2="47.5" y2="127.5" class="svg-line" stroke-width="1.5"/>
+          <line x1="30" y1="115" x2="47.5" y2="127.5" class="svg-line" stroke-width="1.5"/>
+          <text x="58" y="15" class="svg-text">A</text>
+          <text x="160" y="18" class="svg-text">D</text>
+          <text x="16" y="58" class="svg-text">B</text>
+          <text x="124" y="65" class="svg-text">C</text>
+          <text x="68" y="106" class="svg-text">E</text>
+          <text x="160" y="114" class="svg-text">H</text>
+          <text x="17" y="154" class="svg-text">F</text>
+          <text x="122" y="158" class="svg-text">G</text>
+          <text x="97" y="42" class="svg-text">K</text>
+          <text x="14" y="120" class="svg-text">M</text>
+          <text x="50" y="139" class="svg-text">N</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解（空間坐標化破題法）</div>
+      以 $E$ 為原點 $(0,0,0)$，$\overrightarrow{EF}$ 為 $x$ 軸正向，$\overrightarrow{EH}$ 為 $y$ 軸正向，$\overrightarrow{EA}$ 為 $z$ 軸正向建立空間坐標系，則各點坐標為：<br>
+      $A(0 , 0 , 6)$，$B(6 , 0 , 6)$，$D(0 , 6 , 6)$，$F(6 , 0 , 0)$，$K(3 , 3 , 6)$，$M(6 , 0 , 2)$，$N(3 , 0 , 0)$。
+      <ul>
+        <li><strong>(1) 正確：</strong>$\overrightarrow{KM} = M - K = (3 , -3 , -4)$。又 $\overrightarrow{AB} = (6 , 0 , 0)$，$\overrightarrow{AD} = (0 , 6 , 0)$，$\overrightarrow{AE} = (0 , 0 , -6)$。<br>
+        設 $\overrightarrow{KM} = x\overrightarrow{AB} + y\overrightarrow{AD} + z\overrightarrow{AE} = (6x , 6y , -6z) = (3 , -3 , -4) \implies x = \d\frac{1}{2}$，$y = -\d\frac{1}{2}$，$z = \d\frac{2}{3}$。</li>
+        <li><strong>(2) 正確：</strong>$\overrightarrow{KN} = N - K = (0 , -3 , -6)$，$\overrightarrow{EF} = (6 , 0 , 0)$。<br>
+        因為內積 $\overrightarrow{KN} \cdot \overrightarrow{EF} = 0 + 0 + 0 = 0$，故 $\overrightarrow{KN}$ 與 $\overrightarrow{EF}$ 互相垂直。</li>
+        <li><strong>(3) 錯誤：</strong>計算兩線段長度：
+        $$\overline{KM} = \sqrt{3^2 + (-3)^2 + (-4)^2} = \sqrt{34} \quad , \quad \overline{KN} = \sqrt{0^2 + (-3)^2 + (-6)^2} = \sqrt{45}$$
+        故 $\overline{KM} < \overline{KN}$。</li>
+        <li><strong>(4) 正確：</strong>$\overrightarrow{KM} \cdot \overrightarrow{KN} = (3 , -3 , -4) \cdot (0 , -3 , -6) = 0 + 9 + 24 = 33$。</li>
+        <li><strong>(5) 正確：</strong>由 (4) 知内積為正：
+        $$\cos\angle MKN = \d\frac{\overrightarrow{KM} \cdot \overrightarrow{KN}}{|\overrightarrow{KM}||\overrightarrow{KN}|} = \d\frac{33}{\sqrt{34} \times \sqrt{45}} > 0 \implies \angle MKN < 90^\circ \text{（為銳角）}$$</li>
+      </ul>
+      故選 (1)(2)(4)(5)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（不用設坐標，直接折線拆解向量）</div>
+      ・<strong>秒看 (1)：</strong>從 $K$ 走到 $M$，先走 $\overrightarrow{KB}$，再往下走 $\overrightarrow{BM}$。<br>
+      　因為 $K$ 是正方形中心，$\overrightarrow{KB} = \d\frac{1}{2}\overrightarrow{DB} = \d\frac{1}{2}(\overrightarrow{AB} - \overrightarrow{AD}) = \d\frac{1}{2}\overrightarrow{AB} - \d\frac{1}{2}\overrightarrow{AD}$；而 $\overrightarrow{BM} = \d\frac{2}{3}\overrightarrow{BF} = \d\frac{2}{3}\overrightarrow{AE}$。相加立得選項 (1)！<br>
+      ・<strong>秒看 (2)：</strong>$K$ 與 $N$ 都在對稱中垂面（平分 $\overline{EF}$ 的平面）上，因此連線 $\overline{KN}$ 必垂直於 $\overline{EF}$！
+    </div>
+
+    <div class="final-ans-box">最終答案：(1)(2)(4)(5)</div>
+  </div>
+
+  <!-- 第 8 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 8. 坐標平面上，向量 $\vec{w}$ 與向量 $\vec{v} = (1 , \sqrt{3})$ 互相垂直且等長。請問下列哪些選項是正確的？
+        <div class="options-list">
+          <div>(1) 向量 $\vec{w}$ 必為 $(\sqrt{3} , -1)$ 或 $(-\sqrt{3} , 1)$</div>
+          <div>(2) 向量 $\vec{v} + \vec{w}$ 與 $\vec{v} - \vec{w}$ 等長</div>
+          <div>(3) 向量 $\vec{v} + \vec{w}$ 與 $\vec{w}$ 的夾角可能為 $135^\circ$</div>
+          <div>(4) 若向量 $\vec{u} = a\vec{v} + b\vec{w}$，其中 $a , b$ 為實數，則向量 $\vec{u}$ 的長度為 $2\sqrt{a^2 + b^2}$</div>
+          <div>(5) 若向量 $(1 , 0) = c\vec{v} + d\vec{w}$，其中 $c , d$ 為實數，則 $c > 0$</div>
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="165" height="165" viewBox="0 0 165 165">
+          <!-- Square formed by v and w -->
+          <rect x="65" y="25" width="60" height="60" fill="none" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <rect x="65" y="85" width="60" height="60" fill="none" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <!-- Vectors from (65, 85) -->
+          <line x1="65" y1="85" x2="125" y2="85" class="svg-line" stroke-width="2"/>
+          <line x1="65" y1="85" x2="65" y2="25" class="svg-line" stroke-width="2"/>
+          <line x1="65" y1="85" x2="65" y2="145" class="svg-line" stroke-width="1.4"/>
+          <line x1="65" y1="85" x2="125" y2="25" class="svg-line" stroke-width="1.6"/>
+          <line x1="65" y1="85" x2="125" y2="145" class="svg-line" stroke-width="1.6"/>
+          <text x="95" y="80" class="svg-text">v</text>
+          <text x="48" y="55" class="svg-text">w</text>
+          <text x="40" y="120" class="svg-text">-w</text>
+          <text x="82" y="42" class="svg-text">v+w</text>
+          <text x="82" y="138" class="svg-text">v-w</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      已知 $\vec{v} = (1 , \sqrt{3})$，其長度 $|\vec{v}| = \sqrt{1^2 + (\sqrt{3})^2} = 2$。因為 $\vec{w} \perp \vec{v}$ 且 $|\vec{w}| = |\vec{v}| = 2$：
+      <ul>
+        <li><strong>(1) 正確：</strong>設 $\vec{w} = (x , y)$。由 $\vec{w} \cdot \vec{v} = 0 \implies x + \sqrt{3}y = 0 \implies x = -\sqrt{3}y$。<br>
+        代入 $|\vec{w}|^2 = x^2 + y^2 = 4 \implies (-\sqrt{3}y)^2 + y^2 = 4 \implies y = \pm 1$，故 $\vec{w} = (-\sqrt{3} , 1)$ 或 $(\sqrt{3} , -1)$。</li>
+        <li><strong>(2) 正確：</strong>因為 $\vec{v} \perp \vec{w}$ 且等長，如右圖構成正方形，兩對角線長 $|\vec{v} + \vec{w}| = \sqrt{2}|\vec{v}| = 2\sqrt{2} = |\vec{v} - \vec{w}|$。</li>
+        <li><strong>(3) 錯誤：</strong>計算 $\vec{v} + \vec{w}$ 與 $\vec{w}$ 之夾角 $\theta$ 的餘弦值：
+        $$\cos\theta = \d\frac{(\vec{v} + \vec{w}) \cdot \vec{w}}{|\vec{v} + \vec{w}||\vec{w}|} = \d\frac{\vec{v} \cdot \vec{w} + |\vec{w}|^2}{\sqrt{2}|\vec{w}| \cdot |\vec{w}|} = \d\frac{0 + |\vec{w}|^2}{\sqrt{2}|\vec{w}|^2} = \d\frac{1}{\sqrt{2}} \implies \theta = 45^\circ$$
+        夾角恆為 $45^\circ$（正方形對角線與鄰邊夾角），不可能為 $135^\circ$。</li>
+        <li><strong>(4) 正確：</strong>因為 $\vec{v} \cdot \vec{w} = 0$ 且 $|\vec{v}| = |\vec{w}| = 2$，將 $|\vec{u}| = |a\vec{v} + b\vec{w}|$ 平方展開：
+        $$|a\vec{v} + b\vec{w}|^2 = a^2|\vec{v}|^2 + 2ab(\vec{v} \cdot \vec{w}) + b^2|\vec{w}|^2 = 4a^2 + 0 + 4b^2 \implies |\vec{u}| = 2\sqrt{a^2 + b^2}$$</li>
+        <li><strong>(5) 正確：</strong><br>
+        ① 若 $\vec{w} = (-\sqrt{3} , 1)$，則 $c(1 , \sqrt{3}) + d(-\sqrt{3} , 1) = (1 , 0) \implies \begin{cases} c - \sqrt{3}d = 1 \\ \sqrt{3}c + d = 0 \end{cases} \implies c = \d\frac{1}{4} > 0$；<br>
+        ② 若 $\vec{w} = (\sqrt{3} , -1)$，則 $c(1 , \sqrt{3}) + d(\sqrt{3} , -1) = (1 , 0) \implies \begin{cases} c + \sqrt{3}d = 1 \\ \sqrt{3}c - d = 0 \end{cases} \implies c = \d\frac{1}{4} > 0$。<br>
+        故恆有 $c > 0$。</li>
+      </ul>
+      故選 (1)(2)(4)(5)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（正交基底內積投影法——3 秒破解選項 5）</div>
+      看到互相垂直的向量組合 $(1 , 0) = c\vec{v} + d\vec{w}$，要求 $c$，千萬別傻傻列聯立方程式！<br>
+      直接將等式兩邊<strong>同時對 $\vec{v}$ 取內積</strong>（因為 $\vec{w} \cdot \vec{v} = 0$，$d$ 直接消失）：
+      $$(1 , 0) \cdot \vec{v} = c(\vec{v} \cdot \vec{v}) + d(\vec{w} \cdot \vec{v}) \implies (1 , 0) \cdot (1 , \sqrt{3}) = c|\vec{v}|^2 + 0 \implies 1 = 4c \implies c = \d\frac{1}{4} > 0$$
+      完全不管 $\vec{w}$ 是哪一個，一行算式直接秒殺！
+    </div>
+
+    <div class="final-ans-box">最終答案：(1)(2)(4)(5)</div>
+  </div>
+
+  <!-- ==================== 三、選填題 ==================== -->
+  <div class="section-header">三、選填題（每格完全答對給 7 分，答錯不倒扣，未完全答對不給分，共 28 分）</div>
+
+  <!-- 第 9 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        9. 若 $|\vec{a}| = 1$，$|\vec{b}| = 2$，$\vec{c} = \vec{a} + \vec{b}$，且 $\vec{c} \perp \vec{a}$，則向量 $\vec{a}$ 與 $\vec{b}$ 的夾角為 <u>&nbsp;&nbsp;(9-1)(9-2)(9-3)&nbsp;&nbsp;</u> 度。
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      設 $\vec{a}$ 與 $\vec{b}$ 之夾角為 $\theta$。因為 $\vec{c} \perp \vec{a}$，所以<strong>垂直向量內積為 $0$</strong>，即 $\vec{c} \cdot \vec{a} = 0$。<br>
+      將 $\vec{c} = \vec{a} + \vec{b}$ 代入展開：
+      $$\begin{aligned}
+      \vec{c} \cdot \vec{a} = (\vec{a} + \vec{b}) \cdot \vec{a} = 0 &\implies |\vec{a}|^2 + \vec{a} \cdot \vec{b} = 0 \\
+      &\implies |\vec{a}|^2 + |\vec{a}||\vec{b}|\cos\theta = 0 \\
+      &\implies 1^2 + 1 \times 2 \times \cos\theta = 0 \\
+      &\implies \cos\theta = -\d\frac{1}{2} \implies \theta = 120^\circ
+      \end{aligned}$$
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（特殊直角三角形幾何法）</div>
+      由向量加法的三角形法，$\vec{a}$、$\vec{b}$ 與 $\vec{c} = \vec{a} + \vec{b}$ 圍成一個直角三角形（因為 $\vec{c} \perp \vec{a}$），其中鄰邊 $|\vec{a}| = 1$、斜邊 $|\vec{b}| = 2$。<br>
+      斜邊是股長的 $2$ 倍，代表這是一個 $30^\circ$-$60^\circ$-$90^\circ$ 的直角三角形，內部夾角為 $60^\circ$！<br>
+      注意 $\vec{a}$ 與 $\vec{b}$ 是「頭接尾」相加，平移為<strong>同起點</strong>後，夾角為外角 $180^\circ - 60^\circ = 120^\circ$！
+    </div>
+
+    <div class="final-ans-box">最終答案：$120$（即 (9-1) 為 $1$，(9-2) 為 $2$，(9-3) 為 $0$）</div>
+  </div>
+
+  <!-- 第 10 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        10. 在坐標平面上，已知點 $O(0 , 0)$、$A(3 , 0)$、$B(0 , 4)$，設點 $P$ 在直線 $AB$ 上，若 $\overrightarrow{OP}$ 在 $\overrightarrow{OA}$ 上的正射影為 $(5 , 0)$，則點 $P$ 之坐標為 $\left( \text{(10-1)} , \d\frac{\text{(10-2)(10-3)}}{\text{(10-4)}} \right)$。（化為最簡分數）
+      </div>
+      <div class="question-figure">
+        <svg width="170" height="150" viewBox="0 0 170 150">
+          <line x1="15" y1="85" x2="155" y2="85" class="svg-line" stroke-width="1.4"/>
+          <line x1="45" y1="140" x2="45" y2="10" class="svg-line" stroke-width="1.4"/>
+          <!-- Line AB passing through B(45, 25) and A(90, 85) and P(120, 125) -->
+          <line x1="35" y1="11.7" x2="130" y2="138.3" class="svg-line" stroke-width="1.6"/>
+          <!-- Projection from P(120, 125) to (120, 85) -->
+          <line x1="120" y1="125" x2="120" y2="85" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <polyline points="114,85 114,91 120,91" fill="none" class="svg-line" stroke-width="1"/>
+          <text x="157" y="89" class="svg-text">x</text>
+          <text x="41" y="9" class="svg-text">y</text>
+          <text x="32" y="99" class="svg-text">O</text>
+          <text x="49" y="26" class="svg-text-normal">B(0,4)</text>
+          <text x="85" y="79" class="svg-text-normal">A(3,0)</text>
+          <text x="122" y="99" class="svg-text-normal">(5,0)</text>
+          <text x="108" y="136" class="svg-text">P</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      1. 如右圖，因為 $\overrightarrow{OA} = (3 , 0)$ 位於 $x$ 軸上，所以 $\overrightarrow{OP}$ 在 $\overrightarrow{OA}$（即 $x$ 軸）上的正射影為 $(5 , 0)$，代表點 $P$ 之 $x$ 坐標必為 $5$。<br>
+      2. 直線 $AB$ 通過 $A(3 , 0)$ 與 $B(0 , 4)$，由<strong>直線截距式</strong>可得直線 $AB$ 之方程式為：
+      $$\d\frac{x}{3} + \d\frac{y}{4} = 1$$
+      3. 設 $P(5 , t)$ 在直線 $AB$ 上，代入直線方程式：
+      $$\d\frac{5}{3} + \d\frac{t}{4} = 1 \implies \d\frac{t}{4} = -\d\frac{2}{3} \implies t = -\d\frac{8}{3}$$
+      故點 $P$ 之坐標為 $\left(5 , \d\frac{-8}{3}\right)$。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（共線分點公式法）</div>
+      因為點 $P$ 在直線 $AB$ 上，設 $\overrightarrow{OP} = \alpha\overrightarrow{OA} + (1 - \alpha)\overrightarrow{OB} = (3\alpha , 4 - 4\alpha)$。<br>
+      由 $x$ 坐標 $3\alpha = 5 \implies \alpha = \d\frac{5}{3}$，立刻得出 $y$ 坐標為 $4 - 4\left(\d\frac{5}{3}\right) = \d\frac{-8}{3}$！
+    </div>
+
+    <div class="final-ans-box">最終答案：$\left( 5 , \d\frac{-8}{3} \right)$（即 (10-1) 為 $5$，(10-2) 為 $-$，(10-3) 為 $8$，(10-4) 為 $3$）</div>
+  </div>
+
+  <!-- 第 11 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        11. 設 $\vec{u} , \vec{v}$ 為兩個長度皆為 2 的向量。若 $\vec{u} + \vec{v}$ 與 $\vec{u}$ 的夾角為 $15^\circ$，則 $\vec{u}$ 與 $\vec{v}$ 的內積為 <u>&nbsp;&nbsp;(11-1)$\sqrt{\text{(11-2)}}$&nbsp;&nbsp;</u>。（化為最簡根式）
+      </div>
+      <div class="question-figure">
+        <svg width="200" height="90" viewBox="0 0 200 90">
+          <!-- Rhombus formed by u and v -->
+          <polygon points="15,65 100,65 175,20 90,20" fill="none" class="svg-line" stroke-dasharray="3,3" stroke-width="1"/>
+          <line x1="15" y1="65" x2="100" y2="65" class="svg-line" stroke-width="2"/>
+          <line x1="15" y1="65" x2="90" y2="20" class="svg-line" stroke-width="2"/>
+          <line x1="15" y1="65" x2="175" y2="20" class="svg-line" stroke-width="1.6"/>
+          <text x="55" y="80" class="svg-text">u</text>
+          <text x="42" y="36" class="svg-text">v</text>
+          <text x="115" y="34" class="svg-text">u + v</text>
+          <text x="58" y="61" class="svg-text-normal">15°</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      1. 如右圖，因為 $|\vec{u}| = |\vec{v}| = 2$（兩向量等長），由平行四邊形法則知 $\vec{u}$ 與 $\vec{v}$ 張成的平行四邊形為<strong>菱形</strong>。<br>
+      2. 菱形的對角線 $\vec{u} + \vec{v}$ 必平分頂角（即 $\vec{u} + \vec{v}$ 為 $\vec{u}$ 與 $\vec{v}$ 的<strong>角平分線方向</strong>），所以 $\vec{u} + \vec{v}$ 與 $\vec{u}$ 的夾角等於 $\vec{u} + \vec{v}$ 與 $\vec{v}$ 的夾角。<br>
+      3. 因此 $\vec{u}$ 與 $\vec{v}$ 的夾角為 $15^\circ + 15^\circ = 30^\circ$。<br>
+      4. 由內積定義：
+      $$\vec{u} \cdot \vec{v} = |\vec{u}||\vec{v}|\cos 30^\circ = 2 \times 2 \times \d\frac{\sqrt{3}}{2} = 2\sqrt{3}$$
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">💡 考場秒殺觀念：等長向量相加必平分夾角</div>
+      只要看到 $|\vec{u}| = |\vec{v}|$，對角線 $\vec{u} + \vec{v}$ 就是角平分線！（這也是為什麼對於任意非零向量 $\vec{a}, \vec{b}$，單位向量相加 $\d\frac{\vec{a}}{|\vec{a}|} + \d\frac{\vec{b}}{|\vec{b}|}$ 必為角平分線方向向量）。
+    </div>
+
+    <div class="final-ans-box">最終答案：$2\sqrt{3}$（即 (11-1) 為 $2$，(11-2) 為 $3$）</div>
+  </div>
+
+  <!-- 第 12 題 -->
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        12. 已知 $O(0 , 0)$，$A(3 , 0)$，$B(0 , 4)$ 為坐標平面上三點，設 $\overrightarrow{OC} = x\overrightarrow{OA} + y\overrightarrow{OB}$，其中 $-2 \le x \le 2$，$-1 \le y \le 4$，則向量 $\overrightarrow{OC}$ 之終點 $C$ 所形成的區域面積為 <u>&nbsp;&nbsp;(12-1)(12-2)(12-3)&nbsp;&nbsp;</u>。
+      </div>
+      <div class="question-figure">
+        <svg width="180" height="170" viewBox="0 0 180 170">
+          <!-- Rectangle PQRS from x in [-6, 6], y in [-4, 16] -->
+          <!-- Origin at (90, 120), scale: 1 unit = 6px -->
+          <!-- x: -6 -> 54, +6 -> 126. y: +16 -> 24, -4 -> 144 -->
+          <rect x="54" y="24" width="72" height="120" class="svg-shade"/>
+          <rect x="54" y="24" width="72" height="120" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="15" y1="120" x2="165" y2="120" class="svg-line" stroke-width="1.4"/>
+          <line x1="90" y1="160" x2="90" y2="10" class="svg-line" stroke-width="1.4"/>
+          <text x="166" y="124" class="svg-text">x</text>
+          <text x="86" y="9" class="svg-text">y</text>
+          <text x="80" y="132" class="svg-text">O</text>
+          <text x="128" y="22" class="svg-text-normal">P(6,16)</text>
+          <text x="8" y="22" class="svg-text-normal">Q(-6,16)</text>
+          <text x="8" y="156" class="svg-text-normal">R(-6,-4)</text>
+          <text x="128" y="156" class="svg-text-normal">S(6,-4)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解</div>
+      1. 由 $\overrightarrow{OA} = (3 , 0)$ 且 $-2 \le x \le 2$，得水平方向兩端點向量為：
+      $$2\overrightarrow{OA} = (6 , 0) \quad , \quad -2\overrightarrow{OA} = (-6 , 0)$$
+      2. 由 $\overrightarrow{OB} = (0 , 4)$ 且 $-1 \le y \le 4$，得鉛直方向兩端點向量為：
+      $$4\overrightarrow{OB} = (0 , 16) \quad , \quad -\overrightarrow{OB} = (0 , -4)$$
+      3. 如右圖，$\overrightarrow{OC} = x\overrightarrow{OA} + y\overrightarrow{OB} = (3x , 4y)$ 之終點 $C$ 所形成的區域為矩形 $PQRS$，其長寬分別為 $6 - (-6) = 12$ 與 $16 - (-4) = 20$，故面積為：
+      $$12 \times 20 = 240$$
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（線性組合面積伸縮公式）</div>
+      對於任意兩個不平行向量 $\overrightarrow{OA}, \overrightarrow{OB}$，若 $\overrightarrow{OC} = x\overrightarrow{OA} + y\overrightarrow{OB}$（其中 $x_1 \le x \le x_2$，$y_1 \le y \le y_2$），則終點 $C$ 所圍成的平行四邊形面積公式為：
+      $$\text{區域面積} = \Delta x \cdot \Delta y \cdot (\overrightarrow{OA}, \overrightarrow{OB}\text{ 張成的平行四邊形面積})$$
+      本題中 $\Delta x = 2 - (-2) = 4$，$\Delta y = 4 - (-1) = 5$，且 $\overrightarrow{OA} \perp \overrightarrow{OB}$ 張成 $3 \times 4 = 12$ 的矩形，故總面積 $= 4 \times 5 \times 12 = 240$！
+    </div>
+
+    <div class="final-ans-box">最終答案：$240$（即 (12-1) 為 $2$，(12-2) 為 $4$，(12-3) 為 $0$）</div>
+  </div>
+
+  <!-- ==================== 四、混合題 ==================== -->
+  <div class="section-header">四、混合題（共 16 分）</div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        如右圖，已知 $ABCD-EFGH$ 為一個長方體紙盒且 $\overline{AB} = 6$，$\overline{AD} = 2$，$\overline{AE} = 4$。有一隻螞蟻在 $ABFE$ 平面上從 $E$ 點出發，直線前進至 $\overline{AB}$ 上一點 $P$（$P$ 可為 $A , B$ 兩點），然後在 $ABCD$ 平面上直線前進至 $C$ 點。設 $\angle EPC = \theta$，試回答下列問題。
+        <div style="margin-top: 12px;">
+          1. 當螞蟻爬行距離為最短時，$\cos\theta$ 為下列何者？（單選）（6 分）
+          <div class="options-grid" style="margin: 8px 0;">
+            <div>(1) $\d\frac{1}{2}$</div>
+            <div>(2) $-\d\frac{1}{2}$</div>
+            <div>(3) $\d\frac{\sqrt{2}}{2}$</div>
+            <div>(4) $-\d\frac{\sqrt{2}}{2}$</div>
+            <div>(5) $0$</div>
+          </div>
+          答：<u>&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+        <div style="margin-top: 14px;">
+          2. 請問 $\theta$ 為銳角、直角或鈍角？請說明理由。（10 分）
+        </div>
+      </div>
+      <div class="question-figure">
+        <svg width="210" height="165" viewBox="0 0 210 165">
+          <!-- Rectangular box ABCD-EFGH -->
+          <!-- Top: D(60, 20), C(180, 35), B(145, 55), A(25, 40) -->
+          <!-- Bottom: H(60, 100), G(180, 115), F(145, 135), E(25, 120) -->
+          <polygon points="60,20 180,35 145,55 25,40" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="25" y1="40" x2="25" y2="120" class="svg-line" stroke-width="1.5"/>
+          <line x1="145" y1="55" x2="145" y2="135" class="svg-line" stroke-width="1.5"/>
+          <line x1="180" y1="35" x2="180" y2="115" class="svg-line" stroke-width="1.5"/>
+          <line x1="25" y1="120" x2="145" y2="135" class="svg-line" stroke-width="1.5"/>
+          <line x1="145" y1="135" x2="180" y2="115" class="svg-line" stroke-width="1.5"/>
+          <!-- Hidden lines from H(60, 100) -->
+          <line x1="60" y1="20" x2="60" y2="100" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="60" y1="100" x2="25" y2="120" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="60" y1="100" x2="180" y2="115" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <!-- Path E -> P(95, 48.75) -> C(180, 35) -->
+          <circle cx="95" cy="48.75" r="2.5" class="svg-text"/>
+          <line x1="25" y1="120" x2="95" y2="48.75" class="svg-line" stroke-width="1.8"/>
+          <line x1="95" y1="48.75" x2="180" y2="35" class="svg-line" stroke-width="1.8"/>
+          <text x="55" y="15" class="svg-text">D</text>
+          <text x="184" y="36" class="svg-text">C</text>
+          <text x="148" y="68" class="svg-text">B</text>
+          <text x="11" y="42" class="svg-text">A</text>
+          <text x="64" y="96" class="svg-text">H</text>
+          <text x="184" y="122" class="svg-text">G</text>
+          <text x="142" y="150" class="svg-text">F</text>
+          <text x="11" y="125" class="svg-text">E</text>
+          <text x="92" y="43" class="svg-text">P</text>
+          <text x="102" y="62" class="svg-text">θ</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 第 1 小題：正規詳解</div>
+      1. <strong>建立空間坐標系：</strong><br>
+      　設 $H(0 , 0 , 0)$，以 $\overrightarrow{HE}$ 方向為 $x$ 軸正向、$\overrightarrow{HG}$ 方向為 $y$ 軸正向、$\overrightarrow{HD}$ 方向為 $z$ 軸正向，則各頂點坐標為：<br>
+      　$H(0 , 0 , 0)$，$E(2 , 0 , 0)$，$G(0 , 6 , 0)$，$D(0 , 0 , 4)$，$F(2 , 6 , 0)$，$A(2 , 0 , 4)$，$C(0 , 6 , 4)$，$B(2 , 6 , 4)$。<br>
+      2. <strong>利用展開圖求最短路徑之 $P$ 點位置：</strong><br>
+      　將前面 $ABFE$ 與頂面 $ABCD$ 沿公共稜線 $\overline{AB}$ 攤平在同一平面上，當 $E , P , C$ 三點共線時，螞蟻爬行距離 $\overline{EP} + \overline{PC} = \overline{EC}$ 最短。<br>
+      　在攤平的展開圖中，$\triangle EAP \sim \triangle EDC$：
+      $$\d\frac{\overline{EA}}{\overline{ED}} = \d\frac{\overline{AP}}{\overline{DC}} \implies \d\frac{4}{4 + 2} = \d\frac{\overline{AP}}{6} \implies \overline{AP} = 4 \implies P(2 , 4 , 4)$$
+      3. <strong>回到立體空間求 $\cos\theta$：</strong><br>
+      　此時 $\overrightarrow{PE} = E - P = (0 , -4 , -4)$，$\overrightarrow{PC} = C - P = (-2 , 2 , 0)$。<br>
+      　由向量內積公式 $\overrightarrow{PE} \cdot \overrightarrow{PC} = |\overrightarrow{PE}||\overrightarrow{PC}|\cos\theta$：
+      $$\begin{aligned}
+      0 \times (-2) + (-4) \times 2 + (-4) \times 0 &= \sqrt{0^2 + (-4)^2 + (-4)^2} \times \sqrt{(-2)^2 + 2^2 + 0^2} \times \cos\theta \\
+      -8 &= \sqrt{32} \times \sqrt{8} \times \cos\theta \implies \cos\theta = \d\frac{-8}{\sqrt{32} \times \sqrt{8}} = -\d\frac{1}{2}
+      \end{aligned}$$
+      故選 (2)。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 第 1 小題：學霸另解（三垂線定理／空間餘弦定理法）</div>
+      不建坐標系也能算！當 $\overline{AP} = 4, \overline{PB} = 2$ 時：<br>
+      ・在前面直角 $\triangle EAP$ 中，$\overline{PE} = \sqrt{4^2 + 4^2} = \sqrt{32}$；<br>
+      ・在頂面直角 $\triangle CBP$ 中，$\overline{PC} = \sqrt{2^2 + 2^2} = \sqrt{8}$；<br>
+      ・在長方體對角線中，$\overline{EC}^2 = \overline{EA}^2 + \overline{AD}^2 + \overline{DC}^2 = 4^2 + 2^2 + 6^2 = 56$。<br>
+      在空間 $\triangle EPC$ 中直接套用<strong>餘弦定理</strong>：
+      $$\cos\theta = \d\frac{\overline{PE}^2 + \overline{PC}^2 - \overline{EC}^2}{2\cdot\overline{PE}\cdot\overline{PC}} = \d\frac{32 + 8 - 56}{2\sqrt{32}\sqrt{8}} = \d\frac{-16}{32} = -\d\frac{1}{2}$$
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 第 2 小題：正規詳解</div>
+      1. 延續第 1 小題的空間坐標系，因為點 $P$ 在線段 $\overline{AB}$ 上（包含 $A , B$ 兩端點），可設：
+      $$P(2 , t , 4) \quad ，\text{其中 } 0 \le t \le 6$$
+      2. 則向量 $\overrightarrow{PE}$ 與 $\overrightarrow{PC}$ 分別為：
+      $$\overrightarrow{PE} = (0 , -t , -4) \quad , \quad \overrightarrow{PC} = (-2 , 6 - t , 0)$$
+      3. 計算 $\cos\theta$ 的正負號：
+      $$\cos\theta = \d\frac{\overrightarrow{PE} \cdot \overrightarrow{PC}}{|\overrightarrow{PE}||\overrightarrow{PC}|} = \d\frac{0 \times (-2) + (-t)(6 - t) + (-4) \times 0}{|\overrightarrow{PE}||\overrightarrow{PC}|} = \d\frac{t(t - 6)}{|\overrightarrow{PE}||\overrightarrow{PC}|}$$
+      4. 因為 $0 \le t \le 6$，所以 $t \ge 0$ 且 $t - 6 \le 0$，故分子乘積满足：
+      $$t(t - 6) \le 0 \implies \cos\theta \le 0$$
+      　（當 $t = 0$ 或 $t = 6$，即 $P = A$ 或 $P = B$ 時，$\cos\theta = 0$，$\theta = 90^\circ$ 為直角；當 $0 < t < 6$ 時，$\cos\theta < 0$，$\theta$ 為鈍角）。<br>
+      故 $\theta$ 為<strong>直角或鈍角</strong>。
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">⚠️ 易錯盲點（手寫題漏寫「直角」會被扣分！）</div>
+      許多同學在第 2 小題只看到當 $P$ 在 $\overline{AB}$ 中間時 $\cos\theta < 0$，就急著寫「鈍角」！<br>
+      請務必看清題幹括號內的條件：「<strong>（$P$ 可為 $A , B$ 兩點）</strong>」！<br>
+      ・當 $P = A$ 時，$\overline{EA} \perp \text{平面 } ABCD \implies \overline{EA} \perp \overline{AC} \implies \angle EAC = 90^\circ$（直角）；<br>
+      ・當 $P = B$ 時，$\overline{BC} \perp \text{平面 } ABFE \implies \overline{BC} \perp \overline{BE} \implies \angle EBC = 90^\circ$（直角）。<br>
+      因此完整答案必須回答「<strong>直角或鈍角</strong>」才能拿到滿分 10 分！
+    </div>
+
+    <div class="final-ans-box">
+      最終答案：<br>
+      1. (2)<br>
+      2. 直角或鈍角（因為設 $P(2, t, 4), 0 \le t \le 6$，則 $\overrightarrow{PE}\cdot\overrightarrow{PC} = t(t-6) \le 0 \implies \cos\theta \le 0$）
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode) {
+    const body = document.body;
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    if (mode === 'dark') {
+      body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+    } else {
+      body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+    }
+  }
+
+  function printPage() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise().then(() => {
+        window.print();
+      });
+    } else {
+      window.print();
+    }
+  }
+</script>
+
+</body>
+</html>

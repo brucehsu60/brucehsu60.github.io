@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新大滿貫複習講義．數學A測驗卷 11 向量的運算與內積 — 預備知識與核心公式總整理</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: {
+      d: '\\displaystyle'
+    }
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #e2e8f0;
+    --primary-color: #2563eb;
+    --sol-bg: #eff6ff;
+    --sol-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fdf2f8;
+    --tip-border: #ec4899;
+    --check-bg: #f0fdf4;
+    --check-border: #22c55e;
+    --ans-bg: #f8fafc;
+    --ans-border: #0f172a;
+    --toolbar-bg: rgba(255, 255, 255, 0.92);
+    --svg-stroke: #1e293b;
+    --svg-fill-gray: #cbd5e1;
+  }
+
+  body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --sol-bg: #172554;
+    --sol-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #500724;
+    --tip-border: #f43f5e;
+    --check-bg: #052e16;
+    --check-border: #22c55e;
+    --ans-bg: #0f172a;
+    --ans-border: #e2e8f0;
+    --toolbar-bg: rgba(30, 41, 59, 0.92);
+    --svg-stroke: #f1f5f9;
+    --svg-fill-gray: #475569;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 76px 16px 48px 16px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.75;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* 頂部懸浮工具列 */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--toolbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toolbar button:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .toolbar button.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+  }
+
+  /* 主標題橫幅 */
+  .header-banner {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .header-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0 0 18px 0;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .summary-table th, .summary-table td {
+    border: 1px solid var(--border-color);
+    padding: 9px 12px;
+  }
+
+  .summary-table th {
+    background: var(--sol-bg);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* 知識點主題標題 */
+  .section-header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 32px 0 16px 0;
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge-map {
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--sol-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--sol-border);
+  }
+
+  /* 知識卡片 */
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .question-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    flex: 1;
+    font-size: 1.04rem;
+  }
+
+  .question-figure {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  /* 核心觀念與公式框 */
+  .sol-box {
+    background-color: var(--sol-bg);
+    border-left: 6px solid var(--sol-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  /* 學霸進階另解與速解框 */
+  .alt-box {
+    background-color: var(--alt-bg);
+    border-left: 6px solid var(--alt-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  /* 特殊提示區塊（易錯盲點 / 考場秒殺） */
+  .special-card {
+    border: 2px solid var(--tip-border);
+    border-left: 8px solid var(--tip-border);
+    background-color: var(--tip-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .check-card {
+    border: 2px solid var(--check-border);
+    border-left: 8px solid var(--check-border);
+    background-color: var(--check-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .box-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 最終答案框（重點總結框） */
+  .final-ans-box {
+    background-color: var(--ans-bg);
+    border: 4px double var(--ans-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 16px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg-line {
+    stroke: var(--svg-stroke);
+  }
+  .svg-text {
+    fill: var(--svg-stroke);
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .svg-text-normal {
+    fill: var(--svg-stroke);
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+  .svg-shade {
+    fill: var(--svg-fill-gray);
+  }
+
+  @media (max-width: 680px) {
+    .question-layout {
+      flex-direction: column;
+    }
+    .question-figure {
+      align-self: center;
+    }
+  }
+
+  /* 列印專用樣式強化 */
+  @media print {
+    * {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+      padding: 0;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .question-card {
+      page-break-inside: auto;
+      border: 1px solid #999;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+
+    .special-card, .check-card {
+      border: 3px solid #000 !important;
+      border-left: 10px solid #000 !important;
+      page-break-inside: avoid;
+    }
+
+    .sol-box, .alt-box {
+      page-break-inside: avoid;
+    }
+
+    .final-ans-box {
+      page-break-inside: avoid;
+      border: 4px double #000 !important;
+      background-color: #f8fafc !important;
+      color: #000 !important;
+    }
+
+    strong {
+      font-weight: 800 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="btn-light" class="active" onclick="setMode('light')">📄 預設好讀</button>
+  <button id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+  <button onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+  <div class="header-banner">
+    <h1 class="header-title">新大滿貫複習講義．數學A測驗卷 11 向量的運算與內積</h1>
+    <p class="header-subtitle">學霸考前必備預備知識、核心公式與秒殺觀念總整理</p>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">知識模組</th>
+          <th style="width: 48%;">核心公式與考點關鍵字</th>
+          <th style="width: 24%;">對應本卷題號</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>一、向量的加減與菱形幾何</strong></td>
+          <td>頭尾相接加法、同起點後減前、等長向量對角線平分夾角</td>
+          <td style="text-align:center;">第 1、4、6、8、11 題</td>
+        </tr>
+        <tr>
+          <td><strong>二、內積定義與正射影意義</strong></td>
+          <td>$\vec{u}\cdot\vec{v} = |\vec{u}||\vec{v}|\cos\theta$、有向正射影長比較內積、正射影向量公式</td>
+          <td style="text-align:center;">第 2、5、6、7、10 題、混合題</td>
+        </tr>
+        <tr>
+          <td><strong>三、長度平方展開與垂直條件</strong></td>
+          <td>$|\vec{a}+\vec{b}|^2 = |\vec{a}|^2 + 2\vec{a}\cdot\vec{b} + |\vec{b}|^2$、垂直內積為 $0$、平面旋轉 $90^\circ$ 向量</td>
+          <td style="text-align:center;">第 4、6、8、9 題</td>
+        </tr>
+        <tr>
+          <td><strong>四、柯西不等式與內積極值</strong></td>
+          <td>$(a^2+b^2)(c^2+d^2) \ge (ac+bd)^2$、同向最大 $+|\vec{u}||\vec{v}|$、反向最小</td>
+          <td style="text-align:center;">第 3 題</td>
+        </tr>
+        <tr>
+          <td><strong>五、線性組合與終點區域面積</strong></td>
+          <td>正交基底內積求係數、直線截距式、$\overrightarrow{OC}=x\overrightarrow{OA}+y\overrightarrow{OB}$ 面積伸縮</td>
+          <td style="text-align:center;">第 7、8、10、12 題</td>
+        </tr>
+        <tr>
+          <td><strong>六、立體空間坐標化與展開圖</strong></td>
+          <td>正方體／長方體建坐標系、攤平共線相似形求分點、三維內積判鈍角</td>
+          <td style="text-align:center;">第 5、6、7 題、混合題 1、2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== 模組一 ==================== -->
+  <div class="section-header">
+    <span>一、向量的幾何加減法、係數積與菱形角平分線性質</span>
+    <span class="badge-map">📍 對應本卷：第 1、4、6、8、11 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        向量的合成與拆解是所有幾何向量題的起點。特別是當<strong>兩個向量等長（$|\vec{u}| = |\vec{v}|$）</strong>時，平行四邊形會退化為<strong>菱形或正方形</strong>，蘊含極多秒殺級的幾何對稱性質！
+      </div>
+      <div class="question-figure">
+        <svg width="200" height="115" viewBox="0 0 200 115">
+          <polygon points="20,90 105,90 180,30 95,30" fill="none" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="20" y1="90" x2="105" y2="90" class="svg-line" stroke-width="2"/>
+          <line x1="20" y1="90" x2="95" y2="30" class="svg-line" stroke-width="2"/>
+          <line x1="20" y1="90" x2="180" y2="30" class="svg-line" stroke-width="1.6"/>
+          <text x="60" y="106" class="svg-text">u</text>
+          <text x="42" y="52" class="svg-text">v</text>
+          <text x="115" y="48" class="svg-text">u + v</text>
+          <text x="64" y="84" class="svg-text">θ</text>
+          <text x="53" y="72" class="svg-text">θ</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>向量加法（頭尾相接法）：</strong><br>
+      　將前一個向量的終點接上後一個向量的起點：
+      $$\overrightarrow{PF} + \overrightarrow{FC} = \overrightarrow{PC}$$
+      2. <strong>向量減法（同起點，後減前）：</strong><br>
+      　將兩向量平移至同一起點 $O$，差向量由「減數終點」指向「被減數終點」：
+      $$\overrightarrow{OA} - \overrightarrow{OB} = \overrightarrow{BA} \quad , \quad \overrightarrow{OC} - \overrightarrow{OD} = \overrightarrow{DC}$$
+      3. <strong>等長向量的三大黃金幾何結構（考場必備）：</strong>
+      <ul>
+        <li><strong>菱形角平分線性質（第 11 題）：</strong>若 $|\vec{u}| = |\vec{v}|$，則 $\vec{u}$ 與 $\vec{v}$ 張成菱形，對角線 $\vec{u} + \vec{v}$ 必平分 $\vec{u}$ 與 $\vec{v}$ 的夾角！若 $\vec{u} + \vec{v}$ 與 $\vec{u}$ 夾角為 $\theta$，則 $\vec{u}$ 與 $\vec{v}$ 的夾角必為 $2\theta$。</li>
+        <li><strong>正方形對角線性質（第 8 題）：</strong>若 $|\vec{v}| = |\vec{w}|$ 且 $\vec{v} \perp \vec{w}$，則張成正方形，兩對角線等長 $|\vec{v} + \vec{w}| = |\vec{v} - \vec{w}| = \sqrt{2}|\vec{v}|$，且 $\vec{v} + \vec{w}$ 與 $\vec{w}$ 的夾角恆為 $45^\circ$。</li>
+        <li><strong>正三角形夾角 $120^\circ$ 性質（第 4 題）：</strong>若 $|\vec{a}| = |\vec{b}| = |\vec{a} + \vec{b}|$，代表菱形的對角線等於邊長（由兩個正三角形拼成），則同起點時 $\vec{a}$ 與 $\vec{b}$ 的夾角必為 $120^\circ$！</li>
+      </ul>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">⚠️ 易錯盲點：向量夾角必須「同起點」或「同終點」！</div>
+      若三個向量「頭尾相接」構成正三角形（即 $\vec{a} + \vec{b} + \vec{c} = \vec{0}$ 且等長），三角形內角雖為 $60^\circ$，但將兩向量平移至<strong>同起點</strong>後，兩向量的夾角是外角 $180^\circ - 60^\circ = 120^\circ$！千萬別誤選 $60^\circ$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：頭尾相接用加法，同起點後減前；等長相加成菱形，對角線必平分夾角！</div>
+  </div>
+
+  <!-- ==================== 模組二 ==================== -->
+  <div class="section-header">
+    <span>二、向量內積的定義、坐標表示與幾何投影意義</span>
+    <span class="badge-map">📍 對應本卷：第 2、5、6、7、10 題、混合題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        內積（Dot Product）是連接「幾何長度、角度」與「代數坐標運算」的橋樑。理解內積的<strong>有向正射影幾何意義</strong>，能讓你在圖形比較題中完全不用動筆計算！
+      </div>
+      <div class="question-figure">
+        <svg width="200" height="125" viewBox="0 0 200 125">
+          <line x1="20" y1="95" x2="180" y2="95" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <line x1="35" y1="95" x2="120" y2="95" class="svg-line" stroke-width="2.2"/>
+          <line x1="35" y1="95" x2="155" y2="25" class="svg-line" stroke-width="1.8"/>
+          <line x1="155" y1="25" x2="155" y2="95" class="svg-line" stroke-dasharray="3,3" stroke-width="1.2"/>
+          <polyline points="148,95 148,88 155,88" fill="none" class="svg-line" stroke-width="1"/>
+          <text x="30" y="112" class="svg-text">A</text>
+          <text x="115" y="112" class="svg-text">B</text>
+          <text x="158" y="24" class="svg-text">C</text>
+          <text x="150" y="112" class="svg-text">C'</text>
+          <text x="62" y="90" class="svg-text">θ</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>內積的幾何定義與坐標公式：</strong><br>
+      　設兩非零向量 $\vec{u} , \vec{v}$ 的夾角為 $\theta$（$0^\circ \le \theta \le 180^\circ$）：
+      $$\vec{u} \cdot \vec{v} = |\vec{u}||\vec{v}|\cos\theta = x_1x_2 + y_1y_2 + z_1z_2$$
+      　移項求夾角餘弦值：$\cos\theta = \d\frac{\vec{u} \cdot \vec{v}}{|\vec{u}||\vec{v}|}$。<br>
+      2. <strong>由內積正負號判別夾角類型（第 7 題、混合題第 2 小題）：</strong>
+      <ul>
+        <li>$\vec{u} \cdot \vec{v} > 0 \iff \cos\theta > 0 \iff 0^\circ \le \theta < 90^\circ$（<strong>銳角</strong>或同向 $0^\circ$）</li>
+        <li>$\vec{u} \cdot \vec{v} = 0 \iff \cos\theta = 0 \iff \theta = 90^\circ$（<strong>直角／互相垂直</strong> $\vec{u} \perp \vec{v}$）</li>
+        <li>$\vec{u} \cdot \vec{v} < 0 \iff \cos\theta < 0 \iff 90^\circ < \theta \le 180^\circ$（<strong>鈍角</strong>或反向 $180^\circ$）</li>
+      </ul>
+      3. <strong>內積的幾何投影意義（第 2 題秒殺關鍵）：</strong><br>
+      　如右圖，過 $C$ 作直線 $AB$ 的垂線，垂足為 $C'$，則 $|\overrightarrow{AC}|\cos\theta$ 即為 $\overrightarrow{AC}$ 在 $\overrightarrow{AB}$ 方向上的<strong>有向投影長</strong>：
+      $$\overrightarrow{AB} \cdot \overrightarrow{AC} = |\overrightarrow{AB}| \times \left(|\overrightarrow{AC}|\cos\theta\right) = \begin{cases} +|\overrightarrow{AB}||\overrightarrow{AC'}| & (\text{當 } \theta \text{ 為銳角，投影同向}) \\ 0 & (\text{當 } \theta = 90^\circ\text{，投影為一點}) \\ -|\overrightarrow{AB}||\overrightarrow{AC'}| & (\text{當 } \theta \text{ 為鈍角，投影反向}) \end{cases}$$
+      4. <strong>正射影向量公式（第 10 題）：</strong><br>
+      　向量 $\vec{u}$ 在 $\vec{v}$ 上的正射影（投影向量）為：
+      $$\text{Proj}_{\vec{v}}\vec{u} = \left(\d\frac{\vec{u} \cdot \vec{v}}{|\vec{v}|^2}\right)\vec{v}$$
+      　特別地，若 $\overrightarrow{OA}$ 在 $x$ 軸上，則 $\overrightarrow{OP}$ 在 $\overrightarrow{OA}$ 上的正射影為 $(x_P , 0)$，直接讀出點 $P$ 的 $x$ 坐標！
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算（中點極化恆等式——破解第 5 題軌跡）</div>
+      當題目給定兩定點 $A , B$，要求滿足 $\overrightarrow{PA} \cdot \overrightarrow{PB} = k$ 的動點 $P$ 時，設 $\overline{AB}$ 中點為 $M$，必有：
+      $$\overrightarrow{PA} \cdot \overrightarrow{PB} = (\overrightarrow{PM} + \overrightarrow{MA}) \cdot (\overrightarrow{PM} - \overrightarrow{MA}) = |\overrightarrow{PM}|^2 - |\overrightarrow{MA}|^2 = k \implies |\overrightarrow{PM}|^2 = k + \d\frac{1}{4}\overline{AB}^2$$
+      代表動點 $P$ 到中點 $M$ 的距離為定值（在空間中為球面，與 $xy$ 平面截出一個圓）！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：比內積大小就是比「誰在固定向量方向上投影衝得最遠」；內積正為銳、零為直、負為鈍。</div>
+  </div>
+
+  <!-- ==================== 模組三 ==================== -->
+  <div class="section-header">
+    <span>三、向量長度的平方展開（自身內積）與垂直旋轉</span>
+    <span class="badge-map">📍 對應本卷：第 4、6、8、9 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-text">
+      向量沒有除法，也不能直接對 $|\vec{a} + \vec{b}|$ 去絕對值；只要題目給出<strong>向量加減後的長度 $|p\vec{u} + q\vec{v}|$</strong>，唯一標準動作就是<strong>「兩邊平方轉成內積」</strong>！
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>自身內積恆等式：</strong>$|\vec{a}|^2 = \vec{a} \cdot \vec{a}$。<br>
+      2. <strong>向量和差之長度平方展開公式（第 4、8 題核心）：</strong>
+      $$\begin{aligned}
+      |\vec{a} \pm \vec{b}|^2 &= (\vec{a} \pm \vec{b}) \cdot (\vec{a} \pm \vec{b}) = |\vec{a}|^2 \pm 2(\vec{a} \cdot \vec{b}) + |\vec{b}|^2 \\
+      |p\vec{u} + q\vec{v}|^2 &= p^2|\vec{u}|^2 + 2pq(\vec{u} \cdot \vec{v}) + q^2|\vec{v}|^2
+      \end{aligned}$$
+      3. <strong>正交（互相垂直）向量的畢氏定理（第 8 題第 4 選項）：</strong><br>
+      　若 $\vec{v} \perp \vec{w}$，則中間項 $\vec{v} \cdot \vec{w} = 0$，此時：
+      $$|a\vec{v} + b\vec{w}| = \sqrt{a^2|\vec{v}|^2 + b^2|\vec{w}|^2}$$
+      　若又已知 $|\vec{v}| = |\vec{w}| = L$，則 $|a\vec{v} + b\vec{w}| = L\sqrt{a^2 + b^2}$。<br>
+      4. <strong>平面上求垂直且等長向量的速算法（第 8 題第 1 選項）：</strong><br>
+      　在坐標平面上，將向量 $\vec{v} = (x , y)$ 逆時針或順時針旋轉 $90^\circ$，所得垂直且等長的向量 $\vec{w}$ 必為<strong>「座標對調、其中一個變號」</strong>：
+      $$\vec{w} = (-y , x) \quad \text{或} \quad (y , -x)$$
+      　例如 $\vec{v} = (1 , \sqrt{3})$，則垂直且等長的 $\vec{w}$ 必為 $(-\sqrt{3} , 1)$ 或 $(\sqrt{3} , -1)$，1 秒鐘直接寫出！
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">💡 考場秒殺技巧：看到垂直條件 $\vec{c} \perp \vec{a}$ 怎麼辦？（第 9 題）</div>
+      題目若給 $\vec{c} = \vec{a} + \vec{b}$ 且 $\vec{c} \perp \vec{a}$，立刻寫出<strong>「$\vec{c} \cdot \vec{a} = 0$」</strong>：<br>
+      $$(\vec{a} + \vec{b}) \cdot \vec{a} = 0 \implies |\vec{a}|^2 + \vec{a} \cdot \vec{b} = 0 \implies \vec{a} \cdot \vec{b} = -|\vec{a}|^2$$
+      直接求出 $\vec{a} \cdot \vec{b}$，連平方展開都省了！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：見絕對值（長度）必平方；平面垂直向量「$(x,y)$ 對調變號得 $(-y,x)$ 或 $(y,-x)$」。</div>
+  </div>
+
+  <!-- ==================== 模組四 ==================== -->
+  <div class="section-header">
+    <span>四、柯西不等式與向量內積之極值</span>
+    <span class="badge-map">📍 對應本卷：第 3 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-text">
+      因為 $|\cos\theta| \le 1$，所以兩向量內積的絕對值永遠不會超過兩向量長度的乘積，這正是高中數學赫赫有名的<strong>柯西不等式（Cauchy-Schwarz Inequality）</strong>。
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>柯西不等式的向量形式：</strong><br>
+      　對於任意兩向量 $\vec{u} , \vec{v}$：
+      $$|\vec{u} \cdot \vec{v}| \le |\vec{u}||\vec{v}| \iff (\vec{u} \cdot \vec{v})^2 \le |\vec{u}|^2|\vec{v}|^2$$
+      　・當 $\vec{u} , \vec{v}$ <strong>同向（$\theta = 0^\circ$）</strong>時，$\vec{u} \cdot \vec{v}$ 有<strong>最大值 $+|\vec{u}||\vec{v}|$</strong>；<br>
+      　・當 $\vec{u} , \vec{v}$ <strong>反向（$\theta = 180^\circ$）</strong>時，$\vec{u} \cdot \vec{v}$ 有<strong>最小值 $-|\vec{u}||\vec{v}|$</strong>。<br>
+      2. <strong>柯西不等式的二維坐標代數形式：</strong><br>
+      　設 $\vec{u} = (a , b)$，$\vec{v} = (c , d)$，則：
+      $$(a^2 + b^2)(c^2 + d^2) \ge (ac + bd)^2$$
+      　等號成立的充要條件為 $\d\frac{a}{c} = \d\frac{b}{d}$（或 $ad = bc$，即兩向量平行）。
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：平方和乘積 $\ge$ 內積平方；$\vec{u}\cdot\vec{v}$ 最大值就是 $|\vec{u}||\vec{v}|$。</div>
+  </div>
+
+  <!-- ==================== 模組五 ==================== -->
+  <div class="section-header">
+    <span>五、向量的線性組合、直線截距式與終點區域面積</span>
+    <span class="badge-map">📍 對應本卷：第 7、8、10、12 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        平面上任意兩個不平行的非零向量 $\overrightarrow{OA} , \overrightarrow{OB}$ 都可以作為基底，將平面上任一向量唯一表示為 $\overrightarrow{OC} = x\overrightarrow{OA} + y\overrightarrow{OB}$。當係數 $x , y$ 在閉區間內變動時，終點 $C$ 會掃出一塊平行四邊形區域。
+      </div>
+      <div class="question-figure">
+        <svg width="180" height="145" viewBox="0 0 180 145">
+          <polygon points="35,105 95,105 120,45 60,45" class="svg-shade"/>
+          <polygon points="35,105 95,105 120,45 60,45" fill="none" class="svg-line" stroke-width="1.5"/>
+          <line x1="35" y1="105" x2="65" y2="105" class="svg-line" stroke-width="2.2"/>
+          <line x1="35" y1="105" x2="47.5" y2="75" class="svg-line" stroke-width="2.2"/>
+          <text x="22" y="114" class="svg-text">O</text>
+          <text x="63" y="120" class="svg-text">A</text>
+          <text x="20" y="78" class="svg-text">B</text>
+          <text x="62" y="78" class="svg-text-normal">Δx·Δy 倍</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>線性組合終點所形成的區域面積公式（第 12 題核心）：</strong><br>
+      　設 $\overrightarrow{OC} = x\overrightarrow{OA} + y\overrightarrow{OB}$，其中 $x_1 \le x \le x_2$，$y_1 \le y \le y_2$。<br>
+      　令 $\Delta x = x_2 - x_1$，$\Delta y = y_2 - y_1$，則終點 $C$ 所形成的區域面積為：
+      $$\text{區域面積} = \Delta x \times \Delta y \times (\overrightarrow{OA} \text{ 與 } \overrightarrow{OB} \text{ 所張成的平行四邊形面積})$$
+      　（註：若題目改為再加上 $x + y \le k$ 的三角形限制，面積則再乘以 $\d\frac{1}{2}$）。<br>
+      2. <strong>直線截距式與三點共線（第 10 題）：</strong><br>
+      　通過 $x$ 軸截距點 $A(a , 0)$ 與 $y$ 軸截距點 $B(0 , b)$（$a, b \neq 0$）的直線方程式為：
+      $$\d\frac{x}{a} + \d\frac{y}{b} = 1$$
+      3. <strong>正交基底求線性組合係數的「內積消元大招」（第 8 題第 5 選項）：</strong><br>
+      　若已知 $\vec{v} \perp \vec{w}$（即 $\vec{v} \cdot \vec{w} = 0$），且 $\vec{p} = c\vec{v} + d\vec{w}$，兩邊同時對 $\vec{v}$ 取內積即可直接求出 $c$：
+      $$\vec{p} \cdot \vec{v} = c|\vec{v}|^2 + d(\vec{w} \cdot \vec{v}) = c|\vec{v}|^2 \implies c = \d\frac{\vec{p} \cdot \vec{v}}{|\vec{v}|^2}$$
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：平行四邊形網格面積 ＝ $x$ 跨度 $\Delta x \times y$ 跨度 $\Delta y \times$ 單位網格面積。</div>
+  </div>
+
+  <!-- ==================== 模組六 ==================== -->
+  <div class="section-header">
+    <span>六、空間立體幾何坐標化與表面最短路徑展開圖</span>
+    <span class="badge-map">📍 對應本卷：第 6、7 題、混合題第 1 & 2 小題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        遇到正立方體、長方體中的分點向量、內積或螞蟻爬行最短路徑問題時，<strong>「建立空間直角坐標系」＋「展開圖相似三角形」</strong>是百發百中的滿分標準作業程序（SOP）！
+      </div>
+      <div class="question-figure">
+        <svg width="175" height="155" viewBox="0 0 175 155">
+          <!-- Unfolded rectangles ABCD and ABFE -->
+          <rect x="35" y="15" width="105" height="35" fill="none" class="svg-line" stroke-width="1.5"/>
+          <rect x="35" y="50" width="105" height="70" fill="none" class="svg-line" stroke-width="1.5"/>
+          <!-- Straight line EC passing through P -->
+          <line x1="35" y1="120" x2="140" y2="15" class="svg-line" stroke-width="2"/>
+          <circle cx="105" cy="50" r="3" class="svg-text"/>
+          <text x="21" y="22" class="svg-text">D</text>
+          <text x="145" y="22" class="svg-text">C</text>
+          <text x="21" y="55" class="svg-text">A</text>
+          <text x="145" y="55" class="svg-text">B</text>
+          <text x="21" y="125" class="svg-text">E</text>
+          <text x="145" y="125" class="svg-text">F</text>
+          <text x="103" y="65" class="svg-text">P</text>
+          <text x="82" y="13" class="svg-text-normal">6</text>
+          <text x="24" y="38" class="svg-text-normal">2</text>
+          <text x="24" y="90" class="svg-text-normal">4</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>長方體表面爬行最短路徑 SOP（混合題第 1 小題）：</strong>
+      <ul>
+        <li><strong>Step 1（攤平共線求轉折點 $P$）：</strong>如右圖，將相鄰兩平面 $ABFE$ 與 $ABCD$ 沿公共邊 $\overline{AB}$ 攤平在同一平面上。因為兩點之間直線最短，連接 $\overline{EC}$ 交 $\overline{AB}$ 於 $P$ 點，利用直角三角形相似 $\triangle EAP \sim \triangle EDC$：
+        $$\d\frac{\overline{AP}}{\overline{DC}} = \d\frac{\overline{EA}}{\overline{EA} + \overline{AD}} \implies \text{求出 } \overline{AP} \text{ 的長度與點 } P \text{ 的空間坐標}$$</li>
+        <li><strong>Step 2（折回三維空間求夾角 $\cos\theta$）：</strong>題目問的 $\angle EPC = \theta$ 是<strong>原本立體長方體中的空間夾角</strong>！將 $E , P , C$ 的三維空間坐標代入 $\overrightarrow{PE} = E - P$ 與 $\overrightarrow{PC} = C - P$，利用空間內積公式：
+        $$\cos\theta = \d\frac{\overrightarrow{PE} \cdot \overrightarrow{PC}}{|\overrightarrow{PE}||\overrightarrow{PC}|}$$</li>
+      </ul>
+      2. <strong>動點參數化判別角度範圍（混合題第 2 小題）：</strong><br>
+      　當動點 $P$ 在線段 $\overline{AB}$（長為 $L$）上移動時，設參數坐標 $P(x_0 , t , z_0)$，其中 $0 \le t \le L$。<br>
+      　算出內積 $\overrightarrow{PE} \cdot \overrightarrow{PC} = t(t - L)$。因為 $0 \le t \le L$，二次函數開口向上且兩根為 $0$ 與 $L$，故在區間 $[0 , L]$ 上恆有：
+      $$t(t - L) \le 0 \implies \cos\theta \le 0$$
+      　・當 $t = 0$ 或 $t = L$（端點 $A , B$）時：$\cos\theta = 0 \implies \theta = 90^\circ$（<strong>直角</strong>）；<br>
+      　・當 $0 < t < L$（線段內部）時：$\cos\theta < 0 \implies 90^\circ < \theta < 180^\circ$（<strong>鈍角</strong>）。
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">⚠️ 易錯盲點：千萬別把展開圖的 $180^\circ$ 當成空間夾角 $\theta$！</div>
+      在展開圖上 $E , P , C$ 三點共線（夾角 $180^\circ$），那是為了找最短路徑點 $P$ 的位置；一旦把紙盒折回 $90^\circ$ 的立體長方體，兩條折線 $\overline{PE}$ 與 $\overline{PC}$ 在空間中的夾角 $\theta$ 就會縮小（在本卷混合題中為 $120^\circ$，故 $\cos\theta = -\d\frac{1}{2}$）！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：求最短路徑用「平面展開圖相似形」；求夾角 $\cos\theta$ 用「三維空間坐標內積」！</div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode) {
+    const body = document.body;
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    if (mode === 'dark') {
+      body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+    } else {
+      body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+    }
+  }
+
+  function printPage() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise().then(() => {
+        window.print();
+      });
+    } else {
+      window.print();
+    }
+  }
+</script>
+
+</body>
+</html>

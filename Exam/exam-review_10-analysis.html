@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新大滿貫複習講義．數學A測驗卷 10 三角函數 — 錯題診斷與專屬訂正講義</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: {
+      d: '\\displaystyle'
+    }
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #e2e8f0;
+    --primary-color: #2563eb;
+    --sol-bg: #eff6ff;
+    --sol-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fdf2f8;
+    --tip-border: #ec4899;
+    --check-bg: #f0fdf4;
+    --check-border: #22c55e;
+    --ans-bg: #f8fafc;
+    --ans-border: #0f172a;
+    --toolbar-bg: rgba(255, 255, 255, 0.92);
+    --svg-stroke: #1e293b;
+    --svg-fill-gray: #cbd5e1;
+  }
+
+  body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --sol-bg: #172554;
+    --sol-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #500724;
+    --tip-border: #f43f5e;
+    --check-bg: #052e16;
+    --check-border: #22c55e;
+    --ans-bg: #0f172a;
+    --ans-border: #e2e8f0;
+    --toolbar-bg: rgba(30, 41, 59, 0.92);
+    --svg-stroke: #f1f5f9;
+    --svg-fill-gray: #475569;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 76px 16px 48px 16px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.75;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* 頂部懸浮工具列 */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--toolbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toolbar button:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .toolbar button.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+  }
+
+  /* 主標題橫幅 */
+  .header-banner {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .header-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    margin: 0;
+  }
+
+  /* 大題標題 */
+  .section-header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 34px 0 16px 0;
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+
+  /* 題目與診斷卡片 */
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .question-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .question-text {
+    flex: 1;
+    font-size: 1.06rem;
+  }
+
+  .question-figure {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px 16px;
+    margin-top: 10px;
+  }
+
+  .options-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .source-tag {
+    display: inline-block;
+    float: right;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .diag-badge {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: var(--tip-bg);
+    color: var(--tip-border);
+    border: 1px solid var(--tip-border);
+  }
+
+  .praise-badge {
+    display: inline-block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: var(--check-bg);
+    color: var(--check-border);
+    border: 1px solid var(--check-border);
+  }
+
+  /* 詳解與各種區塊配色 */
+  .sol-box {
+    background-color: var(--sol-bg);
+    border-left: 6px solid var(--sol-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .alt-box {
+    background-color: var(--alt-bg);
+    border-left: 6px solid var(--alt-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .special-card {
+    border: 2px solid var(--tip-border);
+    border-left: 8px solid var(--tip-border);
+    background-color: var(--tip-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .check-card {
+    border: 2px solid var(--check-border);
+    border-left: 8px solid var(--check-border);
+    background-color: var(--check-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .box-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 最終答案框 */
+  .final-ans-box {
+    background-color: var(--ans-bg);
+    border: 4px double var(--ans-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 18px;
+    font-size: 1.06rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg-line {
+    stroke: var(--svg-stroke);
+  }
+  .svg-text {
+    fill: var(--svg-stroke);
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .svg-text-normal {
+    fill: var(--svg-stroke);
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+  .svg-shade {
+    fill: var(--svg-fill-gray);
+  }
+
+  @media (max-width: 680px) {
+    .question-layout {
+      flex-direction: column;
+    }
+    .question-figure {
+      align-self: center;
+    }
+  }
+
+  /* 列印專用樣式強化 */
+  @media print {
+    * {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+      padding: 0;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .question-card {
+      page-break-inside: auto;
+      border: 1px solid #999;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+
+    .special-card, .check-card {
+      border: 3px solid #000 !important;
+      border-left: 10px solid #000 !important;
+      page-break-inside: avoid;
+    }
+
+    .sol-box, .alt-box {
+      page-break-inside: avoid;
+    }
+
+    .final-ans-box {
+      page-break-inside: avoid;
+      border: 4px double #000 !important;
+      background-color: #f8fafc !important;
+      color: #000 !important;
+    }
+
+    strong {
+      font-weight: 800 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="btn-light" class="active" onclick="setMode('light')">📄 預設好讀</button>
+  <button id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+  <button onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+  <div class="header-banner">
+    <h1 class="header-title">新大滿貫複習講義．數學A測驗卷 10 三角函數</h1>
+    <p class="header-subtitle">錯題診斷、手寫草稿盲點剖析與專屬訂正講義</p>
+  </div>
+
+  <!-- ==================== 一、先給掌聲 ==================== -->
+  <div class="section-header">🌟 先給掌聲：從手寫草稿看出的三大優勢能力</div>
+
+  <div class="question-card">
+    <div class="praise-badge">✨ 全卷最大亮點：第 10 題展現超強幾何直覺（比參考解答更漂亮！）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        10. 如右圖，已知 $\overline{AB} = 4$，$\overline{AC} = 6$，$\overline{AD}$ 為 $\angle A$ 之角平分線，$\overline{DE}$ 垂直 $\overline{AB}$ 於 $E$。若 $\overline{AD} = 3\sqrt{2}$，$\overline{DE} = \d\frac{3\sqrt{7}}{4}$，則 $\overline{BC}$ 之長為 <u>&nbsp;&nbsp;(10)&nbsp;&nbsp;</u>。
+      </div>
+      <div class="question-figure">
+        <svg width="190" height="155" viewBox="0 0 190 155">
+          <polygon points="25,135 145,135 135,20" fill="none" class="svg-line" stroke-width="1.6"/>
+          <line x1="25" y1="135" x2="141" y2="88" class="svg-line" stroke-width="1.5"/>
+          <line x1="141" y1="88" x2="141" y2="135" class="svg-line" stroke-width="1.4"/>
+          <!-- Auxiliary line DF perpendicular to AC -->
+          <line x1="141" y1="88" x2="96" y2="62" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <polyline points="134,135 134,128 141,128" fill="none" class="svg-line" stroke-width="1.2"/>
+          <text x="12" y="140" class="svg-text">A</text>
+          <text x="150" y="140" class="svg-text">B</text>
+          <text x="132" y="15" class="svg-text">C</text>
+          <text x="146" y="90" class="svg-text">D</text>
+          <text x="136" y="149" class="svg-text">E</text>
+          <text x="82" y="60" class="svg-text" style="fill:#ef4444;">F</text>
+          <text x="145" y="60" class="svg-text-normal">3r</text>
+          <text x="146" y="115" class="svg-text-normal">2r</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">👏 草稿亮點高度肯定</div>
+      <ul>
+        <li><strong>亮點 1（第 10 題自創純幾何解法）：</strong>參考解答是用 $\sin\theta \to \cos 2\theta \to$ 餘弦定理；但手寫草稿沒有被三角函數綁住，而是主動過 $D$ 點向 $\overline{AC}$ 作垂線 $\overline{DF} \perp \overline{AC}$ 於 $F$，利用<strong>角平分線對稱全等（$\triangle ADE \cong \triangle ADF$）</strong>算出：
+        $$\overline{AE} = \overline{AF} = \sqrt{(3\sqrt{2})^2 - \left(\d\frac{3\sqrt{7}}{4}\right)^2} = \sqrt{18 - \d\frac{63}{16}} = \sqrt{\d\frac{225}{16}} = \d\frac{15}{4}$$
+        接著算出 $\overline{FC} = \overline{AC} - \overline{AF} = 6 - \d\frac{15}{4} = \d\frac{9}{4}$，在直角 $\triangle DFC$ 中由畢氏定理求得：
+        $$\overline{CD} = \sqrt{\left(\d\frac{9}{4}\right)^2 + \left(\d\frac{3\sqrt{7}}{4}\right)^2} = \d\frac{1}{4}\sqrt{81 + 63} = \d\frac{1}{4}\sqrt{144} = 3$$
+        最後搭配<strong>角平分線內分比</strong> $\overline{CD} : \overline{BD} = 6 : 4 = 3r : 2r$，由 $3r = 3 \implies r = 1$ 秒殺 $\overline{BC} = 5r = 5$！展現了極佳的平面幾何底子與數感！</li>
+        <li><strong>亮點 2（良好的讀題與作圖習慣）：</strong>第 3 題主動把「優弧」的「優」圈起來避免誤算劣弧；第 8 題主動畫出水平線 $L$ 與 $L_1 , L_2$，並在選項 (3) 直接把錯誤公式批改成正確的 $\d\frac{m_1 - m_2}{1 + m_1 m_2}$。</li>
+        <li><strong>亮點 3（基本運算穩定度高）：</strong>單選 1、2、3、多選 7、選填 9、混合 1 的計算過程字跡清楚、邏輯連貫，沒有發生粗心的算術失誤。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ==================== 二、錯題、漏選與隱藏盲點深度剖析 ==================== -->
+  <div class="section-header">🔍 錯題、漏選與「隱藏盲點」逐題深度剖析</div>
+
+  <!-- 診斷 1：單選第 4 題 -->
+  <div class="question-card">
+    <div class="diag-badge">⚠️ 【隱藏危機】雖答對 (1)，但未列式展開疊合，靠直覺猜中振幅！</div>
+    <div class="question-layout">
+      <div class="question-text">
+        <span class="source-tag">108.全國模考</span>
+        (　　) 4. 若函數 $f(x) = 2 \sin \left( x + \d\frac{\pi}{6} \right) - 2 \cos x + 5$，則函數 $f(x)$ 的最大值為何？
+        <div class="options-grid">
+          <div>(1) 7</div>
+          <div>(2) 5</div>
+          <div>(3) 3</div>
+          <div>(4) 1</div>
+          <div>(5) 0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與盲點剖析</div>
+      ・<strong>草稿跡象：</strong>草稿中在題目下方畫了一個波浪圖，把減號圈起來，<strong>完全沒有用和角公式展開 $\sin\left(x + \d\frac{\pi}{6}\right)$</strong>，就直接刪去 (3)(4)(5) 並選了 (1) $7$。<br>
+      ・<strong>潛在危機：</strong>很可能是直覺認為「前面係數是 $2$，所以最大值就是 $2 + 5 = 7$」。這題剛好因為展開後 $2\sin\left(x+\d\frac{\pi}{6}\right) - 2\cos x = \sqrt{3}\sin x - \cos x$，疊合後振幅 $\sqrt{(\sqrt{3})^2 + (-1)^2} = 2$ 沒變，所以湊巧算對！<br>
+      ・<strong>反例警示：</strong>如果題目把減號改成加號：$f(x) = 2\sin\left(x + \d\frac{\pi}{6}\right) + 2\cos x + 5 = \sqrt{3}\sin x + 3\cos x + 5$，振幅就會變成 $\sqrt{(\sqrt{3})^2 + 3^2} = \sqrt{12} = 2\sqrt{3}$，最大值就是 $2\sqrt{3} + 5$ 而不是 $7$ 了！
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 訂正標準步驟（和角展開 $\to$ 同類項合併 $\to$ 正餘弦疊合）</div>
+      遇到不同相位的 $\sin\left(x + \d\frac{\pi}{6}\right)$ 與 $\cos x$ 相加減，務必先用<strong>正弦和角公式</strong>展開：
+      $$\begin{aligned}
+      f(x) &= 2\left(\sin x \cos\d\frac{\pi}{6} + \cos x \sin\d\frac{\pi}{6}\right) - 2\cos x + 5 \\
+      &= 2\left(\d\frac{\sqrt{3}}{2}\sin x + \d\frac{1}{2}\cos x\right) - 2\cos x + 5 \\
+      &= \sqrt{3}\sin x - \cos x + 5 \\
+      &= \sqrt{(\sqrt{3})^2 + (-1)^2}\left(\d\frac{\sqrt{3}}{2}\sin x - \d\frac{1}{2}\cos x\right) + 5 = 2\sin\left(x - \d\frac{\pi}{6}\right) + 5
+      \end{aligned}$$
+      因為 $-1 \le \sin\left(x - \d\frac{\pi}{6}\right) \le 1$，所以 $f(x)$ 的最大值為 $2 \times 1 + 5 = 7$。
+    </div>
+
+    <div class="final-ans-box">最終答案：(1)</div>
+  </div>
+
+  <!-- 診斷 2：多選第 5 題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【多選漏選】作答填 (3)，漏選 (4)（扣 3 分）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 5. 設 $\theta$ 為第二象限角，則下列哪些選項正確？
+        <div class="options-grid">
+          <div>(1) $\sin \d\frac{\theta}{2} > 0$</div>
+          <div>(2) $\cos \d\frac{\theta}{2} > 0$</div>
+          <div>(3) $\tan \d\frac{\theta}{2} > 0$</div>
+          <div>(4) $\sin 2\theta < 0$</div>
+          <div>(5) $\cos 2\theta < 0$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與盲點剖析</div>
+      ・<strong>草稿跡象：</strong>已正確在 (1)(2) 打叉、(3) 畫圈（掌握了半角 $\d\frac{\theta}{2}$ 在第一或第三象限，故 $\tan\d\frac{\theta}{2} > 0$），但<strong>對於選項 (4)(5) 的二倍角 $2\theta$ 完全沒有動筆寫算式</strong>！<br>
+      ・<strong>盲點診斷：</strong>忘了 $\sin 2\theta$ 可以直接拆成二倍角公式判別正負號，也不確定 $2\theta$ 落在哪個象限。
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸秒殺補強（1 秒判別 $\sin 2\theta$ 正負號）</div>
+      已知 $\theta$ 為第二象限角，代表 <strong>$\sin\theta > 0$ 且 $\cos\theta < 0$</strong>。<br>
+      看到選項 (4) 的 $\sin 2\theta$，根本不用算角度範圍，直接套用<strong>二倍角公式</strong>：
+      $$\sin 2\theta = 2\sin\theta\cos\theta = 2 \times (+) \times (-) < 0$$
+      正數乘以負數必為負數！1 秒鐘確定選項 (4) 恆成立！
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解（廣義角範圍法）</div>
+      設 $90^\circ + 360^\circ \times n < \theta < 180^\circ + 360^\circ \times n$（$n \in \mathbb{Z}$）：<br>
+      ・同除以 $2$：$45^\circ + 180^\circ \times n < \d\frac{\theta}{2} < 90^\circ + 180^\circ \times n$，故 $\d\frac{\theta}{2}$ 為第一或第三象限角，$\tan\d\frac{\theta}{2} > 0$ 恆成立，(1)(2) 錯、(3) 對。<br>
+      ・同乘以 $2$：$180^\circ + 720^\circ \times n < 2\theta < 360^\circ + 720^\circ \times n$，故 $2\theta$ 落在 $x$ 軸下方（第三、四象限或負 $y$ 軸），因此 $\sin 2\theta < 0$ 恆成立；而當 $2\theta$ 在第四象限時 $\cos 2\theta > 0$，故 (4) 對、(5) 錯。
+    </div>
+
+    <div class="final-ans-box">最終答案：(3)(4)</div>
+  </div>
+
+  <!-- 診斷 3：多選第 6 題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【多選漏選】作答填 (1)(5)，漏選 (3)（扣 3 分）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 6. 下列哪些函數的週期為 $\pi$？
+        <div class="options-grid">
+          <div>(1) $y = \sin x \cos x$</div>
+          <div>(2) $y = \sin(x + \pi)$</div>
+          <div>(3) $y = \cos^2 x$</div>
+          <div>(4) $y = \sin x + \cos x$</div>
+          <div>(5) $y = |\sin x + \cos x|$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與盲點剖析</div>
+      ・<strong>草稿跡象：</strong>在 (1) 旁清楚寫出 $=\d\frac{1}{2}\sin 2x$ 並畫圈，在 (2) 打叉，在 (5) 畫圈；唯獨<strong>在選項 (3) $y = \cos^2 x$ 旁邊一片空白</strong>！<br>
+      ・<strong>盲點診斷：</strong>對<strong>「平方降次公式（半角公式）」$\cos^2 x = \d\frac{1 + \cos 2x}{2}$</strong> 不熟練，看到二次方時沒有反射性聯想到角度會變成 $2x$。
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 訂正重點（兩種方法秒懂為什麼 $y = \cos^2 x$ 週期是 $\pi$）</div>
+      <ul>
+        <li><strong>方法一（代數降次公式——必背）：</strong><br>
+        由二倍角公式 $\cos 2x = 2\cos^2 x - 1$ 移項可得：
+        $$y = \cos^2 x = \d\frac{1 + \cos 2x}{2} = \d\frac{1}{2}\cos 2x + \d\frac{1}{2}$$
+        因為角度變為 $2x$，所以週期為 $\d\frac{2\pi}{2} = \pi$！</li>
+        <li><strong>方法二（圖形翻折直覺——與第 5 選項相通）：</strong><br>
+        既然已經知道選項 (5) 加絕對值 $|\sin x + \cos x|$ 會把 $x$ 軸下方的負半波翻折上來，使週期減半為 $\pi$；那麼<strong>平方 $y = \cos^2 x = |\cos x|^2$ 同樣也是把負半波全部變成正的拱形</strong>，週期當然也會減半為 $\pi$！</li>
+      </ul>
+    </div>
+
+    <div class="final-ans-box">最終答案：(1)(3)(5)</div>
+  </div>
+
+  <!-- 診斷 4：多選第 8 題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【多選漏選】作答填 (1)(5)，漏選 (4)（扣 3 分——最可惜的一題！）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        (　　) 8. 已知坐標平面上三直線 $L$、$L_1$、$L_2$ 交於一點 $O$，其中 $L$ 為一條水平線，$\theta_1$、$\theta_2$ 分別為 $L$ 與 $L_1$、$L_2$ 的銳夾角；$m_1$、$m_2$ 分別為 $L_1$、$L_2$ 的斜率，且 $m_1 > 0$，$m_2 < 0$。請選出正確的選項。
+        <div class="options-list">
+          <div>(1) $m_1 = \tan \theta_1$</div>
+          <div>(2) $m_2 = \tan \theta_2$</div>
+          <div>(3) $\tan(\theta_1 + \theta_2) = \d\frac{m_1 + m_2}{1 - m_1 m_2}$</div>
+          <div>(4) 若 $\tan \theta_1 \times \tan \theta_2 = 1$，則 $L_1$ 與 $L_2$ 垂直</div>
+          <div>(5) 若 $m_1 m_2 < -1$，則 $\theta_1 + \theta_2 > 90^\circ$</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與盲點剖析</div>
+      ・<strong>草稿跡象：</strong>草稿在 (2)(3) 旁親手寫出了 $\tan(-\theta_2) = -\tan\theta_2$ 以及 <strong>$\tan\theta_2 = -m_2$</strong>！連全題最難的選項 (5) 都推導正確，卻漏選了簡單的 (4)！<br>
+      ・<strong>盲點診斷：</strong>這是典型的<strong>「被表面正負號晃點」</strong>。看到「$L_1$ 與 $L_2$ 垂直」，腦中直接反射「垂直應該是相乘 $= -1$ 吧？怎麼會是 $= 1$？」卻忘了選項 (4) 寫的是 $\tan\theta_1 \times \tan\theta_2 = 1$（兩個銳角正切相乘為正），而不是 $m_1 \times m_2 = 1$！
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 選項 (4) 訂正推導</div>
+      將自己草稿已經寫出的 $\tan\theta_1 = m_1$ 與 $\tan\theta_2 = -m_2$ 代入選項 (4) 的條件：
+      $$\tan\theta_1 \times \tan\theta_2 = 1 \implies m_1 \times (-m_2) = 1 \implies m_1 \times m_2 = -1$$
+      兩直線斜率乘積為 $-1$，故 $L_1 \perp L_2$（互相垂直），選項 (4) 完全正確！<br>
+      （幾何意義：當 $\tan\theta_1 \tan\theta_2 = 1 \implies \tan\theta_2 = \cot\theta_1 \implies \theta_1 + \theta_2 = 90^\circ$，故兩直線夾角為 $180^\circ - 90^\circ = 90^\circ$ 垂直！）
+    </div>
+
+    <div class="final-ans-box">最終答案：(1)(4)(5)</div>
+  </div>
+
+  <!-- 診斷 5：選填第 11 題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【選填空白】畫了外接圓半徑 $R$ 卡住，未聯想到正弦定理與 $\sin(A+B)$（失 7 分）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        11. 在 $\triangle ABC$ 中，若 $\cos A = \d\frac{3}{5}$，$\cos B = -\d\frac{5}{13}$，且 $\overline{AB} = 16$，則 $\triangle ABC$ 之外接圓的直徑為 <u>&nbsp;&nbsp;(11-1)(11-2)&nbsp;&nbsp;</u>。
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與盲點剖析</div>
+      ・<strong>草稿跡象：</strong>在左下角畫了 $\triangle ABC$，標了 $\overline{AB} = 16$，然後<strong>在三角形裡面畫了外接圓圓心 $O$，連了兩條半徑 $R$</strong>，並在題目旁寫了 $2R$，接著就卡住空白了。<br>
+      ・<strong>盲點診斷（兩處核心觀念斷鏈）：</strong>
+      <ol>
+        <li><strong>誤把「外接圓直徑」當成幾何圖形去畫圓心：</strong>在高中三角函數中，只要題目出現「外接圓半徑 $R$ 或直徑 $2R$」，<strong>絕對不需要畫出圓心</strong>，而是直接反射寫出<strong>正弦定理 $2R = \d\frac{\overline{AB}}{\sin C}$</strong>！</li>
+        <li><strong>不知道怎麼由 $\cos A , \cos B$ 求出對角 $\sin C$：</strong>在 $\triangle ABC$ 中，$C = 180^\circ - (A + B)$，所以 $\sin C = \sin(180^\circ - (A + B)) = \sin(A + B)$，直接用正弦和角公式就能算出 $\sin C$！</li>
+      </ol>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 訂正標準三步驟（必背 SOP）</div>
+      1. <strong>由 $\cos$ 求 $\sin$（三角形內角在 $0^\circ \sim 180^\circ$ 之間，$\sin$ 恆為正）：</strong>
+      $$\cos A = \d\frac{3}{5} \implies \sin A = \d\frac{4}{5} \quad , \quad \cos B = -\d\frac{5}{13} \implies \sin B = \d\frac{12}{13}$$
+      2. <strong>利用內角和互補與正弦和角公式求 $\sin C$：</strong>
+      $$\begin{aligned}
+      \sin C &= \sin(180^\circ - (A + B)) = \sin(A + B) \\
+      &= \sin A \cos B + \cos A \sin B \\
+      &= \d\frac{4}{5} \times \left(-\d\frac{5}{13}\right) + \d\frac{3}{5} \times \d\frac{12}{13} = \d\frac{-20 + 36}{65} = \d\frac{16}{65}
+      \end{aligned}$$
+      3. <strong>代入正弦定理求外接圓直徑 $2R$：</strong>
+      $$2R = \d\frac{\overline{AB}}{\sin C} = \d\frac{16}{\d\frac{16}{65}} = 65$$
+    </div>
+
+    <div class="final-ans-box">最終答案：$65$（即 (11-1) 為 $6$，(11-2) 為 $5$）</div>
+  </div>
+
+  <!-- 診斷 6：選填第 12 題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【選填空白】題號畫圈跳過，對「動區間極值問題」缺乏破題切入點（失 7 分）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        12. 已知函數 $y = \sin x$，$\alpha \le x \le \alpha + \d\frac{\pi}{2}$，其中 $0 < \alpha < \pi$。若 $y$ 的最大值為 $A$，最小值為 $B$，則 $A - B$ 之最大值為 $\sqrt{\text{(12)}}$。
+      </div>
+      <div class="question-figure">
+        <svg width="220" height="135" viewBox="0 0 220 135">
+          <line x1="15" y1="70" x2="205" y2="70" class="svg-line" stroke-width="1.3"/>
+          <line x1="30" y1="125" x2="30" y2="15" class="svg-line" stroke-width="1.3"/>
+          <!-- Sine wave: x=0 at 30, pi/2 at 70, pi at 110, 3pi/2 at 150, 2pi at 190 -->
+          <path d="M 30 70 C 45 20, 55 20, 70 20 C 85 20, 95 70, 110 70 C 125 70, 135 120, 150 120 C 165 120, 175 70, 190 70" fill="none" class="svg-line" stroke-width="1.8"/>
+          <!-- Sliding window centered at pi (x from 90 to 130) -->
+          <rect x="90" y="34" width="40" height="72" class="svg-shade" opacity="0.5"/>
+          <rect x="90" y="34" width="40" height="72" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3,2"/>
+          <circle cx="90" cy="34" r="3" fill="#ef4444"/>
+          <circle cx="130" cy="106" r="3" fill="#ef4444"/>
+          <text x="65" y="15" class="svg-text-normal">π/2</text>
+          <text x="112" y="66" class="svg-text-normal">π</text>
+          <text x="72" y="32" class="svg-text-normal" style="fill:#ef4444;">A</text>
+          <text x="135" y="112" class="svg-text-normal" style="fill:#ef4444;">B</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與破題心法</div>
+      ・<strong>盲點診斷：</strong>看到區間 $\alpha \le x \le \alpha + \d\frac{\pi}{2}$ 含有未知數 $\alpha$ 就覺得抽象，不知道怎麼把 $A$ 和 $B$ 寫出來。<br>
+      ・<strong>破題視覺化（移動視窗法）：</strong>如右圖，把 $\left[\alpha , \alpha + \d\frac{\pi}{2}\right]$ 想像成一個<strong>「寬度固定為 $\d\frac{\pi}{2}$（$90^\circ$）的移動窗戶」</strong>，在 $y = \sin x$ 的波浪上往右滑動：<br>
+      　想讓窗戶內的「最高點 $A$ 減最低點 $B$」落差最大，窗戶一定要框在<strong>波浪下坡最陡峭的地方</strong>（也就是在遞減區間 $\left[\d\frac{\pi}{2} , \d\frac{3\pi}{2}\right]$ 內）！
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 正規詳解與秒殺結論</div>
+      1. 若 $0 < \alpha < \d\frac{\pi}{2}$：窗戶跨過波峰 $x = \d\frac{\pi}{2}$，最高點 $A = 1$，最低點 $B > 0$，此時高低差 $A - B < 1$。<br>
+      2. 若 $\d\frac{\pi}{2} \le \alpha < \pi$：整個窗戶 $\left[\alpha , \alpha + \d\frac{\pi}{2}\right]$ 都在下坡（嚴格遞減區間），因此<strong>左端點最高、右端點最低</strong>：
+      $$A = \sin\alpha \quad , \quad B = \sin\left(\alpha + \d\frac{\pi}{2}\right) = \cos\alpha$$
+      3. 利用<strong>正餘弦疊合</strong>求 $A - B$ 的最大值：
+      $$A - B = \sin\alpha - \cos\alpha = \sqrt{2}\sin\left(\alpha - \d\frac{\pi}{4}\right)$$
+      當 $\alpha = \d\frac{3\pi}{4}$（即窗戶正中央對準反曲點 $x = \pi$，區間為 $\left[\d\frac{3\pi}{4} , \d\frac{5\pi}{4}\right]$）時，$A - B$ 有最大值 $\sqrt{2}\sin\d\frac{\pi}{2} = \sqrt{2}$。
+    </div>
+
+    <div class="final-ans-box">最終答案：$\sqrt{2}$（即格號 (12) 填 $2$）</div>
+  </div>
+
+  <!-- 診斷 7：混合題第 2 小題 -->
+  <div class="question-card">
+    <div class="diag-badge">❌ 【混合題未竟全功】已標出對稱點 $B , D$ 座標，卻陷入算 $\tan$ 泥淖且未寫結論（失 9 分）</div>
+    <div class="question-layout">
+      <div class="question-text">
+        四、混合題 第 2 小題：<br>
+        2. 小玉和小英要分這四塊 pizza，小玉拿了灰色的兩塊，小英拿了白色的兩塊。若 pizza 邊的長度為每塊的圓弧長度（即 $\overparen{AC}$、$\overparen{CB}$、$\overparen{BD}$、$\overparen{DA}$），則小玉和小英誰吃的 pizza 邊的長度較長？請說明理由。（10 分）
+      </div>
+      <div class="question-figure">
+        <svg width="185" height="180" viewBox="0 0 185 180">
+          <path d="M 106 55 L 137 55 A 58 58 0 0 0 106 34 Z" class="svg-shade"/>
+          <path d="M 106 55 L 43 55 A 58 58 0 0 0 106 146 Z" class="svg-shade"/>
+          <circle cx="90" cy="90" r="58" fill="none" class="svg-line" stroke-width="1.6"/>
+          <line x1="15" y1="90" x2="165" y2="90" class="svg-line" stroke-width="1.2"/>
+          <line x1="90" y1="165" x2="90" y2="15" class="svg-line" stroke-width="1.2"/>
+          <line x1="43" y1="55" x2="137" y2="55" class="svg-line" stroke-width="1.5"/>
+          <line x1="106" y1="34" x2="106" y2="146" class="svg-line" stroke-width="1.5"/>
+          <text x="167" y="94" class="svg-text">E</text>
+          <text x="3" y="94" class="svg-text">G</text>
+          <text x="86" y="12" class="svg-text">F</text>
+          <text x="85" y="174" class="svg-text">H</text>
+          <text x="140" y="54" class="svg-text-normal">A(20,15)</text>
+          <text x="2" y="54" class="svg-text-normal">B(-20,15)</text>
+          <text x="103" y="29" class="svg-text-normal">C(7,24)</text>
+          <text x="103" y="159" class="svg-text-normal">D(7,-24)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">🩺 手寫草稿診斷與大考手寫題鐵則</div>
+      ・<strong>草稿跡象：</strong>在第 1 小題圖上其實已經非常精準地標出了四個點：<strong>$A(20 , 15)$、$B(-20 , 15)$、$C(7 , 24)$、$D(7 , -24)$</strong>！但在第 2 小題只寫了兩行 $\tan\theta_1 = \d\frac{3}{4}$、$\tan\theta_2 = \d\frac{7}{24}$ 就停筆了，連「一樣長」三個字都沒寫。<br>
+      ・<strong>兩大關鍵提醒：</strong>
+      <ol>
+        <li><strong>大考手寫題「第一行先寫結論」鐵則：</strong>混合題問「誰吃的較長？請說明理由。」務必第一行先寫<strong>「答：小玉和小英吃的 pizza 邊一樣長。」</strong>就算後面時間不夠沒寫完算式，寫對結論搭配圖上的對稱座標就能先拿基本分！</li>
+        <li><strong>不用重算斜率，直接用自己標出的「對稱座標」秒殺：</strong>既然已經標出 $A(20,15)$ 與 $B(-20,15)$ 對稱於 $y$ 軸、$C(7,24)$ 與 $D(7,-24)$ 對稱於 $x$ 軸，直接用圓弧對稱搬移，30 秒就能寫完滿分證明！</li>
+      </ol>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 最快滿分寫法（直接利用草稿上的對稱座標證明）</div>
+      <strong>答：小玉和小英吃的 pizza 邊一樣長。</strong><br>
+      <strong>理由：</strong><br>
+      1. 設 $x$ 軸與圓交於 $E(25,0), G(-25,0)$，$y$ 軸與圓交於 $F(0,25), H(0,-25)$。<br>
+      2. 由 $A(20,15)$ 與 $B(-20,15)$ 對稱於 $y$ 軸，可知圓弧 $\overparen{AE} = \overparen{BG}$（圓心角 $\angle AOE = \angle BOG = \theta_1$）；<br>
+      　 由 $C(7,24)$ 與 $D(7,-24)$ 對稱於 $x$ 軸，可知圓弧 $\overparen{CF} = \overparen{HD}$（圓心角 $\angle COF = \angle DOH = \theta_2$）。<br>
+      3. 因此小玉拿的灰色兩塊圓心角總和為：
+      $$\angle AOC + \angle BOD = \angle AOC + (\angle BOG + 90^\circ + \angle DOH) = (\angle AOE + \angle AOC + \angle COF) + 90^\circ = 90^\circ + 90^\circ = 180^\circ = \pi$$
+      4. 灰色兩塊的 pizza 邊總長 $= 25\pi$，恰為整個 pizza 圓周長 $50\pi$ 的一半，故兩人吃的 pizza 邊一樣長。
+    </div>
+
+    <div class="final-ans-box">最終答案：一樣長（灰色兩塊圓心角和為 $\pi$，弧長和為 $25\pi$，恰為圓周長 $50\pi$ 的一半）</div>
+  </div>
+
+  <!-- ==================== 三、考前補強行動清單 ==================== -->
+  <div class="section-header">🛠️ 考前補強行動清單（從 68 分衝向 95+ 分的四大關鍵處方）</div>
+
+  <div class="question-card">
+    <div class="check-card">
+      <div class="box-title">🚀 四張必背閃卡（考前 5 分鐘快速掃描）</div>
+      <ol>
+        <li><strong>【處方 1：針對第 11 題】外接圓直徑＋兩角夾一邊 SOP：</strong><br>
+        看到「外接圓直徑 $2R$」別畫圓心，立刻寫正弦定理 $2R = \d\frac{\overline{AB}}{\sin C}$；看到題目給 $\cos A , \cos B$，立刻用 $\sin C = \sin(A + B) = \sin A\cos B + \cos A\sin B$ 求出 $\sin C$！</li>
+        <li><strong>【處方 2：針對第 5、6 題】二倍角判號與平方降次公式：</strong><br>
+        ・判別 $\sin 2\theta$ 正負號：直接拆成 $\sin 2\theta = 2\sin\theta\cos\theta$ 看象限正負相乘。<br>
+        ・二次方求週期：$y = \cos^2 x = \d\frac{1 + \cos 2x}{2}$、$y = \sin^2 x = \d\frac{1 - \cos 2x}{2}$，平方或加絕對值後，正弦與餘弦的週期都會減半為 $\pi$！</li>
+        <li><strong>【處方 3：針對第 4、12 題】落實正餘弦疊合標準動作：</strong><br>
+        遇到 $2\sin\left(x + \d\frac{\pi}{6}\right) \pm 2\cos x$ 或 $\sin\alpha - \cos\alpha$，務必先展開合併成 $a\sin x + b\cos x$，再提出振幅 $\sqrt{a^2 + b^2}$，切勿直接拿原式前面的係數當作最大值！</li>
+        <li><strong>【處方 4：針對第 8 題與混合題】斜率正負號檢核與手寫題先寫結論：</strong><br>
+        ・當直線向右下傾斜（$m_2 < 0$）且銳夾角為 $\theta_2$ 時，每個選項都要把 $\tan\theta_2 = -m_2$ 代入檢驗。<br>
+        ・混合題手寫證明務必<strong>第一行先寫出明確結論</strong>（如：「一樣長」），善用圖形對稱性省去繁瑣的斜率運算。</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode) {
+    const body = document.body;
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    if (mode === 'dark') {
+      body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+    } else {
+      body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+    }
+  }
+
+  function printPage() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise().then(() => {
+        window.print();
+      });
+    } else {
+      window.print();
+    }
+  }
+</script>
+
+</body>
+</html>
