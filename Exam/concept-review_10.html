@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新大滿貫複習講義．數學A測驗卷 10 三角函數 — 預備知識與核心公式總整理</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: {
+      d: '\\displaystyle'
+    }
+  },
+  options: {
+    renderActions: {
+      addMenu: []
+    }
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  :root {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #e2e8f0;
+    --primary-color: #2563eb;
+    --sol-bg: #eff6ff;
+    --sol-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fdf2f8;
+    --tip-border: #ec4899;
+    --check-bg: #f0fdf4;
+    --check-border: #22c55e;
+    --ans-bg: #f8fafc;
+    --ans-border: #0f172a;
+    --toolbar-bg: rgba(255, 255, 255, 0.92);
+    --svg-stroke: #1e293b;
+    --svg-fill-gray: #cbd5e1;
+  }
+
+  body.dark-mode {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --primary-color: #60a5fa;
+    --sol-bg: #172554;
+    --sol-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #500724;
+    --tip-border: #f43f5e;
+    --check-bg: #052e16;
+    --check-border: #22c55e;
+    --ans-bg: #0f172a;
+    --ans-border: #e2e8f0;
+    --toolbar-bg: rgba(30, 41, 59, 0.92);
+    --svg-stroke: #f1f5f9;
+    --svg-fill-gray: #475569;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 76px 16px 48px 16px;
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.75;
+    transition: background-color 0.25s, color 0.25s;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* 頂部懸浮工具列 */
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--toolbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .toolbar button {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .toolbar button:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .toolbar button.active {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+  }
+
+  /* 主標題橫幅 */
+  .header-banner {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .header-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0 0 18px 0;
+  }
+
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .summary-table th, .summary-table td {
+    border: 1px solid var(--border-color);
+    padding: 9px 12px;
+  }
+
+  .summary-table th {
+    background: var(--sol-bg);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* 知識點主題標題 */
+  .section-header {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin: 32px 0 16px 0;
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border-left: 6px solid var(--primary-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .badge-map {
+    font-size: 0.88rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: var(--sol-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--sol-border);
+  }
+
+  /* 知識卡片 */
+  .question-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .question-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    flex: 1;
+    font-size: 1.04rem;
+  }
+
+  .question-figure {
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  /* 核心觀念與公式框 */
+  .sol-box {
+    background-color: var(--sol-bg);
+    border-left: 6px solid var(--sol-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  /* 學霸進階另解與速解框 */
+  .alt-box {
+    background-color: var(--alt-bg);
+    border-left: 6px solid var(--alt-border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  /* 特殊提示區塊（易錯盲點 / 考場秒殺） */
+  .special-card {
+    border: 2px solid var(--tip-border);
+    border-left: 8px solid var(--tip-border);
+    background-color: var(--tip-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .check-card {
+    border: 2px solid var(--check-border);
+    border-left: 8px solid var(--check-border);
+    background-color: var(--check-bg);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .box-title {
+    font-weight: 800;
+    font-size: 1.02rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 最終答案框（重點總結框） */
+  .final-ans-box {
+    background-color: var(--ans-bg);
+    border: 4px double var(--ans-border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 16px;
+    font-size: 1.02rem;
+    font-weight: 700;
+    display: inline-block;
+  }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .svg-line {
+    stroke: var(--svg-stroke);
+  }
+  .svg-text {
+    fill: var(--svg-stroke);
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .svg-text-normal {
+    fill: var(--svg-stroke);
+    font-family: sans-serif;
+    font-size: 12px;
+  }
+  .svg-shade {
+    fill: var(--svg-fill-gray);
+  }
+
+  @media (max-width: 680px) {
+    .question-layout {
+      flex-direction: column;
+    }
+    .question-figure {
+      align-self: center;
+    }
+  }
+
+  /* 列印專用樣式強化 */
+  @media print {
+    * {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    body {
+      padding: 0;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    .toolbar {
+      display: none !important;
+    }
+
+    .question-card {
+      page-break-inside: auto;
+      border: 1px solid #999;
+      box-shadow: none;
+      margin-bottom: 18px;
+    }
+
+    .special-card, .check-card {
+      border: 3px solid #000 !important;
+      border-left: 10px solid #000 !important;
+      page-break-inside: avoid;
+    }
+
+    .sol-box, .alt-box {
+      page-break-inside: avoid;
+    }
+
+    .final-ans-box {
+      page-break-inside: avoid;
+      border: 4px double #000 !important;
+      background-color: #f8fafc !important;
+      color: #000 !important;
+    }
+
+    strong {
+      font-weight: 800 !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button id="btn-light" class="active" onclick="setMode('light')">📄 預設好讀</button>
+  <button id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+  <button onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+
+  <div class="header-banner">
+    <h1 class="header-title">新大滿貫複習講義．數學A測驗卷 10 三角函數</h1>
+    <p class="header-subtitle">學霸考前必備預備知識、核心公式與秒殺觀念總整理</p>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">知識模組</th>
+          <th style="width: 48%;">核心公式與考點關鍵字</th>
+          <th style="width: 24%;">對應本卷題號</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>一、廣義角與象限判號</strong></td>
+          <td>同界角一般式 $+360^\circ n$、半角／倍角象限、ASTC 正負、誘導公式</td>
+          <td style="text-align:center;">第 5、11 題</td>
+        </tr>
+        <tr>
+          <td><strong>二、弧度與扇形幾何</strong></td>
+          <td>弧長 $s = r\theta$、扇形面積 $A = \d\frac{1}{2}r^2\theta$、扇環面積與切線互補</td>
+          <td style="text-align:center;">第 3、9 題、混合題 2</td>
+        </tr>
+        <tr>
+          <td><strong>三、和差角與倍半角公式</strong></td>
+          <td>正餘弦與正切和差角、二倍角 $\cos 2\theta = 1 - 2\sin^2\theta$、平方降次公式</td>
+          <td style="text-align:center;">第 1、4、5、6、8、10、11、12 題、混合題</td>
+        </tr>
+        <tr>
+          <td><strong>四、斜率與兩直線夾角</strong></td>
+          <td>有向斜角 $m = \tan\theta$、負斜率銳夾角 $m = -\tan\theta_2$、夾角正切公式</td>
+          <td style="text-align:center;">第 8 題、混合題 1、2</td>
+        </tr>
+        <tr>
+          <td><strong>五、正餘弦函數之疊合</strong></td>
+          <td>$a\sin x + b\cos x = \sqrt{a^2+b^2}\sin(x+\phi)$、限制區間下之極值分析</td>
+          <td style="text-align:center;">第 4、6、12 題</td>
+        </tr>
+        <tr>
+          <td><strong>六、三角函數圖形與週期</strong></td>
+          <td>$y = a\sin(bx+c)+d$ 四大參數、絕對值折半週期、直線交點個數</td>
+          <td style="text-align:center;">第 2、6、7、12 題</td>
+        </tr>
+        <tr>
+          <td><strong>七、正弦與餘弦定理</strong></td>
+          <td>正弦求外接圓直徑 $2R = \d\frac{c}{\sin C}$、餘弦求對邊、內角平分線性質</td>
+          <td style="text-align:center;">第 10、11 題</td>
+        </tr>
+        <tr>
+          <td><strong>八、圓與弦切線座標幾何</strong></td>
+          <td>圓外切線垂直半徑、圓內垂直雙弦對稱性、經典畢氏數組 $(7,24,25)$</td>
+          <td style="text-align:center;">第 3 題、混合題 1、2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== 模組一 ==================== -->
+  <div class="section-header">
+    <span>一、廣義角、同界角與象限正負判別</span>
+    <span class="badge-map">📍 對應本卷：第 5 題、第 11 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        處理廣義角（包含負角或大於 $360^\circ$ 的角）以及三角形內角關係時，必須掌握<strong>同界角一般式</strong>、<strong>四象限正負號（ASTC）</strong>與<strong>廣義角化簡（誘導公式）</strong>。
+      </div>
+      <div class="question-figure">
+        <svg width="170" height="150" viewBox="0 0 170 150">
+          <line x1="15" y1="75" x2="155" y2="75" class="svg-line" stroke-width="1.5"/>
+          <line x1="85" y1="140" x2="85" y2="10" class="svg-line" stroke-width="1.5"/>
+          <circle cx="85" cy="75" r="50" fill="none" class="svg-line" stroke-dasharray="4,3" stroke-width="1.2"/>
+          <text x="102" y="50" class="svg-text-normal">I (All +)</text>
+          <text x="30" y="50" class="svg-text-normal">II (sin +)</text>
+          <text x="26" y="108" class="svg-text-normal">III (tan +)</text>
+          <text x="95" y="108" class="svg-text-normal">IV (cos +)</text>
+          <text x="157" y="79" class="svg-text">x</text>
+          <text x="81" y="9" class="svg-text">y</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>同界角一般式（以第二象限角為例）：</strong><br>
+      　若已知 $\theta$ 為第二象限角，必須寫為：
+      $$90^\circ + 360^\circ \times n < \theta < 180^\circ + 360^\circ \times n \quad (\text{其中 } n \in \mathbb{Z})$$
+      　・<strong>半角 $\d\frac{\theta}{2}$ 的範圍：</strong>同除以 $2$ 得 $45^\circ + 180^\circ \times n < \d\frac{\theta}{2} < 90^\circ + 180^\circ \times n$。當 $n$ 為偶數時在第一象限；當 $n$ 為奇數時在第三象限。<br>
+      　・<strong>倍角 $2\theta$ 的範圍：</strong>同乘以 $2$ 得 $180^\circ + 720^\circ \times n < 2\theta < 360^\circ + 720^\circ \times n$，終邊落在第三象限、第四象限或負 $y$ 軸上。<br>
+      2. <strong>廣義角誘導公式（奇變偶不變，正負看象限）：</strong><br>
+      　・在 $\triangle ABC$ 中，因為 $A + B + C = 180^\circ$，所以：
+      $$\sin C = \sin(180^\circ - (A + B)) = \sin(A + B) \quad , \quad \cos C = -\cos(A + B)$$
+      　・常見平移化簡：$\sin(x + \pi) = -\sin x$，$\cos(x + \pi) = -\cos x$，$\sin\left(x + \d\frac{\pi}{2}\right) = \cos x$。
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">⚠️ 易錯盲點（考場第一高頻陷阱）</div>
+      看到「$\theta$ 為第二象限角」，千萬不可只寫 $90^\circ < \theta < 180^\circ$ 就直接除以 $2$ 得到 $45^\circ < \d\frac{\theta}{2} < 90^\circ$！漏寫 $+360^\circ n$ 會直接遺漏第三象限（例如 $\theta = 460^\circ \implies \d\frac{\theta}{2} = 230^\circ$）。
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算（倍半角恆等式直接判號法）</div>
+      不喜歡討論 $n$ 的奇偶性嗎？已知 $\theta \in \text{II}$（即 $\sin\theta > 0, \cos\theta < 0$），直接代恆等式：<br>
+      ・$\sin 2\theta = 2\sin\theta\cos\theta = 2(+)(-) < 0$（秒證恆負！）<br>
+      ・$\tan\d\frac{\theta}{2} = \d\frac{1 - \cos\theta}{\sin\theta} = \d\frac{1 - (-)}{+} > 0$（秒證恆正！）
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：半角象限看奇偶（對頂象限 $\tan$ 同號）；三角形內角 $\sin(A+B) = \sin C$。</div>
+  </div>
+
+  <!-- ==================== 模組二 ==================== -->
+  <div class="section-header">
+    <span>二、弧度（弳）與扇形的弧長、面積公式</span>
+    <span class="badge-map">📍 對應本卷：第 3 題、第 9 題、混合題第 2 小題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        當圓心角以<strong>弧度（弳，radian）</strong>表示時，扇形的弧長與面積公式會變得極為簡潔，且扇環（兩同心扇形之差）可直接用「曲邊梯形」的概念快速求解。
+      </div>
+      <div class="question-figure">
+        <svg width="170" height="140" viewBox="0 0 170 140">
+          <path d="M 45 25 A 105 105 0 0 1 125 25 L 102 82 A 45 45 0 0 0 68 82 Z" class="svg-shade"/>
+          <path d="M 85 125 L 45 25 A 105 105 0 0 1 125 25 Z" fill="none" class="svg-line" stroke-width="1.6"/>
+          <path d="M 68 82 A 45 45 0 0 1 102 82" fill="none" class="svg-line" stroke-width="1.5"/>
+          <text x="80" y="138" class="svg-text">O</text>
+          <text x="81" y="106" class="svg-text">θ</text>
+          <text x="30" y="75" class="svg-text">r₁</text>
+          <text x="58" y="108" class="svg-text">r₂</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>角度與弳度換算：</strong>$\pi \text{（弳）} = 180^\circ$，$1 \text{（弳）} = \d\frac{180^\circ}{\pi} \approx 57.3^\circ$。<br>
+      2. <strong>扇形弧長公式：</strong>設圓半徑為 $r$，圓心角為 $\theta$（弳），則弧長為：
+      $$s = r\theta$$
+      3. <strong>扇形面積公式：</strong>
+      $$A = \d\frac{1}{2}r^2\theta = \d\frac{1}{2}rs$$
+      4. <strong>扇環（灰色區域）面積公式：</strong>大扇形減小扇形，並利用平方差公式因式分解：
+      $$A_{\text{扇環}} = \d\frac{1}{2}r_1^2\theta - \d\frac{1}{2}r_2^2\theta = \d\frac{1}{2}\theta(r_1 - r_2)(r_1 + r_2)$$
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（扇環面積＝梯形公式秒殺法）</div>
+      把扇環想像成「上底為內弧 $s_2 = r_2\theta$、下底為外弧 $s_1 = r_1\theta$、高為 $\Delta r = r_1 - r_2$」的曲邊梯形：<br>
+      $$A_{\text{扇環}} = \d\frac{s_1 + s_2}{2} \times (r_1 - r_2) = s_{\text{中線}} \times \text{高} = \left(\d\frac{r_1 + r_2}{2}\cdot\theta\right)(r_1 - r_2)$$
+      已知面積與高 $(r_1 - r_2)$，一秒鐘就能算出正中央的平均半徑 $\d\frac{r_1 + r_2}{2}$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：用公式前先確認 $\theta$ 是「弳」；求優弧長記得用 $(2\pi - \theta)$ 乘以半徑 $r$。</div>
+  </div>
+
+  <!-- ==================== 模組三 ==================== -->
+  <div class="section-header">
+    <span>三、和差角、二倍角與平方降次公式</span>
+    <span class="badge-map">📍 對應本卷：第 1、4、5、6、8、10、11、12 題、混合題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-text">
+      和差角與倍半角公式貫穿整張考卷超過 $70\%$ 的題目，務必做到「正向展開」與「逆向合併」都能反射性寫出。
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>正弦與餘弦的和差角公式：</strong>
+      $$\begin{aligned}
+      \sin(\alpha + \beta) &= \sin\alpha\cos\beta + \cos\alpha\sin\beta \quad , \quad \sin(\alpha - \beta) = \sin\alpha\cos\beta - \cos\alpha\sin\beta \\
+      \cos(\alpha + \beta) &= \cos\alpha\cos\beta - \sin\alpha\sin\beta \quad , \quad \cos(\alpha - \beta) = \cos\alpha\cos\beta + \sin\alpha\sin\beta
+      \end{aligned}$$
+      2. <strong>正切的和差角公式：</strong>
+      $$\tan(\alpha + \beta) = \d\frac{\tan\alpha + \tan\beta}{1 - \tan\alpha\tan\beta} \quad , \quad \tan(\alpha - \beta) = \d\frac{\tan\alpha - \tan\beta}{1 + \tan\alpha\tan\beta}$$
+      3. <strong>二倍角公式（三大變形）：</strong>
+      $$\begin{aligned}
+      \sin 2\theta &= 2\sin\theta\cos\theta \implies \sin\theta\cos\theta = \d\frac{1}{2}\sin 2\theta \\
+      \cos 2\theta &= \cos^2\theta - \sin^2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta \\
+      \tan 2\theta &= \d\frac{2\tan\theta}{1 - \tan^2\theta}
+      \end{aligned}$$
+      4. <strong>平方降次公式（將二次方降為一次方，求週期與積分必備）：</strong>
+      $$\sin^2 x = \d\frac{1 - \cos 2x}{2} \quad , \quad \cos^2 x = \d\frac{1 + \cos 2x}{2}$$
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">💡 考場秒殺觀察：逆用公式的訊號</div>
+      ・看到 $\cos A\cos B + \sin A\sin B$ 結構（如第 1 題）：立刻逆向收攏為 $\cos(A - B)$！<br>
+      ・看到 $\sin x\cos x$ 相乘（如第 6 題）：立刻化為 $\d\frac{1}{2}\sin 2x$，角度變 $2x$，週期立刻減半為 $\pi$！<br>
+      ・看到角平分線給出半角 $\sin\theta$ 卻要求全角 $\cos 2\theta$（如第 10 題）：直接代 $\cos 2\theta = 1 - 2\sin^2\theta$，完全不必求 $\cos\theta$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：$\sin$ 和角「辛口＋口辛」（同號）；$\cos$ 和角「口口－辛辛」（異號）。</div>
+  </div>
+
+  <!-- ==================== 模組四 ==================== -->
+  <div class="section-header">
+    <span>四、直線的斜角、斜率與兩直線夾角公式</span>
+    <span class="badge-map">📍 對應本卷：第 8 題、混合題第 1 & 2 小題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        坐標平面上直線的斜率 $m$ 就是其<strong>有向斜角</strong>的正切值。處理兩直線夾角問題時，結合斜率與正切差角公式即可無往不利。
+      </div>
+      <div class="question-figure">
+        <svg width="190" height="135" viewBox="0 0 190 135">
+          <line x1="15" y1="70" x2="175" y2="70" class="svg-line" stroke-width="1.5"/>
+          <line x1="45" y1="120" x2="145" y2="20" class="svg-line" stroke-width="1.6"/>
+          <line x1="40" y1="20" x2="150" y2="120" class="svg-line" stroke-width="1.6"/>
+          <path d="M 118 70 A 20 20 0 0 0 111 54" fill="none" class="svg-line" stroke-width="1.2"/>
+          <path d="M 122 70 A 24 24 0 0 1 116 85" fill="none" class="svg-line" stroke-width="1.2"/>
+          <text x="165" y="65" class="svg-text">L</text>
+          <text x="147" y="22" class="svg-text">L₁(m₁&gt;0)</text>
+          <text x="15" y="20" class="svg-text">L₂(m₂&lt;0)</text>
+          <text x="121" y="64" class="svg-text">θ₁</text>
+          <text x="125" y="88" class="svg-text">-θ₂</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>有向斜角與銳夾角的轉換（第 8 題核心）：</strong><br>
+      　設水平線為 $L$，直線 $L_1, L_2$ 與 $L$ 的<strong>銳夾角</strong>分別為 $\theta_1, \theta_2 \in (0^\circ, 90^\circ)$：<br>
+      　・若 $m_1 > 0$（向右上傾斜）：有向斜角為 $+\theta_1 \implies m_1 = \tan\theta_1$。<br>
+      　・若 $m_2 < 0$（向右下傾斜）：有向斜角為 $-\theta_2 \implies m_2 = \tan(-\theta_2) = -\tan\theta_2 \implies \tan\theta_2 = -m_2$。<br>
+      2. <strong>兩直線垂直條件：</strong>若兩直線互相垂直（且皆不平行座標軸），則 $m_1 \times m_2 = -1$。<br>
+      3. <strong>兩直線夾角公式：</strong>設兩直線斜率分別為 $m_1, m_2$，其夾角為 $\theta$，則：
+      $$\tan\theta = \pm\d\frac{m_1 - m_2}{1 + m_1 m_2}$$
+    </div>
+
+    <div class="special-card">
+      <div class="box-title">⚠️ 易錯盲點：鈍角與正切值的正負關係</div>
+      當兩個銳角相加 $\theta_1 + \theta_2 \in (0^\circ , 180^\circ)$ 時：<br>
+      ・若 $\tan(\theta_1 + \theta_2) > 0 \iff 0^\circ < \theta_1 + \theta_2 < 90^\circ$（銳角）；<br>
+      ・若 $\tan(\theta_1 + \theta_2) < 0 \iff 90^\circ < \theta_1 + \theta_2 < 180^\circ$（鈍角）。<br>
+      在第 8 題中，當 $m_1 > 0, m_2 < 0$ 且 $m_1 m_2 < -1$ 時，$\tan(\theta_1 + \theta_2) = \d\frac{m_1 - m_2}{1 + m_1 m_2} = \d\frac{+}{-} < 0$，立刻推得 $\theta_1 + \theta_2 > 90^\circ$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：題目給「銳夾角 $\theta$」且斜率 $m < 0$ 時，務必先寫 $\tan\theta = -m$！</div>
+  </div>
+
+  <!-- ==================== 模組五 ==================== -->
+  <div class="section-header">
+    <span>五、正餘弦函數之疊合與區間極值</span>
+    <span class="badge-map">📍 對應本卷：第 4 題、第 6 題、第 12 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-text">
+      當同一個角度的 $\sin x$ 與 $\cos x$ 以一次線性組合 $a\sin x + b\cos x$ 出現時，必須透過<strong>正餘弦疊合</strong>化為單一正弦函數，才能求其週期、振幅與極值。
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>正餘弦疊合公式：</strong><br>
+      　對於 $y = a\sin x + b\cos x$，提出振幅 $R = \sqrt{a^2 + b^2}$：
+      $$y = \sqrt{a^2 + b^2}\left(\d\frac{a}{\sqrt{a^2 + b^2}}\sin x + \d\frac{b}{\sqrt{a^2 + b^2}}\cos x\right) = \sqrt{a^2 + b^2}\sin(x + \phi)$$
+      　其中 $\cos\phi = \d\frac{a}{\sqrt{a^2 + b^2}}$，$\sin\phi = \d\frac{b}{\sqrt{a^2 + b^2}}$。<br>
+      2. <strong>最常考的兩組黃金疊合（必背）：</strong>
+      $$\begin{aligned}
+      \sin x \pm \cos x &= \sqrt{2}\sin\left(x \pm \d\frac{\pi}{4}\right) \quad (\text{振幅為 } \sqrt{2}) \\
+      \sqrt{3}\sin x \pm \cos x &= 2\sin\left(x \pm \d\frac{\pi}{6}\right) \quad (\text{振幅為 } 2)
+      \end{aligned}$$
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸另解（移動視窗法求區間極值差——第 12 題關鍵）</div>
+      在區間 $\left[\alpha , \alpha + \d\frac{\pi}{2}\right]$ 上求 $y = \sin x$ 的最大值 $A$ 與最小值 $B$ 之差 $A - B$ 的最大值：<br>
+      ・當視窗跨過波峰 $x = \d\frac{\pi}{2}$ 時，波峰附近曲線平緩，高低差 $A - B < 1$。<br>
+      ・當視窗落在單調遞減區間 $\left[\d\frac{\pi}{2} , \d\frac{3\pi}{2}\right]$ 時，$A - B = \sin\alpha - \sin\left(\alpha + \d\frac{\pi}{2}\right) = \sin\alpha - \cos\alpha = \sqrt{2}\sin\left(\alpha - \d\frac{\pi}{4}\right)$。<br>
+      ・<strong>幾何直覺：</strong>以反曲點 $x = \pi$ 為中心對稱取 $\left[\d\frac{3\pi}{4} , \d\frac{5\pi}{4}\right]$，曲線斜率最陡，高低落差最大為 $\d\frac{\sqrt{2}}{2} - \left(-\d\frac{\sqrt{2}}{2}\right) = \sqrt{2}$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：先和角展開、再同類項合併、最後提出 $\sqrt{a^2+b^2}$ 疊合成單一 $\sin(x+\phi)$。</div>
+  </div>
+
+  <!-- ==================== 模組六 ==================== -->
+  <div class="section-header">
+    <span>六、三角函數的圖形、伸縮平移與交點個數</span>
+    <span class="badge-map">📍 對應本卷：第 2 題、第 6 題、第 7 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        潮汐水深、摩天輪高度、交流電等週期現象皆以 $y = a\sin(bx + c) + d$ 建模。必須能從圖形的波峰與波谷瞬間讀出 $a, b, c, d$ 四個參數。
+      </div>
+      <div class="question-figure">
+        <svg width="220" height="135" viewBox="0 0 220 135">
+          <line x1="20" y1="110" x2="210" y2="110" class="svg-line" stroke-width="1.4"/>
+          <line x1="20" y1="120" x2="20" y2="15" class="svg-line" stroke-width="1.4"/>
+          <line x1="20" y1="30" x2="200" y2="30" class="svg-line" stroke-dasharray="3,3" stroke-width="0.9"/>
+          <line x1="20" y1="65" x2="200" y2="65" class="svg-line" stroke-dasharray="3,3" stroke-width="0.9"/>
+          <line x1="20" y1="100" x2="200" y2="100" class="svg-line" stroke-dasharray="3,3" stroke-width="0.9"/>
+          <path d="M 20 100 C 35 100, 50 30, 65 30 C 80 30, 95 100, 110 100 C 125 100, 140 30, 155 30 C 170 30, 185 100, 200 100" fill="none" class="svg-line" stroke-width="2"/>
+          <text x="62" y="23" class="svg-text-normal">波峰 d+a</text>
+          <text x="160" y="62" class="svg-text-normal">平衡 d</text>
+          <text x="95" y="124" class="svg-text-normal">週期 T = 2π/b</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>正弦函數模型 $y = a\sin(bx + c) + d$（設 $a, b > 0$）四大參數破譯法：</strong>
+      <ul>
+        <li><strong>振幅 $a$：</strong>$a = \d\frac{\text{最大值} - \text{最小值}}{2}$</li>
+        <li><strong>鉛直位移（中心平衡軸）$d$：</strong>$d = \d\frac{\text{最大值} + \text{最小值}}{2}$</li>
+        <li><strong>週期 $T$ 與頻率參數 $b$：</strong>$T = \text{相鄰兩波峰（或兩波谷）之水平距離} = \d\frac{2\pi}{b} \implies b = \d\frac{2\pi}{T}$</li>
+        <li><strong>相位常數 $c$：</strong>將函數提出 $b$ 寫成 $y = a\sin\left[b\left(x + \d\frac{c}{b}\right)\right] + d$，代表將 $y = a\sin bx + d$ 向右平移 $-\d\frac{c}{b}$ 單位；或<strong>直接代入圖形上已知的極值點 $(x_0, y_0)$ 搭配 $-\pi < c < 0$ 解出 $c$</strong>。</li>
+      </ul>
+      2. <strong>函數變形對週期的影響：</strong><br>
+      　・基本週期：$y = \sin x, \cos x$ 週期為 $2\pi$；$y = \tan x$ 週期為 $\pi$。<br>
+      　・水平伸縮：$y = \sin(kx + c)$ 週期為 $\d\frac{2\pi}{|k|}$。<br>
+      　・<strong>整支取絕對值：</strong>$y = |\sin(kx + c)|$ 將下半波翻折至上半平面，正負波變成相同拱形，<strong>週期減半為 $\d\frac{\pi}{|k|}$</strong>。
+    </div>
+
+    <div class="check-card">
+      <div class="box-title">⏱️ 學霸考場驗算：$y = A\sin(\omega x)$ 與過原點直線 $y = mx$ 交點個數 SOP</div>
+      1. <strong>先找振幅邊界：</strong>令 $|mx| \le A \implies |x| \le \d\frac{A}{|m|}$，超出此範圍必無交點。<br>
+      2. <strong>奇函數對稱秒殺偶數選項：</strong>因為兩圖形皆對稱於原點 $(0,0)$ 且必過 $(0,0)$，正負半軸交點成對出現，<strong>總交點數必為奇數 $(2k + 1)$</strong>！<br>
+      3. <strong>數正半軸波峰：</strong>若在 $[0 , x_{\max}]$ 內共有 $n$ 個完整週期（且第 $n$ 個波峰仍高於直線），則正半軸（不含原點）有 $2n - 1$ 個交點，總交點數 $= 2(2n - 1) + 1 = 4n - 1$ 個！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：$a$ 是半高差、$d$ 是平均高、$b = \d\frac{2\pi}{T}$、$c$ 用極值點代入反求最穩！</div>
+  </div>
+
+  <!-- ==================== 模組七 ==================== -->
+  <div class="section-header">
+    <span>七、正弦定理、餘弦定理與角平分線性質</span>
+    <span class="badge-map">📍 對應本卷：第 10 題、第 11 題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        解三角形的兩大支柱為<strong>正弦定理</strong>與<strong>餘弦定理</strong>。當題目出現「外接圓半徑／直徑」時必用正弦定理；當題目出現「角平分線與兩鄰邊」時則結合餘弦定理或角平分線公式。
+      </div>
+      <div class="question-figure">
+        <svg width="175" height="140" viewBox="0 0 175 140">
+          <polygon points="20,120 140,120 125,20" fill="none" class="svg-line" stroke-width="1.6"/>
+          <line x1="20" y1="120" x2="134" y2="80" class="svg-line" stroke-width="1.4"/>
+          <text x="7" y="125" class="svg-text">A</text>
+          <text x="145" y="125" class="svg-text">B</text>
+          <text x="122" y="15" class="svg-text">C</text>
+          <text x="140" y="83" class="svg-text">D</text>
+          <text x="45" y="106" class="svg-text">θ</text>
+          <text x="38" y="118" class="svg-text">θ</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>正弦定理（求外接圓半徑 $R$ 或直徑 $2R$）：</strong>
+      $$\d\frac{a}{\sin A} = \d\frac{b}{\sin B} = \d\frac{c}{\sin C} = 2R$$
+      　注意：若題目求的是「外接圓<strong>直徑</strong>」，算出來的 $2R = \d\frac{c}{\sin C}$ 就是最終答案，切勿再除以 $2$！<br>
+      2. <strong>餘弦定理（已知兩邊與夾角求第三邊）：</strong>
+      $$\overline{BC}^2 = \overline{AB}^2 + \overline{AC}^2 - 2\cdot\overline{AB}\cdot\overline{AC}\cos A$$
+      3. <strong>三角形內角平分線三大公式（設 $\overline{AD}$ 平分 $\angle A$，且 $\angle BAD = \angle CAD = \theta$）：</strong><br>
+      　・<strong>內分比性質：</strong>$\overline{BD} : \overline{CD} = \overline{AB} : \overline{AC} = c : b$。<br>
+      　・<strong>面積和求角平分線長：</strong>由 $\triangle ABC = \triangle ABD + \triangle ACD$ 可導出 $\overline{AD} = \d\frac{2bc}{b + c}\cos\theta$。<br>
+      　・<strong>角平分線長平方公式（學霸大招）：</strong>
+      $$\overline{AD}^2 = \overline{AB}\cdot\overline{AC} - \overline{BD}\cdot\overline{CD}$$
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：外接圓直徑 $2R = \d\frac{\overline{AB}}{\sin C}$；角平分線想「二倍角 $\cos 2\theta$」與「餘弦定理」。</div>
+  </div>
+
+  <!-- ==================== 模組八 ==================== -->
+  <div class="section-header">
+    <span>八、圓與切線、互相垂直雙弦之幾何對稱性</span>
+    <span class="badge-map">📍 對應本卷：第 3 題、混合題第 1 & 2 小題</span>
+  </div>
+
+  <div class="question-card">
+    <div class="question-layout">
+      <div class="question-text">
+        素養題與混合題最喜歡結合「圓的幾何性質」與「三角函數」。掌握圓外切線垂直半徑、圓內弦心距畢氏定理，以及圓的軸對稱性質，就能輕鬆拿滿手寫證明題的 10 分！
+      </div>
+      <div class="question-figure">
+        <svg width="180" height="175" viewBox="0 0 180 175">
+          <path d="M 106 55 L 137 55 A 58 58 0 0 0 106 34 Z" class="svg-shade"/>
+          <path d="M 106 55 L 43 55 A 58 58 0 0 0 106 146 Z" class="svg-shade"/>
+          <circle cx="90" cy="90" r="58" fill="none" class="svg-line" stroke-width="1.6"/>
+          <line x1="15" y1="90" x2="165" y2="90" class="svg-line" stroke-width="1.2"/>
+          <line x1="90" y1="165" x2="90" y2="15" class="svg-line" stroke-width="1.2"/>
+          <line x1="43" y1="55" x2="137" y2="55" class="svg-line" stroke-width="1.5"/>
+          <line x1="106" y1="34" x2="106" y2="146" class="svg-line" stroke-width="1.5"/>
+          <text x="167" y="94" class="svg-text">E</text>
+          <text x="3" y="94" class="svg-text">G</text>
+          <text x="86" y="12" class="svg-text">F</text>
+          <text x="85" y="174" class="svg-text">H</text>
+          <text x="141" y="58" class="svg-text">A</text>
+          <text x="30" y="58" class="svg-text">B</text>
+          <text x="103" y="29" class="svg-text">C</text>
+          <text x="103" y="159" class="svg-text">D</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="sol-box">
+      <div class="box-title">📘 核心公式與觀念詳解</div>
+      1. <strong>圓外一點作兩切線（第 3 題）：</strong><br>
+      　過圓外一點 $P$ 作圓 $O$ 的切線 $\overline{PA}, \overline{PB}$，則 $\angle OAP = \angle OBP = \d\frac{\pi}{2}$，四邊形 $OAPB$ 對角互補：
+      $$\angle AOB = \pi - \angle APB$$
+      2. <strong>圓上點的座標與經典畢氏數組（混合題第 1 小題）：</strong><br>
+      　圓心在原點 $(0,0)$、半徑 $R = 25$ 的圓方程式為 $x^2 + y^2 = 25^2$。<br>
+      　考場必背兩組斜邊為 $25$ 的直角三角形畢氏數：
+      $$15^2 + 20^2 = 25^2 \quad (\text{即 } 3 : 4 : 5 \text{ 放大 } 5 \text{ 倍}) \quad , \quad 7^2 + 24^2 = 25^2$$
+      　因此已知 $y = 15$ 立得 $x = 20$；已知 $x = 7$ 立得 $y = 24$。<br>
+      3. <strong>圓內互相垂直雙弦的對稱定理（混合題第 2 小題滿分證明架構）：</strong><br>
+      　若圓內兩弦 $\overline{AB} \perp \overline{CD}$，過圓心作平行兩弦的座標軸交圓於 $E, F, G, H$，由圓的軸對稱性必有：
+      $$\overparen{AE} = \overparen{BG} \quad , \quad \overparen{CF} = \overparen{HD}$$
+      　因此相對兩塊的圓弧總和恆為：
+      $$\overparen{AC} + \overparen{BD} = \overparen{AC} + (\overparen{BG} + \overparen{GH} + \overparen{HD}) = (\overparen{AE} + \overparen{AC} + \overparen{CF}) + \overparen{GH} = \overparen{EF} + \overparen{GH} = \d\frac{\pi}{2}R + \d\frac{\pi}{2}R = \pi R$$
+      　即<strong>相對兩圓弧之圓心角和恆為 $\pi$（弳），弧長總和恆等於半圓周長</strong>！
+    </div>
+
+    <div class="alt-box">
+      <div class="box-title">⚡ 學霸隱藏版彩蛋：$(3,4,5)$ 與 $(7,24,25)$ 的二倍角關係</div>
+      在直角三角形 $(20, 15, 25)$ 中，$\tan\theta = \d\frac{3}{4}$，$\cos\theta = \d\frac{4}{5}$。<br>
+      若將角度 $\theta$ 放大兩倍為 $2\theta$，則：
+      $$\cos 2\theta = 2\cos^2\theta - 1 = 2\left(\d\frac{4}{5}\right)^2 - 1 = \d\frac{7}{25} \quad , \quad \sin 2\theta = 2\cdot\d\frac{3}{5}\cdot\d\frac{4}{5} = \d\frac{24}{25} \quad , \quad \tan 2\theta = \d\frac{24}{7}$$
+      這正是另一個直角三角形 $(7, 24, 25)$ 的邊長比！記住「<strong>$(3,4,5)$ 的二倍角就是 $(7,24,25)$</strong>」，在混合題看到斜率 $\d\frac{24}{7}$ 與 $\d\frac{3}{4}$ 的夾角，就是 $2\theta - \theta = \theta$，1 秒鐘直接寫出 $\tan\angle AOC = \d\frac{3}{4}$！
+    </div>
+
+    <div class="final-ans-box">核心記憶口訣：垂直雙弦對稱搬，對角圓弧湊半圓（$\angle AOC + \angle BOD = \pi$）；$(4,3,5)$ 二倍角即 $(7,24,25)$。</div>
+  </div>
+
+</div>
+
+<script>
+  function setMode(mode) {
+    const body = document.body;
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    if (mode === 'dark') {
+      body.classList.add('dark-mode');
+      btnDark.classList.add('active');
+      btnLight.classList.remove('active');
+    } else {
+      body.classList.remove('dark-mode');
+      btnLight.classList.add('active');
+      btnDark.classList.remove('active');
+    }
+  }
+
+  function printPage() {
+    if (window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise().then(() => {
+        window.print();
+      });
+    } else {
+      window.print();
+    }
+  }
+</script>
+
+</body>
+</html>
