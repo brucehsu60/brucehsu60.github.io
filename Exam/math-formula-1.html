@@ -1339,3 +1339,474 @@ window.MathJax = {
 </div>
 
 <!-- ==================== 主題 08 ==================== -->
+<div class="slide-outer" id="t8">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 08｜除法原理與綜合除法一次近似（公式 16、17）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：將 $f(x) = 2x^3 - 3x^2 + 4x - 1$ 化為 $p_3(x-1)^3 + p_2(x-1)^2 + p_1(x-1) + p_0$</div>
+      <div>🎯 求解目標：由連續綜合除法求展開係數，並求 $f(x)$ 在 $x=1$ 附近的一次近似切線 $(8)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>結合公式 16 除法與 17 綜合除法</li>
+              <li>除法原理：$f=gQ+R$</li>
+              <li>連續除以 $x-1$ 可得各階餘數</li>
+              <li>末兩項 $p_1(x-1)+p_0$ 即為切線</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">局部一次近似（切線）幾何意義</text>
+              <path d="M 35 165 C 85 160, 115 45, 215 35" fill="none" stroke="#2563eb" stroke-width="3"/>
+              <line x1="65" y1="158" x2="215" y2="58" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,3"/>
+              <circle cx="140" cy="108" r="5.5" fill="#dc2626"/>
+              <text x="148" y="125" font-size="11" font-weight="bold" fill="#0f172a">切點 (1, 2)</text>
+              <text x="75" y="70" font-size="12" font-weight="bold" fill="#2563eb">y = f(x)</text>
+              <text x="150" y="168" text-anchor="middle" font-size="12" font-weight="bold" fill="#dc2626">切線 y = 4x - 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：連續綜合除法</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>第一層除以 $x-1$ 餘 $p_0 = 2$</li>
+              <li>第二層除以 $x-1$ 餘 $p_1 = 4$</li>
+              <li>第三層除以 $x-1$ 餘 $p_2 = 3$</li>
+              <li>最左商數即首項係數 $p_3 = 2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="12" width="236" height="176" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">連續綜合除法運算表 (k = 1)</text>
+              <text x="30" y="56" font-size="12" font-weight="bold" fill="#0f172a">2   -3    4   -1  | 1</text>
+              <line x1="25" y1="64" x2="215" y2="64" stroke="#64748b" stroke-width="1.5"/>
+              <text x="30" y="82" font-size="12" font-weight="bold" fill="#1d4ed8">2   -1    3  | 2 = p₀</text>
+              <line x1="25" y1="90" x2="175" y2="90" stroke="#64748b" stroke-width="1.5"/>
+              <text x="30" y="108" font-size="12" font-weight="bold" fill="#ea580c">2    1  | 4 = p₁</text>
+              <line x1="25" y1="116" x2="135" y2="116" stroke="#64748b" stroke-width="1.5"/>
+              <text x="30" y="136" font-size="12" font-weight="bold" fill="#15803d">2 = p₃ | 3 = p₂</text>
+              <text x="130" y="170" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">(p₃, p₂, p₁, p₀) = (2, 3, 4, 2)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：讀取一次近似</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>展開式末兩項：$p_1(x-1)+p_0$</li>
+              <li>代入係數：$y = 4(x - 1) + 2$</li>
+              <li>化簡得切線：$y = 4x - 2$</li>
+              <li>大域特徵則為首項 $y = 2x^3$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#c2410c">大域特徵 vs 局部一次近似</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">遠看大域特徵（最高次項）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">y = aₙ xⁿ = 2x³</text>
+              <rect x="22" y="112" width="216" height="60" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#9a3412">近看 x=1 一次近似（切線）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="14" font-weight="900" fill="#dc2626">y = 4(x - 1) + 2 = 4x - 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>常數項：$p_0 = 2$</li>
+              <li>一次項：$p_1 = 4$（切線斜率）</li>
+              <li>近似值：$f(1.01) \approx 2.04$</li>
+              <li>切線方程：$(8) : y = 4x - 2$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="285 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">一次近似切線</text>
+              <text x="130" y="102" text-anchor="middle" font-size="18" font-weight="900" fill="#14532d">y = 4x - 2</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(斜率 m = 4)</text>
+              <rect x="25" y="160" width="210" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(8) y = 4x - 2</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>餘式次數必小於除式次數</li>
+              <li>缺項時綜合除法務必補 $0$</li>
+              <li>除以 $ax-b$ 商式須再除以 $a$</li>
+              <li>求 $f(1.01)$ 代入展開式最快</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">綜合除法求近似值秒殺應用</text>
+              <rect x="22" y="52" width="216" height="50" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="74" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">f(x)=2(x-1)³+3(x-1)²+4(x-1)+2</text>
+              <text x="130" y="94" text-anchor="middle" font-size="11" font-weight="bold" fill="#0891b2">代入 x = 1.01 (即 x - 1 = 0.01)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="136" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">忽略高次微小項：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">f(1.01) ≈ 4(0.01) + 2 = 2.04</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：係數順序由底向上為 $p_3, p_2, p_1, p_0$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：除式為 $ax-b$ 時，商式須再除以 $a$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：末兩項 $p_1(x-k)+p_0$ 即 $x=k$ 處切線</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 09 ==================== -->
+<div class="slide-outer" id="t9">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 09｜餘式定理與因式定理進階解題（公式 18、19）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：多項式 $f(x)$ 有因式 $x - 1$，且除以 $x - 2$ 餘式為 $5$</div>
+      <div>🎯 求解目標：結合因式定理與餘式定理，求 $f(x)$ 除以 $(x-1)(x-2)$ 之餘式 $R(x) = (9)$</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>串聯公式 18 餘式與 19 因式定理</li>
+              <li>有因式 $x-1$ 代表 $f(1) = 0$</li>
+              <li>除以 $x-2$ 餘 $5$ 代表 $f(2) = 5$</li>
+              <li>除式為二次，設餘式為 $ax+b$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">二次除式之餘式幾何意義</text>
+              <line x1="25" y1="150" x2="235" y2="150" stroke="#334155" stroke-width="2"/>
+              <path d="M 35 168 Q 95 140 140 90 T 215 35" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+              <line x1="50" y1="168" x2="210" y2="40" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="4,3"/>
+              <circle cx="72" cy="150" r="5.5" fill="#16a34a"/>
+              <circle cx="172" cy="70" r="5.5" fill="#dc2626"/>
+              <text x="72" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">A(1, 0) 根</text>
+              <text x="180" y="65" font-size="11" font-weight="bold" fill="#dc2626">B(2, 5)</text>
+              <text x="135" y="135" font-size="12" font-weight="bold" fill="#dc2626">餘式直線 R(x)=5x-5</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：轉化函數點坐標</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>因式定理：$x-k$ 整除 $\Leftrightarrow f(k)=0$</li>
+              <li>由因式 $x-1$ 得第一點 $f(1) = 0$</li>
+              <li>餘式定理：除以 $x-k$ 餘 $f(k)$</li>
+              <li>由除以 $x-2$ 得第二點 $f(2) = 5$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#1d4ed8">餘式定理 vs 因式定理</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#bfdbfe"/>
+              <text x="130" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">公式 18（餘式定理）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#2563eb">f(x) 除以 ax - b 餘 f(b/a)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#dcfce7" stroke="#22c55e"/>
+              <text x="130" y="132" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">公式 19（因式定理為餘式 0 特例）：</text>
+              <text x="130" y="154" text-anchor="middle" font-size="13" font-weight="900" fill="#15803d">有因式 x - k  ⇔  f(k) = 0</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：假設餘式解聯立</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>列除法式：$f=(x-1)(x-2)Q+ax+b$</li>
+              <li>代入 $x=1$ 得 $a + b = 0$</li>
+              <li>代入 $x=2$ 得 $2a + b = 5$</li>
+              <li>相減解得 $a = 5, b = -5$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#c2410c">牛頓插值階差法（免解聯立秒殺）</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">因 f(1)=0，直接設 R(x) = a(x - 1)</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">代入 x = 2 ⇒ R(2) = a(2 - 1) = 5</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">秒得 a = 5 ⇒ R(x) = 5x - 5</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>條件一：$f(1) = 0$</li>
+              <li>條件二：$f(2) = 5$</li>
+              <li>係數解：$a = 5, b = -5$</li>
+              <li>所求餘式：$(9) = 5x - 5$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="280 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">二次除式之餘式</text>
+              <text x="130" y="102" text-anchor="middle" font-size="19" font-weight="900" fill="#14532d">5x - 5</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(即 5(x - 1))</text>
+              <rect x="30" y="160" width="200" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(9) 5x - 5</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>一次除式 $ax-b$ 餘式為常數</li>
+              <li>二次除式餘式設為 $ax+b$</li>
+              <li>三次除式餘式設為 $ax^2+bx+c$</li>
+              <li>整除即代表餘式恆等於 $0$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">因式定理三大等價敘述（公式 19）</text>
+              <rect x="24" y="48" width="212" height="34" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">① 代入函數值 f(k) = 0</text>
+              <rect x="24" y="90" width="212" height="34" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="112" text-anchor="middle" font-size="12" font-weight="bold" fill="#0891b2">② 多項式 f(x) 有一次因式 x - k</text>
+              <rect x="24" y="132" width="212" height="36" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="155" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">③ f(x) 可被 x - k 整除 (餘式=0)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：除以 $x+k$ 餘式為 $f(-k)$，注意正負變號</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：除式為二次時，餘式須設為 $ax+b$ 一次式</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：過 $(1,0)$ 與 $(2,5)$ 的直線即為所求餘式</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 主題 10 ==================== -->
+<div class="slide-outer" id="t10">
+  <div class="canvas-wrapper">
+    <div class="top-banner-1">
+      <div class="text-[28px] font-black text-white">高中數學關鍵解題圖表：<span class="text-[#facc15]">主題 10｜二次函數頂點判別式與三次函數（公式 20、21、22）</span></div>
+      <div class="bg-blue-800 border border-blue-400 text-blue-100 px-4 py-1 rounded-full text-sm font-bold">16:9 精準座標資訊圖表</div>
+    </div>
+    <div class="top-banner-2">
+      <div>📌 原題條件：三次函數 $f(x) = x^3 - 3x^2 - 9x + 11$，其對稱中心為 $P(p, q)$</div>
+      <div>🎯 求解目標：結合配立方公式求對稱中心 $P(p, q)$ 坐標 $(10)$，並比較二次與三次圖形特徵</div>
+    </div>
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="card-header bg-card-1">1. 題目條件與模型</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>統整公式 20、21 二次與 22 三次</li>
+              <li>二次頂點：$\displaystyle x = -\frac{b}{2a}$</li>
+              <li>三次中心：$\displaystyle x = -\frac{b}{3a}$</li>
+              <li>由標準式判別波浪或單調形狀</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="10" y="12" width="240" height="176" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+              <text x="130" y="34" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">三次函數對稱中心幾何模型</text>
+              <line x1="25" y1="105" x2="235" y2="105" stroke="#94a3b8" stroke-width="1.5"/>
+              <line x1="130" y1="180" x2="130" y2="35" stroke="#94a3b8" stroke-width="1.5"/>
+              <path d="M 45 170 C 85 20, 175 190, 215 40" fill="none" stroke="#2563eb" stroke-width="3"/>
+              <circle cx="130" cy="105" r="6" fill="#dc2626"/>
+              <text x="140" y="124" font-size="12" font-weight="bold" fill="#dc2626">對稱中心 P(1, 0)</text>
+              <text x="75" y="55" font-size="11" font-weight="bold" fill="#1d4ed8">a&gt;0, k&lt;0 波浪形</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-2">2. 關鍵階段一：二次頂點與判別式</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>判別式：$D = b^2 - 4ac$</li>
+              <li>頂點縱坐標：$\displaystyle y = -\frac{D}{4a}$</li>
+              <li>當 $D > 0$ 時與 $x$ 軸交兩點</li>
+              <li>當 $D < 0$ 時圖形恆正或恆負</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">二次函數判別式 D 三情況（公式 21）</text>
+              <line x1="20" y1="135" x2="240" y2="135" stroke="#1e293b" stroke-width="2"/>
+              <path d="M 28 65 Q 62 185 96 65" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+              <path d="M 96 65 Q 130 205 164 65" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+              <path d="M 164 55 Q 198 155 232 55" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="62" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#c2410c">D &gt; 0</text>
+              <text x="62" y="172" text-anchor="middle" font-size="10" font-weight="bold" fill="#c2410c">交兩點</text>
+              <text x="130" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">D = 0</text>
+              <text x="130" y="172" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">相切</text>
+              <text x="198" y="156" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc2626">D &lt; 0</text>
+              <text x="198" y="172" text-anchor="middle" font-size="10" font-weight="bold" fill="#dc2626">恆正不相交</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-3">3. 關鍵階段二：三次配立方求中心</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>中心公式：$\displaystyle p = -\frac{b}{3a}$</li>
+              <li>代入係數：$\displaystyle p = -\frac{-3}{3(1)} = 1$</li>
+              <li>求縱坐標：$q = f(1) = 0$</li>
+              <li>配立方得：$(x-1)^3 - 12(x-1)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+              <text x="130" y="38" text-anchor="middle" font-size="13" font-weight="bold" fill="#c2410c">三次函數標準式與圖形判別</text>
+              <rect x="22" y="50" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="73" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">y = a(x - p)³ + k(x - p) + q</text>
+              <rect x="22" y="94" width="216" height="36" rx="6" fill="#ffffff" stroke="#fed7aa"/>
+              <text x="130" y="117" text-anchor="middle" font-size="12" font-weight="bold" fill="#ea580c">本題：a = 1 &gt; 0 , k = -12 &lt; 0</text>
+              <rect x="22" y="138" width="216" height="34" rx="6" fill="#ffedd5" stroke="#ea580c"/>
+              <text x="130" y="160" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">a、k 異號 ⇒ 圖形呈波浪形有極值</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-4">4. 關鍵數據對照</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>中心橫坐標：$p = 1$</li>
+              <li>中心縱坐標：$q = f(1) = 0$</li>
+              <li>一次項係數：$k = -12$</li>
+              <li>對稱中心：$(10) = (1, 0)$</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <circle cx="130" cy="95" r="52" fill="#f0fdf4" stroke="#dcfce7" stroke-width="10"/>
+              <circle cx="130" cy="95" r="52" fill="none" stroke="#16a34a" stroke-width="10" stroke-dasharray="290 330" stroke-linecap="round" transform="rotate(-90 130 95)"/>
+              <text x="130" y="74" text-anchor="middle" font-size="10" font-weight="bold" fill="#15803d">對稱中心 P</text>
+              <text x="130" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#14532d">(1, 0)</text>
+              <text x="130" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#16a34a">(切線斜率 k = -12)</text>
+              <rect x="30" y="160" width="200" height="28" rx="14" fill="#15803d"/>
+              <text x="130" y="179" text-anchor="middle" font-size="13" font-weight="bold" fill="#ffffff">最終答案：(10) = (1, 0)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-5">5. 核心公式與轉化</div>
+        <div class="card-body">
+          <div class="left-col">
+            <ul class="bullet-list">
+              <li>二次恆正條件：$a > 0$ 且 $D < 0$</li>
+              <li>二次恆負條件：$a < 0$ 且 $D < 0$</li>
+              <li>三次 $a>0$ 朝右上，$a<0$ 朝右下</li>
+              <li>三次 $a, k$ 異號時呈波浪晃動</li>
+            </ul>
+          </div>
+          <div class="right-col">
+            <svg viewBox="0 0 260 200" class="w-full h-full">
+              <rect x="12" y="14" width="236" height="172" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="130" y="36" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f766e">二次頂點 vs 三次對稱中心對照</text>
+              <rect x="22" y="50" width="216" height="52" rx="6" fill="#ffffff" stroke="#99f6e4"/>
+              <text x="130" y="72" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a">二次函數軸與頂點（公式 20）：</text>
+              <text x="130" y="92" text-anchor="middle" font-size="13" font-weight="bold" fill="#0891b2">x = -b / (2a)  (線對稱)</text>
+              <rect x="22" y="112" width="216" height="58" rx="6" fill="#ccfbf1" stroke="#14b8a6"/>
+              <text x="130" y="134" text-anchor="middle" font-size="12" font-weight="bold" fill="#115e59">三次函數對稱中心（公式 22）：</text>
+              <text x="130" y="156" text-anchor="middle" font-size="13" font-weight="900" fill="#dc2626">x = -b / (3a)  (點對稱)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-header bg-card-6">6. 易錯陷阱與心法</div>
+        <div class="card6-body">
+          <div class="pill-bar pill-red">❌ 直覺陷阱：二次頂點分母為 $2a$，三次中心分母為 $3a$</div>
+          <div class="pill-bar pill-yellow">⚠️ 忽略機制：二次函數恆正負代表不交 $x$ 軸，故 $D<0$</div>
+          <div class="pill-bar pill-green">💡 幾何直觀：將三次函數平移 $(-p,-q)$ 即可消去二次項</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 16:9 自動縮放適應螢幕腳本 -->
+<script>
+  function autoScaleSlides() {
+    const wrappers = document.querySelectorAll('.canvas-wrapper');
+    const outers = document.querySelectorAll('.slide-outer');
+    const availableWidth = window.innerWidth - 32;
+    const scale = Math.min(1, availableWidth / 1600);
+    wrappers.forEach((wrapper, idx) => {
+      wrapper.style.transform = `scale(${scale})`;
+      if (outers[idx]) {
+        outers[idx].style.height = `${900 * scale}px`;
+      }
+    });
+  }
+  window.addEventListener('resize', autoScaleSlides);
+  window.addEventListener('DOMContentLoaded', autoScaleSlides);
+  autoScaleSlides();
+</script>
+</body>
+</html>
