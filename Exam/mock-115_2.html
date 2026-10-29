@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>數學A考科 完整最佳詳解（第 1～20 題）</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)'], ['$', '$']],
+    displayMath: [['\\[', '\\]'], ['$$', '$$']],
+    macros: { d: '\\displaystyle' }
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --border-color: #cbd5e1;
+    --accent-primary: #2563eb;
+    --reg-bg: #eff6ff;
+    --reg-border: #3b82f6;
+    --alt-bg: #fffbeb;
+    --alt-border: #f59e0b;
+    --tip-bg: #fef2f2;
+    --tip-border: #ef4444;
+    --ans-bg: #f0fdf4;
+    --ans-border: #16a34a;
+    --svg-stroke: #1e293b;
+    --svg-sub: #64748b;
+  }
+  body.dark-mode {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --accent-primary: #60a5fa;
+    --reg-bg: #172554;
+    --reg-border: #3b82f6;
+    --alt-bg: #422006;
+    --alt-border: #f59e0b;
+    --tip-bg: #450a0a;
+    --tip-border: #ef4444;
+    --ans-bg: #052e16;
+    --ans-border: #22c55e;
+    --svg-stroke: #f1f5f9;
+    --svg-sub: #94a3b8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 0;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg-main); color: var(--text-main);
+    line-height: 1.7; transition: background 0.2s, color 0.2s;
+  }
+  .toolbar {
+    position: sticky; top: 0; z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 24px; background: var(--bg-card);
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .toolbar-title { font-size: 1.15rem; font-weight: 700; color: var(--accent-primary); }
+  .toolbar-btns { display: flex; gap: 8px; }
+  .btn {
+    padding: 6px 13px; border-radius: 6px; border: 1px solid var(--border-color);
+    background: var(--bg-main); color: var(--text-main);
+    font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  }
+  .btn.active, .btn:hover { background: var(--accent-primary); color: #fff; border-color: var(--accent-primary); }
+  .container { max-width: 1040px; margin: 24px auto; padding: 0 16px 60px; }
+  .exam-header {
+    text-align: center; padding: 20px; background: var(--bg-card);
+    border-radius: 12px; border: 2px solid var(--border-color); margin-bottom: 24px;
+  }
+  .exam-header h1 { margin: 0 0 8px; font-size: 1.75rem; }
+  .key-table {
+    width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.92rem;
+  }
+  .key-table th, .key-table td {
+    border: 1px solid var(--border-color); padding: 6px 8px; text-align: center;
+  }
+  .key-table th { background: var(--reg-bg); font-weight: 700; }
+  .section-banner {
+    margin: 30px 0 16px; padding: 12px 18px; background: var(--bg-card);
+    border-left: 6px solid var(--accent-primary); border-radius: 8px;
+  }
+  .section-banner h2 { margin: 0 0 4px; font-size: 1.3rem; }
+  .section-note {
+    margin-top: 6px; padding: 6px 10px; border: 1px solid var(--border-color);
+    border-radius: 4px; font-size: 0.92rem; color: var(--text-muted);
+  }
+  .problem-card {
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 12px; padding: 22px; margin-bottom: 22px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+  }
+  .problem-layout { display: flex; gap: 20px; align-items: flex-start; justify-content: space-between; }
+  .problem-text { flex: 1; font-size: 1.02rem; }
+  .problem-figure { flex-shrink: 0; text-align: center; }
+  .options-row { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 8px; }
+  .options-list { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .fill-c {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 26px; height: 26px; padding: 0 4px;
+    border: 1.5px solid var(--text-main); border-radius: 99px;
+    font-size: 0.8rem; margin: 0 1px; vertical-align: middle;
+  }
+  .sol-box { margin-top: 14px; padding: 14px 18px; border-radius: 8px; font-size: 0.98rem; }
+  .sol-regular { background: var(--reg-bg); border-left: 5px solid var(--reg-border); }
+  .sol-alt { background: var(--alt-bg); border-left: 5px solid var(--alt-border); }
+  .sol-tip { background: var(--tip-bg); border: 2px solid var(--tip-border); border-left: 8px solid var(--tip-border); }
+  .sol-title { font-weight: 700; font-size: 1.02rem; margin-bottom: 6px; }
+  .ans-box {
+    margin-top: 14px; padding: 10px 16px; background: var(--ans-bg);
+    border: 2px solid var(--ans-border); border-radius: 8px;
+    font-weight: 700; font-size: 1.04rem;
+  }
+  .svg-wrap { margin: 12px 0; text-align: center; }
+  svg { max-width: 100%; height: auto; }
+  ul, ol { margin: 6px 0; padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  @media (max-width: 720px) {
+    .problem-layout { flex-direction: column; }
+    .problem-figure { width: 100%; }
+  }
+  @media print {
+    .toolbar { display: none !important; }
+    body { background: #fff !important; color: #000 !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .container { max-width: 100%; margin: 0; padding: 0; }
+    .problem-card { page-break-inside: auto; border: 1.5px solid #000; box-shadow: none; }
+    .sol-tip { border: 3px solid #000 !important; border-left: 10px solid #000 !important; page-break-inside: avoid; }
+    .ans-box { border: 4px double #000 !important; page-break-inside: avoid; }
+    strong { font-weight: 700; text-decoration: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-title">數學A考科 最佳詳解（全卷 1～20 題・含官方詳解對照與視覺化圖解）</div>
+  <div class="toolbar-btns">
+    <button class="btn active" id="btn-light" onclick="setMode('light')">📄 預設好讀</button>
+    <button class="btn" id="btn-dark" onclick="setMode('dark')">🌙 護眼暗色</button>
+    <button class="btn" onclick="printPage()">🖨️ 立即列印 (Ctrl+P)</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="exam-header">
+    <h1>數學A考科 完整最佳詳解</h1>
+    <div>請記得在答題卷簽名欄位以正楷簽全名（全卷答案已與官方詳解 100% 核對一致）</div>
+    <table class="key-table">
+      <tr>
+        <th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>5.</th><th>6.</th><th>7.</th><th>8.</th><th>9.</th><th>10.</th>
+      </tr>
+      <tr>
+        <td>(3)</td><td>(4)</td><td>(2)</td><td>(2)</td><td>(3)</td><td>(1)</td><td>(1)(2)(3)</td><td>(1)(2)(3)(5)</td><td>(1)(4)</td><td>(2)(4)</td>
+      </tr>
+      <tr>
+        <th>11.</th><th>12.</th><th>13.</th><th>14.</th><th>15.</th><th>16.</th><th>17.</th><th>18.</th><th>19.</th><th>20.</th>
+      </tr>
+      <tr>
+        <td>(3)</td><td>(2)(3)(4)</td><td>$4$</td><td>$200$</td><td>$\frac{4}{7}, \frac{3}{7}$</td><td>$1024$</td><td>$\frac{23}{72}$</td><td>$(6, 1)$</td><td>$-2 \le t \le 1$</td><td>$20$</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ==================== 第壹部分、單選題 ==================== -->
+  <div class="section-banner">
+    <h2>第壹部分、選擇（填）題（占 85 分）</h2>
+    <div><strong>一、單選題（占 30 分）</strong></div>
+    <div class="section-note">說明：第 1 題至第 6 題，每題 5 分。</div>
+  </div>
+
+  <!-- 第 1 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      1. 在 $1$、$2$、$3$、$4$、$5$ 這五個數字中，任選三個相異數字排成三位數，其中為偶數的三位數共有 $4\times 3\times 2 = 24$ 個，試問這 $24$ 個偶數的中位數為何？
+      <div class="options-row">
+        <span>(1) $331$</span><span>(2) $332$</span><span>(3) $333$</span><span>(4) $334$</span><span>(5) $335$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】由小到大分類定位第 12、13 項</div>
+      將 $24$ 個偶數從小排到大依序為 $x_1, x_2, \dots, x_{24}$，因為 $\d\frac{24}{2} = 12$，故<strong>中位數</strong>為 $\d\frac{x_{12} + x_{13}}{2}$：
+      <ul>
+        <li>形如 $1\square 2$ 或 $1\square 4$：共 $3 \times 2 = 6$ 個。</li>
+        <li>形如 $2\square 4$：共 $3 \times 1 = 3$ 個。</li>
+        <li>百位為 $3$ 的前兩個：$312, 314$ 共 $2$ 個（以上累計 $6 + 3 + 2 = 11$ 個偶數）。</li>
+      </ul>
+      接著第 $12$ 個與第 $13$ 個偶數分別為 $x_{12} = 324$、$x_{13} = 342$，故中位數為 $\d\frac{324 + 342}{2} = 333$。
+    </div>
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【學霸最佳秒殺法】數位互補對稱法（$d \leftrightarrow 6-d$）</div>
+      將每個數字 $d \in \{1,2,3,4,5\}$ 對應為 $6-d$。因為偶數個位 $2 \leftrightarrow 4$ 仍為偶數，所以若 $N$ 為此集合中的偶數，則 $666 - N$ 必也在此集合中！由大小對稱性，$x_{12} + x_{13} = 666$，中位數 $= \d\frac{666}{2} = 333$。
+    </div>
+    <div class="ans-box">最終答案：(3)</div>
+  </div>
+
+  <!-- 第 2 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      2. 設 $a$ 為實數，則坐標平面上點 $P(3, 2)$ 到直線 $L: y + a^2 = -\d\frac{1}{2}x - 2a$ 的距離之最小值為何？
+      <div class="options-row">
+        <span>(1) $\d\frac{2}{\sqrt{5}}$</span><span>(2) $\d\frac{7}{\sqrt{5}}$</span><span>(3) $\d\frac{9}{2\sqrt{5}}$</span><span>(4) $\sqrt{5}$</span><span>(5) $\d\frac{\sqrt{5}}{2}$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】點到直線距離公式＋二次函數配方法</div>
+      將直線 $L$ 整理為一般式：$2y + 2a^2 = -x - 4a \implies L: x + 2y + 2a^2 + 4a = 0$。<br>
+      由<strong>點到直線距離公式</strong>：
+      $$d(P, L) = \d\frac{|3 + 2(2) + 2a^2 + 4a|}{\sqrt{1^2 + 2^2}} = \d\frac{|2a^2 + 4a + 7|}{\sqrt{5}} = \d\frac{2(a + 1)^2 + 5}{\sqrt{5}}$$
+      當 $a = -1$ 時，$d(P, L)$ 有最小值 $\d\frac{5}{\sqrt{5}} = \sqrt{5}$。
+    </div>
+    <div class="ans-box">最終答案：(4)</div>
+  </div>
+
+  <!-- 第 3 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      3. 已知數列 $\langle a_n \rangle$ 是一個首項為 $10$，公比為 $4$，共有 $20$ 項的等比數列，試問數列 $\langle a_n \rangle$ 中，共有幾項為 $10$ 位數？
+      <div class="options-row">
+        <span>(1) $0$ 項</span><span>(2) $1$ 項</span><span>(3) $2$ 項</span><span>(4) $3$ 項</span><span>(5) $4$ 項</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】科學記號與常用對數判定位數</div>
+      一般項 $a_n = 10 \times 4^{n-1}$。若 $a_n$ 為 $10$ 位數，則 $10^9 \le 10 \times 4^{n-1} < 10^{10} \implies 10^8 \le 4^{n-1} < 10^9$。<br>
+      因為 $\log 2 \approx 0.3010 \implies 4 \approx 10^{0.602}$，代入得：
+      $$10^8 \le 10^{0.602(n-1)} < 10^9 \implies 8 \le 0.602(n - 1) < 9 \implies \d\frac{8}{0.602} \le n - 1 < \d\frac{9}{0.602}$$
+      計算得 $13.28\cdots \le n - 1 < 14.95\cdots \implies 14.28\cdots \le n < 15.95\cdots$，故僅有 $a_{15}$ 共 $1$ 項為 $10$ 位數。
+    </div>
+    <div class="ans-box">最終答案：(2)</div>
+  </div>
+
+  <!-- 第 4 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      4. 數線上由左至右有 $A$、$B$、$C(c)$、$D(d)$、$E$ 五點，且 $\overline{AB} = \overline{BC} = \overline{CD} = \overline{DE}$，如下圖所示。
+      <div class="svg-wrap">
+        <svg width="360" height="65" viewBox="0 0 360 65">
+          <defs>
+            <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--svg-stroke)" />
+            </marker>
+          </defs>
+          <line x1="20" y1="35" x2="340" y2="35" stroke="var(--svg-stroke)" stroke-width="2" marker-end="url(#arr4)" />
+          <g fill="var(--svg-stroke)" font-style="italic" font-size="14" text-anchor="middle">
+            <circle cx="60" cy="35" r="3.5"/><text x="60" y="23">A</text>
+            <circle cx="120" cy="35" r="3.5"/><text x="120" y="23">B</text>
+            <circle cx="180" cy="35" r="3.5"/><text x="180" y="23">C</text><text x="180" y="54">c</text>
+            <circle cx="240" cy="35" r="3.5"/><text x="240" y="23">D</text><text x="240" y="54">d</text>
+            <circle cx="300" cy="35" r="3.5"/><text x="300" y="23">E</text>
+          </g>
+        </svg>
+      </div>
+      若實數 $f = \d\frac{7c - 4d}{3}$，則下列關於數線上點 $F(f)$ 位置之敘述，試選出正確的選項。
+      <div class="options-list">
+        <span>(1) $F$ 一定在 $\overline{AB}$ 上且較接近 $A$ 點</span>
+        <span>(2) $F$ 一定在 $\overline{AB}$ 上且較接近 $B$ 點</span>
+        <span>(3) $F$ 一定在 $\overline{BC}$ 上且較接近 $B$ 點</span>
+        <span>(4) $F$ 一定在 $\overline{BC}$ 上且較接近 $C$ 點</span>
+        <span>(5) $F$ 一定在 $\overline{DE}$ 上且較接近 $E$ 點</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【官方詳解法】逆用內分點公式</div>
+      將 $f = \d\frac{7c - 4d}{3}$ 移項整理為 $C(c)$ 的<strong>內分點公式</strong>形式：
+      $$3f = 7c - 4d \implies 3f + 4d = 7c \implies c = \d\frac{3f + 4d}{7}$$
+      這表示 $C(c)$ 介於 $F(f)$ 與 $D(d)$ 之間，且 $\overline{FC} : \overline{CD} = 4 : 3$。因為 $\overline{AB} = \overline{BC} = \overline{CD} = 3$ 等份，從 $C$ 往左推 $4$ 等份（跨過 $\overline{BC}$ 的 $3$ 等份再往左 $1$ 等份），可知 $F$ 必在 $\overline{AB}$ 上且較接近 $B$ 點：
+      <div class="svg-wrap">
+        <svg width="380" height="80" viewBox="0 0 380 80">
+          <line x1="20" y1="50" x2="360" y2="50" stroke="var(--svg-stroke)" stroke-width="2" marker-end="url(#arr4)" />
+          <path d="M 100 46 Q 140 15 180 46" fill="none" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <path d="M 180 46 Q 210 18 240 46" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,2"/>
+          <text x="140" y="24" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold">④ 等份</text>
+          <text x="210" y="24" text-anchor="middle" fill="#2563eb" font-size="12" font-weight="bold">③ 等份</text>
+          <g fill="var(--svg-stroke)" font-size="13" text-anchor="middle">
+            <circle cx="60" cy="50" r="3"/><text x="60" y="70">A</text>
+            <circle cx="120" cy="50" r="3"/><text x="120" y="70">B</text>
+            <circle cx="180" cy="50" r="3"/><text x="180" y="70">C(c)</text>
+            <circle cx="240" cy="50" r="3"/><text x="240" y="70">D(d)</text>
+            <circle cx="300" cy="50" r="3"/><text x="300" y="70">E</text>
+          </g>
+          <circle cx="100" cy="50" r="4.5" fill="#ef4444"/>
+          <text x="100" y="70" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="13">F(f)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【學霸秒殺另解】代特值法</div>
+      令 $c = 0, d = 3$，則 $A(-6), B(-3), C(0), D(3), E(6)$。代入得 $f = \d\frac{0 - 12}{3} = -4$，落在 $A(-6)$ 與 $B(-3)$ 之間且較接近 $B(-3)$。
+    </div>
+    <div class="ans-box">最終答案：(2)</div>
+  </div>
+
+  <!-- 第 5 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      5. 一袋中有五顆球，球上分別印有號碼 $1, 3, 4, 5, 7$。現從袋中隨機抽取一顆球，取後不放回，共抽取三次，假設每次抽球時，袋中每顆球被抽取的機會相等。已知三次抽取出球上的號碼依序為 $a, b, c$，則 $ab + c$ 的期望值為何？
+      <div class="options-row">
+        <span>(1) $16$</span><span>(2) $18$</span><span>(3) $19$</span><span>(4) $20$</span><span>(5) $24$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】分別求 $ab$ 與 $c$ 的期望值</div>
+      <ol>
+        <li>先求 $ab$ 的期望值 $E_1$：從 $5$ 顆球取 $2$ 顆相異球排列有 $5 \times 4 = 20$ 種，每組兩數乘積出現 $2!$ 次：
+          $$E_1 = \d\frac{2!}{5 \times 4}(1\times 3 + 1\times 4 + 1\times 5 + 1\times 7 + 3\times 4 + 3\times 5 + 3\times 7 + 4\times 5 + 4\times 7 + 5\times 7) = \d\frac{2}{20} \times 150 = 15$$
+        </li>
+        <li>再求 $c$ 的期望值 $E_2$：每顆球在第三次被抽出的機率均為 $\d\frac{1}{5}$，故 $E_2 = \d\frac{1 + 3 + 4 + 5 + 7}{5} = 4$。</li>
+      </ol>
+      所求期望值為 $E_1 + E_2 = 15 + 4 = 19$。
+    </div>
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【學霸最佳代數速算法】免列舉！利用乘法公式求 $\sum_{i \ne j} x_i x_j$</div>
+      不必逐一列出 $10$ 組乘積！直接由 $\d\sum_{i \ne j} x_i x_j = \left(\sum x_i\right)^2 - \sum x_i^2 = 20^2 - (1 + 9 + 16 + 25 + 49) = 400 - 100 = 300$，除以 $P^5_2 = 20$ 立得 $E(ab) = \d\frac{300}{20} = 15$，加上 $E(c) = 4$ 得 $19$。
+    </div>
+    <div class="ans-box">最終答案：(3)</div>
+  </div>
+
+  <!-- 第 6 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      6. 試問有多少個實數 $x$ 滿足 $\cos \d\frac{x}{5} = \cos x$ 且 $0 < x < 10\pi$？
+      <div class="options-row">
+        <span>(1) $7$ 個</span><span>(2) $8$ 個</span><span>(3) $9$ 個</span><span>(4) $10$ 個</span><span>(5) $11$ 個</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方解法一）】三角方程式通解討論</div>
+      當 $\cos x = \cos\d\frac{x}{5}$ 時，廣義角有兩種情形（$k \in \mathbb{Z}$）：
+      <ul>
+        <li>① $x = \d\frac{x}{5} + 2k\pi \implies \d\frac{4}{5}x = 2k\pi \implies x = \d\frac{5}{2}k\pi$。由 $0 < x < 10\pi$ 得 $0 < k < 4 \implies k = 1, 2, 3$，即 $x = \d\frac{5}{2}\pi, 5\pi, \d\frac{15}{2}\pi$（共 $3$ 個）。</li>
+        <li>② $x = -\d\frac{x}{5} + 2k\pi \implies \d\frac{6}{5}x = 2k\pi \implies x = \d\frac{5}{3}k\pi$。由 $0 < x < 10\pi$ 得 $0 < k < 6 \implies k = 1, 2, 3, 4, 5$，即 $x = \d\frac{5}{3}\pi, \d\frac{10}{3}\pi, 5\pi, \d\frac{20}{3}\pi, \d\frac{25}{3}\pi$（共 $5$ 個）。</li>
+      </ul>
+      注意到 $x = 5\pi$ 同時出現在兩種情形中，故共有 $3 + 5 - 1 = 7$ 個實數解。
+    </div>
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【官方解法二・函數伸縮疊合圖】$y = \cos x$ 與 $y = \cos\frac{x}{5}$ 的交點</div>
+      將 $y = \cos x$ 水平伸縮 $5$ 倍得 $y = \cos\d\frac{x}{5}$，在 $0 < x < 10\pi$ 範圍內繪圖如下（$x = 5\pi$ 處兩波谷相切僅 $1$ 交點），共 $7$ 個交點：
+      <div class="svg-wrap">
+        <svg width="540" height="145" viewBox="0 0 540 145">
+          <line x1="25" y1="75" x2="525" y2="75" stroke="var(--svg-sub)" stroke-width="1.5"/>
+          <line x1="25" y1="15" x2="25" y2="135" stroke="var(--svg-sub)" stroke-width="1.5"/>
+          <text x="16" y="28" text-anchor="end" fill="var(--svg-stroke)" font-size="11">1</text>
+          <text x="16" y="130" text-anchor="end" fill="var(--svg-stroke)" font-size="11">-1</text>
+          <text x="270" y="92" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">5π</text>
+          <text x="515" y="92" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">10π</text>
+          <path d="M 25 25 C 49.5 25, 49.5 125, 74 125 C 98.5 125, 98.5 25, 123 25 C 147.5 25, 147.5 125, 172 125 C 196.5 125, 196.5 25, 221 25 C 245.5 25, 245.5 125, 270 125 C 294.5 125, 294.5 25, 319 25 C 343.5 25, 343.5 125, 368 125 C 392.5 125, 392.5 25, 417 25 C 441.5 25, 441.5 125, 466 125 C 490.5 125, 490.5 25, 515 25" fill="none" stroke="#2563eb" stroke-width="1.8"/>
+          <path d="M 25 25 C 147.5 25, 147.5 125, 270 125 C 392.5 125, 392.5 25, 515 25" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="5,3"/>
+          <circle cx="106.7" cy="50" r="3.5" fill="#16a34a"/><circle cx="147.5" cy="75" r="3.5" fill="#16a34a"/><circle cx="188.3" cy="100" r="3.5" fill="#16a34a"/>
+          <circle cx="270" cy="125" r="4" fill="#dc2626"/>
+          <circle cx="351.7" cy="100" r="3.5" fill="#16a34a"/><circle cx="392.5" cy="75" r="3.5" fill="#16a34a"/><circle cx="433.3" cy="50" r="3.5" fill="#16a34a"/>
+        </svg>
+      </div>
+    </div>
+    <div class="ans-box">最終答案：(1)</div>
+  </div>
+
+  <!-- ==================== 二、多選題 ==================== -->
+  <div class="section-banner">
+    <h2>二、多選題（占 30 分）</h2>
+    <div class="section-note">說明：第 7 題至第 12 題，每題 5 分。</div>
+  </div>
+
+  <!-- 第 7 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      7. 坐標平面上一區域具有下列性質：若任取區域中相異兩點 $A, B$，則線段 $\overline{AB}$ 上所有點皆在此區域中。下列各選項的（聯立）不等式在坐標平面上所表示的區域，請選出符合上述性質的選項。
+      <div class="options-list">
+        <span>(1) $x + y > 0$</span>
+        <span>(2) $x - y \le 0$</span>
+        <span>(3) $\begin{cases} x + y > 0 \\ x - y \le 0 \end{cases}$</span>
+        <span>(4) $(x + y)(x - y) \le 0$</span>
+        <span>(5) $1 \le x^2 + y^2 \le 4$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解五圖完整還原）】二元不等式區域與凸集判別</div>
+      題幹性質即為<strong>凸集（Convex Set）</strong>。官方詳解五個選項之區域與線段 $\overline{AB}$ 檢驗如下圖：
+      <div class="svg-wrap">
+        <svg width="680" height="140" viewBox="0 0 680 140">
+          <!-- (1) -->
+          <g transform="translate(5,5)">
+            <polygon points="15,15 115,15 115,115" fill="rgba(37,99,235,0.2)"/>
+            <line x1="15" y1="65" x2="115" y2="65" stroke="var(--svg-sub)"/><line x1="65" y1="15" x2="65" y2="115" stroke="var(--svg-sub)"/>
+            <line x1="15" y1="15" x2="115" y2="115" stroke="var(--svg-stroke)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <line x1="55" y1="35" x2="95" y2="45" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="55" cy="35" r="2.5" fill="#16a34a"/><circle cx="95" cy="45" r="2.5" fill="#16a34a"/>
+            <text x="65" y="130" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">(1) ○ 開半平面</text>
+          </g>
+          <!-- (2) -->
+          <g transform="translate(140,5)">
+            <polygon points="15,15 115,15 15,115" fill="rgba(37,99,235,0.2)"/>
+            <line x1="15" y1="65" x2="115" y2="65" stroke="var(--svg-sub)"/><line x1="65" y1="15" x2="65" y2="115" stroke="var(--svg-sub)"/>
+            <line x1="15" y1="115" x2="115" y2="15" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+            <line x1="35" y1="80" x2="55" y2="35" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="35" cy="80" r="2.5" fill="#16a34a"/><circle cx="55" cy="35" r="2.5" fill="#16a34a"/>
+            <text x="65" y="130" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">(2) ○ 閉半平面</text>
+          </g>
+          <!-- (3) -->
+          <g transform="translate(275,5)">
+            <polygon points="65,65 15,15 115,15" fill="rgba(37,99,235,0.2)"/>
+            <line x1="15" y1="65" x2="115" y2="65" stroke="var(--svg-sub)"/><line x1="65" y1="15" x2="65" y2="115" stroke="var(--svg-sub)"/>
+            <line x1="15" y1="15" x2="115" y2="115" stroke="var(--svg-stroke)" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <line x1="15" y1="115" x2="115" y2="15" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+            <line x1="50" y1="30" x2="80" y2="30" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="50" cy="30" r="2.5" fill="#16a34a"/><circle cx="80" cy="30" r="2.5" fill="#16a34a"/>
+            <text x="65" y="130" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">(3) ○ 兩半平面交集</text>
+          </g>
+          <!-- (4) -->
+          <g transform="translate(410,5)">
+            <polygon points="65,65 15,15 115,15" fill="rgba(239,68,68,0.2)"/>
+            <polygon points="65,65 15,115 115,115" fill="rgba(239,68,68,0.2)"/>
+            <line x1="15" y1="65" x2="115" y2="65" stroke="var(--svg-sub)"/><line x1="65" y1="15" x2="65" y2="115" stroke="var(--svg-sub)"/>
+            <line x1="15" y1="15" x2="115" y2="115" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+            <line x1="15" y1="115" x2="115" y2="15" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+            <line x1="75" y1="25" x2="75" y2="105" stroke="#ef4444" stroke-width="2"/>
+            <circle cx="75" cy="25" r="2.5" fill="#ef4444"/><circle cx="75" cy="105" r="2.5" fill="#ef4444"/>
+            <text x="65" y="130" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">(4) ✕ 對頂角區域</text>
+          </g>
+          <!-- (5) -->
+          <g transform="translate(545,5)">
+            <path d="M 65,20 A 45,45 0 1,0 65,110 A 45,45 0 1,0 65,20 Z M 65,43 A 22,22 0 1,1 65,87 A 22,22 0 1,1 65,43 Z" fill="rgba(239,68,68,0.2)" fill-rule="evenodd" stroke="var(--svg-stroke)" stroke-width="1.3"/>
+            <line x1="15" y1="65" x2="115" y2="65" stroke="var(--svg-sub)"/><line x1="65" y1="15" x2="65" y2="115" stroke="var(--svg-sub)"/>
+            <line x1="72" y1="32" x2="72" y2="98" stroke="#ef4444" stroke-width="2"/>
+            <circle cx="72" cy="32" r="2.5" fill="#ef4444"/><circle cx="72" cy="98" r="2.5" fill="#ef4444"/>
+            <text x="65" y="130" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">(5) ✕ 同心圓環</text>
+          </g>
+        </svg>
+      </div>
+      (1)(2) 為單一半平面，(3) 為兩半平面之交集，皆滿足 $\overline{AB}$ 完全落在區域內；(4)(5) 連線會穿過空白區，故選 (1)(2)(3)。
+    </div>
+    <div class="ans-box">最終答案：(1)(2)(3)</div>
+  </div>
+
+  <!-- 第 8 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      8. 設首項係數為 $1$ 的二次實係數多項式 $f(x)$ 滿足 $xf(x)$ 除以 $x^2 + x + 1$ 的商式為 $q(x)$，餘式為 $x - 5$，試選出正確的選項。
+      <div class="options-list">
+        <span>(1) $q(x)$ 必定為一次多項式</span>
+        <span>(2) $q(0) = 5$</span>
+        <span>(3) $f(-1) + q(-1) = 6$</span>
+        <span>(4) 不等式 $f(x) > 0$ 的解為任意實數</span>
+        <span>(5) $x^2f(x)$ 除以 $x^2 + x + 1$ 的餘式為 $-6x - 1$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【最佳詳解（官方解法二）】除法原理結合代值秒殺</div>
+      因為 $xf(x)$ 為首項係數 $1$ 的三次式，除以 $x^2 + x + 1$ 的商式 $q(x)$ 必為首項係數 $1$ 的一次式，令 $q(x) = x + a$。<br>
+      由<strong>除法原理</strong>：$xf(x) = (x^2 + x + 1)(x + a) + (x - 5)$。
+      <ul>
+        <li><strong>(1) 正確</strong>：$q(x) = x + a$ 為一次多項式。</li>
+        <li><strong>(2) 正確</strong>：代入 $x = 0$ 得 $0 = 1 \cdot a - 5 \implies a = 5$，故 $q(x) = x + 5 \implies q(0) = 5$。</li>
+        <li><strong>(3) 正確</strong>：將 $q(x) = x + 5$ 代回展開：$xf(x) = (x^2+x+1)(x+5)+x-5 = x^3 + 6x^2 + 7x \implies f(x) = x^2 + 6x + 7$。<br>
+          故 $f(-1) + q(-1) = (1 - 6 + 7) + (-1 + 5) = 6$（或直接將原式代 $x = -1$ 得 $-f(-1) = q(-1) - 6$）。</li>
+        <li><strong>(4) 錯誤</strong>：$f(x) = x^2 + 6x + 7$ 的判別式 $D = 6^2 - 4(1)(7) = 8 > 0$，與 $x$ 軸有兩交點，故 $f(x) > 0$ 的解不為任意實數。</li>
+        <li><strong>(5) 正確</strong>：$x^2f(x) = x(x^2+x+1)(x+5) + (x^2 - 5x) = (x^2+x+1)(x^2+5x+1) + (-6x - 1)$，故餘式為 $-6x - 1$。</li>
+      </ul>
+    </div>
+    <div class="ans-box">最終答案：(1)(2)(3)(5)</div>
+  </div>
+
+  <!-- 第 9 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      9. 已知坐標平面上，$O$ 為原點，兩單位向量 $\vec{e}_1$、$\vec{e}_2$ 的夾角為 $60^\circ$，假設平面上任一點 $P$，使得 $\overrightarrow{OP} = a\vec{e}_1 + b\vec{e}_2$，則我們稱點 $P$（關於 $\vec{e}_1$、$\vec{e}_2$）的斜坐標為 $(a, b)$。已知點 $P_1$ 與 $P_2$ 的斜坐標分別為 $(-1, 3)$ 與 $(3, -1)$，試選出正確的選項。
+      <div class="options-list">
+        <span>(1) $|\overrightarrow{OP_1}| = |\overrightarrow{OP_2}|$</span>
+        <span>(2) $\overrightarrow{OP_1} \cdot \overrightarrow{OP_2} = 1$</span>
+        <span>(3) 向量 $\overrightarrow{OP_1}$ 與 $\overrightarrow{OP_2}$ 夾角的餘弦值為 $\d\frac{1}{7}$</span>
+        <span>(4) $\triangle OP_1P_2$ 的面積為 $2\sqrt{3}$</span>
+        <span>(5) 若點 $P_3$ 滿足 $\overrightarrow{OP_3}$ 且與 $\overrightarrow{OP_1}$、$\overrightarrow{OP_2}$ 的夾角均相同，則向量 $\overrightarrow{OP_3}$ 與向量 $\vec{e}_1 + \vec{e}_2$ 方向相同</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】向量內積展開與角平分線方向圖解</div>
+      已知 $\vec{e}_1 \cdot \vec{e}_2 = 1 \times 1 \times \cos 60^\circ = \d\frac{1}{2}$，且 $\overrightarrow{OP_1} = -\vec{e}_1 + 3\vec{e}_2$，$\overrightarrow{OP_2} = 3\vec{e}_1 - \vec{e}_2$：
+      <ul>
+        <li><strong>(1) 正確</strong>：$|\overrightarrow{OP_1}|^2 = |\vec{e}_1|^2 - 6\vec{e}_1\cdot\vec{e}_2 + 9|\vec{e}_2|^2 = 1 - 3 + 9 = 7$；同理 $|\overrightarrow{OP_2}|^2 = 9 - 3 + 1 = 7$，故 $|\overrightarrow{OP_1}| = |\overrightarrow{OP_2}| = \sqrt{7}$。</li>
+        <li><strong>(2) 錯誤</strong>：$\overrightarrow{OP_1} \cdot \overrightarrow{OP_2} = -3|\vec{e}_1|^2 + 10\vec{e}_1\cdot\vec{e}_2 - 3|\vec{e}_2|^2 = -3 + 5 - 3 = -1$。</li>
+        <li><strong>(3) 錯誤</strong>：夾角餘弦值 $\cos\theta = \d\frac{\overrightarrow{OP_1} \cdot \overrightarrow{OP_2}}{|\overrightarrow{OP_1}||\overrightarrow{OP_2}|} = \d\frac{-1}{\sqrt{7}\cdot\sqrt{7}} = -\d\frac{1}{7}$。</li>
+        <li><strong>(4) 正確</strong>：$\triangle OP_1P_2$ 面積 $= \d\frac{1}{2}\sqrt{|\overrightarrow{OP_1}|^2|\overrightarrow{OP_2}|^2 - (\overrightarrow{OP_1}\cdot\overrightarrow{OP_2})^2} = \d\frac{1}{2}\sqrt{7\times 7 - (-1)^2} = 2\sqrt{3}$。</li>
+        <li><strong>(5) 錯誤</strong>：如下方官方詳解圖所示，$\overrightarrow{OP_3}$ 可能與 $\vec{e}_1 + \vec{e}_2$ <strong>反向</strong>，此時與 $\overrightarrow{OP_1}, \overrightarrow{OP_2}$ 的夾角亦相同。</li>
+      </ul>
+      <div class="svg-wrap">
+        <svg width="280" height="170" viewBox="0 0 280 170">
+          <defs>
+            <marker id="arr9" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--svg-stroke)" />
+            </marker>
+            <marker id="arr9r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444" />
+            </marker>
+          </defs>
+          <!-- Center O at (120, 85) -->
+          <line x1="120" y1="85" x2="155" y2="65" stroke="var(--svg-stroke)" stroke-width="2" marker-end="url(#arr9)"/>
+          <text x="150" y="58" fill="var(--svg-stroke)" font-size="12">e₁</text>
+          <line x1="120" y1="85" x2="155" y2="105" stroke="var(--svg-stroke)" stroke-width="2" marker-end="url(#arr9)"/>
+          <text x="150" y="122" fill="var(--svg-stroke)" font-size="12">e₂</text>
+          <!-- e1 + e2 -->
+          <line x1="120" y1="85" x2="190" y2="85" stroke="#2563eb" stroke-width="2" marker-end="url(#arr9)"/>
+          <text x="220" y="89" text-anchor="middle" fill="#2563eb" font-size="12" font-weight="bold">e₁ + e₂</text>
+          <!-- OP2 (upper) & OP1 (lower) -->
+          <line x1="120" y1="85" x2="190" y2="15" stroke="var(--svg-stroke)" stroke-width="1.8" marker-end="url(#arr9)"/>
+          <text x="195" y="15" fill="var(--svg-stroke)" font-size="12">OP₂</text>
+          <line x1="120" y1="85" x2="190" y2="155" stroke="var(--svg-stroke)" stroke-width="1.8" marker-end="url(#arr9)"/>
+          <text x="195" y="162" fill="var(--svg-stroke)" font-size="12">OP₁</text>
+          <!-- OP3 opposite -->
+          <line x1="120" y1="85" x2="50" y2="85" stroke="#ef4444" stroke-width="2.2" marker-end="url(#arr9r)"/>
+          <text x="32" y="89" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="bold">OP₃</text>
+        </svg>
+      </div>
+    </div>
+    <div class="ans-box">最終答案：(1)(4)</div>
+  </div>
+
+  <!-- 第 10 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      10. 有 $A$、$B$、$C$、$D$、$E$ 五組數據資料如下：<br>
+      $A = \{ (n, n) \mid n = 1, 2, 3 \}$，
+      $B = \{ (n, n^2) \mid n = 1, 2, 3 \}$，
+      $C = \{ (n, \log n) \mid n = 1, 2, 3 \}$，<br>
+      $D = \{ (n, \sin n) \mid n = 1, 2, 3 \}$，
+      $E = \{ (n, 2^{-n}) \mid n = 1, 2, 3 \}$。<br>
+      已知五組資料的相關係數依序為 $r_A$、$r_B$、$r_C$、$r_D$、$r_E$；而迴歸直線（最適直線）的斜率依序為 $m_A$、$m_B$、$m_C$、$m_D$、$m_E$，試選出正確的選項。
+      <div class="options-list">
+        <span>(1) $r_B > r_A$</span>
+        <span>(2) $r_C > \d\frac{1}{10}$</span>
+        <span>(3) $r_E > r_D$</span>
+        <span>(4) $m_B > m_A > m_C$</span>
+        <span>(5) $m_D + m_E > 0$</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解五組函數圖形還原）】圖形趨勢與迴歸斜率比較</div>
+      <div class="svg-wrap">
+        <svg width="680" height="135" viewBox="0 0 680 135">
+          <!-- A: y=x -->
+          <g transform="translate(5,5)">
+            <line x1="15" y1="100" x2="115" y2="100" stroke="var(--svg-sub)"/><line x1="25" y1="10" x2="25" y2="110" stroke="var(--svg-sub)"/>
+            <line x1="25" y1="100" x2="105" y2="20" stroke="#2563eb" stroke-width="1.8"/>
+            <circle cx="45" cy="80" r="3" fill="var(--svg-stroke)"/><circle cx="65" cy="60" r="3" fill="var(--svg-stroke)"/><circle cx="85" cy="40" r="3" fill="var(--svg-stroke)"/>
+            <text x="65" y="122" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">A: r_A=1, m_A=1</text>
+          </g>
+          <!-- B: y=x^2 -->
+          <g transform="translate(140,5)">
+            <line x1="15" y1="100" x2="115" y2="100" stroke="var(--svg-sub)"/><line x1="25" y1="10" x2="25" y2="110" stroke="var(--svg-sub)"/>
+            <path d="M 25 100 Q 65 95 95 15" fill="none" stroke="var(--svg-sub)" stroke-dasharray="3,2"/>
+            <line x1="40" y1="98" x2="90" y2="15" stroke="#2563eb" stroke-width="1.8"/>
+            <circle cx="45" cy="92" r="3" fill="var(--svg-stroke)"/><circle cx="65" cy="68" r="3" fill="var(--svg-stroke)"/><circle cx="85" cy="22" r="3" fill="var(--svg-stroke)"/>
+            <text x="65" y="122" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">B: 0&lt;r_B&lt;1, m_B=4</text>
+          </g>
+          <!-- C: y=log x -->
+          <g transform="translate(275,5)">
+            <line x1="15" y1="100" x2="115" y2="100" stroke="var(--svg-sub)"/><line x1="25" y1="10" x2="25" y2="110" stroke="var(--svg-sub)"/>
+            <path d="M 45 100 Q 65 78 105 68" fill="none" stroke="var(--svg-sub)" stroke-dasharray="3,2"/>
+            <line x1="35" y1="102" x2="100" y2="68" stroke="#2563eb" stroke-width="1.8"/>
+            <circle cx="45" cy="100" r="3" fill="var(--svg-stroke)"/><circle cx="65" cy="82" r="3" fill="var(--svg-stroke)"/><circle cx="85" cy="72" r="3" fill="var(--svg-stroke)"/>
+            <text x="65" y="122" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">C: r_C≈0.99, 0&lt;m_C&lt;1</text>
+          </g>
+          <!-- D: y=sin x -->
+          <g transform="translate(410,5)">
+            <line x1="15" y1="100" x2="115" y2="100" stroke="var(--svg-sub)"/><line x1="25" y1="10" x2="25" y2="110" stroke="var(--svg-sub)"/>
+            <path d="M 25 100 Q 60 20 95 100" fill="none" stroke="var(--svg-sub)" stroke-dasharray="3,2"/>
+            <line x1="35" y1="52" x2="100" y2="92" stroke="#ef4444" stroke-width="1.8"/>
+            <circle cx="45" cy="60" r="3" fill="var(--svg-stroke)"/><circle cx="67" cy="55" r="3" fill="var(--svg-stroke)"/><circle cx="90" cy="93" r="3" fill="var(--svg-stroke)"/>
+            <text x="65" y="122" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">D: r_D&lt;0, m_D&lt;0</text>
+          </g>
+          <!-- E: y=2^-x -->
+          <g transform="translate(545,5)">
+            <line x1="15" y1="100" x2="115" y2="100" stroke="var(--svg-sub)"/><line x1="25" y1="10" x2="25" y2="110" stroke="var(--svg-sub)"/>
+            <path d="M 30 25 Q 55 82 105 95" fill="none" stroke="var(--svg-sub)" stroke-dasharray="3,2"/>
+            <line x1="35" y1="50" x2="95" y2="95" stroke="#ef4444" stroke-width="1.8"/>
+            <circle cx="45" cy="58" r="3" fill="var(--svg-stroke)"/><circle cx="65" cy="78" r="3" fill="var(--svg-stroke)"/><circle cx="85" cy="89" r="3" fill="var(--svg-stroke)"/>
+            <text x="65" y="122" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">E: r_E≈-0.98, m_E&lt;0</text>
+          </g>
+        </svg>
+      </div>
+      <ul>
+        <li><strong>(1) 錯誤</strong>：$A$ 組三點共線，$r_A = 1 > r_B$。</li>
+        <li><strong>(2) 正確</strong>：$C$ 組三點高度正相關且接近共線，$r_C$ 很接近 $1$，故 $r_C > \d\frac{1}{10}$。</li>
+        <li><strong>(3) 錯誤</strong>：$r_D, r_E$ 均小於 $0$，且 $E$ 組三點很接近共線（負相關性較高，$r_E$ 很接近 $-1$），故 $r_E < r_D$。</li>
+        <li><strong>(4) 正確</strong>：當 $x = 1, 2, 3$ 時，迴歸斜率公式為 $m = \d\frac{y_3 - y_1}{2}$，故 $m_B = 4 > m_A = 1 > m_C = \d\frac{\log 3}{2}$。</li>
+        <li><strong>(5) 錯誤</strong>：$m_D = \d\frac{\sin 3 - \sin 1}{2} < 0$ 且 $m_E = -\d\frac{3}{16} < 0$，故 $m_D + m_E < 0$。</li>
+      </ul>
+    </div>
+    <div class="ans-box">最終答案：(2)(4)</div>
+  </div>
+
+  <!-- 第 11 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      11. 已知坐標平面上有點 $A_n(0, n)$，$B_n(0, -n)$，$C(4, 0)$，其中 $n$ 為正整數。設 $a_n$ 為 $\triangle A_nB_nC$ 的外接圓直徑，$S_n$ 為數列 $\langle a_n \rangle$ 的前 $n$ 項和，試選出正確的選項。
+      <div class="options-list">
+        <span>(1) $a_3 = \d\frac{5}{2}$</span>
+        <span>(2) 數列 $\langle a_n \rangle$ 是公差為 $\d\frac{1}{4}$ 的等差數列</span>
+        <span>(3) 對於任意正整數 $n$，$a_n > 4$</span>
+        <span>(4) $S_{10} = \d\frac{385}{4}$</span>
+        <span>(5) 若 $a_n$ 為整數，則 $S_n$ 也是整數</span>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解（官方詳解法）】直角三角形正弦值＋正弦定理</div>
+      <div class="problem-layout">
+        <div class="problem-text">
+          如右圖，在直角 $\triangle OA_nC$ 中，$\overline{A_nC} = \overline{B_nC} = \sqrt{16 + n^2}$，且 $\sin\angle CA_nO = \d\frac{4}{\sqrt{16 + n^2}}$。<br>
+          在 $\triangle A_nB_nC$ 中，由<strong>正弦定理</strong>得外接圓直徑：
+          $$a_n = 2R = \d\frac{\overline{B_nC}}{\sin\angle CA_nB_n} = \d\frac{\sqrt{16 + n^2}}{\frac{4}{\sqrt{16 + n^2}}} = 4 + \d\frac{n^2}{4}$$
+          <ul>
+            <li><strong>(1) 錯誤</strong>：$a_3 = 4 + \d\frac{3^2}{4} = \d\frac{25}{4}$。</li>
+            <li><strong>(2) 錯誤</strong>：$a_1 = 4 + \d\frac{1}{4}, a_2 = 4 + \d\frac{4}{4}, a_3 = 4 + \d\frac{9}{4}$，非等差數列。</li>
+            <li><strong>(3) 正確</strong>：因為 $n^2 > 0$，故 $a_n = 4 + \d\frac{n^2}{4} > 4$。</li>
+            <li><strong>(4) 錯誤</strong>：$S_{10} = 4 \times 10 + \d\frac{1}{4}\sum_{k=1}^{10} k^2 = 40 + \d\frac{385}{4} = \d\frac{545}{4}$。</li>
+            <li><strong>(5) 錯誤</strong>：當 $n = 10$（偶數）時，$a_{10} = 29$ 為整數，但由 (4) 知 $S_{10} = 40 + \d\frac{385}{4}$ 不是整數。</li>
+          </ul>
+        </div>
+        <div class="problem-figure">
+          <svg width="210" height="170" viewBox="0 0 210 170">
+            <line x1="15" y1="85" x2="195" y2="85" stroke="var(--svg-sub)" stroke-width="1.5"/>
+            <line x1="70" y1="15" x2="70" y2="155" stroke="var(--svg-sub)" stroke-width="1.5"/>
+            <polygon points="70,30 70,140 160,85" fill="rgba(37,99,235,0.12)" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+            <text x="64" y="32" text-anchor="end" fill="var(--svg-stroke)" font-size="12">Aₙ(0, n)</text>
+            <text x="64" y="145" text-anchor="end" fill="var(--svg-stroke)" font-size="12">Bₙ(0, -n)</text>
+            <text x="162" y="102" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">C(4, 0)</text>
+            <text x="62" y="62" text-anchor="end" fill="var(--svg-stroke)" font-size="12">n</text>
+            <text x="110" y="80" text-anchor="middle" fill="var(--svg-stroke)" font-size="12">4</text>
+            <text x="122" y="50" fill="#2563eb" font-size="12" font-weight="bold">√(16+n²)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="ans-box">最終答案：(3)</div>
+  </div>
+
+  <!-- 第 12 題 -->
+  <div class="problem-card">
+    <div class="problem-layout">
+      <div class="problem-text">
+        12. 某公園有一塊綠地，公園管理處欲在該地上建造一個底座為四邊形 $ABCD$ 的公共藝術作品，如右圖所示。經測量 $\overline{AD} = \overline{BD} = 7$ 公尺，$\overline{BC} = 5$ 公尺，$\overline{AC} = 8$ 公尺，$\angle ADB = \angle ACB$，試選出正確的選項。
+        <div class="options-list">
+          <span>(1) $\overline{AB} = 8$ 公尺</span>
+          <span>(2) $\overline{CD} = 3$ 公尺</span>
+          <span>(3) $\cos \angle BCD = -\d\frac{1}{2}$</span>
+          <span>(4) 四邊形 $ABCD$ 的面積為 $16\sqrt{3}$ 平方公尺</span>
+          <span>(5) 若管理處最後決定建造一圓形區域圍住四邊形 $ABCD$，則此圓形區域的最小可能半徑為 $\d\frac{14\sqrt{3}}{3}$ 公尺</span>
+        </div>
+      </div>
+      <div class="problem-figure">
+        <svg width="200" height="185" viewBox="0 0 200 185">
+          <circle cx="100" cy="102" r="68" fill="none" stroke="#2563eb" stroke-width="1.2" stroke-dasharray="4,3"/>
+          <polygon points="41,136 159,136 146,52 100,34" fill="rgba(37,99,235,0.1)" stroke="var(--svg-stroke)" stroke-width="2"/>
+          <line x1="41" y1="136" x2="146" y2="52" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+          <line x1="100" y1="34" x2="159" y2="136" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+          <text x="30" y="145" fill="var(--svg-stroke)" font-size="14" font-style="italic">A</text>
+          <text x="166" y="145" fill="var(--svg-stroke)" font-size="14" font-style="italic">B</text>
+          <text x="153" y="48" fill="var(--svg-stroke)" font-size="14" font-style="italic">C</text>
+          <text x="96" y="26" fill="var(--svg-stroke)" font-size="14" font-style="italic">D</text>
+          <text x="62" y="82" fill="var(--svg-stroke)" font-size="12">7</text>
+          <text x="130" y="38" fill="#ef4444" font-size="12" font-weight="bold">3</text>
+          <text x="160" y="98" fill="var(--svg-stroke)" font-size="12">5</text>
+          <text x="100" y="152" fill="#2563eb" font-size="12" font-weight="bold">7</text>
+        </svg>
+      </div>
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【最佳詳解】餘弦定理＋四點共圓性質（圓內接四邊形）</div>
+      <ul>
+        <li><strong>(1) 錯誤</strong>：設 $\overline{AB} = x$，$\angle ADB = \angle ACB = \theta$。在 $\triangle ADB$ 與 $\triangle ACB$ 中由<strong>餘弦定理</strong>：
+          $$\cos\theta = \d\frac{7^2 + 7^2 - x^2}{2\times 7\times 7} = \d\frac{8^2 + 5^2 - x^2}{2\times 8\times 5} \implies \d\frac{98 - x^2}{98} = \d\frac{89 - x^2}{80} \implies x^2 = 49 \implies \overline{AB} = 7\text{ 公尺}$$
+          且因此 $\triangle ABD$ 三邊皆為 $7$，為<strong>正三角形</strong>，$\theta = 60^\circ$！</li>
+        <li><strong>(2) 正確</strong>：因為 $\angle ADB = \angle ACB = 60^\circ$，故 $A, B, C, D$ <strong>四點共圓</strong>。在 $\triangle ACD$ 中，$\angle ACD = \angle ABD = 60^\circ$（同弧圓周角），由餘弦定理：
+          $$7^2 = 8^2 + \overline{CD}^2 - 2\times 8\times \overline{CD}\cos 60^\circ \implies \overline{CD}^2 - 8\overline{CD} + 15 = 0 \implies \overline{CD} = 3 \text{ 或 } 5\text{（5 不合，因 } C \ne D\text{）}$$
+          （<strong>學霸秒殺另解</strong>：直接由<strong>托勒密定理</strong> $7\cdot\overline{CD} + 5\cdot 7 = 8\cdot 7 \implies \overline{CD} = 3$！）</li>
+        <li><strong>(3) 正確</strong>：圓內接四邊形對角互補，$\angle BCD = 180^\circ - \angle BAD = 180^\circ - 60^\circ = 120^\circ$，故 $\cos\angle BCD = -\d\frac{1}{2}$。</li>
+        <li><strong>(4) 正確</strong>：四邊形面積 $= \triangle ABD + \triangle BCD = \d\frac{\sqrt{3}}{4}\times 7^2 + \d\frac{1}{2}\times 5\times 3\sin 120^\circ = \d\frac{49\sqrt{3} + 15\sqrt{3}}{4} = 16\sqrt{3}$。</li>
+        <li><strong>(5) 錯誤</strong>：最小外接圓即為正 $\triangle ABD$ 的外接圓，半徑 $R = \d\frac{7}{2\sin 60^\circ} = \d\frac{7\sqrt{3}}{3}$ 公尺（$\d\frac{14\sqrt{3}}{3}$ 為直徑）。</li>
+      </ul>
+    </div>
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【官方詳解另解】差角公式求 $\overline{CD}$</div>
+      在 $\triangle ABC$ 中，$\cos\angle CAB = \d\frac{8^2+7^2-5^2}{2\times 8\times 7} = \d\frac{11}{14} \implies \sin\angle CAB = \d\frac{5\sqrt{3}}{14}$。<br>
+      則 $\cos\angle DAC = \cos(60^\circ - \angle CAB) = \d\frac{1}{2}\cdot\d\frac{11}{14} + \d\frac{\sqrt{3}}{2}\cdot\d\frac{5\sqrt{3}}{14} = \d\frac{13}{14}$，再由餘弦定理得 $\overline{CD}^2 = 7^2 + 8^2 - 2\times 7\times 8\times\d\frac{13}{14} = 9 \implies \overline{CD} = 3$。
+    </div>
+    <div class="ans-box">最終答案：(2)(3)(4)</div>
+  </div>
+
+  <!-- ==================== 三、選填題 ==================== -->
+  <div class="section-banner">
+    <h2>三、選填題（占 25 分）</h2>
+    <div class="section-note">說明：第 13 題至第 17 題，每題 5 分。</div>
+  </div>
+
+  <!-- 第 13 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      13. 設 $a, b, c$ 為實數且 $a \ne 0$，已知三次函數 $f(x) = -x^3 + ax^2 + bx + c$ 圖形的對稱中心為 $(-2, 0)$，且二次函數 $g(x) = ax^2 + bx + c$ 的對稱軸方程式是 $x = \d\frac{1}{3}$，則 $4a + b + c =$ <u>&nbsp;<span class="fill-c">13</span>&nbsp;</u>。
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解】三次函數對稱中心與二次函數對稱軸公式</div>
+      <ol>
+        <li>三次函數 $f(x) = -x^3 + ax^2 + bx + c$ 對稱中心的 $x$ 坐標為 $-\d\frac{a}{3(-1)} = -2 \implies a = -6$。</li>
+        <li>二次函數 $g(x) = ax^2 + bx + c$ 的對稱軸為 $x = -\d\frac{b}{2a} = \d\frac{1}{3} \implies b = -\d\frac{2}{3}a = -\d\frac{2}{3}(-6) = 4$。</li>
+        <li>對稱中心 $(-2, 0)$ 在 $y = f(x)$ 圖形上，代入得：
+          $$f(-2) = -(-2)^3 + a(-2)^2 + b(-2) + c = 8 + 4a - 2b + c = 0 \implies c = -8 - 4(-6) + 2(4) = 24$$
+        </li>
+      </ol>
+      故 $4a + b + c = 4(-6) + 4 + 24 = 4$。（<strong>秒殺觀察</strong>：由 $4a - 2b + c = -8$ 直接兩邊加 $3b$ 得 $4a + b + c = -8 + 3(4) = 4$，免算 $a, c$！）
+    </div>
+    <div class="ans-box">最終答案：$4$</div>
+  </div>
+
+  <!-- 第 14 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      14. 某速食店推出「買 A 區產品送 B 區產品」的活動，A 區及 B 區各有六個品項可供選擇，如下圖所示：
+      <div class="svg-wrap">
+        <svg width="520" height="115" viewBox="0 0 520 115">
+          <rect x="10" y="5" width="240" height="105" rx="8" fill="none" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+          <line x1="10" y1="28" x2="250" y2="28" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+          <text x="130" y="22" text-anchor="middle" fill="var(--svg-stroke)" font-weight="bold" font-size="13">A 區（6 項）</text>
+          <text x="50" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">經典卡布奇諾</text>
+          <text x="130" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">焦糖奶茶</text>
+          <text x="210" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">大杯玉米濃湯</text>
+          <text x="50" y="90" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">冰炫風</text>
+          <rect x="96" y="73" width="68" height="24" rx="4" fill="rgba(239,68,68,0.18)" stroke="#ef4444"/>
+          <text x="130" y="90" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">大包薯條</text>
+          <text x="210" y="90" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">4塊麥克雞塊</text>
+
+          <rect x="270" y="5" width="240" height="105" rx="8" fill="none" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+          <line x1="270" y1="28" x2="510" y2="28" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+          <text x="390" y="22" text-anchor="middle" fill="var(--svg-stroke)" font-weight="bold" font-size="13">B 區（6 項）</text>
+          <text x="310" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">中杯汽水</text>
+          <text x="390" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">美式咖啡</text>
+          <text x="470" y="52" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">蛋捲冰淇淋</text>
+          <text x="310" y="90" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">蘋果派</text>
+          <rect x="356" y="73" width="68" height="24" rx="4" fill="rgba(239,68,68,0.18)" stroke="#ef4444"/>
+          <text x="390" y="90" text-anchor="middle" fill="#ef4444" font-weight="bold" font-size="11">小包薯條</text>
+          <text x="470" y="90" text-anchor="middle" fill="var(--svg-stroke)" font-size="11">熱紅茶</text>
+        </svg>
+      </div>
+      店家規定 B 區贈送的產品數量，每次都要與 A 區購買的產品數量相同。今<u>小璇</u>打算到該速食店購買兩項 A 區的產品（同時會贈送兩項 B 區的產品），但要求若 A 區選擇購買「大包薯條」時，B 區就不選擇贈送「小包薯條」，且購買及贈送的產品無任兩項相同，則<u>小璇</u>所購買的四項產品組合方法一共有 <u>&nbsp;<span class="fill-c">14-1</span><span class="fill-c">14-2</span><span class="fill-c">14-3</span>&nbsp;</u> 種。
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解】反面扣除法（全部組合 － 同時選中大小薯條）</div>
+      <ul>
+        <li><strong>任意選取</strong>：A 區 $6$ 項任選 $2$ 項、B 區 $6$ 項任選 $2$ 項，共有 $C^6_2 \times C^6_2 = 15 \times 15 = 225$ 種。</li>
+        <li><strong>違規情形（A 區含大包薯條 且 B 區含小包薯條）</strong>：A 區再從其餘 $5$ 項選 $1$ 項、B 區再從其餘 $5$ 項選 $1$ 項，共有 $C^5_1 \times C^5_1 = 5 \times 5 = 25$ 種。</li>
+      </ul>
+      故共有 $225 - 25 = 200$ 種組合方法。
+    </div>
+    <div class="ans-box">最終答案：$200$</div>
+  </div>
+
+  <!-- 第 15 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      15. （凸）四邊形 $ABCD$ 中，對角線 $\overline{AC}$ 與 $\overline{BD}$ 的交點為 $E$，已知 $\triangle ACD$ 面積為 $\triangle ABC$ 面積的 $\d\frac{4}{3}$ 倍，則 $\overrightarrow{AE} = \d\frac{\text{(15-1)}}{\text{(15-2)}}\overrightarrow{AB} + \d\frac{\text{(15-3)}}{\text{(15-4)}}\overrightarrow{AD}$。（化為最簡分數）
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解】同底三角形面積比＝高之比＝對角線分段比</div>
+      <div class="problem-layout">
+        <div class="problem-text">
+          如右圖，$\triangle ACD$ 與 $\triangle ABC$ 共用底邊 $\overline{AC}$，因此兩三角形的面積比等於 $D, B$ 兩點到直線 $AC$ 的距離比，即等於線段比 $\overline{DE} : \overline{BE}$：
+          $$\d\frac{\overline{DE}}{\overline{BE}} = \d\frac{\triangle ACD\text{ 面積}}{\triangle ABC\text{ 面積}} = \d\frac{4}{3} \implies \overline{BE} : \overline{DE} = 3 : 4$$
+          因為 $B, E, D$ 三點共線，由<strong>向量分點公式</strong>得：
+          $$\overrightarrow{AE} = \d\frac{4}{3 + 4}\overrightarrow{AB} + \d\frac{3}{3 + 4}\overrightarrow{AD} = \d\frac{4}{7}\overrightarrow{AB} + \d\frac{3}{7}\overrightarrow{AD}$$
+        </div>
+        <div class="problem-figure">
+          <svg width="220" height="145" viewBox="0 0 220 145">
+            <polygon points="20,95 105,130 200,85 115,15" fill="rgba(37,99,235,0.08)" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+            <line x1="20" y1="95" x2="200" y2="85" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+            <line x1="105" y1="130" x2="115" y2="15" stroke="#ef4444" stroke-width="1.8"/>
+            <circle cx="109.3" cy="80.7" r="3.5" fill="#ef4444"/>
+            <text x="10" y="100" fill="var(--svg-stroke)" font-size="13" font-style="italic">A</text>
+            <text x="105" y="143" fill="var(--svg-stroke)" font-size="13" font-style="italic">B</text>
+            <text x="206" y="90" fill="var(--svg-stroke)" font-size="13" font-style="italic">C</text>
+            <text x="115" y="12" fill="var(--svg-stroke)" font-size="13" font-style="italic">D</text>
+            <text x="120" y="76" fill="#ef4444" font-size="13" font-weight="bold">E</text>
+            <text x="95" y="112" fill="#2563eb" font-size="12" font-weight="bold">3k</text>
+            <text x="98" y="52" fill="#ef4444" font-size="12" font-weight="bold">4k</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="ans-box">最終答案：$\d\frac{4}{7}$、$\d\frac{3}{7}$（即 (15-1)$=4$、(15-2)$=7$、(15-3)$=3$、(15-4)$=7$）</div>
+  </div>
+
+  <!-- 第 16 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      16. 若正數 $a, b$ 滿足 $2 + \log_2 a = 4 + \d\frac{1}{2}\log_2 b = \d\frac{1}{3}\log_2(a + b)$，則 $\d\frac{1}{a} + \d\frac{1}{b}$ 的值為 <u>&nbsp;<span class="fill-c">16-1</span><span class="fill-c">16-2</span><span class="fill-c">16-3</span><span class="fill-c">16-4</span>&nbsp;</u>。
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【學霸最佳秒殺詳解】化為同底對數後免求 $a, b$ 直接消去！</div>
+      利用對數律將三式合併為以 $2$ 為底的單一對數：
+      $$\log_2(4a) = \log_2(16\sqrt{b}) = \log_2(a + b)^{\frac{1}{3}} \implies 4a = 16\sqrt{b} = (a + b)^{\frac{1}{3}}$$
+      由此直接寫出 $a$ 與 $b$ 關於 $(a+b)$ 的表示式：
+      $$a = \d\frac{1}{4}(a + b)^{\frac{1}{3}},\qquad b = \d\frac{1}{256}(a + b)^{\frac{2}{3}}$$
+      兩式相乘，指數 $\d\frac{1}{3} + \d\frac{2}{3} = 1$ 剛好湊成 $(a + b)$：
+      $$ab = \d\frac{1}{4}\times\d\frac{1}{256}(a + b)^{\frac{1}{3} + \frac{2}{3}} = \d\frac{a + b}{1024} \implies \d\frac{1}{a} + \d\frac{1}{b} = \d\frac{a + b}{ab} = 1024$$
+    </div>
+    <div class="ans-box">最終答案：$1024$</div>
+  </div>
+
+  <!-- 第 17 題 -->
+  <div class="problem-card">
+    <div class="problem-text">
+      17. 投擲三個公正骰子一次，若以三個朝上面的點數作為三角形的三邊長，則可構成等腰三角形（含正三角形）的機率為 $\d\frac{\text{(17-1)(17-2)}}{\text{(17-3)(17-4)}}$。（化為最簡分數）
+    </div>
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【正規詳解】按腰長 $a$ 分類討論三角不等式 $2a > b$</div>
+      樣本空間總數為 $6^3 = 216$。設等腰三角形三邊為 $(a, a, b)$，需滿足兩腰和大於底邊 $a + a > b \iff b < 2a$：
+      <ol>
+        <li><strong>正三角形（$a = b$）</strong>：$(1,1,1) \sim (6,6,6)$，共 $6 \times 1 = 6$ 種。</li>
+        <li><strong>非正三角形之等腰三角形（$a \ne b$ 且 $b < 2a$）</strong>：每組 $(a, a, b)$ 可排列出 $\d\frac{3!}{2!} = 3$ 種結果：
+          <ul>
+            <li>腰 $a = 1$：$b < 2$ 且 $b \ne 1 \implies 0$ 組。</li>
+            <li>腰 $a = 2$：$b \in \{1, 3\} \implies 2$ 組。</li>
+            <li>腰 $a = 3$：$b \in \{1, 2, 4, 5\} \implies 4$ 組。</li>
+            <li>腰 $a = 4, 5, 6$：$2a > 6$，底邊 $b$ 可為異於 $a$ 的任意點數，各 $5$ 組 $\implies 5 \times 3 = 15$ 組。</li>
+          </ul>
+          合計共有 $(0 + 2 + 4 + 15) \times 3 = 63$ 種。
+        </li>
+      </ol>
+      故所求機率為 $\d\frac{6 + 63}{216} = \d\frac{69}{216} = \d\frac{23}{72}$。
+    </div>
+    <div class="ans-box">最終答案：$\d\frac{23}{72}$（即 (17-1)$=2$、(17-2)$=3$、(17-3)$=7$、(17-4)$=2$）</div>
+  </div>
+
+  <!-- ==================== 第貳部分、混合題或非選擇題 ==================== -->
+  <div class="section-banner">
+    <h2>第貳部分、混合題或非選擇題（占 15 分）</h2>
+    <div class="section-note">說明：本部分共有 1 題組，選填題每題 4 分，非選擇題配分標於題末。限在答題卷標示題號的作答區內作答。選擇題與「非選擇題作圖部分」使用 2B 鉛筆作答，更正時，應以橡皮擦擦拭，切勿使用修正帶（液）。非選擇題請由左而右橫式書寫，作答時必須寫出計算過程或理由，否則將酌予扣分。</div>
+  </div>
+
+  <!-- 第 18-20 題組 -->
+  <div class="problem-card">
+    <div class="problem-layout">
+      <div class="problem-text">
+        <u>18-20 題為題組</u><br>
+        坐標平面上，給定兩點 $P(-2, 1)$、$Q(-2, 7)$，另有兩點 $R$、$S(10, t)$ 及一圓 $C: x^2 + (y - 3)^2 = 4$，其中 $t$ 為實數。試回答下列問題。<br><br>
+        18. 若圓 $C$ 為 $\triangle PQR$ 的內切圓，試求 $R$ 點的坐標。（非選擇題，5 分）<br><br>
+        19. 若圓 $C$ 上的點均在 $\triangle PQS$ 的內部或邊上，則 $t$ 的最大可能範圍為 <u>&nbsp;<span class="fill-c">19-1</span><span class="fill-c">19-2</span>&nbsp;</u> $\le t \le$ <u>&nbsp;<span class="fill-c">19-3</span>&nbsp;</u>。（選填題，4 分）<br><br>
+        20. 設 $T$ 點坐標為 $(6, 1)$，已知 $G$ 點為圓 $C$ 上一點，試求 $\overline{GQ}^2 - \overline{GT}^2$ 的最大可能值。（非選擇題，6 分）
+      </div>
+      <div class="problem-figure">
+        <svg width="290" height="240" viewBox="0 0 290 240">
+          <!-- Coordinate transform: x_svg = 65 + 16*x, y_svg = 165 - 16*y -->
+          <!-- Axes -->
+          <line x1="10" y1="165" x2="280" y2="165" stroke="var(--svg-sub)" stroke-width="1.2"/>
+          <line x1="65" y1="15" x2="65" y2="230" stroke="var(--svg-sub)" stroke-width="1.2"/>
+          <!-- Circle C: center M(0,3)->(65,117), r=2->32 -->
+          <circle cx="65" cy="117" r="32" fill="rgba(37,99,235,0.12)" stroke="#2563eb" stroke-width="2"/>
+          <circle cx="65" cy="117" r="2.5" fill="#2563eb"/>
+          <text x="74" y="121" fill="#2563eb" font-size="11" font-weight="bold">M(0,3)</text>
+          <!-- Line PQ: x = -2 -> x_svg = 33; P(-2,1)->(33,149), Q(-2,7)->(33,53) -->
+          <line x1="33" y1="40" x2="33" y2="175" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+          <!-- Line PR (y = 1): y_svg = 149; R(6,1)->(161,149), extend to x=10->(225,149) -->
+          <line x1="33" y1="149" x2="225" y2="149" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+          <!-- Line QR: from Q(33,53) through R(161,149) to (10,-2)->(225,197) -->
+          <line x1="33" y1="53" x2="225" y2="197" stroke="var(--svg-stroke)" stroke-width="1.8"/>
+          <!-- Line x = 10 -> x_svg = 225, segment between t=1 (149) and t=-2 (197) -->
+          <line x1="225" y1="149" x2="225" y2="197" stroke="#ef4444" stroke-width="3.5"/>
+          <circle cx="225" cy="149" r="3.5" fill="#ef4444"/>
+          <circle cx="225" cy="197" r="3.5" fill="#ef4444"/>
+          <text x="232" y="146" fill="#ef4444" font-size="11" font-weight="bold">(10, 1)</text>
+          <text x="232" y="205" fill="#ef4444" font-size="11" font-weight="bold">(10, -2)</text>
+          <!-- Points P, Q, R(T) -->
+          <circle cx="33" cy="149" r="3.5" fill="var(--svg-stroke)"/>
+          <text x="28" y="160" text-anchor="end" fill="var(--svg-stroke)" font-size="11">P(-2,1)</text>
+          <circle cx="33" cy="53" r="3.5" fill="var(--svg-stroke)"/>
+          <text x="28" y="50" text-anchor="end" fill="var(--svg-stroke)" font-size="11">Q(-2,7)</text>
+          <circle cx="161" cy="149" r="4" fill="#16a34a"/>
+          <text x="155" y="138" text-anchor="middle" fill="#16a34a" font-size="11" font-weight="bold">R / T(6,1)</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 第 18 題詳解 -->
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【第 18 題 正規詳解】圓的切線方程式求交點 $R$</div>
+      圓 $C: x^2 + (y - 3)^2 = 4$ 的圓心為 $M(0, 3)$，半徑 $r = 2$。
+      <ol>
+        <li>直線 $PQ$ 的方程式為鉛垂線 $x = -2$，恰與圓 $C$ 相切於 $(-2, 3)$。</li>
+        <li>過 $P(-2, 1)$ 的另一條切線為水平線 $L_{PR}: y = 1$（因為圓心 $M(0, 3)$ 到 $y = 1$ 的距離為 $3 - 1 = 2 = r$，切點為 $(0, 1)$）。</li>
+        <li>設過 $Q(-2, 7)$ 的另一條切線為 $L_{QR}: y - 7 = m(x + 2) \implies mx - y + (2m + 7) = 0$。<br>
+          由圓心 $M(0, 3)$ 到 $L_{QR}$ 的距離等於半徑 $2$：
+          $$\d\frac{|0 - 3 + 2m + 7|}{\sqrt{m^2 + 1}} = 2 \implies |2m + 4| = 2\sqrt{m^2 + 1} \implies (m + 2)^2 = m^2 + 1 \implies m = -\d\frac{3}{4}$$
+          故切線 $L_{QR}$ 方程式為 $y - 7 = -\d\frac{3}{4}(x + 2)$。</li>
+        <li>解 $L_{PR}$ 與 $L_{QR}$ 的交點 $R$：將 $y = 1$ 代入得 $1 - 7 = -\d\frac{3}{4}(x + 2) \implies x = 6$，故 $R$ 點坐標為 $(6, 1)$。</li>
+      </ol>
+    </div>
+
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【第 18 題 學霸幾何秒殺另解】二倍角公式與切線長定理</div>
+      設圓 $C$ 與 $\overline{PQ}$ 切於 $A(-2, 3)$，則 $\overline{QA} = 4, \overline{MA} = 2 \implies \tan\angle AQM = \d\frac{1}{2}$。<br>
+      由二倍角公式得 $\tan\angle PQR = \tan(2\angle AQM) = \d\frac{2(\frac{1}{2})}{1 - (\frac{1}{2})^2} = \d\frac{4}{3}$。在直角 $\triangle PQR$ 中，$\overline{PQ} = 6$，故 $\overline{PR} = \overline{PQ}\tan\angle PQR = 6 \times \d\frac{4}{3} = 8$，由 $P(-2, 1)$ 往右推 $8$ 單位立得 $R(6, 1)$！
+    </div>
+
+    <!-- 第 19 題詳解 -->
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【第 19 題 正規詳解】切線邊界包絡法</div>
+      點 $S(10, t)$ 在鉛垂線 $x = 10$ 上移動。欲使圓 $C$ 完全落在 $\triangle PQS$ 的內部或邊上（如上圖紅色線段所示）：
+      <ul>
+        <li>直線 $PS$ 必須位於水平切線 $L_{PR}: y = 1$ 的<strong>下方或重合</strong> $\implies t \le 1$。</li>
+        <li>直線 $QS$ 必須位於切線 $L_{QR}: y - 7 = -\d\frac{3}{4}(x + 2)$ 的<strong>上方或重合</strong>。將 $x = 10$ 代入 $L_{QR}$ 得 $y = 7 - \d\frac{3}{4}(12) = -2 \implies t \ge -2$。</li>
+      </ul>
+      故 $t$ 的最大可能範圍為 $-2 \le t \le 1$。
+    </div>
+
+    <!-- 第 20 題詳解 -->
+    <div class="sol-box sol-regular">
+      <div class="sol-title">📘 【第 20 題 正規詳解】坐標展開消去二次項＋柯西不等式</div>
+      設圓 $C$ 上動點為 $G(x, y)$，滿足 $x^2 + (y - 3)^2 = 4$。將 $Q(-2, 7)$ 與 $T(6, 1)$ 代入距離平方差：
+      $$\begin{aligned}
+      \overline{GQ}^2 - \overline{GT}^2 &= \left[(x + 2)^2 + (y - 7)^2\right] - \left[(x - 6)^2 + (y - 1)^2\right] \\
+      &= (4x - 14y + 53) - (-12x - 2y + 37) \\
+      &= 16x - 12y + 16 = 16x - 12(y - 3) - 20
+      \end{aligned}$$
+      由<strong>柯西不等式</strong>：
+      $$\left[x^2 + (y - 3)^2\right]\left[16^2 + (-12)^2\right] \ge \left[16x - 12(y - 3)\right]^2 \implies 4 \times 400 \ge \left[16x - 12(y - 3)\right]^2$$
+      得 $-40 \le 16x - 12(y - 3) \le 40$。因此 $\overline{GQ}^2 - \overline{GT}^2$ 的最大可能值為 $40 - 20 = 20$。
+    </div>
+
+    <div class="sol-box sol-alt">
+      <div class="sol-title">⚡ 【第 20 題 學霸向量內積秒殺另解】以圓心 $M(0,3)$ 為基準拆解向量</div>
+      利用向量長度平方展開：
+      $$\overline{GQ}^2 - \overline{GT}^2 = |\overrightarrow{MQ} - \overrightarrow{MG}|^2 - |\overrightarrow{MT} - \overrightarrow{MG}|^2 = \left(|\overrightarrow{MQ}|^2 - |\overrightarrow{MT}|^2\right) + 2\overrightarrow{MG} \cdot \overrightarrow{QT}$$
+      已知 $M(0, 3), Q(-2, 7), T(6, 1)$，則 $|\overrightarrow{MQ}|^2 = (-2)^2 + 4^2 = 20$，$|\overrightarrow{MT}|^2 = 6^2 + (-2)^2 = 40$，且 $\overrightarrow{QT} = (8, -6) \implies |\overrightarrow{QT}| = 10$。<br>
+      當半徑向量 $\overrightarrow{MG}$（長度 $r = 2$）與 $\overrightarrow{QT}$ 同向時，內積有最大值 $2 \times 10 = 20$，故所求最大值為 $(20 - 40) + 2(20) = 20$！
+    </div>
+
+    <div class="ans-box">
+      最終答案：<br>
+      18. $R(6, 1)$<br>
+      19. $-2 \le t \le 1$（即 (19-1)$=-$、(19-2)$=2$、(19-3)$=1$）<br>
+      20. $20$
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setMode(mode) {
+  const body = document.body;
+  const btnLight = document.getElementById('btn-light');
+  const btnDark = document.getElementById('btn-dark');
+  if (mode === 'dark') {
+    body.classList.add('dark-mode');
+    btnDark.classList.add('active');
+    btnLight.classList.remove('active');
+  } else {
+    body.classList.remove('dark-mode');
+    btnLight.classList.add('active');
+    btnDark.classList.remove('active');
+  }
+}
+
+function printPage() {
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise().then(() => {
+      window.print();
+    });
+  } else {
+    window.print();
+  }
+}
+</script>
+</body>
+</html>
