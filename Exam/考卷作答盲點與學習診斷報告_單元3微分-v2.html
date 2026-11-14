@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考卷作答盲點與學習診斷報告（單元 3 微分）</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --sol-bg: #f3f4f6;
+            --sol-border: #6b7280;
+            --hack-bg: #ecfdf5;
+            --hack-border: #10b981;
+            --trap-bg: #fff1f2;
+            --trap-border: #f43f5e;
+            --highlight-text: #e11d48;
+            --highlight-good: #059669;
+            --svg-stroke: #1e293b;
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --border-color: #444;
+            --sol-bg: #374151;
+            --sol-border: #9ca3af;
+            --hack-bg: #064e3b;
+            --hack-border: #34d399;
+            --trap-bg: #4c0519;
+            --trap-border: #fb7185;
+            --highlight-text: #fda4af;
+            --highlight-good: #6ee7b7;
+            --svg-stroke: #f1f5f9;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.75;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--container-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .toolbar button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .toolbar button:hover {
+            filter: brightness(0.9);
+        }
+        .container {
+            max-width: 940px;
+            margin: 75px auto 40px;
+            background: var(--container-bg);
+            padding: 32px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.65em;
+            color: var(--text-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        .score-banner {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: var(--sol-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            font-size: 0.98em;
+        }
+        .coach-comment {
+            background-color: #fffbeb;
+            border-left: 6px solid #f59e0b;
+            padding: 16px 22px;
+            margin: 20px 0 28px;
+            border-radius: 6px;
+            color: #92400e;
+            font-size: 1.04em;
+        }
+        [data-theme="dark"] .coach-comment {
+            background-color: #422006;
+            border-color: #fbbf24;
+            color: #fde68a;
+        }
+        h2 {
+            font-size: 1.22em;
+            margin-top: 10px;
+            margin-bottom: 14px;
+            color: var(--text-color);
+            border-left: 5px solid #2563eb;
+            padding-left: 12px;
+        }
+        .problem-block {
+            margin-bottom: 28px;
+            padding: 22px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            page-break-inside: auto;
+        }
+        .solution-box {
+            background-color: var(--sol-bg);
+            border-left: 5px solid var(--sol-border);
+            padding: 15px 18px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .trap-box {
+            background-color: var(--trap-bg);
+            border: 2px dashed var(--trap-border);
+            padding: 15px 18px;
+            margin: 14px 0;
+            border-radius: 6px;
+        }
+        .hack-box {
+            background-color: var(--hack-bg);
+            border-left: 5px solid var(--hack-border);
+            padding: 15px 18px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+        }
+        .strong-red {
+            color: var(--highlight-text);
+            font-weight: 800;
+        }
+        .strong-green {
+            color: var(--highlight-good);
+            font-weight: 800;
+        }
+        .svg-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 14px 0;
+            padding: 12px;
+            background: var(--container-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+        .action-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        .action-table th, .action-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .action-table th {
+            background: var(--sol-bg);
+            text-align: center;
+        }
+
+        @media print {
+            .toolbar { display: none !important; }
+            body {
+                background: white !important;
+                color: black !important;
+                padding: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .trap-box {
+                border: 3px solid #000 !important;
+                border-left: 10px solid #000 !important;
+                page-break-inside: avoid;
+            }
+            .hack-box {
+                border: 3px solid #000 !important;
+                border-left: 10px solid #000 !important;
+                page-break-inside: avoid;
+            }
+            strong {
+                font-weight: 700;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button onclick="setTheme('light')">📄 預設好讀</button>
+        <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+        <button onclick="triggerPrint()">🖨️ 立即列印 (Ctrl+P)</button>
+    </div>
+
+    <div class="container">
+        <h1>🌟 考卷作答盲點與學習診斷報告（單元 3 微分）</h1>
+
+        <div class="score-banner">
+            <span><strong>受測學生：</strong>三年 16 班 14 號</span>
+            <span><strong>實得總分：</strong>55 分（單選 18/18、多選 19/28、填充 18/54）</span>
+        </div>
+
+        <!-- 全卷作答與得分診斷總表 -->
+        <div class="problem-block" style="padding: 18px 22px; margin-bottom: 22px;">
+            <h2 style="margin-top: 0;">📊 全卷作答紀錄與得分明細核對總表</h2>
+            <table class="action-table">
+                <thead>
+                    <tr>
+                        <th>大題</th>
+                        <th>題號</th>
+                        <th>妳的作答</th>
+                        <th>卷面批改答案</th>
+                        <th>得失分</th>
+                        <th>核心診斷標籤</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">一、單選題<br>(18 / 18 分)</td>
+                        <td style="text-align: center;">1 ~ 3</td>
+                        <td style="text-align: center;"><span class="strong-green">(1)、(3)、(3)</span></td>
+                        <td style="text-align: center;">(1)、(3)、(3)</td>
+                        <td style="text-align: center;"><span class="strong-green">+18 (全對)</span></td>
+                        <td>乘法公式、二階導數定義、連鎖律切線皆完美掌握！</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3" style="text-align: center; font-weight: bold;">二、多選題<br>(19 / 28 分)<br><span class="strong-red">扣 9 分</span></td>
+                        <td style="text-align: center;">多選 1</td>
+                        <td style="text-align: center;"><span class="strong-red">(2)(4)(5)</span></td>
+                        <td style="text-align: center;">(2)(4)</td>
+                        <td style="text-align: center;"><span class="strong-red">-3 (實得 4 分)</span></td>
+                        <td>注意選項 (1) 有寫「定值」，選項 (5) 未寫定值（$\pm\infty$ 鉛直切線陷阱）。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">多選 2、4</td>
+                        <td style="text-align: center;"><span class="strong-green">(1)(3)(4)、(1)(4)</span></td>
+                        <td style="text-align: center;">(1)(3)(4)、(1)(4)</td>
+                        <td style="text-align: center;"><span class="strong-green">+14 (全對)</span></td>
+                        <td>對稱差商極限與 $(x-2)|x-2|$ 描點畫圖判斷平滑非常精準！</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">多選 3</td>
+                        <td style="text-align: center;"><span class="strong-red">(3)(5)</span></td>
+                        <td style="text-align: center;">本卷給分錯 2 格</td>
+                        <td style="text-align: center;"><span class="strong-red">-6 (實得 1 分)</span></td>
+                        <td>妳寫出「連續、平滑」表格但 (5) 未動筆算差商；需向老師確認本題標準答案。</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" style="text-align: center; font-weight: bold;">三、填充題<br>(18 / 54 分)<br><span class="strong-red">扣 36 分</span></td>
+                        <td style="text-align: center;">填充 1, 6, 7</td>
+                        <td style="text-align: center;"><span class="strong-green">$3$、$y=-19x-13$、$12$</span></td>
+                        <td style="text-align: center;">$3$、$y=-19x-13$、$12$</td>
+                        <td style="text-align: center;"><span class="strong-green">+18 (全對)</span></td>
+                        <td>商的微分、一次近似、兩曲線相切（整體代入 $a+b=7$）極佳！</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">填充 2, 3, 5</td>
+                        <td style="text-align: center;"><span class="strong-red">空白（圈題號）</span></td>
+                        <td style="text-align: center;">$-2$、$\d\frac{1}{6}$、$5$</td>
+                        <td style="text-align: center;"><span class="strong-red">-18</span></td>
+                        <td>對導數定義變形（$2h-1$、$f(1)=0$）與連乘積因式消去法不熟。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">填充 4</td>
+                        <td style="text-align: center;"><span class="strong-red">$(\frac{3}{2}, \frac{1}{2})$</span></td>
+                        <td style="text-align: center;">$(2,0)$</td>
+                        <td style="text-align: center;"><span class="strong-red">-6</span></td>
+                        <td>「連續＋平滑」架構滿分，但心算 $x^3+x$ 微分代 $1$ 誤寫為 $1$。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">填充 8, 9</td>
+                        <td style="text-align: center;"><span class="strong-red">$\frac{3\sqrt{10}}{10}$、$(1,7,-24)$</span></td>
+                        <td style="text-align: center;">$\d\frac{\sqrt{10}}{20}$、$(-3,8,-9)$</td>
+                        <td style="text-align: center;"><span class="strong-red">-12</span></td>
+                        <td>填充 8 漏代切點 $y$ 座標；填充 9 誤把「切線過原點」代入三次曲線且立方展開係數失誤。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="coach-comment">
+            <strong>👨‍🏫 教練悄悄話：</strong><br>
+            首先給妳一個大大的肯定！妳在<strong>單選題（3 題全對拿滿 18 分）</strong>，多選第 2、4 題與填充第 1、6、7 題也全部精準命中！特別是填充第 7 題妳直接寫出 $a-5+b=2 \implies a+b=7$ 整體代入，填充第 9 題妳甚至能畫出反曲點草圖並直接寫出最進階的「三次函數對稱中心標準式 $y=\frac{1}{3}(x-3)^3+p(x-3)-3$」，這證明妳的<strong>微積分核心觀念與高階解題武器非常強大</strong>！<br><br>
+            那為什麼這張考卷只拿到 55 分（多選扣 9 分、填充扣 36 分）呢？仔細分析妳考卷上的每一行筆跡，會發現失分完全集中在三個地方：第一是<strong>「多選觀念題的文字細節陷阱（如定值 vs 無窮大）」</strong>；第二是<strong>「已經寫出滿分架構，卻在最後一步心算跳步（漏寫導函數、誤把切線過原點代入三次曲線、立方展開係數漏乘 3）上翻車」</strong>，足足白丟了 18 分；第三則是<strong>「遇到導數定義變形（填充 2、3、5）時突然卡殼空白」</strong>，丟了 18 分。這代表妳原本就有 85～90 分以上的硬實力，只要把以下 6 個盲點修補起來，下次段考成績絕對會一飛沖天！
+        </div>
+
+        <!-- 盲點零：多選題診斷 -->
+        <div class="problem-block">
+            <h2>一、多選題被扣 9 分的秘密：破解「無窮大鉛直切線陷阱」與「檢驗表格落地計算」！（多選 1、多選 3 失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                <ul>
+                    <li><strong>多選 1（妳寫 <code>245</code>，扣 3 分得 4 分）：</strong>妳非常有警覺性地在選項 (1) 的「$=L(\text{定值})$」下方畫了波浪線並打上問號 <code>?</code>，也在選項 (4) 上方寫出「<strong>連續、平滑</strong>」四個字，更在選項 (3) 與 (5) 的「則」字上畫斜線檢查逆命題！但最後仍選了 (5)，被老師扣了 1 個選項的分數。</li>
+                    <li><strong>多選 3（妳寫 <code>35</code>，扣 6 分得 1 分）：</strong>妳在題號下方超專業地列出兩行檢驗表：<code>連續</code> 與 <code>平滑</code>，並在 (1) 打 <code>×</code>、(2) 連續打 <code>✓</code> 平滑寫出 $\lim_{x\to 0}\frac{f(x)-f(0)}{x-0}=?$ 打 <code>×</code>、(3) 兩個都打 <code>✓</code>、(4) 打 <code>×</code>，甚至在右上角畫了座標軸與 $(0,1)$ 的點！但對 (5) $f_5(x)=\sqrt{1-x^2}$ 卻沒有寫下任何算式。</li>
+                </ul>
+            </div>
+            <div class="svg-box">
+                <svg width="300" height="195" viewBox="0 0 300 195">
+<rect x="38" y="32" width="240" height="135" fill="none" stroke="var(--border-color)" stroke-width="1"/>
+<text x="150.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">多選 1 選項 (5) 反例：f(x)=³√x 在 a=0 鉛直切線</text>
+<line x1="38.0" y1="32" x2="38.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="38.0" y="114.5" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">-2</text>
+<line x1="98.0" y1="32" x2="98.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="98.0" y="114.5" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">-1</text>
+<line x1="158.0" y1="32" x2="158.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="218.0" y1="32" x2="218.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="218.0" y="114.5" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="278.0" y1="32" x2="278.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="278.0" y="114.5" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">2</text>
+<line x1="38" y1="144.5" x2="278" y2="144.5" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="152.0" y="148.5" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-1</text>
+<line x1="38" y1="99.5" x2="278" y2="99.5" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="38" y1="54.5" x2="278" y2="54.5" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="152.0" y="58.5" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="38" y1="99.5" x2="278" y2="99.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="158.0" y1="32" x2="158.0" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="150.0" y="113.5" fill="var(--text-color)" font-size="11" opacity="0.75">0</text>
+<polyline points="37.98,156.2 45.8,154.94 53.28,153.68 60.42,152.42 67.22,151.16 73.7,149.9 79.87,148.64 85.73,147.38 91.28,146.12 96.55,144.86 101.53,143.6 106.23,142.34 110.67,141.08 114.84,139.82 118.76,138.56 122.44,137.3 125.88,136.04 129.09,134.78 132.08,133.52 134.85,132.26 137.42,131.0 139.79,129.74 141.97,128.48 143.98,127.22 145.8,125.96 147.46,124.7 148.97,123.44 150.32,122.18 151.53,120.92 152.61,119.66 153.55,118.4 154.39,117.14 155.11,115.88 155.72,114.62 156.25,113.36 156.68,112.1 157.04,110.84 157.33,109.58 157.55,108.32 157.72,107.06 157.84,105.8 157.92,104.54 157.96,103.28 157.99,102.02 158.0,100.76 158.0,99.5 158.0,98.24 158.01,96.98 158.04,95.72 158.08,94.46 158.16,93.2 158.28,91.94 158.45,90.68 158.67,89.42 158.96,88.16 159.32,86.9 159.75,85.64 160.28,84.38 160.89,83.12 161.61,81.86 162.45,80.6 163.39,79.34 164.47,78.08 165.68,76.82 167.03,75.56 168.54,74.3 170.2,73.04 172.02,71.78 174.03,70.52 176.21,69.26 178.58,68.0 181.15,66.74 183.92,65.48 186.91,64.22 190.12,62.96 193.56,61.7 197.24,60.44 201.16,59.18 205.33,57.92 209.77,56.66 214.47,55.4 219.45,54.14 224.72,52.88 230.27,51.62 236.13,50.36 242.3,49.1 248.78,47.84 255.58,46.58 262.72,45.32 270.2,44.06 278.02,42.8" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+<line x1="158.0" y1="32" x2="158.0" y2="167" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="158.0" cy="99.5" r="4.5" fill="#e11d48"/>
+<text x="212.0" y="133.25" text-anchor="middle" fill="#e11d48" font-size="11" font-weight="bold">鉛直切線 (左右差商→+∞ 不可微)</text>
+<line x1="192.0" y1="121.25" x2="163.0" y2="103.5" stroke="#e11d48" stroke-width="1.5"/>
+</svg>
+                <svg width="300" height="195" viewBox="0 0 300 195">
+<rect x="38" y="32" width="240" height="135" fill="none" stroke="var(--border-color)" stroke-width="1"/>
+<text x="150.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">多選 3 選項 (5)：f₅(x)=√(1-x²) 上半圓圖形</text>
+<line x1="78.0" y1="32" x2="78.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="78.0" y="153.58" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">-1</text>
+<line x1="158.0" y1="32" x2="158.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="238.0" y1="32" x2="238.0" y2="167" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="238.0" y="153.58" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="38" y1="138.58" x2="278" y2="138.58" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="38" y1="67.53" x2="278" y2="67.53" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="152.0" y="71.53" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="38" y1="138.58" x2="278" y2="138.58" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="158.0" y1="32" x2="158.0" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="150.0" y="152.58" fill="var(--text-color)" font-size="11" opacity="0.75">0</text>
+<polyline points="238.0,138.58 237.89,134.86 237.56,131.15 237.02,127.46 236.25,123.81 235.27,120.19 234.08,116.62 232.69,113.12 231.08,109.68 229.28,106.32 227.28,103.05 225.09,99.88 222.72,96.82 220.17,93.86 217.45,91.04 214.57,88.34 211.53,85.78 208.35,83.36 205.02,81.1 201.57,78.99 198.0,77.05 194.32,75.27 190.54,73.67 186.67,72.25 182.72,71.0 178.71,69.95 174.63,69.08 170.51,68.4 166.36,67.92 162.19,67.62 158.0,67.53 153.81,67.62 149.64,67.92 145.49,68.4 141.37,69.08 137.29,69.95 133.28,71.0 129.33,72.25 125.46,73.67 121.68,75.27 118.0,77.05 114.43,78.99 110.98,81.1 107.65,83.36 104.47,85.78 101.43,88.34 98.55,91.04 95.83,93.86 93.28,96.82 90.91,99.88 88.72,103.05 86.72,106.32 84.92,109.68 83.31,113.12 81.92,116.62 80.73,120.19 79.75,123.81 78.98,127.46 78.44,131.15 78.11,134.86 78.0,138.58" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="62.0,67.53 100.4,67.53 138.8,67.53 177.2,67.53 215.6,67.53 254.0,67.53" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="158.0" cy="67.53" r="4.5" fill="#059669"/>
+<text x="158.0" y="59.53" text-anchor="middle" fill="#059669" font-size="11" font-weight="bold">頂點 (0,1) 平滑水平切線 f₅'(0)=0</text>
+</svg>
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                1. <strong>多選 1 為何被扣 3 分？關鍵就在妳畫波浪線的「定值」二字！</strong><br>
+                妳在選項 (1) 注意到了題目特別標註「$=L(\text{定值})$」，但請看選項 (5)：$\d\lim_{x\to a^+}\frac{f(x)-f(a)}{x-a}=\lim_{x\to a^-}\frac{f(x)-f(a)}{x-a}$，<span class="strong-red">題目故意沒有寫「$=\text{定值}$」！</span><br>
+                如果左差商極限與右差商極限同時發散到 $+\infty$（例如上方左圖 $f(x)=\sqrt[3]{x}$ 在 $a=0$ 處，左右極限皆為 $+\infty$），雖然兩側極限行為相同，但因為不是有限定值，圖形在該點是<strong>鉛直切線（不平滑）</strong>，依然不可微分！所以嚴謹考卷中多選 1 的標準答案僅有 <strong>(2)(4)</strong>（若考慮端點連 (2) 都有反例 $f(x)=\sqrt{x}$）。<br><br>
+                2. <strong>多選 3 的實戰提醒：</strong><br>
+                妳列的「連續／平滑」雙層檢驗表真的太棒了！對於選項 (5) $f_5(x)=\sqrt{1-x^2}$，它的圖形是上半圓（上方右圖），在 $x=0$ 處為最高點 $(0,1)$，具有水平切線 $f_5'(0)=0$，因此數學上<strong>確實可微分（(3)(5) 正確）</strong>。
+                <br><em>（📌 註：因為妳的多選題總共被扣了 `-9` 分，代表除了多選 1 錯一個選項扣 3 分外，多選 3 被批改為錯兩個選項扣 6 分——有可能是老師標準答案只給了 (3) 或多給了 (2)，建議可以拿上方右圖與差商極限 $\lim_{x\to 0}\frac{\sqrt{1-x^2}-1}{x}=0$ 禮貌向老師請教確認喔！）</em>
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：考場秒殺階層圖（嚴謹防坑版）</strong><br>
+                在 $x=a$ 為<strong>定義域內點</strong>（兩側皆有定義）的前提下：<br>
+                <span class="strong-green"><strong>可微分 $\implies$ 連續 $\implies$ 極限存在 $\iff$ 左極限 $=$ 右極限 $=$ 定值 $L$</strong></span><br>
+                <ul>
+                    <li>由「極限存在 $=L$」逆推「連續」：必須補足 <strong>$f(a)=L$</strong>（破解選項 1 空心點反例）。</li>
+                    <li>由「連續」逆推「可微分」：必須補足 <strong>左導數 $=$ 右導數 $=$ 有限定值</strong>（破解選項 3 尖點反例、選項 5 鉛直切線 $\pm\infty$ 反例）。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 盲點一 -->
+        <div class="problem-block">
+            <h2>二、對導數定義式的「變裝秀」感到陌生？抓準「位置差＝分母」！（填充 2、填充 5 空白失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                在<strong>單選 2</strong> $\d\lim_{x\to 2}\frac{f'(x)-f'(2)}{x-2}$ 與<strong>多選 2</strong> $\d\lim_{h\to 0}\frac{f(a+h)-f(a-h)}{2h}$，妳都能精準認出導數定義並答對；但到了<strong>填充 2</strong> 要求 $\d\lim_{h\to 0}\frac{f(2h-1)-f(-1)}{h}$，以及<strong>填充 5</strong> 已知 $f(1)=0, f'(1)=20$ 求 $\d\lim_{x\to 1}\frac{f(x)}{4(x-1)}$ 時，妳卻把題號 <code>2.</code> 與 <code>5.</code> 圈起來留白了。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                選擇題有選項提示時妳會做，變成填充題稍微把 $a+h$ 改寫成 $2h-1$，或是把 $f(1)=0$ 藏起來沒寫在分子上，妳就一時找不到切入點了！其實這兩題都只是導數定義 $\d f'(a)=\lim_{\Delta x\to 0}\frac{f(a+\Delta x)-f(a)}{\Delta x}$ 的簡單包裝：<br>
+                <ul>
+                    <li><strong>填充 2：</strong>分子括號內是 $(2h-1)$ 與 $(-1)$，兩者相減的<strong>位置差</strong>就是 $(2h-1)-(-1)=2h$，所以分母需要配成 $2h$：
+                        \[ \lim_{h\to 0}\frac{f(-1+2h)-f(-1)}{2h}\times 2 = 2f'(-1) = 2(4(-1)+3) = -2 \]
+                    </li>
+                    <li><strong>填充 5：</strong>題目說 $f(1)=0$，就是暗示妳把分子的 $f(x)$ 改寫成 $f(x)-f(1)$！把分母的 $\d\frac{1}{4}$ 提出來，就是 $\d\frac{1}{4}\lim_{x\to 1}\frac{f(x)-f(1)}{x-1} = \frac{1}{4}f'(1) = \frac{20}{4} = 5$。</li>
+                </ul>
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：啟動「羅必達法則 (L'Hôpital's Rule)」無腦破陣！</strong><br>
+                在填充或選擇題遇到 $\d\frac{0}{0}$ 型的導數極限，如果配係數覺得卡卡的，<span class="strong-green">直接將分子、分母對趨近的變數（$h$ 或 $x$）上下各自微分</span>：<br>
+                <ul>
+                    <li><strong>填充 2 對 $h$ 上下同微：</strong> $\d\lim_{h\to 0}\frac{f'(2h-1)\cdot 2 - 0}{1} = 2f'(-1) = 2(-4+3) = -2$（注意連鎖律乘上內層導數 $2$）。</li>
+                    <li><strong>填充 5 對 $x$ 上下同微：</strong> $\d\lim_{x\to 1}\frac{f'(x)}{4} = \frac{f'(1)}{4} = \frac{20}{4} = 5$（因為多項式的導函數 $f'(x)$ 處處連續，可直接代入 $x=1$）。</li>
+                </ul>
+                學會這招，考場上再也不怕任何變形極限題而留白了！
+            </div>
+        </div>
+
+        <!-- 盲點二 -->
+        <div class="problem-block">
+            <h2>三、看到連乘除分式就怕爆開？善用「留一法（遮蓋法）」秒殺！（填充 3 空白失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                面對 $f(x)=\d\frac{(x-2020)(x-2021)(x-2022)}{(x-2023)(x-2024)}$ 求 $f'(2020)$，妳在題號 <code>3.</code> 畫圈並在左邊寫了一個小小的 <code>*( f</code> 就放棄停筆了。這很可能是因為妳在填充 1 剛用了龐大的分式微分公式 $\d\frac{h'g-hg'}{g^2}$，心想這題如果用分式微分展開會算到天荒地老！
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                千萬別被長相嚇跑了！出題老師絕對不會要妳硬微五個括號。<span class="strong-red">只要看到求 $f'(a)$，而分子剛好有 $(x-a)$ 這個因式（代表 $f(a)=0$）</span>，這就是標準的「紙老虎題」！如果回歸導數定義 $\d f'(2020)=\lim_{x\to 2020}\frac{f(x)-0}{x-2020}$，分子的 $(x-2020)$ 會直接跟分母約分消掉！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：考場 5 秒「手指遮蓋法（留一法）」</strong><br>
+                記住這個萬用結論：若 $f(x)=(x-a)\cdot g(x)$，因為前微後不微＋前不微後微代 $x=a$ 後，含有 $(x-a)$ 的那一項必為 $0$，所以 <span class="strong-green">$f'(a) = g(a)$</span>！<br>
+                下次看到這種連乘除求 $f'(2020)$，<strong>直接拿左手大拇指把 $(x-2020)$ 遮起來，剩下的所有 $x$ 全部代 $2020$</strong>：
+                \[ f'(2020) = \frac{(2020-2021)(2020-2022)}{(2020-2023)(2020-2024)} = \frac{(-1)\times(-2)}{(-3)\times(-4)} = \frac{2}{12} = \frac{1}{6} \]
+                連微分都不用微，5 秒鐘輕鬆拿滿 6 分！
+            </div>
+        </div>
+
+        <!-- 盲點三 -->
+        <div class="problem-block">
+            <h2>四、觀念滿分卻敗給「微分漏項」與「心算跳步」！（填充 4 失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                對於分段函數 $f(x)=\begin{cases} x^3+x & ,x\ge 1 \\ ax^2+b & ,x<1 \end{cases}$ 在 $x=1$ 可微，妳在左邊超漂亮地寫下大括號：<br>
+                <code>連續：1 + 1 = a + b ⇒ b = 1/2</code>（事後訂正改為 <code>0</code>）<br>
+                <code>平滑：1 = 2a ⇒ a = 1/2</code>（事後訂正補上 <code>3+1 = 2a ⇒ a = 2</code>）<br>
+                考試當下在答案格填了 $\left(\d\frac{3}{2}, \frac{1}{2}\right)$ 而痛失 6 分。
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                妳的解題架構「可微 $\iff$ 連續＋平滑」是 100 分的學霸筆記！但這題之所以在考場上算錯，是因為妳在寫「平滑」時，<strong>沒有先把導函數 $f'(x)$ 的式子寫在考卷上，而是直接在腦中心算微分代 $1$</strong>：<br>
+                <span class="strong-red">妳把 $x^3+x$ 微分代 $1$ 心算成了 $1$（既漏掉了 $x^3$ 微分後的係數 $3$，又漏掉了 $+x$ 微分後的 $+1$，正確應為 $3x^2+1 \to 3(1)^2+1=4$）！</span><br>
+                更可惜的是，就算照妳原本錯寫的 $a=\frac{1}{2}, b=\frac{1}{2}$，加起來 $a+b=1$ 也明顯不等於上一行的 $1+1=2$，抄到右上角答案格時還變成了 $\left(\frac{3}{2}, \frac{1}{2}\right)$！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：嚴禁跳過「寫出 $f'(x)$」這一步！</strong><br>
+                越簡單的題目越不能心算跳步！請養成習慣先在「平滑」旁邊老老實實寫出導函數：
+                \[ f'(x) = \begin{cases} 3x^2+1 & ,x>1 \\ 2ax & ,x<1 \end{cases} \implies 3(1)^2+1 = 2a(1) \implies a=2, b=0 \]
+                眼睛看著 $3x^2+1$ 再代 $x=1$，就絕對不會漏掉係數 $3$ 與常數 $+1$！
+            </div>
+        </div>
+
+        <!-- 盲點四 -->
+        <div class="problem-block">
+            <h2>五、切點 $x$ 座標都找對了，卻漏求「切點 $y$ 座標」直接代距離公式！（填充 8 失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                這題求 $f(x)=x^3-\d\frac{3}{2}x^2+3x+k$ 斜率為 $3$ 的兩切線距離。妳第一行超完美地算出：
+                \[ f'(x)=3x^2-3x+3=3 \implies 3x(x-1)=0 \implies x=0 \text{ or } 1 \]
+                還在右邊畫了兩條平行切線與垂直距離的幾何示意圖，並寫下 $y=3x+b \implies 3x-y+b=0$！但左下角距離公式卻寫出：
+                \[ d(L_1, L_2) = \frac{|3+b-b|}{\sqrt{3^2+1^2}} = \frac{3}{\sqrt{10}} = \frac{3\sqrt{10}}{10} \]
+            </div>
+            <div class="svg-box">
+                <svg width="360" height="210" viewBox="0 0 360 210">
+<rect x="38" y="32" width="300" height="150" fill="none" stroke="var(--border-color)" stroke-width="1"/>
+<text x="180.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">填充 8：f(x)=x³-1.5x²+3x 與兩條斜率為 3 之切線</text>
+<line x1="130.31" y1="32" x2="130.31" y2="182" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="245.69" y1="32" x2="245.69" y2="182" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="245.69" y="157.53" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="38" y1="168.84" x2="338" y2="168.84" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="124.31" y="172.84" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-1</text>
+<line x1="38" y1="142.53" x2="338" y2="142.53" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="38" y1="116.21" x2="338" y2="116.21" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="124.31" y="120.21" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="38" y1="89.89" x2="338" y2="89.89" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="124.31" y="93.89" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">2</text>
+<line x1="38" y1="63.58" x2="338" y2="63.58" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="124.31" y="67.58" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">3</text>
+<line x1="38" y1="37.26" x2="338" y2="37.26" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="124.31" y="41.26" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">4</text>
+<line x1="38" y1="142.53" x2="338" y2="142.53" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="130.31" y1="32" x2="130.31" y2="182" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="122.31" y="156.53" fill="var(--text-color)" font-size="11" opacity="0.75">0</text>
+<polyline points="72.62,195.16 76.46,190.64 80.31,186.29 84.15,182.11 88.0,178.08 91.85,174.2 95.69,170.47 99.54,166.88 103.38,163.43 107.23,160.11 111.08,156.9 114.92,153.82 118.77,150.84 122.62,147.97 126.46,145.2 130.31,142.53 134.15,139.94 138.0,137.43 141.85,135.0 145.69,132.64 149.54,130.34 153.38,128.11 157.23,125.92 161.08,123.78 164.92,121.68 168.77,119.62 172.62,117.59 176.46,115.58 180.31,113.59 184.15,111.61 188.0,109.63 191.85,107.66 195.69,105.68 199.54,103.68 203.38,101.67 207.23,99.64 211.08,97.58 214.92,95.48 218.77,93.34 222.62,91.16 226.46,88.92 230.31,86.62 234.15,84.26 238.0,81.83 241.85,79.33 245.69,76.74 249.54,74.06 253.38,71.29 257.23,68.42 261.08,65.45 264.92,62.36 268.77,59.16 272.62,55.83 276.46,52.38 280.31,48.79 284.15,45.06 288.0,41.19 291.85,37.16 295.69,32.97 299.54,28.62 303.38,24.11" fill="none" stroke="var(--svg-stroke)" stroke-width="2.5"/>
+<polyline points="84.15,174.11 103.77,160.68 123.38,147.26 143.0,133.84 162.62,120.42 182.23,107.0 201.85,93.58 221.46,80.16 241.08,66.74 260.69,53.32 280.31,39.89" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+<polyline points="107.23,171.47 126.85,158.05 146.46,144.63 166.08,131.21 185.69,117.79 205.31,104.37 224.92,90.95 244.54,77.53 264.15,64.11 283.77,50.68 303.38,37.26" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="130.31" cy="142.53" r="4" fill="#2563eb"/>
+<circle cx="245.69" cy="76.74" r="4" fill="#e11d48"/>
+<text x="124.31" y="134.53" text-anchor="end" fill="#2563eb" font-size="11" font-weight="bold">切點 A(0,0), L₁:3x-y=0</text>
+<text x="251.69" y="88.74" fill="#e11d48" font-size="11" font-weight="bold">切點 B(1, 5/2), L₂:3x-y-1/2=0</text>
+</svg>
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                看妳寫的分子 $|3+b-b|$，就知道妳犯了一個超典型的考場急躁失誤：<br>
+                妳算出 $x=0$ 與 $x=1$ 後，<strong>沒有代回原函數 $f(x)$ 求切點的 $y$ 座標</strong>，而是直接把 $x=1$ 與 $x=0$ 代進直線的 $3x$，以為兩條切線的常數項相差 $3(1)-3(0)=3$！<br>
+                但別忘了，<span class="strong-red">切線過的是切點 $(x_0, y_0)$，由 $3x_0 - y_0 + b = 0$ 可知截距項 $b = y_0 - 3x_0$，不能只看 $3x_0$ 而忘了減去切點高度 $y_0$！</span><br>
+                當我們令 $k=0$ 時：
+                <ul>
+                    <li>切點 $A(0,0)$：代入 $3x-y=0$，常數項為 $0$。</li>
+                    <li>切點 $B\left(1, f(1)\right)$：$y_0 = f(1) = 1 - \d\frac{3}{2} + 3 = \frac{5}{2}$，切線為 $y - \d\frac{5}{2} = 3(x-1) \implies 3x - y - \frac{1}{2} = 0$。</li>
+                </ul>
+                兩平行線常數項差其實只有 $\left|0 - \left(-\d\frac{1}{2}\right)\right| = \d\frac{1}{2}$（因為曲線本身也往上爬了 $\frac{5}{2}$，把 $3$ 抵消掉大半了），所以正確距離是 $\d\frac{1/2}{\sqrt{10}} = \frac{\sqrt{10}}{20}$！
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：算出切點 $x$ 座標後，強制寫出完整數對 $(x_0, y_0)$！</strong><br>
+                遇到「$k$ 為任意實數」，第一時間先寫<span class="strong-green">「令 $k=0$」</span>消滅未知數干擾，接著只要算出 $x=0$ 或 $1$，<strong>下一個動作永遠是寫出 $A(0,0)$、$B\left(1, \frac{5}{2}\right)$ 兩個完整座標點</strong>，再代點到直線距離公式 $d(B, L_1) = \d\frac{|3(1)-(5/2)|}{\sqrt{3^2+(-1)^2}} = \frac{\sqrt{10}}{20}$，連第二條切線都不用求就能秒殺！
+            </div>
+        </div>
+
+        <!-- 盲點五 -->
+        <div class="problem-block">
+            <h2>六、最痛心的一題！神級對稱中心標準式，卻敗給「誤把原點代入三次曲線」與「立方展開係數」！（填充 9 失分）</h2>
+            <div class="solution-box">
+                <strong>✏️ 妳在考卷上的作答足跡：</strong><br>
+                這題多數同學還在苦算一階、二階導數解聯立，妳卻在左邊畫出三次函數圖形標出 $(3,-3)$ 與 $(0,0)$，直接看出 $(3,-3)$ 是反曲點（對稱中心），並霸氣寫下標準式：
+                \[ y = \frac{1}{3}(x-3)^3 + p(x-3) - 3 \]
+                接著妳寫下：
+                \[ (0,0)\text{ 代入} \implies 0 = \frac{1}{3}(-3)^3 + p(-3) - 3 \implies p = \frac{1}{3}(-9-3) = -4 \]
+                最後一行展開時寫道：
+                \[ \therefore y = \frac{1}{3}(x-3)^3 + 4(x-3) - 3 = \frac{1}{3}(x^3-3x^2+9x-27) + 4x - 12 - 3 = \dots \implies (1, 7, -24) \]
+            </div>
+            <div class="svg-box">
+                <svg width="360" height="215" viewBox="0 0 360 215">
+<rect x="38" y="32" width="300" height="155" fill="none" stroke="var(--border-color)" stroke-width="1"/>
+<text x="180.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">填充 9：切線 L:y=-x 過原點 (0,0)，三次曲線過 (0,-9)</text>
+<line x1="38.0" y1="32" x2="38.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="38.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">-1</text>
+<line x1="78.0" y1="32" x2="78.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="118.0" y1="32" x2="118.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="118.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">1</text>
+<line x1="158.0" y1="32" x2="158.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="158.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">2</text>
+<line x1="198.0" y1="32" x2="198.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="198.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">3</text>
+<line x1="238.0" y1="32" x2="238.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="238.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">4</text>
+<line x1="278.0" y1="32" x2="278.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="278.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">5</text>
+<line x1="318.0" y1="32" x2="318.0" y2="187" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="318.0" y="91.29" text-anchor="middle" fill="var(--text-color)" font-size="11" opacity="0.75">6</text>
+<line x1="38" y1="187.0" x2="338" y2="187.0" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="191.0" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-10</text>
+<line x1="38" y1="164.86" x2="338" y2="164.86" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="168.86" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-8</text>
+<line x1="38" y1="142.71" x2="338" y2="142.71" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="146.71" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-6</text>
+<line x1="38" y1="120.57" x2="338" y2="120.57" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="124.57" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-4</text>
+<line x1="38" y1="98.43" x2="338" y2="98.43" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="102.43" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">-2</text>
+<line x1="38" y1="76.29" x2="338" y2="76.29" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="38" y1="54.14" x2="338" y2="54.14" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="58.14" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">2</text>
+<line x1="38" y1="32.0" x2="338" y2="32.0" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="72.0" y="36.0" text-anchor="end" fill="var(--text-color)" font-size="11" opacity="0.75">4</text>
+<line x1="38" y1="76.29" x2="338" y2="76.29" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="78.0" y1="32" x2="78.0" y2="187" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="70.0" y="90.29" fill="var(--text-color)" font-size="11" opacity="0.75">0</text>
+<polyline points="70.0,195.0 73.2,187.04 76.4,179.52 79.6,172.44 82.8,165.77 86.0,159.51 89.2,153.65 92.4,148.18 95.6,143.07 98.8,138.33 102.0,133.95 105.2,129.9 108.4,126.18 111.6,122.78 114.8,119.68 118.0,116.88 121.2,114.36 124.4,112.12 127.6,110.13 130.8,108.4 134.0,106.9 137.2,105.63 140.4,104.58 143.6,103.73 146.8,103.07 150.0,102.59 153.2,102.28 156.4,102.14 159.6,102.14 162.8,102.27 166.0,102.53 169.2,102.91 172.4,103.38 175.6,103.95 178.8,104.59 182.0,105.31 185.2,106.08 188.4,106.89 191.6,107.74 194.8,108.62 198.0,109.5 201.2,110.38 204.4,111.26 207.6,112.11 210.8,112.92 214.0,113.69 217.2,114.41 220.4,115.05 223.6,115.62 226.8,116.09 230.0,116.47 233.2,116.73 236.4,116.86 239.6,116.86 242.8,116.72 246.0,116.41 249.2,115.93 252.4,115.27 255.6,114.42 258.8,113.37 262.0,112.1 265.2,110.6 268.4,108.87 271.6,106.88 274.8,104.64 278.0,102.12 281.2,99.32 284.4,96.22 287.6,92.82 290.8,89.1 294.0,85.05 297.2,80.67 300.4,75.93 303.6,70.82 306.8,65.35 310.0,59.49 313.2,53.23 316.4,46.56 319.6,39.48 322.8,31.96 326.0,24.0" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="46.0,67.43 72.4,74.74 98.8,82.04 125.2,89.35 151.6,96.66 178.0,103.96 204.4,111.27 230.8,118.58 257.2,125.89 283.6,133.19 310.0,140.5" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="78.0" cy="76.29" r="4.5" fill="#059669"/>
+<circle cx="198.0" cy="109.5" r="4.5" fill="#e11d48"/>
+<circle cx="78.0" cy="175.93" r="4" fill="#2563eb"/>
+<text x="84.0" y="70.29" fill="#059669" font-size="11" font-weight="bold">切線過原點 (0,0)</text>
+<text x="206.0" y="103.5" fill="#e11d48" font-size="11" font-weight="bold">反曲點 (3,-3) 切線 y=-x</text>
+<text x="84.0" y="179.93" fill="#2563eb" font-size="11" font-weight="bold">曲線過 (0,-9) 非原點！</text>
+</svg>
+            </div>
+            <div class="trap-box">
+                <strong>💡 溫馨提醒與盲點突破：</strong><br>
+                看到這題真的替妳心疼！妳用的可是最頂尖的學霸解法，卻在這短短四行裡連續踩中了 <strong>3 個致命陷阱</strong>：<br>
+                1. <strong>審題看錯主詞（最關鍵盲點！）：</strong>請看妳左邊畫的草圖，妳把 $(0,0)$ 畫在三次曲線上方了！但請再讀一次題目：「以 $(3,-3)$ 為切點的<strong>切線</strong>，其切線斜率最小，且<strong>此切線通過原點</strong>」。<span class="strong-red">通過原點 $(0,0)$ 的是「切線 $y=p(x-3)-3$」，而不是「三次函數圖形本身」！</span>妳把 $(0,0)$ 代進整個三次函數裡，難怪多出了一項 $\d\frac{1}{3}(-3)^3 = -9$！<br>
+                2. <strong>正負號抄寫失誤：</strong>妳第三行明明算出 $p = -4$，第四行代回標準式時卻突然變號寫成 $+4(x-3)$！<br>
+                3. <strong>立方展開公式背錯：</strong>乘法公式 $(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$，所以 $(x-3)^3 = x^3 - 3(x^2)(3) + 3(x)(9) - 27 = \mathbf{x^3 - 9x^2 + 27x - 27}$！<span class="strong-red">妳在考卷最後一行寫成了 $(x^3 - 3x^2 + 9x - 27)$，中間兩項都忘了乘上公式的 $3$ 倍！</span>
+            </div>
+            <div class="hack-box">
+                <strong>🚀 學霸升級包：對稱中心標準式的「切線分離法」與「交點重根法」</strong><br>
+                妳的標準式 $y = \d\frac{1}{3}(x-3)^3 + \underline{p(x-3) - 3}$ 真的背得超棒！請記住兩個滿分秘訣：<br>
+                <ul>
+                    <li><strong>秘訣 1（一次式就是反曲點切線）：</strong>在標準式中，<span class="strong-green">後面那一串一次式 $y = p(x-3) - 3$ 本身就是反曲點的「切線方程式」</span>！既然<strong>切線</strong>過 $(0,0)$ 與 $(3,-3)$，斜率 $p$ 直接用兩點斜率公式心算：
+                        \[ p = \frac{-3 - 0}{3 - 0} = -1 \quad (\text{切線即為 } y = -x) \]
+                    </li>
+                    <li><strong>秘訣 2（為什麼三次函數減切線必為三重根 $(x-3)^3$？）：</strong>因為反曲點是三次函數凹向轉折點（左凹下、右凹上），反曲點切線會「<strong>既相切又穿過</strong>」圖形，把全部 3 個交點合併在 $x=3$ 形成三重根！把切線 $y=-x$ 代回標準式：
+                        \[ y = \frac{1}{3}(x-3)^3 - x = \frac{1}{3}(x^3 - 9x^2 + 27x - 27) - x = \frac{1}{3}x^3 - 3x^2 + 8x - 9 \]
+                        直接對照係數得 $(a,b,c) = (-3, 8, -9)$，20 秒穩拿滿分！
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 總結行動清單 -->
+        <div class="problem-block" style="margin-bottom: 0;">
+            <h2>🎯 考前衝刺：「55 分 $\to$ 95+ 分」升級行動清單</h2>
+            <table class="action-table">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">診斷項目</th>
+                        <th style="width: 40%;">妳考卷上的真實失分原因</th>
+                        <th style="width: 40%;">考場修正 SOP（得分對策）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;"><strong>1. 極限與可微觀念</strong><br>（多選 1、3）<br><span class="strong-red">[-9 分]</span></td>
+                        <td>忽略選項 (5) 未寫「定值」（有 $\sqrt[3]{x}$ 鉛直切線 $+\infty$ 反例）；多選 3 選項 (5) 未動筆算差商極限。</td>
+                        <td>檢查等號兩側極限是否標註<strong>「定值」</strong>；遇到 $\sqrt{1-x^2}$ 畫上半圓看頂點水平切線或用羅必達算導數。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><strong>2. 導數極限變形</strong><br>（填充 2、5）<br><span class="strong-red">[-12 分]</span></td>
+                        <td>看到 $f(2h-1)$ 或隱藏 $f(1)=0$ 時把題號圈起來留白。</td>
+                        <td>遇到 $\d\frac{0}{0}$ 型極限，直接用<strong>「羅必達法則」</strong>對趨近變數上下各自微分（注意連鎖律係數）。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><strong>3. 多因式微分</strong><br>（填充 3）<br><span class="strong-red">[-6 分]</span></td>
+                        <td>寫了一個 <code>f</code> 就擔心五個括號分式微分太複雜而放棄。</td>
+                        <td>看到求 $f'(a)$ 且含因式 $(x-a)$，直接用<strong>「手指遮蓋法（留一法）」</strong>把 $(x-a)$ 遮住代值。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><strong>4. 分段函數可微</strong><br>（填充 4）<br><span class="strong-red">[-6 分]</span></td>
+                        <td>未寫出 $f'(x)$ 就心算跳步，把 $x^3+x$ 微分代 $1$ 誤算為 $1$。</td>
+                        <td>強制規定自己<strong>先在「平滑」旁寫出 $f'(x)=3x^2+1$</strong>，再代入 $x=1$。</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;"><strong>5. 切線與反曲點</strong><br>（填充 8、9）<br><span class="strong-red">[-12 分]</span></td>
+                        <td>填充 8 漏求切點 $y$ 座標；填充 9 把「切線過原點」代入三次曲線、$p=-4$ 抄成 $+4$、$(x-3)^3$ 寫成 $x^3-3x^2+9x-27$。</td>
+                        <td>算出切點 $x$ 必先寫出<strong>完整座標 $(x_0, y_0)$</strong>；圈出主詞是<strong>「切線過原點」</strong>；熟記 $(x-3)^3=x^3-9x^2+27x-27$。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+        }
+
+        function triggerPrint() {
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetPromise().then(() => { 
+                    window.print(); 
+                });
+            } else {
+                window.print();
+            }
+        }
+    </script>
+
+</body>
+</html>

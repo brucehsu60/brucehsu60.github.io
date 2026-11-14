@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台北市立中山女子高級中學 高三數學週考考卷（範圍：單元 3 微分）</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
+                displayMath: [['\\[', '\\]'], ['$$', '$$']],
+                macros: {
+                    d: '\\displaystyle'
+                }
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --subtext-color: #475569;
+            --border-color: #cbd5e1;
+            --primary-color: #2563eb;
+            --reg-bg: #eff6ff;
+            --reg-border: #3b82f6;
+            --pro-bg: #fffbeb;
+            --pro-border: #f59e0b;
+            --lhop-bg: #f5f3ff;
+            --lhop-border: #8b5cf6;
+            --tip-bg: #fef2f2;
+            --tip-border: #ef4444;
+            --ans-bg: #f0fdf4;
+            --ans-border: #16a34a;
+            --svg-stroke: #1e293b;
+            --svg-grid: #e2e8f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --subtext-color: #94a3b8;
+            --border-color: #334155;
+            --primary-color: #60a5fa;
+            --reg-bg: #172554;
+            --reg-border: #3b82f6;
+            --pro-bg: #451a03;
+            --pro-border: #f59e0b;
+            --lhop-bg: #2e1065;
+            --lhop-border: #a78bfa;
+            --tip-bg: #450a0a;
+            --tip-border: #ef4444;
+            --ans-bg: #052e16;
+            --ans-border: #22c55e;
+            --svg-stroke: #f1f5f9;
+            --svg-grid: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.75;
+            margin: 0;
+            padding: 70px 20px 40px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .toolbar button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .toolbar button:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .header-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header-card h1 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-size: 16px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        }
+
+        .q-text {
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            margin-top: 8px;
+            padding-left: 12px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+            padding-left: 12px;
+        }
+
+        .solution-box {
+            background: var(--reg-bg);
+            border-left: 6px solid var(--reg-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .pro-box {
+            background: var(--pro-bg);
+            border-left: 6px solid var(--pro-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .lhop-box {
+            background: var(--lhop-bg);
+            border-left: 6px solid var(--lhop-border);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .tip-box {
+            background: var(--tip-bg);
+            border: 2px solid var(--tip-border);
+            border-left: 8px solid var(--tip-border);
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .ans-box {
+            background: var(--ans-bg);
+            border: 2px solid var(--ans-border);
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            margin-top: 16px;
+            display: inline-block;
+        }
+
+        .box-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+            padding: 14px;
+            background: var(--card-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            background: var(--card-bg);
+        }
+
+        .summary-table th, .summary-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            text-align: center;
+        }
+
+        .summary-table th {
+            background: var(--reg-bg);
+            font-weight: 700;
+        }
+
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14.5px;
+        }
+
+        .method-table th, .method-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .method-table th {
+            background: var(--pro-bg);
+            font-weight: 700;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                background: #fff !important;
+                color: #000 !important;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .toolbar {
+                display: none !important;
+            }
+            .question-card {
+                page-break-inside: auto;
+                border: 1px solid #000;
+                box-shadow: none;
+            }
+            .tip-box, .pro-box, .lhop-box {
+                border: 2px solid #000 !important;
+                border-left: 8px solid #000 !important;
+                page-break-inside: avoid;
+            }
+            .ans-box {
+                border: 4px double #000 !important;
+                page-break-inside: avoid;
+            }
+            strong {
+                font-weight: 700;
+                text-decoration: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button onclick="setTheme('light')">📄 預設好讀</button>
+    <button onclick="setTheme('dark')">🌙 護眼暗色</button>
+    <button onclick="printDoc()">🖨️ 立即列印 (Ctrl+P)</button>
+</div>
+
+<div class="container">
+    <div class="header-card">
+        <h1>台北市立中山女子高級中學　高三數學週考考卷</h1>
+        <div class="header-info">
+            <span>範圍：單元 3 微分（含完整詳解、羅必達法則檢驗、考場多解與精確函數圖形）</span>
+        </div>
+    </div>
+
+    <!-- 1. 全卷標準答案核對總表 (移至最上方) -->
+    <div class="question-card">
+        <div class="section-title" style="margin-top: 0;">✅ 全卷標準答案核對總表</div>
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>大題</th>
+                    <th>題號</th>
+                    <th>標準答案</th>
+                    <th>題號</th>
+                    <th>標準答案</th>
+                    <th>題號</th>
+                    <th>標準答案</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>一、單選題</strong></td>
+                    <td>1.</td>
+                    <td><strong>(1)</strong></td>
+                    <td>2.</td>
+                    <td><strong>(3)</strong></td>
+                    <td>3.</td>
+                    <td><strong>(3)</strong></td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>二、多重選擇題</strong></td>
+                    <td>1.</td>
+                    <td><strong>(2)(4)(5)</strong><br><small style="color:var(--subtext-color);">（嚴謹單選陷阱僅 (4)）</small></td>
+                    <td>2.</td>
+                    <td><strong>(1)(3)(4)</strong></td>
+                    <td>3.</td>
+                    <td><strong>(3)(5)</strong></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><strong>(1)(4)</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"><strong>三、填充題</strong></td>
+                    <td>1.</td>
+                    <td><strong>$3$</strong></td>
+                    <td>2.</td>
+                    <td><strong>$-2$</strong></td>
+                    <td>3.</td>
+                    <td><strong>$\d\frac{1}{6}$</strong></td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td><strong>$(2,0)$</strong></td>
+                    <td>5.</td>
+                    <td><strong>$5$</strong></td>
+                    <td>6.</td>
+                    <td><strong>$y=-19x-13$</strong></td>
+                </tr>
+                <tr>
+                    <td>7.</td>
+                    <td><strong>$12$</strong></td>
+                    <td>8.</td>
+                    <td><strong>$\d\frac{\sqrt{10}}{20}$</strong></td>
+                    <td>9.</td>
+                    <td><strong>$(-3,8,-9)$</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 一、單選題 -->
+    <div class="section-title">一、單選題(每題 6 分，共 18 分)</div>
+
+    <!-- 單選 1 -->
+    <div class="question-card">
+        <div class="q-text">
+            1. (　　)設 $f(x)=(3x-1)^2(x^2-2x)$，則 $f'(1)=$ ？
+            <div class="options-grid">
+                <span>(1) $-12$</span>
+                <span>(2) $-6$</span>
+                <span>(3) $-4$</span>
+                <span>(4) $4$</span>
+                <span>(5) $12$</span>
+            </div>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】乘法微分法則與連鎖律</span>
+            利用<strong>前微後不微＋前不微後微</strong>：
+            \[ f'(x) = 2(3x-1)\cdot 3 \cdot (x^2-2x) + (3x-1)^2(2x-2) \]
+            將 $x=1$ 代入：
+            \[ f'(1) = 2(2)(3)(1-2) + (2)^2(2-2) = 12\times(-1) + 4\times 0 = -12 \]
+        </div>
+
+        <div class="ans-box">最終答案：(1)</div>
+    </div>
+
+    <!-- 單選 2 -->
+    <div class="question-card">
+        <div class="q-text">
+            2. (　　)設 $f(x)=x^3-2x^2+5x+4$，則 $\d\lim_{x\to 2}\frac{f'(x)-f'(2)}{x-2}=$ ？
+            <div class="options-grid">
+                <span>(1) $3x^2-4x+5$</span>
+                <span>(2) $6x-4$</span>
+                <span>(3) $8$</span>
+                <span>(4) $9$</span>
+                <span>(5) $14$</span>
+            </div>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】導數定義與二階導數</span>
+            根據導數的定義，題目所求極限即為導函數 $f'(x)$ 在 $x=2$ 處的導數，也就是<strong>二階導數</strong> $f''(2)$：
+            \[ \lim_{x\to 2}\frac{f'(x)-f'(2)}{x-2} = f''(2) \]
+            依序對 $f(x)$ 微分兩次：
+            \[ f'(x) = 3x^2 - 4x + 5 \implies f''(x) = 6x - 4 \]
+            代入 $x=2$ 得：
+            \[ f''(2) = 6(2) - 4 = 8 \]
+        </div>
+
+        <div class="lhop-box">
+            <span class="box-title">🔍 【羅必達法則 (L'Hôpital's Rule) 檢驗與解法】</span>
+            <strong>✅ 適用！</strong>當 $x\to 2$ 時，分子 $f'(x)-f'(2)\to 0$、分母 $x-2\to 0$，為標準 $\d\frac{0}{0}$ 不定型，且多項式導函數處處可微且連續，分子分母同對 $x$ 微分：
+            \[ \lim_{x\to 2}\frac{f'(x)-f'(2)}{x-2} \xrightarrow{\text{L'H}} \lim_{x\to 2}\frac{f''(x) - 0}{1} = f''(2) = 6(2) - 4 = 8 \]
+        </div>
+
+        <div class="ans-box">最終答案：(3)</div>
+    </div>
+
+    <!-- 單選 3 -->
+    <div class="question-card">
+        <div class="q-text">
+            3. (　　)在 $f(x)=(x^2-5x+3)^{10}$ 的圖形上，以點 $P(1,1)$ 為切點的切線方程式為何？
+            <div class="options-grid">
+                <span>(1) $10x+y=11$</span>
+                <span>(2) $10x-y=9$</span>
+                <span>(3) $30x-y=29$</span>
+                <span>(4) $30x+y=31$</span>
+                <span>(5) $y=1$</span>
+            </div>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】連鎖律求切線斜率</span>
+            由<strong>連鎖律 (Chain Rule)</strong> 求導函數：
+            \[ f'(x) = 10(x^2-5x+3)^9 \cdot (2x-5) \]
+            將切點 $x=1$ 代入求切線斜率 $m$：
+            \[ m = f'(1) = 10(1-5+3)^9 \cdot (2-5) = 10(-1)^9(-3) = 30 \]
+            利用點斜式過 $P(1,1)$：
+            \[ y - 1 = 30(x - 1) \implies 30x - y = 29 \]
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【學霸考場驗算】點座標代入＋正負號檢驗</span>
+            先把切點 $(1,1)$ 代入各選項，發現五個選項都過 $(1,1)$；接著檢查內層函數在 $x=1$ 處的值為 $1-5+3=-1$，奇數次方 $(-1)^9=-1$，再乘上內層導數 $2(1)-5=-3$，負負得正，斜率必為 $+30$，故為 $30x-y=29$。
+        </div>
+
+        <div class="ans-box">最終答案：(3)</div>
+    </div>
+
+    <!-- 二、多重選擇題 -->
+    <div class="section-title">二、多重選擇題(每題 7 分，共 28 分。至少有一個選項正確，完全答對，可得 7 分；只錯一個選項可得 4 分；錯 2 個選項可得 1 分，其餘情形不給分亦不扣分。)</div>
+
+    <!-- 多選 1 (整合剛剛討論 + PDF + 附圖反例) -->
+    <div class="question-card">
+        <div class="q-text">
+            1. (　　)下列何者正確？
+            <div class="options-list">
+                <span>(1) 若函數 $f(x)$ 滿足 $\d\lim_{x\to a}f(x)=L(\text{定值})$，則 $f(a)=L$</span>
+                <span>(2) 若函數 $f(x)$ 在 $x=a$ 連續，則 $\d\lim_{x\to a^+}f(x)=\lim_{x\to a^-}f(x)$</span>
+                <span>(3) 若函數 $f(x)$ 滿足 $\d\lim_{x\to a}f(x)=f(a)$，則 $f(x)$ 在 $x=a$ 的導數存在</span>
+                <span>(4) 若函數 $f(x)$ 在 $x=a$ 處可微分，則 $\d\lim_{x\to a}f(x)=f(a)$</span>
+                <span>(5) 若函數 $f(x)$ 滿足 $\d\lim_{x\to a^+}\frac{f(x)-f(a)}{x-a}=\lim_{x\to a^-}\frac{f(x)-f(a)}{x-a}$，則 $f(x)$ 在 $x=a$ 處可微分</span>
+            </div>
+        </div>
+
+        <!-- 四大經典反例 SVG 圖表 (嚴格核對座標) -->
+        <div class="svg-container">
+            <svg width="250" height="195" viewBox="0 0 250 195">
+<rect x="35" y="32" width="195" height="135" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="125.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(1) 反例：x=1 有極限但 f(1)≠L</text>
+<line x1="35.0" y1="32" x2="35.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="90.71" y1="32" x2="90.71" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="146.43" y1="32" x2="146.43" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="146.43" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="202.14" y1="32" x2="202.14" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="202.14" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="230" y2="144.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="99.5" x2="230" y2="99.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="84.71" y="103.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="54.5" x2="230" y2="54.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="84.71" y="58.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="230" y2="144.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="90.71" y1="32" x2="90.71" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="82.71" y="158.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="62.86,167.0 70.38,160.93 77.9,154.85 85.42,148.77 92.94,142.7 100.46,136.62 107.99,130.55 115.51,124.47 123.03,118.4 130.55,112.33 138.07,106.25 145.59,100.17 153.11,94.1 160.64,88.03 168.16,81.95 175.68,75.88 183.2,69.8 190.72,63.72 198.24,57.65 205.76,51.57 213.29,45.5" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle cx="146.43" cy="99.5" r="4.5" fill="var(--card-bg)" stroke="#2563eb" stroke-width="2.2"/>
+<circle cx="146.43" cy="54.5" r="4.5" fill="#ef4444"/>
+<text x="154.43" y="58.5" fill="#ef4444" font-size="11" font-weight="bold">f(1)=2 ≠ L</text>
+<text x="154.43" y="111.5" fill="#2563eb" font-size="11" font-weight="bold">極限 L=1</text>
+</svg>
+            <svg width="260" height="195" viewBox="0 0 260 195">
+<rect x="35" y="32" width="205" height="135" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="130.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(2) 端點反例：f(x)=√x 在 a=0</text>
+<line x1="53.64" y1="32" x2="53.64" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="53.64" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="90.91" y1="32" x2="90.91" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="128.18" y1="32" x2="128.18" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="128.18" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="165.45" y1="32" x2="165.45" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="165.45" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="202.73" y1="32" x2="202.73" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="202.73" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="240.0" y1="32" x2="240.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="240.0" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">4</text>
+<line x1="35" y1="144.5" x2="240" y2="144.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="99.5" x2="240" y2="99.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="84.91" y="103.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="54.5" x2="240" y2="54.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="84.91" y="58.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="240" y2="144.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="90.91" y1="32" x2="90.91" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="82.91" y="158.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="90.91,144.5 92.77,134.44 94.64,130.27 96.5,127.07 98.36,124.38 100.23,122.0 102.09,119.85 103.95,117.88 105.82,116.04 107.68,114.31 109.55,112.68 111.41,111.13 113.27,109.64 115.14,108.22 117.0,106.85 118.86,105.53 120.73,104.25 122.59,103.01 124.45,101.81 126.32,100.64 128.18,99.5 130.05,98.39 131.91,97.3 133.77,96.24 135.64,95.2 137.5,94.19 139.36,93.19 141.23,92.21 143.09,91.26 144.95,90.31 146.82,89.39 148.68,88.48 150.55,87.58 152.41,86.7 154.27,85.83 156.14,84.97 158.0,84.13 159.86,83.29 161.73,82.47 163.59,81.66 165.45,80.86 167.32,80.07 169.18,79.29 171.05,78.52 172.91,77.75 174.77,77.0 176.64,76.25 178.5,75.52 180.36,74.79 182.23,74.06 184.09,73.35 185.95,72.64 187.82,71.94 189.68,71.25 191.55,70.56 193.41,69.88 195.27,69.2 197.14,68.53 199.0,67.87 200.86,67.21 202.73,66.56 204.59,65.91 206.45,65.27 208.32,64.63 210.18,64.0 212.05,63.38 213.91,62.75 215.77,62.14 217.64,61.52 219.5,60.92 221.36,60.31 223.23,59.71 225.09,59.12 226.95,58.53 228.82,57.94 230.68,57.36 232.55,56.78 234.41,56.2 236.27,55.63 238.14,55.06 240.0,54.5" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+<circle cx="90.91" cy="144.5" r="4.5" fill="#ef4444"/>
+<text x="83.45" y="95.0" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="bold">無 x→0⁻ 左極限</text>
+<line x1="83.45" y1="100.0" x2="88.91" y2="140.5" stroke="#ef4444" stroke-width="1.5"/>
+<text x="180.36" y="61.25" fill="#0284c7" font-size="12" font-weight="bold">f(x)=√x</text>
+</svg>
+            <svg width="250" height="195" viewBox="0 0 250 195">
+<rect x="35" y="32" width="195" height="135" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="125.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(3) 反例：f(x)=|x| 在 a=0 尖點</text>
+<line x1="35.0" y1="32" x2="35.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="83.75" y1="32" x2="83.75" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="83.75" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="132.5" y1="32" x2="132.5" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="181.25" y1="32" x2="181.25" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="181.25" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="230.0" y1="32" x2="230.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="230.0" y="159.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="230" y2="144.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="99.5" x2="230" y2="99.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="126.5" y="103.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="54.5" x2="230" y2="54.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="126.5" y="58.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="230" y2="144.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="132.5" y1="32" x2="132.5" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="124.5" y="158.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="35.0,54.5 39.88,59.0 44.75,63.5 49.62,68.0 54.5,72.5 59.38,77.0 64.25,81.5 69.12,86.0 74.0,90.5 78.88,95.0 83.75,99.5 88.62,104.0 93.5,108.5 98.38,113.0 103.25,117.5 108.12,122.0 113.0,126.5 117.88,131.0 122.75,135.5 127.62,140.0 132.5,144.5 137.38,140.0 142.25,135.5 147.12,131.0 152.0,126.5 156.88,122.0 161.75,117.5 166.62,113.0 171.5,108.5 176.38,104.0 181.25,99.5 186.12,95.0 191.0,90.5 195.88,86.0 200.75,81.5 205.62,77.0 210.5,72.5 215.38,68.0 220.25,63.5 225.12,59.0 230.0,54.5" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+<circle cx="132.5" cy="144.5" r="4.5" fill="#ef4444"/>
+<text x="183.69" y="124.25" fill="#ef4444" font-size="11" font-weight="bold">尖點 (不可微)</text>
+<line x1="179.69" y1="121.25" x2="137.5" y2="142.5" stroke="#ef4444" stroke-width="1.5"/>
+</svg>
+            <svg width="260" height="195" viewBox="0 0 260 195">
+<rect x="35" y="32" width="205" height="135" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="130.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(5) 反例：f(x)=³√x 在 a=0 鉛直切線</text>
+<line x1="35.0" y1="32" x2="35.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="86.25" y1="32" x2="86.25" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="86.25" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="137.5" y1="32" x2="137.5" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="188.75" y1="32" x2="188.75" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="188.75" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="240.0" y1="32" x2="240.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="240.0" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="144.5" x2="240" y2="144.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="131.5" y="148.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="99.5" x2="240" y2="99.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="54.5" x2="240" y2="54.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="131.5" y="58.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="99.5" x2="240" y2="99.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="137.5" y1="32" x2="137.5" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="129.5" y="113.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="34.98,156.2 41.66,154.94 48.05,153.68 54.15,152.42 59.96,151.16 65.5,149.9 70.76,148.64 75.77,147.38 80.51,146.12 85.01,144.86 89.26,143.6 93.28,142.34 97.07,141.08 100.63,139.82 103.98,138.56 107.12,137.3 110.06,136.04 112.8,134.78 115.36,133.52 117.73,132.26 119.92,131.0 121.95,129.74 123.81,128.48 125.52,127.22 127.08,125.96 128.5,124.7 129.78,123.44 130.94,122.18 131.97,120.92 132.89,119.66 133.7,118.4 134.41,117.14 135.03,115.88 135.56,114.62 136.0,113.36 136.37,112.1 136.68,110.84 136.92,109.58 137.11,108.32 137.26,107.06 137.36,105.8 137.43,104.54 137.47,103.28 137.49,102.02 137.5,100.76 137.5,99.5 137.5,98.24 137.51,96.98 137.53,95.72 137.57,94.46 137.64,93.2 137.74,91.94 137.89,90.68 138.08,89.42 138.32,88.16 138.63,86.9 139.0,85.64 139.44,84.38 139.97,83.12 140.59,81.86 141.3,80.6 142.11,79.34 143.03,78.08 144.06,76.82 145.22,75.56 146.5,74.3 147.92,73.04 149.48,71.78 151.19,70.52 153.05,69.26 155.08,68.0 157.27,66.74 159.64,65.48 162.2,64.22 164.94,62.96 167.88,61.7 171.02,60.44 174.37,59.18 177.93,57.92 181.72,56.66 185.74,55.4 189.99,54.14 194.49,52.88 199.23,51.62 204.24,50.36 209.5,49.1 215.04,47.84 220.85,46.58 226.95,45.32 233.34,44.06 240.02,42.8" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+<line x1="137.5" y1="32" x2="137.5" y2="167" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="137.5" cy="99.5" r="4.5" fill="#ef4444"/>
+<text x="181.06" y="133.25" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="bold">鉛直切線 (斜率→+∞)</text>
+<line x1="166.06" y1="121.25" x2="141.5" y2="103.5" stroke="#ef4444" stroke-width="1.5"/>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【各選項詳細解析】（整合一般高中多選題標準與 108 課綱 / 大學微積分進階陷阱）</span>
+            <ul>
+                <li>
+                    <strong>選項 (1) 錯誤：極限存在不一定等於函數值（甚至函數值可能無定義）。</strong><br>
+                    函數在 $x=a$ 的極限值 $\d\lim_{x\to a}f(x)=L$ 只描述 $x$ 非常靠近 $a$（但 $x\neq a$）時的趨勢，與函數在該點的實際函數值 $f(a)$ 完全無關。<br>
+                    <strong>🔹 反例（見上方圖 1）：</strong>設 $f(x)=\begin{cases} x, & x\neq 1 \\ 2, & x=1 \end{cases}$，當 $x\to 1$ 時極限值 $L=1$，但函數值 $f(1)=2\neq 1$（甚至 $f(1)$ 也可以無定義）。
+                </li>
+                <li style="margin-top: 10px;">
+                    <strong>選項 (2) 視題型而定（一般內點正確，考慮區間端點則錯誤）：</strong>
+                    <ul>
+                        <li><strong>一般基礎多選題（視為正確）：</strong>若預設討論範圍在開區間內（$a$ 為內點），函數在 $x=a$ 連續代表 $\d\lim_{x\to a}f(x)=f(a)$，此時左極限必等於右極限 $\d\lim_{x\to a^+}f(x)=\lim_{x\to a^-}f(x)=f(a)$。</li>
+                        <li><strong>進階單選題陷阱（視為錯誤）：</strong>根據 108 課綱對連續函數的定義，若 $a$ 是定義域的<strong>區間端點</strong>，只需單側連續即可稱為在 $x=a$ 連續。<strong>🔹 反例（見上方圖 2）：</strong>設 $f(x)=\sqrt{x}$（定義域為 $[0,\infty)$）在端點 $a=0$ 處連續，但它在 $x<0$ 沒有定義，左極限 $\d\lim_{x\to 0^-}\sqrt{x}$ 根本不存在，因此無法寫出左右極限相等的式子。</li>
+                    </ul>
+                </li>
+                <li style="margin-top: 10px;">
+                    <strong>選項 (3) 錯誤：連續不一定可微分。</strong><br>
+                    滿足 $\d\lim_{x\to a}f(x)=f(a)$ 僅代表函數在 $x=a$ 處<strong>連續</strong>，但圖形若出現「尖點（折角）」或「鉛直切線」，導數就不存在。<br>
+                    <strong>🔹 反例（見上方圖 3）：</strong>設絕對值函數 $f(x)=|x|$ 且 $a=0$。雖然 $\d\lim_{x\to 0}|x|=0=f(0)$（在 $x=0$ 連續），但在 $x=0$ 的右導數為 $+1$、左導數為 $-1$，兩者不相等，故 $f'(0)$ 不存在。
+                </li>
+                <li style="margin-top: 10px;">
+                    <strong>選項 (4) 絕對正確：可微分必連續（微積分核心定理）。</strong><br>
+                    <strong>🔹 嚴謹證明：</strong>已知 $f(x)$ 在 $x=a$ 處可微分，即導數 $f'(a)=\d\lim_{x\to a}\frac{f(x)-f(a)}{x-a}$ 存在（為有限定值），且在 $x=a$ 兩側皆有定義。因此：
+                    \[ \lim_{x\to a}\left[f(x)-f(a)\right] = \lim_{x\to a}\left[\frac{f(x)-f(a)}{x-a}\cdot (x-a)\right] = f'(a)\cdot 0 = 0 \implies \lim_{x\to a}f(x) = f(a) \]
+                </li>
+                <li style="margin-top: 10px;">
+                    <strong>選項 (5) 視題型而定（若預設極限為定值則正確，考慮無窮大則錯誤）：</strong>
+                    <ul>
+                        <li><strong>一般基礎多選題（視為正確）：</strong>許多高中教材將「兩極限以等號連接」直接視為兩單側極限皆存在（收斂為同一定值），此時左導數 $f'_-(a)$ 等於右導數 $f'_+(a)$，故在 $x=a$ 處可微分。</li>
+                        <li><strong>進階單選題陷阱（視為錯誤）：</strong>注意題目第 (1) 選項特地標註了「$=L(\text{定值})$」，而第 (5) 選項卻沒有寫等於定值！在微積分中，若左右極限同為無窮大（$+\infty$ 或 $-\infty$），雖然有時會寫成兩者相等，但因為極限不是有限定值，導數依然不存在（鉛直切線）。<br>
+                        <strong>🔹 反例（見上方圖 4）：</strong>設 $f(x)=\sqrt[3]{x}$ 且 $a=0$。此時右極限 $\d\lim_{x\to 0^+}\frac{\sqrt[3]{x}-0}{x-0}=\lim_{x\to 0^+}\frac{1}{x^{2/3}}=+\infty$，左極限 $\d\lim_{x\to 0^-}\frac{\sqrt[3]{x}-0}{x-0}=\lim_{x\to 0^-}\frac{1}{x^{2/3}}=+\infty$，圖形在 $x=0$ 具有鉛直切線，在 $x=0$ 處不可微分。</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+	<div class="tip-box">
+            <span class="box-title">💡 【考場秒殺階層圖】</span>
+            在<strong>定義域內點</strong>（非端點）的推論鏈：<strong>可微分 $\implies$ 連續 $\implies$ 極限存在 $\iff$ 左極限 $=$ 右極限 $=$ 定值 $L$</strong>（單向箭頭反向皆不成立，除非補足條件；若為<strong>區間端點</strong>則連續僅需單側極限，若同趨近 $\pm\infty$ 則非定值故不成立）。
+        </div>
+
+	<div class="tip-box">
+            <span class="box-title">💡 【考場秒殺階層圖（嚴謹完整版）】</span>
+            在 $x=a$ 為<strong>定義域內點</strong>（兩側皆有定義）的前提下：<br>
+            <strong>可微分 $\implies$ 連續 $\implies$ 極限存在 $\iff$ 左極限 $=$ 右極限 $=$ 定值 $L$</strong>
+            <div style="margin-top: 8px; font-size: 14.5px; line-height: 1.6;">
+                🔹 <strong>反向成立需補足條件：</strong><br>
+                 • 「極限存在 $=L$」$\implies$「連續」：需補 <strong>$f(a)=L$</strong>（否則如選項 (1) 空心跳躍點）。<br>
+                 • 「連續」$\implies$「可微分」：需補 <strong>左導數 $=$ 右導數 $=$ 有限定值</strong>（否則如選項 (3) 尖點、選項 (5) 鉛直切線 $\pm\infty$）。<br>
+                🔹 <strong>區間端點例外：</strong>若 $x=a$ 為定義域<strong>端點</strong>（如選項 (2) 之 $f(x)=\sqrt{x}$ 在 $a=0$），連續僅需單側極限，無法推得雙側極限相等。
+            </div>
+        </div>
+
+        <div class="ans-box">最終答案：一般多選題為 (2)(4)(5)（若為嚴謹單選題陷阱則僅 (4) 正確）</div>
+    </div>
+
+    <!-- 多選 2 -->
+    <div class="question-card">
+        <div class="q-text">
+            2. (　　)若 $f(x)$ 為可微分函數，則下列何者是 $f'(a)$ ？
+            <div class="options-grid">
+                <span>(1) $\d\lim_{x\to a}\frac{f(x)-f(a)}{x-a}$</span>
+                <span>(2) $\d\lim_{h\to 0}\frac{f(a+h)-f(h)}{a}$</span>
+                <span>(3) $\d\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}$</span>
+                <span>(4) $\d\lim_{h\to 0}\frac{f(a+h)-f(a-h)}{2h}$</span>
+                <span>(5) $\d\lim_{x\to a}\frac{f'(x)-f'(a)}{x-a}$</span>
+            </div>
+        </div>
+
+        <div class="svg-container">
+            <svg width="340" height="200" viewBox="0 0 340 200">
+<rect x="35" y="32" width="285" height="140" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="170.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">導數定義與選項 (4) 對稱差分幾何意義</text>
+<line x1="70.62" y1="32" x2="70.62" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="141.88" y1="32" x2="141.88" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="141.88" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="213.12" y1="32" x2="213.12" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="213.12" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="284.38" y1="32" x2="284.38" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="284.38" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="35" y1="154.5" x2="320" y2="154.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="119.5" x2="320" y2="119.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="64.62" y="123.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="84.5" x2="320" y2="84.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="64.62" y="88.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="49.5" x2="320" y2="49.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="64.62" y="53.5" text-anchor="end" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="35" y1="154.5" x2="320" y2="154.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="70.62" y1="32" x2="70.62" y2="172" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="62.620000000000005" y="168.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="35.0,141.81 40.7,142.46 46.4,142.99 52.1,143.41 57.8,143.72 63.5,143.91 69.2,144.0 74.9,143.97 80.6,143.83 86.3,143.58 92.0,143.21 97.7,142.74 103.4,142.15 109.1,141.45 114.8,140.64 120.5,139.71 126.2,138.68 131.9,137.53 137.6,136.27 143.3,134.9 149.0,133.41 154.7,131.82 160.4,130.11 166.1,128.29 171.8,126.36 177.5,124.31 183.2,122.16 188.9,119.89 194.6,117.51 200.3,115.02 206.0,112.41 211.7,109.7 217.4,106.87 223.1,103.93 228.8,100.88 234.5,97.71 240.2,94.44 245.9,91.05 251.6,87.55 257.3,83.94 263.0,80.21 268.7,76.38 274.4,72.43 280.1,68.37 285.8,64.2 291.5,59.91 297.2,55.52 302.9,51.01 308.6,46.39 314.3,41.66 320.0,36.81" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="77.75,161.06 99.12,153.19 120.5,145.31 141.88,137.44 163.25,129.56 184.62,121.69 206.0,113.81 227.38,105.94 248.75,98.06 270.12,90.19 291.5,82.31" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="5,3"/>
+<line x1="106.25" y1="141.81" x2="248.75" y2="89.31" stroke="#ef4444" stroke-width="1.8"/>
+<line x1="106.25" y1="141.81" x2="106.25" y2="154.5" stroke="var(--subtext-color)" stroke-width="1" stroke-dasharray="2,2"/>
+<circle cx="106.25" cy="141.81" r="4" fill="#ef4444"/>
+<text x="106.25" y="168.5" text-anchor="middle" fill="var(--text-color)" font-size="11" font-weight="bold">a-h</text>
+<line x1="177.5" y1="124.31" x2="177.5" y2="154.5" stroke="var(--subtext-color)" stroke-width="1" stroke-dasharray="2,2"/>
+<circle cx="177.5" cy="124.31" r="4" fill="#ef4444"/>
+<text x="177.5" y="168.5" text-anchor="middle" fill="var(--text-color)" font-size="11" font-weight="bold">a</text>
+<line x1="248.75" y1="89.31" x2="248.75" y2="154.5" stroke="var(--subtext-color)" stroke-width="1" stroke-dasharray="2,2"/>
+<circle cx="248.75" cy="89.31" r="4" fill="#ef4444"/>
+<text x="248.75" y="168.5" text-anchor="middle" fill="var(--text-color)" font-size="11" font-weight="bold">a+h</text>
+<text x="187.5" y="138.31" fill="#16a34a" font-size="11" font-weight="bold">切線斜率 f'(a)</text>
+<text x="111.25" y="81.31" fill="#ef4444" font-size="11" font-weight="bold">(4) 對稱割線斜率 → f'(a)</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】導數定義的各種變形</span>
+            <ul>
+                <li><strong>(1) 正確：</strong>此為 $f'(a)$ 的標準定義式。</li>
+                <li><strong>(2) 錯誤：</strong>分母應為變化量 $h$，分子應減去 $f(a)$。此式在 $h\to 0$ 時分母為常數 $a$，直接趨近於 $\d\frac{f(a)-f(0)}{a}$。</li>
+                <li><strong>(3) 正確：</strong>令 $x=a+h$，此為 $f'(a)$ 的標準差分定義式。</li>
+                <li><strong>(4) 正確：</strong>已知 $f(x)$ 可微分，利用減 $f(a)$ 再加 $f(a)$ 拆解：
+                    \[ \lim_{h\to 0}\frac{[f(a+h)-f(a)] - [f(a-h)-f(a)]}{2h} = \frac{1}{2}\left[\lim_{h\to 0}\frac{f(a+h)-f(a)}{h} + \lim_{h\to 0}\frac{f(a-h)-f(a)}{-h}\right] = \frac{1}{2}[f'(a)+f'(a)] = f'(a) \]
+                </li>
+                <li><strong>(5) 錯誤：</strong>此為二階導數 $f''(a)$，並非 $f'(a)$。</li>
+            </ul>
+        </div>
+
+        <div class="lhop-box">
+            <span class="box-title">🔍 【羅必達法則 (L'Hôpital's Rule) 逐項檢驗與秒殺】</span>
+            <strong>✅ 選項 (1)、(3)、(4) 皆為 $\d\frac{0}{0}$ 不定型，在考場選擇題可對趨近變數（$x$ 或 $h$）直接用羅必達法則秒殺！</strong>
+            <ul>
+                <li><strong>選項 (1)：</strong>對 $x$ 上下同微 $\xrightarrow{\text{L'H}} \d\lim_{x\to a}\frac{f'(x)-0}{1} = f'(a)$。</li>
+                <li><strong>選項 (2)：</strong>當 $h\to 0$ 時分母為 $a\neq 0$，<strong>非 $\frac{0}{0}$ 不定型，不可用羅必達法則！</strong></li>
+                <li><strong>選項 (3)：</strong>對 $h$ 上下同微（$a$ 為常數，$f(a)$ 對 $h$ 微分為 $0$）$\xrightarrow{\text{L'H}} \d\lim_{h\to 0}\frac{f'(a+h)\cdot 1 - 0}{1} = f'(a)$。</li>
+                <li><strong>選項 (4)：</strong>對 $h$ 上下同微（注意連鎖律：$f(a-h)$ 對 $h$ 微分要乘上內層導數 $-1$）：
+                    \[ \lim_{h\to 0}\frac{f(a+h)-f(a-h)}{2h} \xrightarrow{\text{L'H}} \lim_{h\to 0}\frac{f'(a+h)\cdot 1 - f'(a-h)\cdot(-1)}{2} = \frac{f'(a)+f'(a)}{2} = f'(a) \]
+                    <strong>⚡ 秒殺口訣：</strong>當 $f(x)$ 可微時，$\d\lim_{h\to 0}\frac{f(a+ph)-f(a+qh)}{kh} = \frac{p-q}{k}f'(a)$。選項 (4) 為 $\d\frac{1-(-1)}{2}f'(a) = f'(a)$！
+                </li>
+                <li><strong>選項 (5)：</strong>對 $x$ 上下同微 $\xrightarrow{\text{L'H}} \d\lim_{x\to a}\frac{f''(x)-0}{1} = f''(a) \neq f'(a)$。</li>
+            </ul>
+        </div>
+
+        <div class="ans-box">最終答案：(1)(3)(4)</div>
+    </div>
+
+    <!-- 多選 3 -->
+    <div class="question-card">
+        <div class="q-text">
+            3. (　　)下列哪些函數在 $x=0$ 處可微分？(其中 $[x]$ 表示不超過 $x$ 的最大整數)
+            <div class="options-grid">
+                <span>(1) $f_1(x)=\d\frac{|x|}{x}$</span>
+                <span>(2) $f_2(x)=|x|$</span>
+                <span>(3) $f_3(x)=0$</span>
+                <span>(4) $f_4(x)=[x]$</span>
+                <span>(5) $f_5(x)=\sqrt{1-x^2}$</span>
+            </div>
+        </div>
+
+        <div class="svg-container">
+            <svg width="220" height="175" viewBox="0 0 220 175">
+<rect x="35" y="32" width="165" height="115" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="110.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(1) f₁(x)=|x|/x (x=0 跳躍無定義)</text>
+<line x1="35.0" y1="32" x2="35.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="104.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="76.25" y1="32" x2="76.25" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="76.25" y="104.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="158.75" y1="32" x2="158.75" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="158.75" y="104.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="200.0" y1="32" x2="200.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="200.0" y="104.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="121.44" x2="200" y2="121.44" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="125.44" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="89.5" x2="200" y2="89.5" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="57.56" x2="200" y2="57.56" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="61.56" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="89.5" x2="200" y2="89.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="109.5" y="103.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="35.0,121.44 51.5,121.44 68.0,121.44 84.5,121.44 101.0,121.44 117.5,121.44" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<polyline points="117.5,57.56 134.0,57.56 150.5,57.56 167.0,57.56 183.5,57.56 200.0,57.56" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="117.5" cy="57.56" r="4" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+<circle cx="117.5" cy="121.44" r="4" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+</svg>
+            <svg width="220" height="175" viewBox="0 0 220 175">
+<rect x="35" y="32" width="165" height="115" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="110.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(2) f₂(x)=|x| (x=0 尖點不可微)</text>
+<line x1="35.0" y1="32" x2="35.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="140.7" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="76.25" y1="32" x2="76.25" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="76.25" y="140.7" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="158.75" y1="32" x2="158.75" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="158.75" y="140.7" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="200.0" y1="32" x2="200.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="200.0" y="140.7" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="125.7" x2="200" y2="125.7" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="83.11" x2="200" y2="83.11" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="87.11" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="40.52" x2="200" y2="40.52" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="44.52" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="125.7" x2="200" y2="125.7" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="109.5" y="139.7" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="35.0,40.52 43.25,49.04 51.5,57.56 59.75,66.07 68.0,74.59 76.25,83.11 84.5,91.63 92.75,100.15 101.0,108.67 109.25,117.19 117.5,125.7 125.75,117.19 134.0,108.67 142.25,100.15 150.5,91.63 158.75,83.11 167.0,74.59 175.25,66.07 183.5,57.56 191.75,49.04 200.0,40.52" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="117.5" cy="125.7" r="4" fill="#ef4444"/>
+</svg>
+            <svg width="220" height="175" viewBox="0 0 220 175">
+<rect x="35" y="32" width="165" height="115" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="110.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(4) f₄(x)=[x] (x=0 斷裂不連續)</text>
+<line x1="35.0" y1="32" x2="35.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="97.49" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="76.25" y1="32" x2="76.25" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="76.25" y="97.49" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="158.75" y1="32" x2="158.75" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="158.75" y="97.49" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="200.0" y1="32" x2="200.0" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="200.0" y="97.49" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="138.59" x2="200" y2="138.59" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="142.59" text-anchor="end" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="35" y1="110.54" x2="200" y2="110.54" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="114.54" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="82.49" x2="200" y2="82.49" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="54.44" x2="200" y2="54.44" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="111.5" y="58.44" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="82.49" x2="200" y2="82.49" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="117.5" y1="32" x2="117.5" y2="147" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="109.5" y="96.49" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="35.0,138.59 55.62,138.59 76.25,138.59" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="35.0" cy="138.59" r="3.5" fill="#ef4444"/>
+<circle cx="76.25" cy="138.59" r="3.5" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+<polyline points="76.25,110.54 96.88,110.54 117.5,110.54" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="76.25" cy="110.54" r="3.5" fill="#ef4444"/>
+<circle cx="117.5" cy="110.54" r="3.5" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+<polyline points="117.5,82.49 138.12,82.49 158.75,82.49" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="117.5" cy="82.49" r="3.5" fill="#ef4444"/>
+<circle cx="158.75" cy="82.49" r="3.5" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+<polyline points="158.75,54.44 179.38,54.44 200.0,54.44" fill="none" stroke="#ef4444" stroke-width="2.5"/>
+<circle cx="158.75" cy="54.44" r="3.5" fill="#ef4444"/>
+<circle cx="200.0" cy="54.44" r="3.5" fill="var(--card-bg)" stroke="#ef4444" stroke-width="2"/>
+</svg>
+            <svg width="230" height="175" viewBox="0 0 230 175">
+<rect x="35" y="32" width="175" height="115" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="115.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">(5) f₅(x)=√(1-x²) (x=0 平滑可微)</text>
+<line x1="64.17" y1="32" x2="64.17" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="64.17" y="137.79000000000002" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="122.5" y1="32" x2="122.5" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="180.83" y1="32" x2="180.83" y2="147" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="180.83" y="137.79000000000002" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="122.79" x2="210" y2="122.79" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="62.26" x2="210" y2="62.26" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="116.5" y="66.25999999999999" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="122.79" x2="210" y2="122.79" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="122.5" y1="32" x2="122.5" y2="147" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="114.5" y="136.79000000000002" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="180.83,122.79 180.75,119.62 180.51,116.46 180.12,113.32 179.56,110.21 178.85,107.12 177.98,104.09 176.96,101.1 175.79,98.17 174.48,95.31 173.02,92.53 171.42,89.82 169.69,87.21 167.83,84.7 165.85,82.29 163.75,79.99 161.53,77.81 159.21,75.75 156.79,73.82 154.27,72.03 151.67,70.37 148.98,68.86 146.23,67.5 143.4,66.28 140.53,65.23 137.6,64.33 134.63,63.59 131.63,63.01 128.6,62.59 125.55,62.35 122.5,62.26 119.45,62.35 116.4,62.59 113.37,63.01 110.37,63.59 107.4,64.33 104.47,65.23 101.6,66.28 98.77,67.5 96.02,68.86 93.33,70.37 90.73,72.03 88.21,73.82 85.79,75.75 83.47,77.81 81.25,79.99 79.15,82.29 77.17,84.7 75.31,87.21 73.58,89.82 71.98,92.53 70.52,95.31 69.21,98.17 68.04,101.1 67.02,104.09 66.15,107.12 65.44,110.21 64.88,113.32 64.49,116.46 64.25,119.62 64.17,122.79" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="52.5,62.26 80.5,62.26 108.5,62.26 136.5,62.26 164.5,62.26 192.5,62.26" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="122.5" cy="62.26" r="4" fill="#16a34a"/>
+<text x="122.5" y="54.26" text-anchor="middle" fill="#16a34a" font-size="11" font-weight="bold">水平切線 f₅'(0)=0</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】逐一檢驗「連續性」與「平滑性」</span>
+            <ul>
+                <li><strong>(1) 不可微：</strong>$f_1(0)$ 無定義（且在 $x=0$ 處右極限為 $1\neq$ 左極限 $-1$，跳躍不連續），故不可微。</li>
+                <li><strong>(2) 不可微：</strong>$f_2(x)=|x|$ 在 $x=0$ 處有<strong>尖點</strong>，左導數 $-1 \neq$ 右導數 $+1$，不可微。</li>
+                <li><strong>(3) 可微：</strong>常數函數 $f_3(x)=0$ 圖形為水平直線（即 $x$ 軸），處處可微且 $f_3'(0)=0$。</li>
+                <li><strong>(4) 不可微：</strong>高斯函數 $f_4(x)=[x]$ 在整數點 $x=0$ 處<strong>階梯斷裂不連續</strong>（左極限 $-1 \neq$ 右極限 $0$），故不可微。</li>
+                <li><strong>(5) 可微：</strong>$y=\sqrt{1-x^2}$ 圖形為圓心 $(0,0)$、半徑 $1$ 的上半圓，$x=0$ 為最高點 $(0,1)$，圖形平滑且具水平切線：
+                    \[ f_5'(0) = \lim_{x\to 0}\frac{\sqrt{1-x^2}-1}{x-0} = \lim_{x\to 0}\frac{-x^2}{x(\sqrt{1-x^2}+1)} = \lim_{x\to 0}\frac{-x}{\sqrt{1-x^2}+1} = 0 \]
+                </li>
+            </ul>
+        </div>
+
+        <div class="ans-box">最終答案：(3)(5)</div>
+    </div>
+
+    <!-- 多選 4 -->
+    <div class="question-card">
+        <div class="q-text">
+            4. (　　)設 $f(x)=(x-2)|x-2|$，試選出正確的選項。
+            <div class="options-list">
+                <span>(1) $f(2)=0$</span>
+                <span>(2) $f'(2)$ 不存在</span>
+                <span>(3) $f(x)$ 在 $x=2$ 處連續但不可微分</span>
+                <span>(4) $f(x)$ 在 $x=2$ 處連續亦可微分</span>
+                <span>(5) $f(x)$ 在 $x=2$ 處不連續亦不可微分</span>
+            </div>
+        </div>
+
+        <div class="svg-container">
+            <svg width="300" height="195" viewBox="0 0 300 195">
+<rect x="35" y="32" width="245" height="135" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="150.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">f(x)=(x-2)|x-2| 圖形（在 x=2 處平滑可微）</text>
+<line x1="35.0" y1="32" x2="35.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="96.25" y1="32" x2="96.25" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="96.25" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="157.5" y1="32" x2="157.5" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="157.5" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="218.75" y1="32" x2="218.75" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="218.75" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="280.0" y1="32" x2="280.0" y2="167" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="280.0" y="114.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">4</text>
+<line x1="35" y1="157.36" x2="280" y2="157.36" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="29.0" y="161.36" text-anchor="end" fill="var(--subtext-color)" font-size="11">-3</text>
+<line x1="35" y1="118.79" x2="280" y2="118.79" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="29.0" y="122.79" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="80.21" x2="280" y2="80.21" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="29.0" y="84.21" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="41.64" x2="280" y2="41.64" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="29.0" y="45.64" text-anchor="end" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="35" y1="99.5" x2="280" y2="99.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="35.0" y1="32" x2="35.0" y2="167" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="27.0" y="113.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="47.25,161.99 50.4,158.47 53.55,155.05 56.7,151.73 59.85,148.52 63.0,145.41 66.15,142.4 69.3,139.49 72.45,136.69 75.6,133.98 78.75,131.38 81.9,128.88 85.05,126.48 88.2,124.19 91.35,121.99 94.5,119.9 97.65,117.91 100.8,116.03 103.95,114.24 107.1,112.56 110.25,110.98 113.4,109.5 116.55,108.12 119.7,106.85 122.85,105.67 126.0,104.6 129.15,103.63 132.3,102.76 135.45,102.0 138.6,101.34 141.75,100.78 144.9,100.32 148.05,99.96 151.2,99.7 154.35,99.55 157.5,99.5 160.65,99.45 163.8,99.3 166.95,99.04 170.1,98.68 173.25,98.22 176.4,97.66 179.55,97.0 182.7,96.24 185.85,95.37 189.0,94.4 192.15,93.33 195.3,92.15 198.45,90.88 201.6,89.5 204.75,88.02 207.9,86.44 211.05,84.76 214.2,82.97 217.35,81.09 220.5,79.1 223.65,77.01 226.8,74.81 229.95,72.52 233.1,70.12 236.25,67.62 239.4,65.02 242.55,62.31 245.7,59.51 248.85,56.6 252.0,53.59 255.15,50.48 258.3,47.27 261.45,43.95 264.6,40.53 267.75,37.01" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="84.0,99.5 113.4,99.5 142.8,99.5 172.2,99.5 201.6,99.5 231.0,99.5" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="157.5" cy="99.5" r="4.5" fill="#ef4444"/>
+<text x="165.5" y="89.5" fill="#ef4444" font-size="11" font-weight="bold">(2,0) 平滑反曲 f'(2)=0</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】去絕對值分段討論</span>
+            將 $f(x)$ 依 $x\ge 2$ 與 $x<2$ 拆開：
+            \[ f(x) = \begin{cases} (x-2)^2, & x \ge 2 \\ -(x-2)^2, & x < 2 \end{cases} \]
+            <ul>
+                <li>代 $x=2$ 得 $f(2)=(2-2)^2=0$，故 <strong>(1) 正確</strong>。</li>
+                <li>由導數定義檢驗 $x=2$：
+                    \[ f'(2) = \lim_{x\to 2}\frac{(x-2)|x-2|-0}{x-2} = \lim_{x\to 2}|x-2| = 0 \]
+                    左右導數皆為 $0$，故 $f'(2)=0$ 存在（圖形在 $(2,0)$ 處平滑反曲相接），且可微必連續，因此 <strong>(4) 正確</strong>，(2)(3)(5) 錯誤。
+                </li>
+            </ul>
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【學霸秒殺口訣】絕對值可微性判別</span>
+            若 $g(a)=0$ 且 $g(x)$ 為多項式，則對於 $f(x) = g(x)|x-a|$：因為多乘了一個一次因式 $(x-a)$ 把絕對值的尖角「壓平」成水平切線，在 $x=a$ 處<strong>必定可微分且 $f'(a)=0$</strong>！
+        </div>
+
+        <div class="ans-box">最終答案：(1)(4)</div>
+    </div>
+
+    <!-- 三、填充題 -->
+    <div class="section-title">三、填充題(每格 6 分，共 54 分)</div>
+
+    <!-- 填充 1 -->
+    <div class="question-card">
+        <div class="q-text">
+            1. 若函數 $f(x)=\d\frac{3x}{x^2+3x+1}$，則 $f'(0)$ 之值為 <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】商的微分公式 (Quotient Rule)</span>
+            利用分式微分公式 $\left(\d\frac{h}{g}\right)' = \d\frac{h'g - hg'}{g^2}$：
+            \[ f'(x) = \frac{3(x^2+3x+1) - 3x(2x+3)}{(x^2+3x+1)^2} \]
+            不必化簡，直接代入 $x=0$：
+            \[ f'(0) = \frac{3(0+0+1) - 0}{(0+0+1)^2} = \frac{3}{1} = 3 \]
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【學霸另解】定義式 3 秒心算（免除法定則）</span>
+            因為 $f(0)=0$，直接代導數定義把 $x$ 約掉最省力：
+            \[ f'(0) = \lim_{x\to 0}\frac{f(x)-f(0)}{x-0} = \lim_{x\to 0}\frac{\frac{3x}{x^2+3x+1}}{x} = \lim_{x\to 0}\frac{3}{x^2+3x+1} = \frac{3}{1} = 3 \]
+        </div>
+
+        <div class="ans-box">最終答案：$3$</div>
+    </div>
+
+    <!-- 填充 2 -->
+    <div class="question-card">
+        <div class="q-text">
+            2. 函數 $f(x)=2x^2+3x+4$，試求 $\d\lim_{h\to 0}\frac{f(2h-1)-f(-1)}{h}=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】導數定義配湊係數</span>
+            將分子與分母對齊變化量 $2h$：
+            \[ \lim_{h\to 0}\frac{f(-1+2h)-f(-1)}{h} = \lim_{h\to 0}\frac{f(-1+2h)-f(-1)}{2h}\times 2 = 2f'(-1) \]
+            對 $f(x)$ 微分得 $f'(x)=4x+3$，代入 $x=-1$：
+            \[ f'(-1) = 4(-1)+3 = -1 \implies \text{所求} = 2\times(-1) = -2 \]
+        </div>
+
+        <div class="lhop-box">
+            <span class="box-title">🔍 【羅必達法則 (L'Hôpital's Rule) 檢驗與秒殺】</span>
+            <strong>✅ 非常適用！</strong>當 $h\to 0$ 時為 $\d\frac{0}{0}$ 不定型，將 $h$ 視為變數上下同微（注意連鎖律：內層 $2h-1$ 對 $h$ 微分為 $2$，常數 $f(-1)$ 對 $h$ 微分為 $0$）：
+            \[ \lim_{h\to 0}\frac{f(2h-1)-f(-1)}{h} \xrightarrow{\text{L'H}} \lim_{h\to 0}\frac{f'(2h-1)\cdot 2 - 0}{1} = 2f'(-1) = 2(4(-1)+3) = -2 \]
+        </div>
+
+        <div class="ans-box">最終答案：$-2$</div>
+    </div>
+
+    <!-- 填充 3 (整合剛剛第 2 題討論) -->
+    <div class="question-card">
+        <div class="q-text">
+            3. 設 $f(x)=\d\frac{(x-2020)(x-2021)(x-2022)}{(x-2023)(x-2024)}$，則 $f'(2020)=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【解法一：導數的極限定義】（最快速、免用除法公式）</span>
+            因為 $x = 2020$ 代入分子會使 $f(2020) = 0$，直接套用導數定義消去 $(x - 2020)$ 因式最快：
+            <ol>
+                <li><strong>寫出 $f'(2020)$ 的極限定義：</strong>
+                    \[ f'(2020) = \lim_{x \to 2020} \frac{f(x) - f(2020)}{x - 2020} \]
+                </li>
+                <li><strong>代入 $f(x)$ 與 $f(2020) = 0$ 並約分：</strong>
+                    \[ f'(2020) = \lim_{x \to 2020} \frac{\frac{(x - 2020)(x - 2021)(x - 2022)}{(x - 2023)(x - 2024)} - 0}{x - 2020} = \lim_{x \to 2020} \frac{(x - 2021)(x - 2022)}{(x - 2023)(x - 2024)} \]
+                </li>
+                <li><strong>將 $x = 2020$ 代入求值：</strong>
+                    \[ f'(2020) = \frac{(2020 - 2021)(2020 - 2022)}{(2020 - 2023)(2020 - 2024)} = \frac{(-1) \times (-2)}{(-3) \times (-4)} = \frac{2}{12} = \frac{1}{6} \]
+                </li>
+            </ol>
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【解法二：乘法微分法則（速解口訣：遮蓋法 / 留一法）】</span>
+            將原函數拆解為 $f(x) = (x - 2020) \cdot g(x)$，其中 $g(x) = \d\frac{(x - 2021)(x - 2022)}{(x - 2023)(x - 2024)}$：
+            <ol>
+                <li><strong>利用前微後不微＋前不微後微：</strong>
+                    \[ f'(x) = (x - 2020)' \cdot g(x) + (x - 2020) \cdot g'(x) = 1 \cdot g(x) + (x - 2020) \cdot g'(x) \]
+                </li>
+                <li><strong>代入 $x = 2020$（後項直接歸零，不需真的算出 $g'(x)$）：</strong>
+                    \[ f'(2020) = g(2020) + 0 = \frac{(-1)(-2)}{(-3)(-4)} = \frac{1}{6} \]
+                    <strong>💡 考場口訣：</strong>求一次因式根處的導數，直接用手指把 $(x-2020)$ 遮起來，把 $2020$ 代入剩下的部分即得答案！
+                </li>
+            </ol>
+        </div>
+
+        <div class="ans-box">最終答案：$\d\frac{1}{6}$</div>
+    </div>
+
+    <!-- 填充 4 -->
+    <div class="question-card">
+        <div class="q-text">
+            4. 設函數 $f(x)=\begin{cases} x^3+x & ,x\ge 1 \\ ax^2+b & ,x<1 \end{cases}$，若 $f(x)$ 在 $x=1$ 處可微分，則數對 $(a,b)=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="svg-container">
+            <svg width="310" height="200" viewBox="0 0 310 200">
+<rect x="35" y="32" width="255" height="140" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="155.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">f(x) 在 x=1 平滑接合圖形 (a=2, b=0)</text>
+<line x1="71.43" y1="32" x2="71.43" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="71.43" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="144.29" y1="32" x2="144.29" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="217.14" y1="32" x2="217.14" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="217.14" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="290.0" y1="32" x2="290.0" y2="172" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="290.0" y="169.5" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="172.0" x2="290" y2="172.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="138.29" y="176.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="137.0" x2="290" y2="137.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="138.29" y="141.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="102.0" x2="290" y2="102.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="138.29" y="106.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="35" y1="67.0" x2="290" y2="67.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="138.29" y="71.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">5</text>
+<line x1="35" y1="32.0" x2="290" y2="32.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="138.29" y="36.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">7</text>
+<line x1="35" y1="154.5" x2="290" y2="154.5" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="144.29" y1="32" x2="144.29" y2="172" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="136.29" y="168.5" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="56.86,104.1 60.86,108.61 64.87,112.92 68.88,117.01 72.89,120.89 76.89,124.55 80.9,128.01 84.91,131.25 88.91,134.28 92.92,137.1 96.93,139.71 100.94,142.11 104.94,144.29 108.95,146.27 112.96,148.03 116.96,149.58 120.97,150.92 124.98,152.04 128.99,152.96 132.99,153.66 137.0,154.15 141.01,154.43 145.01,154.5 149.02,154.35 153.03,154.0 157.04,153.43 161.04,152.65 165.05,151.66 169.06,150.45 173.06,149.04 177.07,147.41 181.08,145.57 185.09,143.52 189.09,141.26 193.1,138.79 197.11,136.1 201.11,133.21 205.12,130.1 209.13,126.78 213.14,123.24 217.14,119.5" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+<polyline points="217.14,119.5 219.09,117.6 221.03,115.61 222.97,113.56 224.91,111.41 226.86,109.19 228.8,106.88 230.74,104.49 232.69,102.01 234.63,99.43 236.57,96.77 238.51,94.01 240.46,91.15 242.4,88.19 244.34,85.14 246.29,81.98 248.23,78.72 250.17,75.35 252.11,71.87 254.06,68.28 256.0,64.58 257.94,60.76 259.89,56.83 261.83,52.78 263.77,48.61 265.71,44.31 267.66,39.9 269.6,35.35 271.54,30.68 273.49,25.88 275.43,20.94" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="158.86,175.5 169.79,165.0 180.71,154.5 191.64,144.0 202.57,133.5 213.5,123.0 224.43,112.5 235.36,102.0 246.29,91.5 257.21,81.0 268.14,70.5" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="4,3"/>
+<circle cx="217.14" cy="119.5" r="4.5" fill="#ef4444"/>
+<text x="209.14" y="111.5" text-anchor="end" fill="#ef4444" font-size="11" font-weight="bold">接合點 (1,2) 共切線 m=4</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】分段函數可微 $\iff$ 先連續、後平滑</span>
+            <ol>
+                <li><strong>在 $x=1$ 處連續（左極限 $=$ 右極限 $=$ 函數值）：</strong>
+                    \[ \lim_{x\to 1^+} (x^3+x) = \lim_{x\to 1^-} (ax^2+b) \implies 1 + 1 = a + b \implies a+b = 2 \quad \cdots(1) \]
+                </li>
+                <li><strong>在 $x=1$ 處平滑（左導數 $=$ 右導數）：</strong>
+                    分別對兩段微分得 $\begin{cases} 3x^2+1 & ,x>1 \\ 2ax & ,x<1 \end{cases}$，代入 $x=1$ 相等：
+                    \[ 3(1)^2 + 1 = 2a(1) \implies 2a = 4 \implies a = 2 \]
+                </li>
+            </ol>
+            將 $a=2$ 代回 (1) 式得 $b = 2 - 2 = 0$，故數對 $(a,b)=(2,0)$。
+        </div>
+
+        <div class="lhop-box">
+            <span class="box-title">🔍 【羅必達法則檢驗】</span>
+            <strong>✅ 左差商極限可由羅必達法則理解：</strong><br>
+            左導數 $\d\lim_{x\to 1^-}\frac{(ax^2+b)-2}{x-1}$ 要收斂為有限定值，首先分子在 $x\to 1^-$ 時必須趨近 $0$（否則極限發散），故 $a+b-2=0$（即連續條件）；符合 $\frac{0}{0}$ 型後，由羅必達法則上下對 $x$ 微分得 $\d\lim_{x\to 1^-}\frac{2ax}{1}=2a$，與右導數 $4$ 相等得 $a=2, b=0$。
+        </div>
+
+        <div class="ans-box">最終答案：$(2,0)$</div>
+    </div>
+
+    <!-- 填充 5 (整合剛剛第 3 題討論 + 羅必達完整解析) -->
+    <div class="question-card">
+        <div class="q-text">
+            5. 若多項式 $f(x)$ 滿足 $f(1)=0$，且 $f'(1)=20$，試求 $\d\lim_{x\to 1}\frac{f(x)}{4(x-1)}=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【解法一：導數的極限定義】（標準作法，手寫卷最穩）</span>
+            已知 $f(1) = 0$ 且 $f'(1) = 20$，可將所求極限式整理成導數定義的形式：
+            <ol>
+                <li><strong>將常數係數 $\d\frac{1}{4}$ 提出，並在分子補上 $- f(1)$（因為 $f(1) = 0$，數值不變）：</strong>
+                    \[ \lim_{x \to 1} \frac{f(x)}{4(x - 1)} = \frac{1}{4} \lim_{x \to 1} \frac{f(x) - f(1)}{x - 1} \]
+                </li>
+                <li><strong>由導數定義可知 $\d\lim_{x \to 1} \frac{f(x) - f(1)}{x - 1} = f'(1)$：</strong>
+                    \[ \text{原式} = \frac{1}{4} \cdot f'(1) = \frac{1}{4} \times 20 = 5 \]
+                </li>
+            </ol>
+        </div>
+
+        <div class="lhop-box">
+            <span class="box-title">🔍 【解法二：羅必達法則 (L'Hôpital's Rule) 秒殺與嚴謹度提醒】</span>
+            <strong>✅ 完全可用！在選擇題或填充題中用羅必達法則秒殺非常快：</strong>
+            <ol>
+                <li><strong>檢查不定型：</strong>當 $x \to 1$ 時，分子 $f(x) \to f(1) = 0$，分母 $4(x - 1) \to 0$，符合 <strong>$\d\frac{0}{0}$ 不定型</strong>。</li>
+                <li><strong>分子、分母同時對 $x$ 微分：</strong>
+                    \[ \lim_{x \to 1} \frac{f(x)}{4(x - 1)} \xrightarrow{\text{L'H}} \lim_{x \to 1} \frac{f'(x)}{4} \]
+                </li>
+                <li><strong>代入極限值：</strong>因為題目明確指出 $f(x)$ 是<strong>多項式</strong>，所以它的導函數 $f'(x)$ 也必定是處處連續的多項式函數，可以直接將 $x = 1$ 代入：
+                    \[ \frac{f'(1)}{4} = \frac{20}{4} = 5 \]
+                </li>
+            </ol>
+            <hr style="border:none; border-top:1px dashed var(--border-color); margin:10px 0;">
+            <strong>⚠️ 教學與手寫題的嚴謹度提醒（兩個重要小陷阱）：</strong>
+            <ul>
+                <li><strong>盲點 1（不能預設一般函數的 $f'(x)$ 連續）：</strong>羅必達法則算到最後一步是求 $\d\lim_{x \to 1} \frac{f'(x)}{4}$，這需要「導函數的極限 $\d\lim_{x \to 1} f'(x)$ 存在且等於 $f'(1)$」（即 $f'(x)$ 在 $x=1$ 連續）才成立。本題因為給了「<strong>多項式 $f(x)$</strong>」，多項式微分後仍處處連續，故百分之百合法；但若題目只寫「函數 $f(x)$」，數學上存在「在 $x=1$ 點可微，但 $f'(x)$ 在 $x=1$ 不連續」的病態函數（如 $(x-1)^2\sin\frac{1}{x-1}$ 加上線性項），此時羅必達會失效，唯獨<strong>解法一（導數定義）</strong>依然成立。</li>
+                <li><strong>盲點 2（循環論證爭議）：</strong>在高中手寫卷中，原式本就是導數定義 $\d\frac{1}{4}\lim_{x\to 1}\frac{f(x)-f(1)}{x-1}$，手寫題建議寫解法一最安全且同樣只需一行！</li>
+            </ul>
+        </div>
+
+        <div class="ans-box">最終答案：$5$</div>
+    </div>
+
+    <!-- 填充 6 -->
+    <div class="question-card">
+        <div class="q-text">
+            6. 函數 $f(x)=x^{12}+x^6-x+3$ 在 $x=-1$ 附近的一次近似式為 <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。<br>
+            (註：一次近似又稱一次估計)
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】一次近似（即切線方程式）</span>
+            函數 $f(x)$ 在 $x=a$ 附近的一次近似式為 $y = f(a) + f'(a)(x-a)$：
+            <ul>
+                <li>求函數值：$f(-1) = (-1)^{12} + (-1)^6 - (-1) + 3 = 1 + 1 + 1 + 3 = 6$</li>
+                <li>求導數值：$f'(x) = 12x^{11} + 6x^5 - 1$，代入 $x=-1$：
+                    \[ f'(-1) = 12(-1)^{11} + 6(-1)^5 - 1 = -12 - 6 - 1 = -19 \]
+                </li>
+            </ul>
+            寫出一次近似式：
+            \[ y - 6 = -19(x + 1) \implies y = -19x - 13 \]
+        </div>
+
+        <div class="ans-box">最終答案：$y=-19x-13$</div>
+    </div>
+
+    <!-- 填充 7 -->
+    <div class="question-card">
+        <div class="q-text">
+            7. 已知兩函數 $f(x)=ax^2-5x+b$ 及 $g(x)=x^3+1$ 的圖形相切於點 $P(1,c)$，且過點 $P$ 的切線斜率為 $m$，則 $a+b+c+m=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="svg-container">
+            <svg width="320" height="205" viewBox="0 0 320 205">
+<rect x="35" y="32" width="265" height="145" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="160.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">f(x)=4x²-5x+3 與 g(x)=x³+1 相切於 P(1,2)</text>
+<line x1="51.56" y1="32" x2="51.56" y2="177" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="51.56" y="172.67" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="134.38" y1="32" x2="134.38" y2="177" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="217.19" y1="32" x2="217.19" y2="177" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="217.19" y="172.67" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="300.0" y1="32" x2="300.0" y2="177" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="300.0" y="172.67" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="177.0" x2="300" y2="177.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="128.38" y="181.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="35" y1="138.33" x2="300" y2="138.33" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="128.38" y="142.33" text-anchor="end" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="99.67" x2="300" y2="99.67" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="128.38" y="103.67" text-anchor="end" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="35" y1="61.0" x2="300" y2="61.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="128.38" y="65.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">5</text>
+<line x1="35" y1="157.67" x2="300" y2="157.67" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="134.38" y1="32" x2="134.38" y2="177" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="126.38" y="171.67" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="109.53,63.71 113.01,69.58 116.49,75.18 119.97,80.51 123.44,85.56 126.92,90.34 130.4,94.85 133.88,99.08 137.36,103.05 140.83,106.74 144.31,110.15 147.79,113.3 151.27,116.17 154.75,118.77 158.22,121.09 161.7,123.15 165.18,124.92 168.66,126.43 172.14,127.67 175.62,128.63 179.09,129.32 182.57,129.73 186.05,129.87 189.53,129.75 193.01,129.34 196.48,128.67 199.96,127.72 203.44,126.5 206.92,125.0 210.4,123.24 213.88,121.2 217.35,118.88 220.83,116.3 224.31,113.44 227.79,110.31 231.27,106.91 234.74,103.23 238.22,99.28 241.7,95.06 245.18,90.56 248.66,85.79 252.13,80.75 255.61,75.44 259.09,69.85 262.57,63.99 266.05,57.86 269.52,51.46 273.0,44.78 276.48,37.83 279.96,30.6 283.44,23.11" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+<polyline points="51.56,157.67 56.2,154.6 60.84,151.87 65.47,149.47 70.11,147.37 74.75,145.55 79.39,143.99 84.02,142.68 88.66,141.59 93.3,140.69 97.94,139.98 102.57,139.43 107.21,139.02 111.85,138.72 116.49,138.53 121.12,138.41 125.76,138.36 130.4,138.34 135.04,138.33 139.67,138.33 144.31,138.3 148.95,138.23 153.59,138.09 158.22,137.87 162.86,137.55 167.5,137.1 172.14,136.5 176.77,135.74 181.41,134.79 186.05,133.64 190.69,132.25 195.32,130.63 199.96,128.73 204.6,126.54 209.24,124.05 213.88,121.23 218.51,118.06 223.15,114.52 227.79,110.59 232.42,106.24 237.06,101.47 241.7,96.25 246.34,90.55 250.97,84.37 255.61,77.67 260.25,70.44 264.89,62.65 269.52,54.3 274.16,45.35 278.8,35.78 283.44,25.58" fill="none" stroke="#ea580c" stroke-width="2.5"/>
+<polyline points="117.81,188.6 134.38,177.0 150.94,165.4 167.5,153.8 184.06,142.2 200.62,130.6 217.19,119.0 233.75,107.4 250.31,95.8 266.88,84.2 283.44,72.6" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="217.19" cy="119.0" r="4.5" fill="#ef4444"/>
+<text x="225.19" y="123.0" fill="#ef4444" font-size="11" font-weight="bold">共切點 P(1,2), m=3</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】兩曲線相切 $\iff$ 共切點、共切線斜率</span>
+            <ol>
+                <li><strong>共切點 $P(1,c)$（函數值相等）：</strong>
+                    \[ c = g(1) = 1^3 + 1 = 2 \]
+                    \[ f(1) = c \implies a - 5 + b = 2 \implies a + b = 7 \]
+                </li>
+                <li><strong>共切線斜率 $m$（導數值相等）：</strong>
+                    先求 $f'(x) = 2ax - 5$ 與 $g'(x) = 3x^2$，在 $x=1$ 處：
+                    \[ m = g'(1) = 3(1)^2 = 3 \]
+                    （若需個別求出 $a,b$：由 $f'(1)=2a-5=3 \implies a=4, b=3$）
+                </li>
+            </ol>
+            故 $a + b + c + m = (a+b) + c + m = 7 + 2 + 3 = 12$。
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【學霸考場心法】整體代入不拆解</span>
+            注意到題目問的是 $a+b+c+m$，而 $f(1)=a-5+b=c$ 直接給出 $a+b=c+5=7$，根本不必把 $a=4, b=3$ 單獨解出來，直接相加 $7+2+3=12$ 省時又防計算錯誤！
+        </div>
+
+        <div class="ans-box">最終答案：$12$</div>
+    </div>
+
+    <!-- 填充 8 -->
+    <div class="question-card">
+        <div class="q-text">
+            8. 函數 $f(x)=x^3-\d\frac{3}{2}x^2+3x+k$，$k$ 為任意實數，試求函數圖形上，兩條切線斜率為 $3$ 之切線間的距離為 <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="svg-container">
+            <svg width="350" height="215" viewBox="0 0 350 215">
+<rect x="35" y="32" width="295" height="155" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="175.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">f(x)=x³-1.5x²+3x 與兩條斜率為 3 之平行切線</text>
+<line x1="125.77" y1="32" x2="125.77" y2="187" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="239.23" y1="32" x2="239.23" y2="187" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="239.23" y="154.31" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="35" y1="187.0" x2="330" y2="187.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="119.77" y="191.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="35" y1="139.31" x2="330" y2="139.31" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="91.62" x2="330" y2="91.62" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="119.77" y="95.62" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="43.92" x2="330" y2="43.92" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="119.77" y="47.92" text-anchor="end" fill="var(--subtext-color)" font-size="11">4</text>
+<line x1="35" y1="139.31" x2="330" y2="139.31" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="125.77" y1="32" x2="125.77" y2="187" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="117.77" y="153.31" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="57.69,200.26 61.85,195.22 66.01,190.39 70.17,185.76 74.33,181.31 78.49,177.05 82.65,172.97 86.81,169.05 90.97,165.3 95.13,161.7 99.29,158.25 103.46,154.94 107.62,151.77 111.78,148.72 115.94,145.79 120.1,142.98 124.26,140.27 128.42,137.66 132.58,135.14 136.74,132.71 140.9,130.35 145.06,128.06 149.22,125.84 153.38,123.67 157.54,121.56 161.7,119.48 165.86,117.44 170.02,115.43 174.18,113.44 178.34,111.47 182.5,109.5 186.66,107.53 190.82,105.56 194.98,103.57 199.14,101.56 203.3,99.52 207.46,97.44 211.62,95.33 215.78,93.16 219.94,90.94 224.1,88.65 228.26,86.29 232.42,83.86 236.58,81.34 240.74,78.73 244.9,76.02 249.06,73.21 253.22,70.28 257.38,67.23 261.54,64.06 265.71,60.75 269.87,57.3 274.03,53.7 278.19,49.95 282.35,46.03 286.51,41.95 290.67,37.69 294.83,33.24 298.99,28.61 303.15,23.78 307.31,18.74" fill="none" stroke="var(--svg-stroke)" stroke-width="2.5"/>
+<polyline points="69.04,175.08 90.6,161.48 112.15,147.89 133.71,134.3 155.27,120.71 176.83,107.12 198.38,93.52 219.94,79.93 241.5,66.34 263.06,52.75 284.62,39.15" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+<polyline points="91.73,172.69 113.29,159.1 134.85,145.51 156.4,131.92 177.96,118.32 199.52,104.73 221.08,91.14 242.63,77.55 264.19,63.95 285.75,50.36 307.31,36.77" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+<circle cx="125.77" cy="139.31" r="4" fill="#2563eb"/>
+<circle cx="239.23" cy="79.69" r="4" fill="#ef4444"/>
+<text x="119.77" y="131.31" text-anchor="end" fill="#2563eb" font-size="11" font-weight="bold">切點 (0,0), L₁:3x-y=0</text>
+<text x="245.23" y="91.69" fill="#ef4444" font-size="11" font-weight="bold">切點 (1, 5/2), L₂:3x-y=1/2</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【正規詳解】求切點 $\to$ 求平行切線 $\to$ 兩平行線距離公式</span>
+            因為 $k$ 只影響圖形上下平移，不影響兩切線間的相對距離，故<strong>可令 $k=0$</strong> 簡化計算：
+            <ol>
+                <li><strong>找切點 $x$ 座標：</strong>令 $f'(x)=3$：
+                    \[ f'(x) = 3x^2 - 3x + 3 = 3 \implies 3x(x-1) = 0 \implies x = 0 \text{ 或 } 1 \]
+                </li>
+                <li><strong>求兩切點座標與切線方程式（令 $k=0$）：</strong>
+                    <ul>
+                        <li>當 $x=0$ 時，$f(0)=0$，切點為 $(0,0)$，切線 $L_1: y - 0 = 3(x - 0) \implies 3x - y = 0$。</li>
+                        <li>當 $x=1$ 時，$f(1)=1 - \d\frac{3}{2} + 3 = \frac{5}{2}$，切點為 $\left(1, \d\frac{5}{2}\right)$，切線 $L_2: y - \d\frac{5}{2} = 3(x - 1) \implies 3x - y - \frac{1}{2} = 0$。</li>
+                    </ul>
+                </li>
+                <li><strong>代兩平行線距離公式：</strong>
+                    \[ d(L_1, L_2) = \frac{\left|0 - \left(-\frac{1}{2}\right)\right|}{\sqrt{3^2 + (-1)^2}} = \frac{\frac{1}{2}}{\sqrt{10}} = \frac{1}{2\sqrt{10}} = \frac{\sqrt{10}}{20} \]
+                </li>
+            </ol>
+        </div>
+
+        <div class="tip-box">
+            <span class="box-title">⚠️ 【考場易錯盲點】</span>
+            代入 $x=1$ 求 $y$ 座標時，$f(1) = 1 - \d\frac{3}{2} + 3 = \frac{5}{2}$，切線截距差為 $\left|3(1) - \d\frac{5}{2}\right| = \frac{1}{2}$，千萬別把分數減法算錯成 $3$！
+        </div>
+
+        <div class="ans-box">最終答案：$\d\frac{\sqrt{10}}{20}$</div>
+    </div>
+
+    <!-- 填充 9 (整合剛剛第 4 題討論：列出所有 4 種考場可行做法 + 實戰比較表 + 精確 SVG) -->
+    <div class="question-card">
+        <div class="q-text">
+            9. 三次函數 $y=\d\frac{1}{3}x^3+ax^2+bx+c$，若函數圖形上以 $(3,-3)$ 為切點的切線，其切線斜率最小，且此切線通過原點，則數對 $(a,b,c)=$ <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>。
+        </div>
+
+        <div class="svg-container">
+            <svg width="360" height="225" viewBox="0 0 360 225">
+<rect x="35" y="32" width="305" height="165" fill="none" stroke="var(--svg-grid)" stroke-width="1"/>
+<text x="180.0" y="20" text-anchor="middle" fill="var(--text-color)" font-size="13" font-weight="bold">y = ⅓x³-3x²+8x-9 與反曲點切線 y = -x</text>
+<line x1="35.0" y1="32" x2="35.0" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="35.0" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">-1</text>
+<line x1="75.67" y1="32" x2="75.67" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="116.33" y1="32" x2="116.33" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="116.33" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">1</text>
+<line x1="157.0" y1="32" x2="157.0" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="157.0" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="197.67" y1="32" x2="197.67" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="197.67" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">3</text>
+<line x1="238.33" y1="32" x2="238.33" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="238.33" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">4</text>
+<line x1="279.0" y1="32" x2="279.0" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="279.0" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">5</text>
+<line x1="319.67" y1="32" x2="319.67" y2="197" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="319.67" y="94.14" text-anchor="middle" fill="var(--subtext-color)" font-size="11">6</text>
+<line x1="35" y1="197.0" x2="340" y2="197.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="201.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">-10</text>
+<line x1="35" y1="173.43" x2="340" y2="173.43" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="177.43" text-anchor="end" fill="var(--subtext-color)" font-size="11">-8</text>
+<line x1="35" y1="149.86" x2="340" y2="149.86" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="153.86" text-anchor="end" fill="var(--subtext-color)" font-size="11">-6</text>
+<line x1="35" y1="126.29" x2="340" y2="126.29" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="130.29000000000002" text-anchor="end" fill="var(--subtext-color)" font-size="11">-4</text>
+<line x1="35" y1="102.71" x2="340" y2="102.71" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="106.71" text-anchor="end" fill="var(--subtext-color)" font-size="11">-2</text>
+<line x1="35" y1="79.14" x2="340" y2="79.14" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="35" y1="55.57" x2="340" y2="55.57" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="59.57" text-anchor="end" fill="var(--subtext-color)" font-size="11">2</text>
+<line x1="35" y1="32.0" x2="340" y2="32.0" stroke="var(--svg-grid)" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="69.67" y="36.0" text-anchor="end" fill="var(--subtext-color)" font-size="11">4</text>
+<line x1="35" y1="79.14" x2="340" y2="79.14" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<line x1="75.67" y1="32" x2="75.67" y2="197" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+<text x="67.67" y="93.14" fill="var(--subtext-color)" font-size="11">0</text>
+<polyline points="67.53,205.52 70.79,197.04 74.04,189.04 77.29,181.5 80.55,174.4 83.8,167.74 87.05,161.5 90.31,155.67 93.56,150.24 96.81,145.19 100.07,140.52 103.32,136.21 106.57,132.25 109.83,128.63 113.08,125.34 116.33,122.36 119.59,119.68 122.84,117.29 126.09,115.17 129.35,113.33 132.6,111.73 135.85,110.38 139.11,109.26 142.36,108.35 145.61,107.65 148.87,107.15 152.12,106.82 155.37,106.66 158.63,106.66 161.88,106.81 165.13,107.08 168.39,107.48 171.64,107.99 174.89,108.59 178.15,109.28 181.4,110.04 184.65,110.86 187.91,111.73 191.16,112.63 194.41,113.56 197.67,114.5 200.92,115.44 204.17,116.37 207.43,117.27 210.68,118.14 213.93,118.96 217.19,119.72 220.44,120.41 223.69,121.01 226.95,121.52 230.2,121.92 233.45,122.19 236.71,122.34 239.96,122.34 243.21,122.18 246.47,121.85 249.72,121.35 252.97,120.65 256.23,119.74 259.48,118.62 262.73,117.27 265.99,115.67 269.24,113.83 272.49,111.71 275.75,109.32 279.0,106.64 282.25,103.66 285.51,100.37 288.76,96.75 292.01,92.79 295.27,88.48 298.52,83.81 301.77,78.76 305.03,73.33 308.28,67.5 311.53,61.26 314.79,54.6 318.04,47.5 321.29,39.96 324.55,31.96 327.8,23.48" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<polyline points="35.0,67.36 62.65,75.37 90.31,83.39 117.96,91.4 145.61,99.41 173.27,107.43 200.92,115.44 228.57,123.46 256.23,131.47 283.88,139.49 311.53,147.5" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="75.67" cy="79.14" r="4" fill="#16a34a"/>
+<circle cx="197.67" cy="114.5" r="4.5" fill="#ef4444"/>
+<circle cx="75.67" cy="185.21" r="3.5" fill="#2563eb"/>
+<text x="81.67" y="73.14" fill="#16a34a" font-size="11" font-weight="bold">過原點 (0,0)</text>
+<text x="205.67" y="108.5" fill="#ef4444" font-size="11" font-weight="bold">反曲點 (3,-3) 切線 y=-x</text>
+<text x="81.67" y="189.21" fill="#2563eb" font-size="11" font-weight="bold">(0,-9)</text>
+</svg>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">🔑 【解題共通前置基礎】先求切線斜率、切線方程式與反曲點定位</span>
+            <ul>
+                <li><strong>求切線斜率 $m$ 與切線方程式：</strong>切線同時通過切點 $(3, -3)$ 與原點 $(0, 0)$，故切線斜率 $m = \d\frac{-3 - 0}{3 - 0} = -1$，切線方程式為 $y = -x$。</li>
+                <li><strong>定位反曲點：</strong>三次函數領導係數 $\d\frac{1}{3} > 0$，開口向上之導函數圖形，其<strong>切線斜率最小處必發生在「反曲點（對稱中心）」</strong>，故 $(3, -3)$ 即為此三次函數的反曲點。</li>
+            </ul>
+        </div>
+
+        <div class="pro-box">
+            <span class="box-title">⚡ 【做法一：三次函數「反曲點標準式」】（考場最速解，完全免微分）</span>
+            108 課綱最強調三次函數在對稱中心 $(h, k)$ 的展開式：$y = A(x - h)^3 + p(x - h) + k$，其中一次項 $y = p(x - h) + k$ 正好就是通過反曲點的<strong>切線方程式</strong>！
+            <ol>
+                <li><strong>直接寫出函數結構：</strong>已知領導係數 $A = \d\frac{1}{3}$，反曲點 $(h, k) = (3, -3)$，且反曲點切線斜率 $p = m = -1$：
+                    \[ y = \frac{1}{3}(x - 3)^3 - 1(x - 3) - 3 \]
+                    <em>（註：後面 $-1(x - 3) - 3$ 化簡其實就是切線 $y = -x$，所以也可直接寫成 $y = \d\frac{1}{3}(x - 3)^3 - x$）</em>
+                </li>
+                <li><strong>直接展開比對係數：</strong>
+                    \[ y = \frac{1}{3}(x^3 - 9x^2 + 27x - 27) - x = \frac{1}{3}x^3 - 3x^2 + 9x - 9 - x = \frac{1}{3}x^3 - 3x^2 + 8x - 9 \]
+                    對照 $y = \d\frac{1}{3}x^3 + ax^2 + bx + c$，得 $(a, b, c) = (-3, 8, -9)$。
+                </li>
+            </ol>
+        </div>
+
+<div class="pro-box">
+            <span class="box-title">⚡ 【做法二：交點重根法】（切線相減構造三重根，免微分）</span>
+            在三次函數中，若直線 $L$ 為「反曲點切線」，則它與三次函數是「既相切又相交（穿過）」，代表兩圖形聯立後在切點 $x = 3$ 處必有<strong>三重根</strong>！
+            <ol>
+                <li><strong>利用相減等於三重根因式：</strong>設三次函數 $f(x)$ 與切線 $y = -x$ 相減：
+                    \[ f(x) - (-x) = \frac{1}{3}(x - 3)^3 \]
+                </li>
+                <li><strong>移項展開：</strong>
+                    \[ f(x) = \frac{1}{3}(x - 3)^3 - x = \frac{1}{3}(x^3 - 9x^2 + 27x - 27) - x = \frac{1}{3}x^3 - 3x^2 + 8x - 9 \]
+                    得 $(a, b, c) = (-3, 8, -9)$。
+                </li>
+            </ol>
+
+            <!-- 做法二觀念補充說明 -->
+            <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--pro-border); font-size: 15px; line-height: 1.7;">
+                <span style="font-weight: 700; color: var(--text-color); display: block; margin-bottom: 6px;">💡 【觀念補充】為什麼反曲點切線會「既相切又穿過」且「必有三重根」？</span>
+                這句話的核心意思是，<strong>三次函數與它的「反曲點切線」聯立相減後，方程式一定會變成 $A(x - 3)^3 = 0$ 的形式</strong>。因為反曲點剛好把三次方程式全部 3 個交點合併在同一個位置，所以在 $x = 3$ 產生了<strong>三重根</strong>，並讓切線貼著圖形穿過去。
+
+                <p style="font-weight: 700; margin: 10px 0 4px;">1. 為什麼切線會「既相切又穿過」？</p>
+                <div style="margin-bottom: 6px;">以前學圓或二次函數（拋物線）時，切線都只會擦過圖形外側而不會穿過去，但三次函數的反曲點比較特別：</div>
+                <ul style="margin: 4px 0 10px; padding-left: 22px;">
+                    <li><strong>反曲點是彎曲方向的轉折點：</strong>三次函數在反曲點的一側凹口向下，另一側凹口向上，形狀就像英文字母 S 的正中間。</li>
+                    <li><strong>切線貼平瞬間也會換邊穿過：</strong>當直線在這個轉折點貼齊圖形時，左半邊圖形彎向切線的一側，右半邊圖形卻彎向切線的另一側。因此這條直線在該點既有「相切（斜率相同貼平）」的特性，又有「穿過（左右換邊）」的現象。</li>
+                </ul>
+
+                <p style="font-weight: 700; margin: 10px 0 4px;">2. 為什麼聯立後「必有三重根」？</p>
+                <div style="margin-bottom: 6px;">我們可以用高一學的「三次函數標準式」與最簡單的例子來驗證這件事：</div>
+                <ul style="margin: 4px 0 0; padding-left: 22px;">
+                    <li><strong>用三次函數標準式直接看：</strong>任何反曲點（對稱中心）在 $x = 3$ 的三次函數，都可以改寫成 $f(x) = A(x - 3)^3 + p(x - 3) + k$。其中後面那串一次式 $y = p(x - 3) + k$，正好就是反曲點切線 $L$ 的方程式。</li>
+                    <li><strong>兩式聯立相減後一次式全消掉：</strong>當我們求三次函數與切線 $L$ 的交點時，會把兩式相減列成 $f(x) - L(x) = 0$。這時後面的 $p(x - 3) + k$ 會完全抵消，只剩下 $A(x - 3)^3 = 0$，解出來就是 $x = 3, 3, 3$ 的三重根。</li>
+                    <li><strong>用最簡單的例子驗證：</strong>假設三次函數是 $y = (x - 3)^3$，它的反曲點在 $(3, 0)$，反曲點切線剛好就是水平的 $x$ 軸（$y = 0$）。當 $x < 3$ 時圖形在 $x$ 軸下方，$x > 3$ 時跑到 $x$ 軸上方，聯立得到 $(x - 3)^3 = 0$，正好就是三重根且穿過切線。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【做法三：二階導數法】（微積分標準作法，手寫卷最穩）</span>
+            利用一階導數求切線斜率、二階導數求反曲點，逐一解出 $a, b, c$：
+            <ol>
+                <li><strong>求一階與二階導函數：</strong>
+                    \[ f(x) = \frac{1}{3}x^3 + ax^2 + bx + c \implies f'(x) = x^2 + 2ax + b \implies f''(x) = 2x + 2a \]
+                </li>
+                <li><strong>由高階導數往回代，逐個擊破未知數：</strong>
+                    <ul>
+                        <li><strong>求 $a$：</strong>切線斜率最小處即 $f'(x)$ 極小值處，滿足 $f''(3) = 0 \implies 2(3) + 2a = 0 \implies a = -3$。</li>
+                        <li><strong>求 $b$：</strong>切點 $x = 3$ 處斜率為 $-1$，故 $f'(3) = -1 \implies 3^2 + 2(-3)(3) + b = -1 \implies 9 - 18 + b = -1 \implies b = 8$。</li>
+                        <li><strong>求 $c$：</strong>函數通過切點 $(3, -3)$，故 $f(3) = -3 \implies \d\frac{1}{3}(3)^3 + (-3)(3)^2 + 8(3) + c = -3 \implies 9 - 27 + 24 + c = -3 \implies c = -9$。</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="solution-box">
+            <span class="box-title">📘 【做法四：一階導數配方法】（適合高一或尚未學二階導數時）</span>
+            若不背反曲點公式，也不使用二階微分 $f''(x) = 0$，直接把切線斜率當作二次函數求極值：
+            <ol>
+                <li><strong>寫出斜率函數（一階導函數）並配方：</strong>
+                    \[ m(x) = f'(x) = x^2 + 2ax + b = (x + a)^2 + (b - a^2) \]
+                </li>
+                <li><strong>對照頂點（最小值）座標：</strong>在 $x = 3$ 處最小斜率為 $-1$，代表此開口向上的拋物線頂點為 $(3, -1)$：
+                    <ul>
+                        <li>對稱軸 $x = -a = 3 \implies a = -3$</li>
+                        <li>最小值 $b - a^2 = -1 \implies b - (-3)^2 = -1 \implies b = 8$</li>
+                    </ul>
+                </li>
+                <li><strong>代回原函數求 $c$：</strong>將 $(3, -3)$ 代入 $y = \d\frac{1}{3}x^3 - 3x^2 + 8x + c$，得 $9 - 27 + 24 + c = -3 \implies c = -9$。</li>
+            </ol>
+        </div>
+
+        <!-- 考場實戰比較表 -->
+        <table class="method-table">
+            <thead>
+                <tr>
+                    <th>做法名稱</th>
+                    <th>適用年級 / 範圍</th>
+                    <th>運算耗時</th>
+                    <th>考場優勢與適用情境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>做法一：反曲點標準式</strong></td>
+                    <td>高一上（三次函數）</td>
+                    <td>$\approx 20$ 秒</td>
+                    <td><strong>填充/選擇題首選</strong>，一行列式直接展開，完全避開解聯立方程式。</td>
+                </tr>
+                <tr>
+                    <td><strong>做法二：交點重根法</strong></td>
+                    <td>高一上（多項式因式）</td>
+                    <td>$\approx 20$ 秒</td>
+                    <td>與做法一等效，直接用 $f(x) - \text{切線} = A(x-3)^3$ 秒殺。</td>
+                </tr>
+                <tr>
+                    <td><strong>做法三：二階導數法</strong></td>
+                    <td>高三（選修微積分）</td>
+                    <td>$\approx 40$ 秒</td>
+                    <td><strong>手寫計算題首選</strong>，邏輯最直觀（$f'' \to f' \to f$），不需記憶幾何特例。</td>
+                </tr>
+                <tr>
+                    <td><strong>做法四：一階導數配方</strong></td>
+                    <td>高三 / 跨章節複習</td>
+                    <td>$\approx 45$ 秒</td>
+                    <td>萬一忘記反曲點性質或二階導數時，最保底的二次函數配方法。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="ans-box">最終答案：$(-3,8,-9)$</div>
+    </div>
+
+</div>
+
+<script>
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    }
+
+    function printDoc() {
+        if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise().then(() => {
+                window.print();
+            });
+        } else {
+            window.print();
+        }
+    }
+</script>
+
+</body>
+</html>
